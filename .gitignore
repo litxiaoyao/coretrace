@@ -29,7 +29,7 @@ paper/*.log
 paper/*.out
 paper/*.bbl
 paper/*.blg
-models/
+/models/
 data/raw/
 refers/
 /data/CoRe-2Wiki-v1.0/corpus.jsonl.gz

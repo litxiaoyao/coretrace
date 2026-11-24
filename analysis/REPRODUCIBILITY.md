@@ -26,14 +26,14 @@ The formal split uses 100 discovery, 2,000 training, and 1,000 test source IDs. 
 
 ## Implementation boundary
 
-Four imported runtime modules are absent from the audited checkout:
+The original audit found four imported runtime modules absent from its checkout:
 
 - `coretrace/models/native`
 - `coretrace/models/deployment`
 - `coretrace/models/head_slices`
 - `coretrace/models/cpu_adamw`
 
-Their import sites are enumerated in `analysis/internal/missing_modules.json`. A complete GPU rerun requires these modules, model weights, and the relevant execution environment. The available data construction, attention intervention, evidence selection, scoring, and analysis code supports inspection of those procedures. The recorded training and evaluation metadata supports verification of parameter counts and declared restoration masks.
+These original runtime sources have now been restored from the experiment workspace, together with `coretrace/models/__init__.py` and the deployment dependency `scoped_rollback.py`. The omission came from the unanchored `models/` Git ignore rule; `/models/` now excludes only the root model-weight directory. `analysis/internal/missing_modules.json` remains the historical audit finding. A complete GPU rerun requires external model weights and the declared execution environment. CPU import and optimizer checks validate the restored source; they do not constitute a fresh GPU experiment rerun.
 
 | Model | Declared native restoration | Prefill scope |
 | --- | --- | --- |
@@ -41,7 +41,7 @@ Their import sites are enumerated in `analysis/internal/missing_modules.json`. A
 | Qwen3-8B | V and O; layers 12–19 | Question tokens |
 | Llama-3.1-8B | V; selected layers | Prefix before the question |
 
-These settings were checked in `outputs/{model}/seed42/evaluation/core/manifest.json`, under `provenance.config.methods` for `final`, and agree with the manuscript's scope table. The missing model runtime prevents direct inspection of the complete restoration/head-slice implementation. No substitute runtime was added during this paper-only revision.
+These settings were checked in `outputs/{model}/seed42/evaluation/core/manifest.json`, under `provenance.config.methods` for `final`, and agree with the manuscript's scope table. The restored restoration/head-slice implementation is available in `coretrace/models/` for inspection and execution.
 
 ## Reconstructing the displayed evidence
 
