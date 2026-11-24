@@ -1,0 +1,83 @@
+[
+  {
+    "model": "qwen3_4b",
+    "seed": 42,
+    "head_count": 20,
+    "ranked_selection_matches": true,
+    "trained_matches_selected": true,
+    "trainable_parameters": 23592960,
+    "percent": 0.5865294500026285
+  },
+  {
+    "model": "qwen3_4b",
+    "seed": 43,
+    "head_count": 20,
+    "ranked_selection_matches": true,
+    "trained_matches_selected": true,
+    "trainable_parameters": 23592960,
+    "percent": 0.5865294500026285
+  },
+  {
+    "model": "qwen3_4b",
+    "seed": 44,
+    "head_count": 20,
+    "ranked_selection_matches": true,
+    "trained_matches_selected": true,
+    "trainable_parameters": 23592960,
+    "percent": 0.5865294500026285
+  },
+  {
+    "model": "qwen3_8b",
+    "seed": 42,
+    "head_count": 20,
+    "ranked_selection_matches": true,
+    "trained_matches_selected": true,
+    "trainable_parameters": 39845888,
+    "percent": 0.48647509959349977
+  },
+  {
+    "model": "qwen3_8b",
+    "seed": 43,
+    "head_count": 20,
+    "ranked_selection_matches": true,
+    "trained_matches_selected": true,
+    "trainable_parameters": 39845888,
+    "percent": 0.48647509959349977
+  },
+  {
+    "model": "qwen3_8b",
+    "seed": 44,
+    "head_count": 20,
+    "ranked_selection_matches": true,
+    "trained_matches_selected": true,
+    "trainable_parameters": 39845888,
+    "percent": 0.48647509959349977
+  },
+  {
+    "model": "llama3_8b",
+    "seed": 42,
+    "head_count": 40,
+    "ranked_selection_matches": true,
+    "trained_matches_selected": true,
+    "trainable_parameters": 75497472,
+    "percent": 0.9401620902284249
+  },
+  {
+    "model": "llama3_8b",
+    "seed": 43,
+    "head_count": 40,
+    "ranked_selection_matches": true,
+    "trained_matches_selected": true,
+    "trainable_parameters": 75497472,
+    "percent": 0.9401620902284249
+  },
+  {
+    "model": "llama3_8b",
+    "seed": 44,
+    "head_count": 40,
+    "ranked_selection_matches": true,
+    "trained_matches_selected": true,
+    "trainable_parameters": 75497472,
+    "percent": 0.9401620902284249
+  }
+]

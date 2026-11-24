@@ -12,8 +12,8 @@ results, data, configuration, and research code are never modified.
 
 Uncertainty conventions are deliberately distinct: the causal-access panel
 uses the recorded paired-bootstrap 95% intervals; the factorial panels display
-the recorded quadruplet-cluster interaction estimates (intervals are exported
-for the corresponding table); trained-method plots
+the recorded quadruplet-cluster interaction estimates and their 95% intervals;
+trained-method plots
 use sample standard deviation across recorded runs. The saved training traces
 for selected-head adaptation repeat across seed labels, so these bars must not
 be interpreted as stochastic-training robustness. Native references are read
@@ -337,8 +337,10 @@ def make_causal() -> None:
         bars(ax, np.arange(2) + width / 2, donor, width, ORANGE, labels=True,
              label="Direct-query reading pattern")
         interaction = unique_record(contrasts, model=model, contrast="interaction")
-        ax.text(0.5, 0.95, f"Interaction {interaction['estimate_pp']:+.0f} pp",
-                transform=ax.transAxes, ha="center", va="top", fontsize=8.5)
+        ax.text(0.5, 0.95,
+                f"Interaction {interaction['estimate_pp']:+.0f} pp "
+                f"[{interaction['CI95_low_pp']:.0f}, {interaction['CI95_high_pp']:.0f}]",
+                transform=ax.transAxes, ha="center", va="top", fontsize=8.0)
         ax.set_title(f"({chr(97+i)}) {MODEL_NAMES[model]}", pad=9)
         ax.set_xticks([0, 1], ["Native mass", "Calibrated"])
         ax.set_ylim(0, 105)
@@ -350,7 +352,7 @@ def make_causal() -> None:
         clean_axis(ax)
         ax.axhline(0, color=INK, lw=0.8, zorder=2)
         controls = [("oracle_second_paragraph", "Bridge", BLUE),
-                    ("oracle_first_paragraph", "First hop", ORANGE),
+                    ("oracle_first_paragraph", "Root", ORANGE),
                     ("lengthmatched_other_paragraph", "Other", GRAY)]
         for j, (method, label, color) in enumerate(controls):
             row = unique_record(access, model=model, method=method)
@@ -405,8 +407,16 @@ def make_content(seeds: list[int]) -> None:
 
     fig, axes = plt.subplots(1, 3, figsize=(6.75, 2.62), sharey=True)
     fig.subplots_adjust(left=0.085, right=0.985, bottom=0.22, top=0.76, wspace=0.25)
-    metrics = [("edited_new_follow", "Edited\nvalue ↑"),
-               ("edited_old_persistence", "Obsolete\nanswer ↓")]
+    metrics = [("edited_new_follow", "Edited-value\nfollowing ↑"),
+               ("original_correct_then_new", "Joint\ncorrectness ↑")]
+    # Preserve the full four-outcome exports above for the appendix and record
+    # the exact subset shown in the main figure in a separate plot-value file.
+    metric_labels = dict(metrics)
+    export_csv(f"{name}_plotted", [
+        {**row, "display_label": metric_labels[row["metric"]].replace("\n", " ")}
+        for row in aggregated
+        if row["method"] in {"native", "final"} and row["metric"] in metric_labels
+    ])
     width = 0.33
     for i, (model, ax) in enumerate(zip(MODELS, axes)):
         clean_axis(ax)

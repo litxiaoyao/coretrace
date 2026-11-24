@@ -3,7 +3,7 @@
 
 Run from the repository root:
   python analysis/package_delivery.py --dry-run
-  python analysis/package_delivery.py --output-dir ../coretrace_delivery --verify-reproduction
+  python analysis/package_delivery.py --output-dir analysis/delivery --verify-reproduction
 
 The packager uses only the Python standard library. Optional reconstruction
 verification needs the NumPy/Matplotlib dependencies of the plotting script.
@@ -32,7 +32,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 PAPER = ROOT / "paper"
 FORMAL_FIGURES = (
-    "figure1_teaser",
+    "story_overview",
     "figure2_diagnosis",
     "figure3_method",
     "data_fig3_diagnosis",
@@ -44,6 +44,7 @@ FORMAL_FIGURES = (
     "data_app_capabilities",
 )
 NUMERICAL_FIGURES = FORMAL_FIGURES[3:]
+VECTOR_OVERVIEWS = ("story_overview",)
 STYLE_FILES = ("icml2027.sty", "icml2027.bst", "algorithm.sty", "algorithmic.sty", "fancyhdr.sty")
 ARTIFACT_NAMES = (
     "coretrace_overleaf.zip",
@@ -190,7 +191,7 @@ def check_tex_dependencies(files: dict[str, Path]) -> list[str]:
 def compiled_pdf_issues(files: dict[str, Path]) -> list[str]:
     pdf = PAPER / "main.pdf"
     if not pdf.is_file():
-        return ["Missing paper/main.pdf. Compile the complete paper first (make -C paper)."]
+        return ["Missing paper/main.pdf. Compile and visually check the complete paper with analysis/compile_paper.sh, then copy the verified PDF to paper/main.pdf."]
     with pdf.open("rb") as handle:
         if not handle.read(8).startswith(b"%PDF-"):
             return ["paper/main.pdf does not have a PDF header."]
@@ -209,6 +210,8 @@ def source_metadata(inputs: list[dict], versions: dict[str, str | None]) -> dict
     return {
         "repository": "https://github.com/litxiaoyao/coretrace",
         "scientific_source_commit": snapshot.get("source_commit"),
+        "audited_source_commit": snapshot.get("audit_source_commit"),
+        "source_commit_roles": snapshot.get("commit_roles"),
         "packaged_git_head": git_output("rev-parse", "HEAD"),
         "uncommitted_worktree_changes": None if status is None else bool(status),
         "template": {
@@ -218,7 +221,7 @@ def source_metadata(inputs: list[dict], versions: dict[str, str | None]) -> dict
         },
         "python_version": platform.python_version(),
         "numerical_dependencies": versions,
-        "reconstruction_scope": "Numerical figures and LaTeX tables from supplied summaries and derived measurements",
+        "reconstruction_scope": "Seven numerical figures, one vector story overview, and all LaTeX tables from supplied small inputs",
         "reconstruction_inputs": "Completed experiment summaries and derived measurements supplied with the package",
         "input_files": inputs,
     }
@@ -264,7 +267,8 @@ def verify_reconstruction(archive_path: Path, workspace: Path) -> dict:
     environment["PYTHONPATH"] = ""
     environment["MPLCONFIGDIR"] = str(workspace / "isolated_mpl_config")
     commands = ([sys.executable, "analysis/plot_results.py"],
-                [sys.executable, "analysis/build_tables.py"])
+                [sys.executable, "analysis/build_tables.py"],
+                [sys.executable, "analysis/draw_story_overview.py"])
     for command in commands:
         run = subprocess.run(command, cwd=tree, env=environment, capture_output=True,
                              text=True, timeout=180)
@@ -273,11 +277,22 @@ def verify_reconstruction(archive_path: Path, workspace: Path) -> dict:
                 "Standalone reconstruction failed for " + " ".join(command[1:]) + "\n"
                 + run.stdout[-3000:] + "\n" + run.stderr[-5000:]
             )
-    missing = [f"paper/figures/{stem}.{extension}" for stem in NUMERICAL_FIGURES
+    missing = [f"paper/figures/{stem}.{extension}" for stem in (*NUMERICAL_FIGURES, *VECTOR_OVERVIEWS)
                for extension in ("pdf", "png")
                if not (tree / "paper" / "figures" / f"{stem}.{extension}").is_file()]
     if missing:
         raise RuntimeError("Standalone reconstruction omitted figures: " + ", ".join(missing))
+    overview_assets = 0
+    for stem in VECTOR_OVERVIEWS:
+        for extension in ("pdf", "png"):
+            original = source_path(f"paper/figures/{stem}.{extension}")
+            reproduced = tree / "paper" / "figures" / original.name
+            if reproduced.read_bytes() != original.read_bytes():
+                raise RuntimeError(
+                    f"Reconstructed story asset differs: {original.name}. "
+                    "Regenerate it with the current script and dependencies before packaging."
+                )
+            overview_assets += 1
     table_count = 0
     for original in sorted((PAPER / "tables").glob("*.tex")):
         reproduced = tree / "paper" / "tables" / original.name
@@ -291,34 +306,39 @@ def verify_reconstruction(archive_path: Path, workspace: Path) -> dict:
             raise RuntimeError(f"Reconstructed figure data differ: {original.name}. Rerun the complete plotting script.")
         csv_count += 1
     return {"performed": True, "passed": True, "numerical_figures": len(NUMERICAL_FIGURES),
+            "vector_overviews": len(VECTOR_OVERVIEWS), "overview_assets_compared": overview_assets,
             "table_files_compared": table_count, "csv_files_compared": csv_count,
-            "commands": ["python analysis/plot_results.py", "python analysis/build_tables.py"],
+            "commands": ["python analysis/plot_results.py", "python analysis/build_tables.py",
+                         "python analysis/draw_story_overview.py"],
             "scope": "Fresh extraction, cleared PYTHONPATH, supplied small inputs only; no model execution"}
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--output-dir", type=Path, default=ROOT.parent / "coretrace_delivery",
-                        help="Delivery directory outside the repository (default: sibling coretrace_delivery)")
+    parser.add_argument("--output-dir", type=Path, default=ROOT / "analysis" / "delivery",
+                        help="Delivery directory (default: analysis/delivery; other repository directories are refused)")
     parser.add_argument("--dry-run", action="store_true", help="Inspect the complete plan without writing packages")
     parser.add_argument("--verify-reproduction", action="store_true",
-                        help="Execute plotting and table construction from the isolated code archive")
+                        help="Regenerate numerical figures, all tables, and the vector story overview from the isolated code archive")
     parser.add_argument("--include-audit-code", action="store_true",
                         help="Include optional verification scripts, which need the full repository/data to run")
     args = parser.parse_args()
     output = args.output_dir.expanduser().resolve()
-    if output == ROOT or output.is_relative_to(ROOT):
-        raise ValueError("--output-dir must be outside the repository; package files are never added to the source tree.")
+    if output.is_relative_to(ROOT) and not output.is_relative_to(ROOT / "analysis" / "delivery"):
+        raise ValueError("Repository output paths must be analysis/delivery or its descendants; external delivery directories are also supported.")
 
     inputs, input_records = load_reconstruction_inputs()
     manuscript = overleaf_files()
     issues = check_tex_dependencies(manuscript) + compiled_pdf_issues(manuscript)
     figures = {f"{stem}.{extension}": source_path(f"paper/figures/{stem}.{extension}")
                for stem in FORMAL_FIGURES for extension in ("pdf", "png")}
+    figures["captions.json"] = source_path("paper/figures/captions.json")
     code_paths = set(inputs) | {
         "analysis/plot_results.py", "analysis/build_tables.py", "analysis/package_delivery.py",
-        "analysis/wrap_conceptual_figures.py", "analysis/CLAIM_EVIDENCE.md", "analysis/STORY_DESIGN.md",
-        "analysis/README.md", "analysis/image_prompts.json", "analysis/internal/source_snapshot.json",
+        "analysis/draw_story_overview.py", "analysis/REPRODUCIBILITY.md",
+        "analysis/wrap_conceptual_figures.py", "analysis/README.md", "analysis/image_prompts.json",
+        "analysis/internal/source_snapshot.json", "analysis/internal/legacy_figure_metadata.json",
+        "paper/figures/captions.json", "paper/figures/figure_sources.json",
     }
     code_paths.update(path.relative_to(ROOT).as_posix()
                       for path in (ROOT / "analysis" / "figure_data").iterdir()
@@ -333,7 +353,8 @@ def main() -> None:
         "output_directory": str(output),
         "formal_figures": list(FORMAL_FIGURES),
         "overleaf_file_count": len(manuscript),
-        "figure_asset_count": len(figures),
+        "figure_asset_count": 2 * len(FORMAL_FIGURES),
+        "figure_metadata_files": ["captions.json"],
         "reconstruction_input_count": len(inputs),
         "reconstruction_input_bytes": sum(row["bytes"] for row in input_records),
         "code_file_count_before_generated_metadata": len(code),
@@ -358,13 +379,18 @@ This archive preserves the required project-relative input layout. From its root
     python -m pip install -r analysis/requirements.txt
     python analysis/plot_results.py
     python analysis/build_tables.py
+    python analysis/draw_story_overview.py
 
 See analysis/README.md for the scientific organization, exact scope, and population
 and uncertainty conventions. SOURCE.json records the scientific baseline commit,
 packaging revision, dependency versions, and hashes of all small input files.
-The seven numerical figures and manuscript tables can be regenerated without
-models or raw prediction archives. Figures 1, 2, and 3 are supplied separately in the
-formal-figure archive; analysis/image_prompts.json records their prompts and edits.
+The seven numerical figures, all manuscript tables (including the two compact
+main-text summaries), and the vector story overview regenerate from these files.
+The two appendix conceptual illustrations are supplied separately in the formal-figure
+archive; analysis/image_prompts.json records their historical prompts and edits.
+analysis/REPRODUCIBILITY.md distinguishes the verified analysis scope from a full
+GPU rerun and records the audited repository revision. Current figure provenance
+and explicitly archived legacy metadata accompany this reconstruction package.
 
 Optional audit_*.py scripts, when included, use the full repository data and
 prediction archives for further analyses. package_delivery.py likewise expects
@@ -372,10 +398,12 @@ the full working tree and a compiled manuscript when creating all delivery files
 """
     figures_readme = "# Formal CoReTrace figures\n\n" + "\n".join(
         f"- {stem}.pdf and {stem}.png" for stem in FORMAL_FIGURES
-    ) + "\n\nFigures 1, 2, and 3 are image-generated conceptual illustrations; their PDFs embed\n" \
-        "the PNGs unchanged. The remaining seven PDFs are vector numerical figures,\n" \
-        "with 300-dpi PNG previews. Captions and scientific interpretation appear\n" \
-        "in the accompanying manuscript.\n"
+    ) + "\n\nThe main paper has four figures: the vector story overview and the three numerical\n" \
+        "diagnosis, intervention, and content-validation figures. The appendix has the\n" \
+        "two supplied conceptual illustrations plus four numerical figures. The seven\n" \
+        "numerical PDFs have 300-dpi PNG previews; the vector overview has a 400-dpi\n" \
+        "preview. Appendix conceptual PDFs embed their supplied PNGs unchanged.\n" \
+        "captions.json records figure roles; the manuscript provides the final captions.\n"
 
     with tempfile.TemporaryDirectory(prefix=".coretrace_package_", dir=output) as temporary:
         work = Path(temporary)

@@ -1,83 +1,72 @@
-# Paper source and formal figures
+# Manuscript and formal figures
 
-**When Correct Hops Fail to Compose: Evidence Access Shapes Local Reading**
+**When Correct Hops Fail to Compose: Diagnosing Evidence Access and Local Reading**
 
-`main.tex` compiles the complete manuscript and appendix. The main text follows **Introduction – Related Work – Method – Experiments – Conclusion**. It asks why correct constituent answers fail to compose, distinguishes recoverable evidence location from effective evidence use, tests the interaction of paragraph access and local reading, and applies those findings through CoReTrace.
+`main.tex` contains the complete anonymous ICML submission and appendix. The argument connects a contextual composition failure, a recoverable bridge-paragraph address, a controlled interaction between paragraph access and local reading, and a repair evaluated on the existing experiment records. The main text presents the central evidence, component comparison, ambiguous-candidate analysis, and local-fact validation. The appendix carries the complete protocol, controls, per-run results, capability evaluations, implementation details, and reproducibility scope.
 
-The appendix contains the complete experimental protocols, head maps, necessity controls, reader and selector diagnostics, component interventions, constituent results, capability evaluations, and uncertainty details. Appendix figures and tables have their own `A` numbering. Numerical results and captions share the source summaries described in the accompanying analysis documentation.
+## Compile and inspect
 
-The supplied manuscript uses the official anonymous submission mode. Author, affiliation, and correspondence fields can be filled when preparing a named preprint or an accepted version.
-
-## Compile
-
-The source uses the official **ICML 2027** style and bibliography style, together with the template's auxiliary `algorithm.sty`, `algorithmic.sty`, and `fancyhdr.sty` files.
-
-- Author instructions: <https://icml.cc/Conferences/2027/AuthorInstructions>
-- Official style archive: <https://media.icml.cc/Conferences/ICML2027/styles/icml2027.zip>
-
-With a normal TeX installation containing `latexmk`, pdfLaTeX, BibTeX, and the packages declared in `main.tex`, run from this directory:
+From the repository root:
 
 ```bash
-make
+bash analysis/compile_paper.sh
 ```
 
-Equivalently:
+The compiled PDF and logs appear in `analysis/build_final/`. The script builds a fresh source snapshot and uses standard pdfLaTeX/BibTeX with the original template. In the supplied execution image, it generates the missing format and font maps under `analysis/tex_runtime/`. It leaves the system installation and manuscript inputs unchanged.
+
+Inspect the **compiled PDF** page by page, including the appendix, and resolve layout or reference issues before promoting the result. After this check:
 
 ```bash
-latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error main.tex
+cp analysis/build_final/main.pdf paper/main.pdf
+cp analysis/build_final/main.bbl paper/main.bbl
 ```
 
-If `latexmk` is unavailable, `make pdf-pdflatex` performs the standard sequence:
+With a complete local TeX installation, `make -C paper` is also supported. `make -C paper pdf-pdflatex` performs the explicit pdfLaTeX–BibTeX–pdfLaTeX–pdfLaTeX sequence. For Overleaf, upload `coretrace_overleaf.zip`, select `main.tex`, and use pdfLaTeX. The archive contains the manuscript, bibliography, styles, sections, tables, and the ten formal figure PDFs.
 
-```bash
-pdflatex -interaction=nonstopmode -halt-on-error -file-line-error main.tex
-bibtex main
-pdflatex -interaction=nonstopmode -halt-on-error -file-line-error main.tex
-pdflatex -interaction=nonstopmode -halt-on-error -file-line-error main.tex
-```
+The source uses the official anonymous **ICML 2027** template. Its style and bibliography files were checked byte-for-byte against the [official archive](https://media.icml.cc/Conferences/ICML2027/styles/icml2027.zip). The [author instructions](https://icml.cc/Conferences/2027/AuthorInstructions) define the submission format. The manuscript includes an impact statement and the required AI Disclosure Statement.
 
-For Overleaf, upload `coretrace_overleaf.zip`, choose `main.tex` as the main document, and use pdfLaTeX. The archive places `main.tex`, the bibliography, styles, and this Makefile at its root, with `sections/`, `tables/`, and `figures/` beside them. A generated `main.bbl` is included when available; `references.bib` remains the bibliography source.
+## Formal figure roles
 
-`make clean` removes auxiliary compilation files while retaining the PDF. `make distclean` also removes the compiled PDF. Neither command changes manuscript sources or figures.
+The main paper has four figures; the appendix has six. Stable filenames preserve links to the recorded numerical data even where the manuscript figure numbers changed.
 
-## Formal figure set
+| Placement | File stem | Purpose |
+| --- | --- | --- |
+| Main | `story_overview` | Worked example and schematic attention factorization |
+| Main | `data_fig3_diagnosis` | Composition failures and bridge-address readout on those failures |
+| Main | `data_fig4_causal` | Access-by-reading interaction and paragraph-address controls |
+| Main | `data_fig5_content` | Edited-value following and joint original/edited correctness |
+| Appendix | `figure2_diagnosis` | Complete diagnostic procedure, shown schematically |
+| Appendix | `data_app_localization` | Head maps, frozen selections, and layer profiles |
+| Appendix | `data_app_necessity` | Selected-head and layer-matched random knockout controls |
+| Appendix | `figure3_method` | Offline preparation and inference procedure |
+| Appendix | `data_app_ablation` | Controlled effects of fixed projection restoration |
+| Appendix | `data_app_capabilities` | Complete benchmark comparisons |
 
-The manuscript uses exactly these ten figure stems, all under `figures/`:
+All figures have PDF and PNG versions. Seven numerical figures are vector PDFs with 300-dpi previews. `story_overview` is a separately generated vector diagram with a 400-dpi preview. The two appendix conceptual illustrations are supplied raster assets embedded in PDF containers. Their schematic marks illustrate the procedure; numerical evidence appears in the measured plots and tables. `figures/captions.json` and `figures/figure_sources.json` record current roles and provenance.
 
-| Role | File stem |
-| --- | --- |
-| Figure 1: portrait scientific teaser (page 1, right column) | `figure1_teaser` |
-| Figure 2: causal diagnostic overview | `figure2_diagnosis` |
-| Figure 3: deployment method overview | `figure3_method` |
-| Figure 4: failure and address diagnosis | `data_fig3_diagnosis` |
-| Figure 5: access/reading interaction | `data_fig4_causal` |
-| Figure 6: local-content response | `data_fig5_content` |
-| Appendix: head localization | `data_app_localization` |
-| Appendix: necessity controls | `data_app_necessity` |
-| Appendix: controlled projection restoration | `data_app_ablation` |
-| Appendix: capability changes | `data_app_capabilities` |
+## Regenerate presentation assets
 
-All formal figures are supplied as PDF and PNG. Figures 1, 2, and 3 are image-generated conceptual illustrations; their PDFs embed the final PNGs at the original aspect ratio. The seven numerical figures are vector PDFs with embedded fonts and matching 300-dpi PNG previews. The LaTeX manuscript uses the PDFs. Earlier exploratory images are not included in the Overleaf or formal-figure delivery archives.
-
-## Regenerate numerical figures and tables
-
-From the complete repository root, or from the separate lightweight reproduction archive, run:
+From the full repository root or the lightweight reproduction archive:
 
 ```bash
 python analysis/plot_results.py
 python analysis/build_tables.py
+python analysis/draw_story_overview.py
 ```
 
-Python 3.10 or newer, NumPy, and Matplotlib are sufficient. `analysis/image_prompts.json` records the conceptual figure prompts and edits; those illustrations are supplied assets rather than outputs of the numerical plotting script. The reconstruction scripts, requirements, CSV figure data, and all small JSON/CSV inputs are provided in `coretrace_plotting_code.zip`. That archive preserves project-relative paths and includes its source commit and file hashes.
+Python 3.10 or newer, NumPy, and Matplotlib are sufficient. These commands regenerate the seven numerical figures, every numerical LaTeX table, and the vector overview. The table builder includes `main_components.tex` and `main_ambiguity.tex`, the compact main-text views of existing component and selector results. The supplied small JSON/CSV inputs preserve their original project-relative paths.
 
-The reconstruction archive contains the completed measurements used by the plotting and table scripts. It regenerates all seven numerical figures and the manuscript tables directly from those inputs. Figures 1, 2, and 3 are supplied as the finalized image-generated assets.
+The two appendix conceptual illustrations remain supplied assets. Their historical generation prompts are recorded in `analysis/image_prompts.json`. If only their PDF containers need rebuilding from the supplied PNGs, use `python analysis/wrap_conceptual_figures.py` with PyMuPDF and Pillow installed.
 
-## Packaging
+## Reproducibility and delivery
 
-From the full repository root, after compiling `paper/main.pdf`:
+`analysis/REPRODUCIBILITY.md` specifies the verified prediction, readout, and table coverage; recorded-run conventions; and the runtime modules required for a complete GPU rerun. The numerical reconstruction package uses the existing measurements and requires no model execution.
+
+After the final PDF has passed visual QA and been copied to `paper/main.pdf`:
 
 ```bash
-python analysis/package_delivery.py --output-dir ../coretrace_delivery --verify-reproduction
+python analysis/package_delivery.py --dry-run
+python analysis/package_delivery.py --verify-reproduction
 ```
 
-The script creates the compiled PDF, Overleaf source archive, formal-figure archive, lightweight plotting/table archive, and checksums. It includes only formal manuscript assets; uploaded reference papers, internal analysis notes, model checkpoints, and older figures remain outside the Overleaf package.
+Delivery files are written under `analysis/delivery/`. They comprise the PDF, Overleaf source, formal figure archive, lightweight reconstruction archive, verification manifest, and checksums. The Overleaf archive excludes earlier exploratory figures, uploaded reference papers, internal review notes, prediction archives, and checkpoints.

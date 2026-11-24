@@ -1,5 +1,62 @@
 {
-  "figure1": "A contextual composition failure and the functional operations studied. Left: exact supporting sentences and native responses from one frozen CoRe-2Wiki test source. Each constituent question is answered correctly under the same ten-paragraph evidence, while the composed question fails. Right: bridge-address recovery, paragraph-access allocation, and relation-conditioned content reading are distinct operations tested by the study. Their arrangement does not assert three exclusive consecutive layer ranges.",
-  "figure2": "Causal diagnosis of contextual composition. (a) Shared-context direct-target/composed queries reveal question-sensitive paragraph access; head counts are selected on discovery data, with selected versus layer-matched random knockout on test sources. (b) A factorial intervention independently changes paragraph mass and the within-paragraph conditional attention donated by a direct-target query, leaving receiver values and output projections unchanged. (c) Reciprocal object-surface exchange tests whether answers follow local evidence while preserving global word and character counts. The shared-context factorization and content interventions use the frozen discovery quadruplets. All colored head grids and bars are schematics, not measured effect sizes.",
-  "figure3": "Mechanism-derived repair. (a) Answer-only tuning updates selected heads; native projection slices are restored only at fixed model-specific prefill positions, while cached decoding retains trained weights. The token mask is illustrative; exact per-model scopes are listed. (b) An input title graph supplies candidate paragraphs, a reader fitted on training-only paragraph features selects the bridge when candidates are ambiguous, and the original root and chosen bridge text are passed to the same scoped model. The feature matrix is schematic: the full reader uses the mean-question and last-question paragraph attention from each of H selected heads, plus log paragraph token fraction and title mention (2H+2 features). The shown graph and composed answer are from a completed formal test example. No support annotations or answer labels are used at deployment."
+  "story_overview": {
+    "placement": "main",
+    "role": "Worked example and diagnostic question",
+    "kind": "vector schematic",
+    "caption": "Correct constituent answers coexist with failed composition in a Llama-3.1-8B example under one ten-paragraph context. The lower panel distinguishes a recoverable bridge address, paragraph access mass, and the local attention pattern through a schematic factorization of one head's evidence contribution."
+  },
+  "data_fig3_diagnosis": {
+    "placement": "main",
+    "role": "Behavioral finding and address readout",
+    "kind": "numerical result",
+    "caption": "Native composition outcomes are conditioned on both constituent answers being correct. Bridge-address readers are evaluated on the resulting native composition failures. Training-source readers applied to native-model features compare full, attention-only, and paragraph-length/title metadata features."
+  },
+  "data_fig4_causal": {
+    "placement": "main",
+    "role": "Factorial diagnosis and address-specificity control",
+    "kind": "numerical result",
+    "caption": "The four-arm diagnostic crosses native or calibrated paragraph mass with receiver or direct-query local patterns on 100 receivers from 25 discovery quadruplets. Intervention calculations use receiver-computed values and unchanged output-projection weights. Earlier interventions can influence downstream activations. The separate 1,000-source control targets the bridge, root, or a length-matched other paragraph. Intervals resample quadruplets or sources for the corresponding paired comparisons."
+  },
+  "data_fig5_content": {
+    "placement": "main",
+    "role": "Validation through changed local values",
+    "kind": "numerical result",
+    "caption": "Edited-value following and joint original/edited correctness compare Native and CoReTrace on 100 reciprocal exchanges. The exchanges preserve full-input word and character multisets before evidence selection is rerun. Complete outcome exports also retain obsolete-answer persistence."
+  },
+  "figure2_diagnosis": {
+    "placement": "appendix",
+    "role": "Diagnostic intervention overview",
+    "kind": "supplied conceptual illustration",
+    "caption": "Paired direct and composed queries localize heads with query-dependent bridge access. A four-arm diagnostic crosses paragraph mass and the normalized local attention pattern, using receiver-computed values and the original output-projection weights. Reciprocal object-surface exchanges assess the complete repair's response to local fact values. Colored head grids and attention bars illustrate the procedures."
+  },
+  "data_app_localization": {
+    "placement": "appendix",
+    "role": "Complete head and layer localization",
+    "kind": "numerical result",
+    "caption": "Discovery mean differences in bridge-paragraph attention compare direct second-hop and composed questions over question-token rows. Selected heads are outlined. Layer summaries report mean and maximum measured head scores using zero-based layer and query-head indices."
+  },
+  "data_app_necessity": {
+    "placement": "appendix",
+    "role": "Query-type and knockout-dose controls",
+    "kind": "numerical result",
+    "caption": "Completed-answer exact match on 1,000 test sources compares ranked-head and layer-matched random-head knockout for composed and both direct questions at doses 20, 40, and 80. Each random point uses one matched set. Zero denotes the native reference from this pipeline; selected head counts are 20, 20, and 40."
+  },
+  "figure3_method": {
+    "placement": "appendix",
+    "role": "Complete repair workflow",
+    "kind": "supplied conceptual illustration",
+    "caption": "Answer supervision adapts selected Q/K/V/O slices, fixed model-specific prefill rules restore native projection contributions, and training-source paragraph labels fit the address reader. Inference selects unique input-derived bridge candidates directly and uses a full-context readout pass for ambiguous candidates. The root and selected bridge paragraphs feed answer generation; inapplicable graphs retain the complete context. Exact restoration scopes are documented in the manuscript and recorded evaluation metadata."
+  },
+  "data_app_ablation": {
+    "placement": "appendix",
+    "role": "Projection-restoration component control",
+    "kind": "numerical result",
+    "caption": "Fixed native-projection restoration is compared with head adaptation using the same trained slices. First-hop and all-three accuracy use 1,000 original-context test triplets with evidence selection disabled; GSM8K uses all 1,319 test questions. Labels report percentage-point changes and error bars summarize recorded-run sample standard deviation."
+  },
+  "data_app_capabilities": {
+    "placement": "appendix",
+    "role": "Complete capability profile",
+    "kind": "numerical result",
+    "caption": "Native, full fine-tuning, and CoReTrace are compared on complete HotpotQA, MMLU, and GSM8K splits. Bars show benchmark-specific accuracy with recorded-run standard deviation. Full fine-tuning's zero GSM8K score accompanies zero valid final-answer lines under the stated metric."
+  }
 }

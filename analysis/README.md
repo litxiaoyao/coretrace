@@ -1,109 +1,95 @@
-# Reconstructing the paper's figures and tables
+# Evidence analysis and manuscript reconstruction
 
-This directory contains the evidence analysis and presentation code for **When Correct Hops Fail to Compose: Evidence Access Shapes Local Reading**. The numerical figures and LaTeX tables are generated from completed experiment summaries and explicitly listed derived measurements. The plotting code contains no handwritten experimental result values.
+This directory supports **When Correct Hops Fail to Compose: Diagnosing Evidence Access and Local Reading**. The main scientific sequence is composition failure under shared evidence, recoverable bridge addresses, controlled access-by-reading interaction, and diagnosis-guided repair with local-fact validation. Figure and table generators read completed summaries and explicitly listed derived measurements. The overview drawing presents a verified worked example and a schematic identity for a head's bridge contribution.
 
-## Scientific organization
+## Regenerate figures and tables
 
-The main paper follows a specific question: why can a model answer both constituent questions correctly yet fail their composition? It connects four findings:
-
-1. Composition can fail even when the two constituent answers are correct and a fitted reader can recover the bridge paragraph's address.
-2. Factorizing attention separates paragraph access mass from the conditional distribution within that paragraph. Their interaction shows that the effect of local reading depends on access.
-3. Reciprocal content exchanges preserve global word and character counts while testing whether answers follow the relevant local value.
-4. CoReTrace combines selected-head adaptation, fixed native-projection restoration, and input-derived evidence selection. Ambiguous title-link candidates provide a direct test of the address reader's application value.
-
-The main text contains the scientific argument, its controlled interventions, and the principal application results. The appendix provides complete head maps, necessity controls, reader and selector comparisons, constituent outcomes, capability changes, scoring diagnostics, training details, and recorded-run statistics. Discovery diagnostics and full test-panel results retain separate denominators.
-
-## Run the numerical reconstruction
-
-Use Python 3.10 or newer from the repository root. Figure generation requires NumPy and Matplotlib; table generation uses the Python standard library.
+Use Python 3.10 or newer. NumPy and Matplotlib support the plots and overview; table construction uses the standard library.
 
 ```bash
 python -m pip install numpy matplotlib
 python analysis/plot_results.py
 python analysis/build_tables.py
+python analysis/draw_story_overview.py
 ```
 
-The commands regenerate:
+These commands regenerate seven numerical figures and one vector overview under `paper/figures/`, all numerical LaTeX tables under `paper/tables/`, and the supporting CSVs and input inventories under `analysis/figure_data/`. The two compact main-text tables are `main_components.tex` and `main_ambiguity.tex`; the appendix retains their full results and dispersion.
 
-- Seven numerical figures as vector PDF and 300-dpi PNG in `paper/figures/`.
-- Their observations, aggregates, and source paths as CSV files in `analysis/figure_data/`.
-- The manuscript's numerical LaTeX tables in `paper/tables/`.
-- The input inventories `analysis/figure_data/input_manifest.csv` and `analysis/figure_data/table_inputs.json`.
-
-The plotting script also accepts a subset, for example:
-
-```bash
-python analysis/plot_results.py --only diagnosis causal content
-```
-
-A partial run writes a separate partial manifest; a complete run refreshes the complete manifest. Always execute both complete commands before packaging a revised set of results.
+A partial plotting command such as `python analysis/plot_results.py --only diagnosis causal content` writes a separate partial manifest. A complete run refreshes `input_manifest.csv`; the table builder refreshes `table_inputs.json`. Use complete runs before final packaging.
 
 ### Formal figure inventory
 
-| Manuscript role | File stem | Contents |
+| Placement | File stem | Role |
 | --- | --- | --- |
-| Figure 1 | `figure1_teaser` | The composition failure, access/reading interaction, and evidence-based repair |
-| Figure 2 | `figure2_diagnosis` | Head localization, access/reading factorization, and reciprocal content exchanges |
-| Figure 3 | `figure3_method` | Offline preparation and inference from the input |
-| Figure 4 | `data_fig3_diagnosis` | Constituent-conditioned composition failure and address recovery on those failures |
-| Figure 5 | `data_fig4_causal` | Mass × conditional-attention interaction and paragraph-calibration controls |
-| Figure 6 | `data_fig5_content` | Edited-value following and obsolete-answer persistence |
-| Appendix | `data_app_localization` | Complete head maps, frozen selections, and unsmoothed layer profiles |
+| Main | `story_overview` | Worked failure and schematic factorization of the bridge contribution |
+| Main | `data_fig3_diagnosis` | Constituent-conditioned composition and address recovery |
+| Main | `data_fig4_causal` | Crossed access/reading intervention and address specificity |
+| Main | `data_fig5_content` | Edited-value following and joint original/edited correctness |
+| Appendix | `figure2_diagnosis` | Diagnostic procedure schematic |
+| Appendix | `data_app_localization` | Complete head maps and measured layer profiles |
 | Appendix | `data_app_necessity` | Selected and layer-matched random knockout controls |
-| Appendix | `data_app_ablation` | Controlled effects of fixed projection restoration |
-| Appendix | `data_app_capabilities` | Changes on HotpotQA, MMLU, and GSM8K |
+| Appendix | `figure3_method` | CoReTrace training and inference schematic |
+| Appendix | `data_app_ablation` | Projection-restoration component comparison |
+| Appendix | `data_app_capabilities` | Full HotpotQA, MMLU, and GSM8K comparisons |
 
-Figures 1, 2, and 3 were created with ChatGPT's built-in image generation and then inspected against the method. Their generation and editing prompts are in `analysis/image_prompts.json`. Their PDFs embed the supplied PNGs without resampling: Figure 1 at 3.25-inch single-column width and Figures 2 and 3 at 6.75-inch double-column width. These three conceptual illustrations are supplied assets; the Python numerical-plotting script regenerates the other seven figures. Reissuing an image-generation prompt need not produce pixel-identical illustrations. To rebuild just their font-free PDF containers from the supplied PNGs, install PyMuPDF and Pillow, then run `python analysis/wrap_conceptual_figures.py`. This operation preserves the original RGB pixels and does not regenerate the images.
+The main paper contains four figures and the appendix six. The seven numerical PDFs and `story_overview.pdf` contain vector graphics with embedded fonts; previews are 300 dpi and 400 dpi, respectively. The two appendix conceptual illustrations are existing raster assets. `analysis/image_prompts.json` preserves their historical generation/editing records; reproducing a prompt need not reproduce the same pixels. `analysis/wrap_conceptual_figures.py` embeds the two existing PNGs in PDF containers without changing their pixels (optional dependencies: PyMuPDF and Pillow).
 
-### Visual conventions
+`paper/figures/captions.json` describes the current roles. Legacy metadata for earlier artwork is explicitly archived under `analysis/internal/` and does not identify the current overview's source. Final manuscript captions remain authoritative.
 
-Numerical panels use DejaVu Sans, black axes, blue/orange/gray series, light dashed grids, and measured markers. Head maps use a shared red–blue diverging scale. No curves are smoothed. Tables use light-gray native rows and pale-yellow complete-method rows, with blue positive changes and red negative changes. Main comparisons show Native, full fine-tuning, and CoReTrace; internal configurations appear together in one factor-based ablation table and the controlled mechanism diagnostics.
+## Evidence and scope
 
-## Lightweight reproduction archive
+The fresh audit at source revision `cf00035eb9b71bebf3ae88f76caf30ee9b58065c` checked 90 experiment manifests, 991,680 prediction records, 12 released paragraph readers, and 144 aggregate result entries. The coverage and implementation boundary are specified in `analysis/REPRODUCIBILITY.md`; detailed evidence is in `analysis/internal/current_evidence_audit.md` and `analysis/internal/current_audit/`.
 
-The delivered `coretrace_plotting_code.zip` preserves the project-relative layout of the scripts and every small JSON/CSV input they read. It includes `analysis/requirements.txt`, the input inventories, an input-hash record, and the scientific source commit. After extracting it into an empty directory:
+Principal composition uses 1,000 test sources. Address-readout failure subsets condition on the native model's constituent and composition outcomes. The factorial diagnostic uses 100 receivers in 25 discovery quadruplets; its bootstrap preserves these clusters. Reciprocal exchanges use 100 diagnostic sources and preserve full-input word and character multisets before the selector is recomputed.
+
+Run labels 42/43/44 identify recorded executions. Selected-head training uses fixed source order and zero-initialized deltas, and its source/loss/gradient sequences agree within each model across runs. Reported sample SD describes those executions; source-bootstrap intervals describe source sampling. The access experiment uses its own native baseline, including Qwen3-8B's 28.9% reference versus 29.2% in the principal evaluation.
+
+Core/HotpotQA scores require alias exact match and completion within the 32-token budget. MMLU uses same-prefill option probabilities. GSM8K uses a parsed final numerical answer within a 512-token budget. `analysis/figure_data/README.md` defines the exported quantities and their denominators.
+
+## Build and inspect the manuscript
+
+```bash
+bash analysis/compile_paper.sh
+```
+
+This writes `analysis/build_final/main.pdf` and retains the exact source snapshot and logs. It uses the original ICML template and keeps generated TeX caches inside `analysis/tex_runtime/` where needed. Inspect the compiled PDF page by page before copying the verified files into the formal source directory:
+
+```bash
+cp analysis/build_final/main.pdf paper/main.pdf
+cp analysis/build_final/main.bbl paper/main.bbl
+```
+
+See `paper/README.md` and `analysis/tex_build_notes.md` for normal TeX/Overleaf alternatives and environment details.
+
+## Lightweight reconstruction and packaging
+
+The delivered `coretrace_plotting_code.zip` preserves the scripts and every small JSON/CSV input at the paths expected by those scripts. After extraction:
 
 ```bash
 python -m pip install -r analysis/requirements.txt
 python analysis/plot_results.py
 python analysis/build_tables.py
+python analysis/draw_story_overview.py
 ```
 
-These commands require no model weights, PyTorch, GPU, network access after dependency installation, or decompressed prediction archives. Required derived JSON measurements retain their original paths under `analysis/internal/`; that directory name does not imply that the package recomputes them from raw model outputs. The package supplies those measurements as inputs. `analysis/figure_data/README.md` defines the figure populations and uncertainty conventions.
+The reconstruction uses supplied experiment summaries and derived measurements. It requires no model weights, GPU, PyTorch, decompressed prediction archives, or network after dependency installation. The full repository's audit scripts additionally use prediction and feature archives. `SOURCE.json` distinguishes the earlier scientific baseline, the freshly audited revision, and the packaging HEAD, and records input hashes and dependency versions.
 
-### Reconstruction inputs
-
-The lightweight archive regenerates the numerical figures and tables from supplied summaries and derived measurements. The full repository retains raw prediction and feature archives for further analysis. Optional `analysis/audit_*.py` scripts can be included with `--include-audit-code` for analyses using those archives.
-
-## Statistical and evaluation conventions
-
-- The principal composed comparison uses all 1,000 test sources. The native known-hop failure subset is defined before evaluating repairs. The shared-context factorial experiment instead uses 100 receivers in 25 discovery quadruplets.
-- Error bars described as run dispersion use sample standard deviation across recorded runs. Selected-head training has fixed ordering, zero-initialized deltas, and identical recorded training traces across nominal seeds. Such dispersion is not evidence of independent initialization robustness.
-- Paired intervals use source-aligned outcomes; repair comparisons first average a source's outcomes across the recorded runs. The factorial intervals preserve quadruplet clusters.
-- The access experiment uses its own native reference. Qwen3-8B records 28.9% native accuracy there and 29.2% in the principal evaluation, under different batch settings.
-- Core/HotpotQA primary scoring requires EOS completion and normalized answer-alias exact match within 32 generated tokens. MMLU uses same-prefill option-probability accuracy. GSM8K uses numerical equality from the required final answer line within a 512-token budget, without an EOS requirement.
-- Reciprocal exchanges preserve complete-context word and character multisets. These preservation checks apply to the complete context before the evidence selector is rerun.
-
-## Build and package the delivery
-
-Compile the paper using the commands in `paper/README.md`, then run:
+From the full working tree, after final PDF QA:
 
 ```bash
 python analysis/package_delivery.py --dry-run
-python analysis/package_delivery.py --output-dir ../coretrace_delivery --verify-reproduction
+python analysis/package_delivery.py --verify-reproduction
 ```
 
-The output directory must be outside the repository. The script uses an explicit file allowlist, checks the manuscript's local inputs and figure references, and checks that the compiled PDF is newer than its manuscript inputs. It creates:
+The default output is `analysis/delivery/`. Other repository paths are refused; an external delivery directory may also be selected with `--output-dir`. The dry run only checks the plan. A real run requires a compiled PDF newer than its manuscript inputs and verifies local TeX dependencies.
 
 | File | Contents |
 | --- | --- |
-| `coretrace_paper.pdf` | The compiled paper and appendix |
-| `coretrace_overleaf.zip` | Complete LaTeX source, official style files, tables, and the ten formal figure PDFs |
-| `coretrace_figures.zip` | The ten formal figures, each as PDF and PNG |
-| `coretrace_plotting_code.zip` | Plot/table scripts, prompts, small source inputs, requirements, and source metadata |
-| `delivery_manifest.json` | Artifact hashes, source metadata, and reconstruction-check outcome |
-| `SHA256SUMS.txt` | SHA-256 checksums for the delivered artifacts and manifest |
+| `coretrace_paper.pdf` | Complete compiled manuscript and appendix |
+| `coretrace_overleaf.zip` | Formal LaTeX source, official styles, tables, and ten figure PDFs |
+| `coretrace_figures.zip` | Ten formal figures in PDF/PNG and current role metadata |
+| `coretrace_plotting_code.zip` | Three reconstruction scripts, supplied small inputs, documentation, and provenance |
+| `delivery_manifest.json` | Artifact hashes, source revisions, and reconstruction outcome |
+| `SHA256SUMS.txt` | Delivery checksums |
 
-`--verify-reproduction` extracts the code archive into a fresh temporary directory, runs both reconstruction commands there, and compares the resulting tables and numerical CSVs with the current project. It does not use or change the original outputs. A dry run does not write packages and can report a missing compiled PDF while the manuscript is still being prepared. A real packaging run requires a current `paper/main.pdf`.
-
-The Overleaf archive excludes internal analysis notes, older figures, uploaded reference papers, prediction archives, and checkpoints. The scientific baseline commit and the official template source are recorded in the package metadata. Publication and GitHub synchronization are separate actions; this script performs neither.
+`--verify-reproduction` extracts the reconstruction archive into a fresh temporary tree with a cleared `PYTHONPATH`, regenerates seven numerical figures, all tables, and the overview, and compares table/CSV contents and deterministic overview assets against the working tree. It also verifies that source files stay unchanged during packaging. The two appendix conceptual illustrations remain supplied assets. GitHub synchronization is a separate operation.

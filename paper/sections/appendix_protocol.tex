@@ -3,15 +3,15 @@
 
 Evaluations use native chat templates, BF16 computation, eager attention, and one-beam greedy decoding. Qwen's optional thinking mode is disabled. Single-user-message prompts contain no demonstrations. Contextual question answering requests only the answer in its original spelling. Question positions are tokens overlapping the question stem, located through native-template character offsets. Batched inputs are left-padded; responses are trimmed at their first native end-of-sequence (EOS) token.
 
-For \dataset\ and HotpotQA, generation is limited to 32 tokens. Primary accuracy requires EOS completion and normalized exact match against any accepted answer alias. Normalization follows the 2Wiki-MultihopQA/HotpotQA evaluator: lowercase text, remove punctuation and articles, and collapse whitespace \citep{ho2020constructing,yang2018hotpotqa,alab2020twikievaluation}. Text exact match without the EOS condition, token F1, and completion rates are also retained (\cref{tab:scoring}). Completed and unconstrained text exact match coincide for the displayed composed-question results.
+For \dataset\ and HotpotQA, generation is limited to 32 tokens. Primary accuracy requires EOS completion and normalized exact match against any accepted answer alias. Normalization follows the 2Wiki-MultihopQA/HotpotQA evaluator: lowercase text, remove punctuation and articles, and collapse whitespace \citep{ho2020constructing,yang2018hotpotqa,alab2020twikievaluation}. Ungated text exact match, token F1, and completion rates are also retained (\cref{tab:scoring}). Completed and unconstrained text exact match coincide for the displayed composed-question results.
 
-Strict answer form explains only a small part of the constituent-conditioned failure. Among the 234/236/243 failed compositions with two correct constituent answers, 14/9/6 responses contain an accepted normalized alias as a complete word sequence. Even crediting all such responses leaves failure rates of 48.1/49.1/47.3\% on the original 457/462/501-source subsets. This sensitivity analysis confirms the composition gap under a more permissive answer criterion.
+Strict answer form explains only a small part of the constituent-conditioned failure. Among the \scores{234}{236}{243} failed compositions with two correct constituent answers, \scores{14}{9}{6} responses contain an accepted normalized alias as a complete word sequence. Even crediting all such responses leaves failure rates of \scores{48.1}{49.1}{47.3}\% on the original \scores{457}{462}{501}-source subsets. This sensitivity analysis confirms the composition gap under a more permissive answer criterion.
 
 For MMLU, we score the highest-probability native token among A/B/C/D at the same prefill that generates the first response token \citep{hendrycks2021mmlu}. Each label is verified to be a distinct single token. Accuracy is micro-averaged over all 14,042 questions; generated-letter accuracy and subject-macro accuracy are secondary diagnostics. GSM8K prompts request step-by-step reasoning followed by a final nonempty line of the form \texttt{\#\#\#\# NUMBER} \citep{cobbe2021gsm8k}. Up to 512 tokens are generated. Decimal numerical equality determines correctness after removing thousands separators; validity is determined from the final answer line independently of EOS. Format failures and length cutoffs are recorded separately. The same zero-shot protocols are used for every method.
 
-\paragraph{Text accuracy and answer completion.} \method\ increases composed text F1 from 39.48/41.87/49.83\% to 73.41/74.35/76.85\%, improvements of 33.93/32.48/27.02 points. Every composed response completes within the 32-token budget. \Cref{tab:scoring} compares exact match, partial-match F1, and completion for Native, full fine-tuning, and \method.
+\paragraph{Text accuracy and answer completion.} \method\ increases composed text F1 from \scores{39.48}{41.87}{49.83}\% to \scores{73.41}{74.35}{76.85}\%, improvements of \scores{33.93}{32.48}{27.02} points. Every composed response completes within the 32-token budget. \Cref{tab:scoring} compares exact match, partial-match F1, and completion for Native, full fine-tuning, and \method.
 
-\begin{table}[H]
+\begin{table}[htbp]
   \centering
   \caption{Scoring on 1,000 composed test questions (percent; adapted methods averaged over runs). Text EM removes the EOS condition; F1 uses the same aliases.}
   \label{tab:scoring}
@@ -27,7 +27,7 @@ Only the 2,000 composed training questions update the model. Teacher-forced mean
 
 \Cref{tab:parameters} reports the selected parameter counts. Fixed projection restoration reinstates native V/O contributions at the prefill positions and layers in \cref{tab:scopes}; other learned contributions remain active. These model-specific rules were fixed during preceding development, before the reported evaluation suite. All component interventions share the same underlying trained checkpoint.
 
-\begin{table}[H]
+\begin{table}[htbp]
   \centering
   \caption{Selected-head and full-reader sizes. Trainable weights count Q/K/V/O slice deltas; model fractions exclude the separately fitted reader.}
   \label{tab:parameters}
@@ -36,7 +36,7 @@ Only the 2,000 composed training questions update the model. Teacher-forced mean
   \input{tables/parameters}
 \end{table}
 
-\begin{table}[H]
+\begin{table}[htbp]
   \centering
   \caption{Fixed native-projection restoration rules, with zero-based layer indices. Restoration affects selected-head contributions at the specified prefill positions.}
   \label{tab:scopes}
@@ -56,7 +56,7 @@ Only the 2,000 composed training questions update the model. Teacher-forced mean
 \subsection{Fitting and Applying the Paragraph-Address Readout}
 \label{app:readout_protocol}
 
-Each paragraph receives two features per selected head: the log of mean question-token attention mass and log mass at the final question token. Masses are floored at $10^{-8}$ before taking logarithms. Two metadata features encode the log paragraph-to-prompt token ratio and whether its title occurs in the question. The title feature uses normalized substring matching for Qwen and normalized whole-word matching for Llama; candidate graphs use whole-word matching for both families. Full readers have 42/42/82 weights; attention-only readers omit the metadata features, and metadata-only readers retain only those features.
+Each paragraph receives two features per selected head: the log of mean question-token attention mass and log mass at the final question token. Masses are floored at $10^{-8}$ before taking logarithms. Two metadata features encode the log paragraph-to-prompt token ratio and whether its title occurs in the question. The title feature uses normalized substring matching for Qwen and normalized whole-word matching for Llama; candidate graphs use whole-word matching for both families. Full readers have \scores{42}{42}{82} weights; attention-only readers omit the metadata features, and metadata-only readers retain only those features.
 
 Features are standardized using all paragraphs of the 2,000 composed training examples, with population standard deviations floored at $10^{-4}$. A zero-initialized linear scorer is fitted for 500 full-batch Adam steps \citep{kingma2015adam}, with learning rate 0.03 and penalty $0.01\lVert w\rVert_2^2$. Cross-entropy selects the annotated bridge among the original paragraphs. A shared intercept would cancel in this paragraph-wise softmax and is omitted. Native and adapted models have separately fitted, state-aligned readers. Fitting and standardization use the training split. At inference, the frozen scorer ranks only input-derived ambiguous candidates. A unique candidate needs no attention prefill, and invalid graphs retain the original context.
 
@@ -65,7 +65,7 @@ Features are standardized using all paragraphs of the 2,000 composed training ex
 
 Full fine-tuning updates all parameters in training mode using the same objective, source count, accumulation, learning rate, and optimizer hyperparameters. It uses BF16 weights, CPU-offloaded FP32 optimizer state, and seed-dependent source permutations. The recipe is fixed across all three models. Measured durations in \cref{tab:training_cost} record execution under shared-resource scheduling; \cref{tab:secondary_qa} gives answer-format and completion rates. Head tuning averages 552/1,566/747 seconds, compared with 4,007/34,916/41,512 seconds for full fine-tuning. Both methods use 250 updates.
 
-\begin{table}[H]
+\begin{table}[htbp]
   \centering
   \caption{Training workload and measured duration across three recorded runs. Both methods use one pass over 2,000 composed sources.}
   \label{tab:training_cost}
@@ -79,11 +79,11 @@ Full fine-tuning updates all parameters in training mode using the same objectiv
 
 Runs use seed identifiers 42/43/44. Selected-head adaptation has fixed source order, zero initialization, and evaluation mode, yielding identical loss and gradient-norm sequences; readers are also deterministic. Sample standard deviations summarize variation across recorded evaluations. \Cref{tab:per_run} gives the individual composed scores.
 
-For the native and selected-head evaluation series on contextual QA, Qwen3-4B and Llama use batch size 1 in run 42 and 4 in runs 43/44; Qwen3-8B uses 4 throughout. MMLU uses 4 throughout. GSM8K uses 1/1/4 for Qwen3-4B, 4/4/4 for Qwen3-8B, and 1/1/1 for Llama. All full-parameter evaluations use batch size 4. Small BF16 greedy differences can consequently occur across runs. Qwen3-8B's principal native composed accuracy is 29.2\%, while its batch-1 access and necessity experiments give 28.9\%; every causal contrast uses its own paired native reference.
+For the native and selected-head evaluation series on contextual QA, Qwen3-4B and Llama use batch size 1 in run 42 and 4 in runs 43/44; Qwen3-8B uses 4 throughout. MMLU uses 4 throughout. GSM8K uses \scores{1}{1}{4} for Qwen3-4B, \scores{4}{4}{4} for Qwen3-8B, and \scores{1}{1}{1} for Llama. All full-parameter evaluations use batch size 4. Small BF16 greedy differences can consequently occur across runs. Qwen3-8B's principal native composed accuracy is 29.2\%, while its batch-1 access and necessity experiments give 28.9\%; every causal contrast uses its own paired native reference.
 
 Confidence intervals in \cref{tab:paired_effects} are paired percentile bootstraps with 2,000 replicates and random seed 42. For repair comparisons, we first average each source's correctness over the three runs, then resample source groups. Groups are defined transitively by shared normalized root/bridge titles; all 1,000 test groups happen to be singletons. These intervals quantify source-sampling variation on the fixed panel. Factorial contrasts resample the 25 shared-context quadruplets, retaining all four receivers and intervention arms together.
 
-\begin{table}[H]
+\begin{table}[htbp]
   \centering
   \caption{Paired composed-accuracy changes in percentage points, with 95\% bootstrap intervals. Repair comparisons use source-wise run averages; bridge calibration uses its own experiment's native reference.}
   \label{tab:paired_effects}
@@ -92,7 +92,7 @@ Confidence intervals in \cref{tab:paired_effects} are paired percentile bootstra
   \input{tables/paired_effects}
 \end{table}
 
-\begin{table}[H]
+\begin{table}[htbp]
   \centering
   \caption{Composed accuracy (percent) on the same 1,000 test sources for each recorded run. Interpretation of run dispersion follows \cref{app:uncertainty}.}
   \label{tab:per_run}

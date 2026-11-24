@@ -1,0 +1,37 @@
+{
+  "verified_date": "2026-11-24",
+  "official_url": "https://media.icml.cc/Conferences/ICML2027/styles/icml2027.zip",
+  "official_zip_sha256": "52384a2a4f32e562755e44ced55a58f857f8706425f2f04904190f613531801e",
+  "files": [
+    {
+      "file": "paper/icml2027.sty",
+      "local_sha256": "3a61b88dc041e0f1db75cd8ff0a8e5396979cfb88cbde684333eb1a0ae585e30",
+      "official_sha256": "3a61b88dc041e0f1db75cd8ff0a8e5396979cfb88cbde684333eb1a0ae585e30",
+      "match": true
+    },
+    {
+      "file": "paper/icml2027.bst",
+      "local_sha256": "0ec3d5eb9b02efb7e0b44a32f3775882f42a743d0bdc618f34e6936309b98764",
+      "official_sha256": "0ec3d5eb9b02efb7e0b44a32f3775882f42a743d0bdc618f34e6936309b98764",
+      "match": true
+    },
+    {
+      "file": "paper/algorithm.sty",
+      "local_sha256": "93fd0eb31c112eb405833db8f1d7f5d238c7e691b1c05680d7276e68f36d564a",
+      "official_sha256": "93fd0eb31c112eb405833db8f1d7f5d238c7e691b1c05680d7276e68f36d564a",
+      "match": true
+    },
+    {
+      "file": "paper/algorithmic.sty",
+      "local_sha256": "48d18794a5d97c0479a588cc2eac0917992feb9da83acc4631b8f55757d80f9b",
+      "official_sha256": "48d18794a5d97c0479a588cc2eac0917992feb9da83acc4631b8f55757d80f9b",
+      "match": true
+    },
+    {
+      "file": "paper/fancyhdr.sty",
+      "local_sha256": "9130c52f91087abc6d223164ffa587e207e3257fcbcd069ef09ecb5391043f14",
+      "official_sha256": "9130c52f91087abc6d223164ffa587e207e3257fcbcd069ef09ecb5391043f14",
+      "match": true
+    }
+  ]
+}

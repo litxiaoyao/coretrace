@@ -6,23 +6,25 @@
 \usepackage{amsmath,amssymb,mathtools}
 \usepackage{xcolor,colortbl,multirow,array,enumitem}
 \usepackage{xurl,hyperref}
+\usepackage{placeins,balance}
 \usepackage{icml2027}
 \usepackage[capitalize,noabbrev]{cleveref}
 \newcommand{\method}{\textsc{CoReTrace}}
 \newcommand{\dataset}{\textsc{CoRe-2Wiki}}
 \newcommand{\E}{\mathbb{E}}
+\newcommand{\scores}[3]{#1/\allowbreak#2/\allowbreak#3}
 \definecolor{tableours}{HTML}{FFF0BE}
 \definecolor{tablebase}{HTML}{EEEEEE}
 \definecolor{gain}{HTML}{1F77B4}
 \definecolor{loss}{HTML}{D62728}
-\icmltitlerunning{Evidence Access Shapes Local Reading}
+\icmltitlerunning{Diagnosing Evidence Access and Local Reading}
 \begin{document}
 \raggedbottom
 \lefthyphenmin=2
 \righthyphenmin=3
 \hyphenation{Llama Qwen CoReTrace}
 \twocolumn[
-\icmltitle{\texorpdfstring{When Correct Hops Fail to Compose:\\Evidence Access Shapes Local Reading}{When Correct Hops Fail to Compose: Evidence Access Shapes Local Reading}}
+\icmltitle{\texorpdfstring{When Correct Hops Fail to Compose:\\Diagnosing Evidence Access and Local Reading}{When Correct Hops Fail to Compose: Diagnosing Evidence Access and Local Reading}}
 \begin{icmlauthorlist}
 \icmlauthor{Anonymous Authors}{anonymous}
 \end{icmlauthorlist}
@@ -32,26 +34,31 @@
 ]
 \printAffiliationsAndNotice{}
 \begin{abstract}
-Language models can answer both constituent questions from the same evidence yet fail to compose their answers. Across three models, this happens on roughly half of the cases with correct constituent answers. We identify a gap between recoverable evidence location and effective evidence use: a training-fitted linear readout identifies the bridge paragraph in 72.2--86.0\% of these failed compositions. Factorizing attention into paragraph access mass and within-paragraph reading reveals that access calibration increases the benefit of direct-hop reading patterns, with interaction effects of 5--16 percentage points. After reciprocal fact exchanges preserving global word counts, repaired predictions follow changed local values in 76--80\% of cases, compared with 26--35\% natively. These findings motivate \method, which combines selected-head adaptation, input-derived evidence selection, and fixed projection restoration. On 1,000 contextual reasoning triplets, composed accuracy rises from 26.9/29.2/36.4\% to 66.8/67.2/69.7\% for Qwen3-4B, Qwen3-8B, and Llama-3.1-8B, using fewer than 1\% trainable model parameters. The attention readout resolves ambiguous evidence with an extra input pass on 10.3\% of composed questions. Together, these results connect a causal account of evidence use to an efficient repair of contextual reasoning.
+Language models can answer two constituent questions from the same evidence yet fail to compose their answers. What breaks between accessing the facts and using them together? On 1,000 contextual reasoning triplets, three models fail on roughly half of the compositions whose constituents they answer correctly. A training-fitted linear readout nevertheless recovers the bridge paragraph in 72.2--86.0\% of these failures. We diagnose this gap by factorizing attention into paragraph access mass and a conditional reading pattern within the paragraph. Crossed interventions on 25 shared-context quadruplets show that calibrating access increases the utility of direct-query reading patterns, with interaction estimates of 5--16 percentage points. The diagnosis motivates \method: input-derived evidence selection coupled with selected-head adaptation and fixed projection restoration. Using fewer than 1\% trainable model parameters, it raises composed accuracy from \scores{26.9}{29.2}{36.4}\% to \scores{66.8}{67.2}{69.7}\% on Qwen3-4B, Qwen3-8B, and Llama-3.1-8B. On ambiguous inputs, the recovered address directly improves both evidence selection and answers. Reciprocal fact exchanges further show that repaired predictions follow changed local values in 76--80\% of cases. Together, these results establish a functional interaction between evidence access and local reading, and demonstrate how recoverable address information can improve contextual composition.
 \end{abstract}
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\columnwidth]{figures/figure1_teaser.pdf}
-  \caption{\textbf{From failed composition to evidence-guided repair.} (a) A Llama-3.1-8B example with correct constituent answers and an incorrect composed answer under the same context. (b) Bridge addresses remain recoverable; paragraph access and local reading interact. (c) \method\ combines evidence selection and head adaptation to recover the correct answer.}
+  \includegraphics[width=\columnwidth]{figures/story_overview.pdf}
+  \caption{\textbf{Correct facts, failed composition.} A Llama-3.1-8B example under the same ten-paragraph context motivates the diagnosis. We distinguish a recoverable bridge address from the joint effect of paragraph access mass and the local attention pattern. The lower panel is a schematic factorization of a head's evidence contribution.}
   \label{fig:teaser}
 \end{figure}
 \input{sections/introduction}
 \input{related_work}
 \input{sections/method}
 \input{sections/experiments}
-\newpage
 \input{sections/conclusion}
+\FloatBarrier
 \section*{Impact Statement}
 This work studies how language models use supplied evidence and develops targeted interventions for more reliable contextual question answering. Its findings can inform systems that connect facts across documents. We evaluate reasoning and general capabilities to characterize the effects of adaptation. Experiments use public question-answering datasets. Downstream applications should assess evidence quality, answer accuracy, and task-specific reliability under their deployment conditions.
+\section*{AI Disclosure Statement}
+Generative AI assisted with narrative development, literature review, artifact verification, and manuscript revision. Verification used recorded experiments, primary publications, and compiled PDF renders.
+\clearpage
+\balance
 \bibliography{references}
 \bibliographystyle{icml2027}
 \clearpage
+\nobalance
 \appendix
 \onecolumn
 \raggedbottom

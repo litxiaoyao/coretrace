@@ -15,7 +15,8 @@ OUT = ROOT / 'paper' / 'tables'
 OUT.mkdir(parents=True, exist_ok=True)
 MODELS = ['qwen3_4b', 'qwen3_8b', 'llama3_8b']
 NAMES = {'qwen3_4b': 'Qwen3-4B', 'qwen3_8b': 'Qwen3-8B', 'llama3_8b': 'Llama-3.1-8B'}
-METHODS = {'native': 'Native', 'FullFT': 'Full fine-tuning',
+METHODS = {'native': 'Native', 'native_text': 'Evidence selection',
+           'FullFT': 'Full fine-tuning',
            'final': r'\method\ (Ours)'}
 BENCHMARK_METHODS = ['native', 'FullFT', 'final']
 ABLATION_METHODS = ['native', 'native_text', 'head_tuning', 'scoped_body',
@@ -75,13 +76,12 @@ def best(model, method, methods, benchmark='core', query='composed'):
     return abs(v-max(float(row(model,k,benchmark,query)['mean_accuracy']) for k in methods))<1e-10
 
 def main_results():
-    methods=BENCHMARK_METHODS
+    methods=['native','native_text','FullFT','final']
     s=[r'\begin{tabular}{lrrrrrr}',r'\toprule',
        line(['',r'\multicolumn{2}{c}{\textbf{Qwen3-4B}}',r'\multicolumn{2}{c}{\textbf{Qwen3-8B}}',r'\multicolumn{2}{c}{\textbf{Llama-3.1-8B}}']),
        r'\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}',
        header(['Method',r'Composed $\uparrow$',r'All three $\uparrow$',r'Composed $\uparrow$',r'All three $\uparrow$',r'Composed $\uparrow$',r'All three $\uparrow$']),r'\midrule']
     for method in methods:
-        if method=='final': s+=section('Mechanistically informed adaptation',7)
         cells=[]
         for model in MODELS:
             for query in ['composed','all3']:
@@ -93,6 +93,44 @@ def main_results():
     s.append(line([r'\textit{Gain over Native (pp)}']+[delta(g) for g in gains]))
     s += [r'\bottomrule',r'\end{tabular}']
     save('main_results.tex','\n'.join(s))
+
+def main_components():
+    """Compact main-text view; the appendix retains complete run dispersion."""
+    methods=['head_tuning','scoped_body','graphfirst','final']
+    labels={'head_tuning':'Head adaptation',
+            'scoped_body':'+ restoration',
+            'graphfirst':'+ input-order selection',
+            'final':r'\textbf{+ attention readout}'}
+    s=[r'\begin{tabular}{@{}lrrr@{}}',r'\toprule',
+       header(['Configuration','Qwen4B','Qwen8B','Llama8B']),r'\midrule']
+    for method in methods:
+        values=[cell(row(model,method),bold=best(model,method,methods),sd=False)
+                for model in MODELS]
+        s.append(shaded(method)+line([labels[method]]+values))
+    s += [r'\bottomrule',r'\end{tabular}']
+    save('main_components.tex','\n'.join(s))
+
+def main_ambiguity():
+    """Single-column bridge/answer summary on the same 103 ambiguous cases."""
+    data=read('analysis/internal/ambiguous_evidence.json')['rows']
+    methods=['graphfirst','final']
+    names={**NAMES,'llama3_8b':'Llama3.1-8B'}
+    s=[r'\begin{tabular}{@{}lcc@{}}',r'\toprule',
+       header(['Model','Input order','Full reader']),r'\midrule']
+    for model in MODELS:
+        values=[]
+        for method in methods:
+            measured=next(r for r in data if r['model']==model and r['method']==method)
+            if measured['n']!=103:
+                raise ValueError('Main ambiguity table requires the fixed 103-case population')
+            pair=[]
+            for key in ['bridge_selection_accuracy','answer_accuracy_mean']:
+                value=f'{100*measured[key]:.1f}'
+                pair.append(r'\mathbf{'+value+'}' if method=='final' else value)
+            values.append('$'+r'\,/\,'.join(pair)+'$')
+        s.append(line([names[model]]+values))
+    s += [r'\bottomrule',r'\end{tabular}']
+    save('main_ambiguity.tex','\n'.join(s))
 
 def retention():
     methods=['native','final']
@@ -397,7 +435,7 @@ def secondary_capabilities():
     (ROOT/'analysis/figure_data/secondary_capabilities.json').write_text(json.dumps(report,indent=2)+'\n')
 
 def main():
-    for fn in [main_results,retention,complete_core,component_ablation,ambiguity,readouts,factorization,content,configurations,per_run,capability_full,paired_effects,efficiency,scoring_diagnostics,conditional_composition,secondary_capabilities]:fn()
+    for fn in [main_results,main_components,main_ambiguity,retention,complete_core,component_ablation,ambiguity,readouts,factorization,content,configurations,per_run,capability_full,paired_effects,efficiency,scoring_diagnostics,conditional_composition,secondary_capabilities]:fn()
     # Its two reference populations are now shown together in one table.
     (OUT/'fixed_population.tex').unlink(missing_ok=True)
     (ROOT/'analysis/figure_data').mkdir(exist_ok=True)

@@ -6,5 +6,13 @@
   "scope": [
     "analysis/",
     "paper/"
-  ]
+  ],
+  "audit_source_commit": "cf00035eb9b71bebf3ae88f76caf30ee9b58065c",
+  "audit_date": "2026-11-24",
+  "commit_roles": {
+    "source_commit": "Earlier scientific baseline retained from the original evidence snapshot.",
+    "audit_source_commit": "Repository revision independently checked for this manuscript revision.",
+    "packaged_git_head": "Exact repository HEAD is populated separately when delivery archives are created."
+  },
+  "audit_record": "analysis/internal/current_evidence_audit.md"
 }

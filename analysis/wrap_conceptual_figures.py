@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Wrap the three supplied conceptual PNGs in font-free PDF containers.
+"""Wrap the two supplied appendix conceptual PNGs in font-free PDF containers.
 
 This only embeds the existing generated image bytes at the publication width;
 it does not edit, redraw, resample, or regenerate their visual content.
@@ -15,7 +15,6 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 WIDTHS_PT = {
-    "figure1_teaser": 3.25 * 72,
     "figure2_diagnosis": 6.75 * 72,
     "figure3_method": 6.75 * 72,
 }

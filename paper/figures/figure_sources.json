@@ -1,30 +1,150 @@
 {
-  "source_id": "df212d0e0bda11eba7f7acde48001122",
-  "model": "Llama-3.1-8B-Instruct",
-  "seed": 42,
-  "files": [
-    "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0/corpus.jsonl",
-    "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0/queries.jsonl",
-    "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl",
-    "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0/mechanism_views/discovery25_quadruplets.jsonl"
-  ],
-  "example_selection": "Both native constituent answers correct; composed native incorrect; composed final correct; ambiguous graph candidates.",
-  "reciprocal_example_quadruplet": "natural_crossed_78470f24d72c53ba5385",
-  "captions": {
-    "figure1": "A contextual composition failure and the functional operations studied. Left: exact supporting sentences and native responses from one frozen CoRe-2Wiki test source. Each constituent question is answered correctly under the same ten-paragraph evidence, while the composed question fails. Right: bridge-address recovery, paragraph-access allocation, and relation-conditioned content reading are distinct operations tested by the study. Their arrangement does not assert three exclusive consecutive layer ranges.",
-    "figure2": "Causal diagnosis of contextual composition. (a) Shared-context direct-target/composed queries reveal question-sensitive paragraph access; head counts are selected on discovery data, with selected versus layer-matched random knockout on test sources. (b) A factorial intervention independently changes paragraph mass and the within-paragraph conditional attention donated by a direct-target query, leaving receiver values and output projections unchanged. (c) Reciprocal object-surface exchange tests whether answers follow local evidence while preserving global word and character counts. The shared-context factorization and content interventions use the frozen discovery quadruplets. All colored head grids and bars are schematics, not measured effect sizes.",
-    "figure3": "Mechanism-derived repair. (a) Answer-only tuning updates selected heads; native projection slices are restored only at fixed model-specific prefill positions, while cached decoding retains trained weights. The token mask is illustrative; exact per-model scopes are listed. (b) An input title graph supplies candidate paragraphs, a reader fitted on training-only paragraph features selects the bridge when candidates are ambiguous, and the original root and chosen bridge text are passed to the same scoped model. The feature matrix is schematic: the full reader uses the mean-question and last-question paragraph attention from each of H selected heads, plus log paragraph token fraction and title mention (2H+2 features). The shown graph and composed answer are from a completed formal test example. No support annotations or answer labels are used at deployment."
+  "schema_version": 2,
+  "metadata_scope": "Current formal manuscript figures; final captions are maintained in the LaTeX manuscript.",
+  "caption_metadata": "paper/figures/captions.json",
+  "audited_repository_revision": "cf00035eb9b71bebf3ae88f76caf30ee9b58065c",
+  "formal_figures": {
+    "story_overview": {
+      "placement": "main",
+      "role": "Worked example and diagnostic question",
+      "kind": "vector schematic",
+      "assets": [
+        "paper/figures/story_overview.pdf",
+        "paper/figures/story_overview.png"
+      ],
+      "generator": "analysis/draw_story_overview.py",
+      "example": "Walter II of Avesnes, James of Avesnes, and Arsuf, as presented in the manuscript example.",
+      "source_mapping": "The generator records the displayed text. Legacy example source IDs have not been assigned to this new asset.",
+      "preview_dpi": 400
+    },
+    "data_fig3_diagnosis": {
+      "placement": "main",
+      "role": "Behavioral finding and address readout",
+      "kind": "numerical result",
+      "assets": [
+        "paper/figures/data_fig3_diagnosis.pdf",
+        "paper/figures/data_fig3_diagnosis.png"
+      ],
+      "generator": "analysis/plot_results.py",
+      "input_manifest": "analysis/figure_data/input_manifest.csv",
+      "exported_data_prefix": "analysis/figure_data/data_fig3_diagnosis",
+      "preview_dpi": 300
+    },
+    "data_fig4_causal": {
+      "placement": "main",
+      "role": "Factorial diagnosis and address-specificity control",
+      "kind": "numerical result",
+      "assets": [
+        "paper/figures/data_fig4_causal.pdf",
+        "paper/figures/data_fig4_causal.png"
+      ],
+      "generator": "analysis/plot_results.py",
+      "input_manifest": "analysis/figure_data/input_manifest.csv",
+      "exported_data_prefix": "analysis/figure_data/data_fig4_causal",
+      "preview_dpi": 300
+    },
+    "data_fig5_content": {
+      "placement": "main",
+      "role": "Validation through changed local values",
+      "kind": "numerical result",
+      "assets": [
+        "paper/figures/data_fig5_content.pdf",
+        "paper/figures/data_fig5_content.png"
+      ],
+      "generator": "analysis/plot_results.py",
+      "input_manifest": "analysis/figure_data/input_manifest.csv",
+      "exported_data_prefix": "analysis/figure_data/data_fig5_content",
+      "preview_dpi": 300
+    },
+    "figure2_diagnosis": {
+      "placement": "appendix",
+      "role": "Diagnostic intervention overview",
+      "kind": "supplied conceptual illustration",
+      "assets": [
+        "paper/figures/figure2_diagnosis.pdf",
+        "paper/figures/figure2_diagnosis.png"
+      ],
+      "source": "Supplied conceptual PNG retained unchanged.",
+      "pdf_wrapper": "analysis/wrap_conceptual_figures.py",
+      "presentation": "The PDF embeds the supplied PNG; final captions provide current terminology and scope."
+    },
+    "data_app_localization": {
+      "placement": "appendix",
+      "role": "Complete head and layer localization",
+      "kind": "numerical result",
+      "assets": [
+        "paper/figures/data_app_localization.pdf",
+        "paper/figures/data_app_localization.png"
+      ],
+      "generator": "analysis/plot_results.py",
+      "input_manifest": "analysis/figure_data/input_manifest.csv",
+      "exported_data_prefix": "analysis/figure_data/data_app_localization",
+      "preview_dpi": 300
+    },
+    "data_app_necessity": {
+      "placement": "appendix",
+      "role": "Query-type and knockout-dose controls",
+      "kind": "numerical result",
+      "assets": [
+        "paper/figures/data_app_necessity.pdf",
+        "paper/figures/data_app_necessity.png"
+      ],
+      "generator": "analysis/plot_results.py",
+      "input_manifest": "analysis/figure_data/input_manifest.csv",
+      "exported_data_prefix": "analysis/figure_data/data_app_necessity",
+      "preview_dpi": 300
+    },
+    "figure3_method": {
+      "placement": "appendix",
+      "role": "Complete repair workflow",
+      "kind": "supplied conceptual illustration",
+      "assets": [
+        "paper/figures/figure3_method.pdf",
+        "paper/figures/figure3_method.png"
+      ],
+      "source": "Supplied conceptual PNG retained unchanged.",
+      "pdf_wrapper": "analysis/wrap_conceptual_figures.py",
+      "presentation": "The PDF embeds the supplied PNG; final captions provide current terminology and scope."
+    },
+    "data_app_ablation": {
+      "placement": "appendix",
+      "role": "Projection-restoration component control",
+      "kind": "numerical result",
+      "assets": [
+        "paper/figures/data_app_ablation.pdf",
+        "paper/figures/data_app_ablation.png"
+      ],
+      "generator": "analysis/plot_results.py",
+      "input_manifest": "analysis/figure_data/input_manifest.csv",
+      "exported_data_prefix": "analysis/figure_data/data_app_ablation",
+      "preview_dpi": 300
+    },
+    "data_app_capabilities": {
+      "placement": "appendix",
+      "role": "Complete capability profile",
+      "kind": "numerical result",
+      "assets": [
+        "paper/figures/data_app_capabilities.pdf",
+        "paper/figures/data_app_capabilities.png"
+      ],
+      "generator": "analysis/plot_results.py",
+      "input_manifest": "analysis/figure_data/input_manifest.csv",
+      "exported_data_prefix": "analysis/figure_data/data_app_capabilities",
+      "preview_dpi": 300
+    }
   },
-  "style": "Native PPT vectors; Liberation Serif (Times-compatible), muted blue/teal/orange; no embedded raster images.",
-  "mechanism_sources": [
-    "scripts/discover.py",
-    "scripts/causal.py",
-    "scripts/factorized_causal.py",
-    "scripts/necessity.py",
-    "scripts/content_causal.py",
-    "coretrace/method/pipeline.py",
-    "coretrace/method/text_selector.py",
-    "coretrace/models/scoped_rollback.py"
-  ],
-  "schematic_elements": "Head ranking grid, feature matrix and attention bars are conceptual, not synthetic empirical results."
+  "legacy_assets": {
+    "metadata_archive": "analysis/internal/legacy_figure_metadata.json",
+    "note": "Earlier figure1/figure2/figure3 metadata, source IDs, and machine-specific paths are retained in that archive as historical records. Current provenance uses project-relative sources. The supplied appendix artwork retains its original pixels; the new story overview is generated separately.",
+    "supplied_appendix_stems": [
+      "figure2_diagnosis",
+      "figure3_method"
+    ],
+    "historical_prompts": "analysis/image_prompts.json"
+  },
+  "interpretation": {
+    "factorial_values": "Interventions recompute the receiving attention output using receiver-computed value vectors and unchanged output-projection weights. Downstream activations can change across intervention conditions.",
+    "schematics": "The overview equation, head grids, illustrative attention bars, and feature matrix express procedures or definitions. Numerical effect sizes are supplied by the seven data_* figures and their CSV exports.",
+    "implementation_scope": "Recorded model-specific masks and parameter counts were verified against metadata. Four imported model runtime modules are absent from the audited checkout; analysis/REPRODUCIBILITY.md identifies the exact boundary."
+  }
 }

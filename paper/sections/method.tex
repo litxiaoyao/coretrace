@@ -1,67 +1,72 @@
-\section{Method}
+\section{Diagnostic Framework and CoReTrace}
 \label{sec:method}
-
-\begin{figure*}[!t]
-  \centering
-  \includegraphics[width=\textwidth]{figures/figure2_diagnosis.pdf}
-  \caption{\textbf{Diagnosing access-dependent reading.} Paired direct second-hop and composed questions share the same evidence. Their attention difference localizes heads whose bridge access changes during composition. A crossed intervention independently changes bridge-paragraph mass and the conditional reading pattern within it, retaining receiver value/output computations. Reciprocal exchanges of relation values then test whether answers follow local evidence while complete-context word and character counts remain fixed.}
-  \label{fig:causal_framework}
-\end{figure*}
 
 \subsection{Paired Contextual Reasoning}
 \label{sec:triplets}
 
-For a fact chain $e_0\xrightarrow{r_1}b\xrightarrow{r_2}a$, each source pairs the original composed question $q_{12}$ with two constituent questions: $q_1$ asks for bridge $b$, and $q_2$ explicitly names $b$ and asks for $a$. The paragraph about $e_0$ is the \emph{root paragraph}; the paragraph supporting $(b,r_2,a)$ is the \emph{bridge paragraph}. All queries share the complete evidence (\cref{fig:causal_framework}).
+For a fact chain $e_0\xrightarrow{r_1}b\xrightarrow{r_2}a$, each source pairs the original composed question $q_{12}$ with two constituent questions: $q_1$ asks for bridge $b$, and $q_2$ explicitly names $b$ and asks for answer $a$. The paragraph about $e_0$ is the \emph{root paragraph}; the paragraph supporting $(b,r_2,a)$ is the \emph{bridge paragraph}. All three queries share the original evidence.
 
-Let $c_i(q)\in\{0,1\}$ denote correctness for source $i$. Following the conditional compositionality gap \citep{press2023compositionality}, we define the native constituent-correct set $\mathcal U=\{i:c_i(q_1)c_i(q_2)=1\}$ and its composition failure rate
+Let $c_i(q)\in\{0,1\}$ denote correctness for source $i$. The native constituent-correct set is $\mathcal U=\{i:c_i(q_1)c_i(q_2)=1\}$. Following the conditional compositionality gap \citep{press2023compositionality}, its composition failure rate is
 \begin{equation}
   \mathrm{CFR}=1-\frac{1}{|\mathcal U|}\sum_{i\in\mathcal U}c_i(q_{12}).
   \label{eq:cfr}
 \end{equation}
-Repair comparisons also follow the fixed native set $\mathcal U$. Unconditioned composed accuracy evaluates all sources; \emph{all-three accuracy} requires all three answers to be correct.
+Repair and retention are also evaluated on this fixed native population. Unconditioned composed accuracy covers every source; \emph{all-three accuracy} requires all three answers to be correct.
 
-\subsection{Localizing and Decoding Evidence Access}
+\subsection{Localizing Heads and Reading the Bridge Address}
 \label{sec:localize}
 
-For attention head $h$ at layer $\ell$, let $A^{\ell h}_{t,k}$ be attention from question token $t$ to context token $k$. The access mass assigned to paragraph $p_j$ is $m^{\ell h}_t(j)=\sum_{k\in p_j}A^{\ell h}_{t,k}$. On paired discovery queries, we rank heads by
+For head $h$ at layer $\ell$, let $A^{\ell h}_{t,k}$ be attention from question token $t$ to context token $k$. Its mass on paragraph $p_j$ is $m^{\ell h}_t(j)=\sum_{k\in p_j}A^{\ell h}_{t,k}$. We rank heads on paired discovery queries by
 \begin{equation}
   d_{\ell h}=\E_i\!\left[\bar m^{\ell h}_{q_2}(j_i^*)-
   \bar m^{\ell h}_{q_{12}}(j_i^*)\right],
   \label{eq:ranking}
 \end{equation}
-where $j_i^*$ is the annotated bridge and $\bar m$ averages over question tokens. Discovery-only mass calibration selects 20, 20, and 40 heads from candidate counts 20/40/80, maximizing composed accuracy and preferring fewer heads on ties. Question-prefill knockout against layer-matched random sets tests their necessity.
+where $j_i^*$ is the annotated bridge and $\bar m$ averages question-token rows. Discovery-only mass calibration selects 20, 20, and 40 heads from candidate counts \scores{20}{40}{80}, maximizing composed accuracy and favoring fewer heads on ties. Question-prefill knockout against layer-matched random heads tests their contribution to answering.
 
-For address readout, each selected head contributes log mean question-token mass and log last-question-token mass for each paragraph. The full feature vector adds log paragraph-length fraction and a question/title-mention indicator. A linear score $s_j=w^\top h_j$ is fitted on training sources using standardized features, paragraph-index cross-entropy, and $\ell_2$ regularization. Attention-only and metadata-only controls identify the contribution of each feature group. Each reader is fitted using the model state in which it operates.
+For each paragraph, each selected head supplies the log mean question-token mass and the log last-question-token mass. A linear score $s_j=w^\top f_j$ is fitted using standardized features, paragraph-index cross-entropy, and $\ell_2$ regularization on training sources. The full readout adds log paragraph-length fraction and a question/title-mention indicator. Attention-only and metadata-only variants separate their information contributions. Native and adapted models receive separately fitted, state-aligned readers (\cref{app:readout_protocol}).
 
-\subsection{Separating Access from Local Reading}
+\subsection{Crossing Paragraph Access and Local Reading}
 \label{sec:factorization}
 
-For a bridge paragraph, write an attention row as $A_k=m\rho_k$ for $k$ inside that paragraph, with $\sum_k\rho_k=1$. Its contribution to a head is $m\sum_k\rho_k v_k$, followed by the receiving model's output projection \citep{vaswani2017attention}. This exposes two manipulable factors: \emph{paragraph access mass} $m$ and \emph{conditional reading pattern} $\rho$.
+Inside a bridge paragraph, an attention row factors as $A_k=m\rho_k$, where $m$ is paragraph mass and $\sum_k\rho_k=1$. Its contribution before the output projection is
+\begin{equation}
+  c_B=m\sum_{k\in B}\rho_k v_k.
+  \label{eq:contribution}
+\end{equation}
+Here $B$ denotes bridge-token positions and $v_k$ the receiver-computed value vectors \citep{vaswani2017attention}. We call $\rho$ the \emph{local reading pattern}: the conditional allocation of attention within the paragraph.
 
-We cross native or calibrated mass with receiver or direct-query conditional patterns, yielding $(m,\rho)$, $(\tau,\rho)$, $(m,\rho^{\mathrm{dir}})$, and $(\tau,\rho^{\mathrm{dir}})$. Target $\tau$ is each head's discovery mean of last-token direct-query bridge mass. The donor pattern comes from the paired direct query's last question token and is copied to aligned receiver question rows. The receiver retains its own values and output projection; attention outside the bridge is rescaled to preserve the row total. Exact transformations appear in \cref{app:interventions}.
+The four intervention arms cross native or calibrated mass with receiver or direct-query patterns:
+\begin{equation}
+  \begin{array}{c|cc}
+     & \rho & \rho^{\mathrm{dir}}\\ \hline
+    m & \text{Native} & \text{Pattern}\\
+    \tau & \text{Mass} & \text{Both}
+  \end{array}.
+  \label{eq:arms}
+\end{equation}
+Each head's target $\tau$ is its discovery mean last-token bridge mass under direct queries. The donor supplies the normalized bridge pattern at the paired direct query's final question token. We apply this pattern to every selected receiver question row; outside-bridge attention is rescaled as needed to preserve the row total. The receiving forward pass supplies the value vectors and uses the original output-projection weights. Downstream activations and caches evolve with the intervened computation. Exact transformations and validity checks appear in \cref{app:interventions}.
 
-The accuracy interaction is
+Twenty-five discovery quadruplets cross two bridges with two second-hop relations, yielding 100 composed receivers with exactly aligned context tokens. They provide the controlled diagnostic population. We measure
 \begin{equation}
  I=\mathrm{Acc}_{\mathrm{both}}-\mathrm{Acc}_{\mathrm{mass}}
  -\mathrm{Acc}_{\mathrm{pattern}}+\mathrm{Acc}_{\mathrm{native}}.
  \label{eq:interaction}
 \end{equation}
-Twenty-five discovery quadruplets cross two bridges with two second-hop relations, yielding 100 receivers with exactly aligned context tokens.
-
-To test \emph{content dependence}, we exchange the same relation's object surfaces between two bridge paragraphs. The answer changes while the question, paragraph order, and complete-context word and character multisets stay fixed. We measure edited-value following, obsolete-answer persistence, and joint correctness before and after exchange.
-
-
+An identity arm checks implementation fidelity. A separate experiment on all 1,000 test sources applies the same mass targets to the annotated bridge, the root, or a length-matched other paragraph, testing address specificity.
 
 \begin{figure*}[!t]
   \centering
-  \includegraphics[width=\textwidth]{figures/figure3_method.pdf}
-  \caption{\textbf{Converting the mechanism into CoReTrace.} Offline, answer supervision updates selected Q/K/V/O projection slices, fixed prefill rules restore native V/O contributions, and training-source paragraph labels fit a linear attention readout. At inference, title links supply candidate bridges. A unique candidate is selected directly; the frozen readout ranks ambiguous candidates. The adapted model answers from the original root and selected bridge paragraphs. Inputs with inapplicable graphs retain their complete context.}
-  \label{fig:framework}
+  \includegraphics[width=\textwidth]{figures/data_fig4_causal.pdf}
+  \caption{\textbf{Access and local reading interact, and the address matters.} (a--c) The four arms in \cref{eq:arms} on 100 receivers from 25 discovery quadruplets. Bars cross native/calibrated paragraph mass with receiver/direct-query patterns. Interaction estimates are $+8$, $+5$, and $+16$ points, with 95\% quadruplet-bootstrap intervals $[1,14]$, $[0,10]$, and $[8,25]$. (d--f) On 1,000 test sources, the same mass targets improve accuracy at the bridge and reduce it at the root or a length-matched other paragraph. Error bars are paired 95\% source-bootstrap intervals. Each access run uses its own native reference.}
+  \label{fig:causal}
 \end{figure*}
 
-\subsection{CoReTrace: Selecting Evidence and Adapting Its Use}
+\subsection{CoReTrace: Select Evidence and Adapt Its Use}
 \label{sec:repair}
 
-\method\ couples head adaptation with input-derived evidence selection (\cref{fig:framework}). Answer-only cross-entropy updates full-rank query, key, value, and output (Q/K/V/O) slices for the selected heads. A fixed rule restores native V and/or O contributions at specified prompt-prefill positions; cached decoding uses the adapted weights. Model-specific restoration rules were chosen during preceding development (\cref{tab:scopes}).
+\method\ operationalizes the diagnosis through three components. \textbf{Head adaptation} trains full-rank query, key, value, and output (Q/K/V/O) projection slices of the selected heads using answer-only cross-entropy. \textbf{Fixed restoration} reinstates native V and/or O contributions at designated prompt-prefill positions; cached decoding uses the adapted weights. These model-specific rules were fixed during preceding development and support capability retention (\cref{tab:scopes}). \textbf{Evidence selection} uses the input text and a frozen address reader to choose the context for answer generation.
 
-The selector finds one independently mentioned paragraph title in the question and links that root to titles in its body. One outgoing candidate is used directly. Multiple candidates trigger a full-context prefill under the adapted model; the frozen readout selects the highest-scoring paragraph. The root and selected bridge retain their original text and order. Inputs with no unique root or no candidate keep the complete context. An input-order selection control isolates the reader's contribution by choosing the first candidate under the same adapted model.
+The selector matches paragraph titles in the question. With one independently mentioned title, its paragraph becomes the root; titles mentioned in the root's body define outgoing bridge candidates. A unique candidate is selected directly. Multiple candidates trigger one full-context prefill under the adapted/restored model, and the reader selects the highest-scoring candidate. The root and chosen bridge retain their original text and order. Inputs with an inapplicable graph retain their complete context. Paragraph supervision fits the reader on training sources; inference uses the question, paragraph texts, and frozen parameters. \Cref{fig:framework} gives the complete workflow in the appendix.
+
+The input-order control uses the same adapted model and selects the first candidate. It changes only the bridge choice on ambiguous inputs, providing a direct test of the recovered attention signal's utility. Additional component controls separate evidence selection, head adaptation, and projection restoration.
