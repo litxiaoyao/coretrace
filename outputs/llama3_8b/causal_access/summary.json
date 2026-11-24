@@ -1,0 +1,169 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "path": "/data/LLM_model/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct",
+    "model_type": "llama",
+    "native_parameters": 8030261248
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "native",
+      "query": "composed",
+      "n": 1000,
+      "correct": 364,
+      "accuracy": 0.364,
+      "eos_complete": 1000,
+      "text_alias_correct": 364,
+      "mean_text_f1": 0.4982569849569078
+    },
+    {
+      "method": "oracle_second_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "correct": 524,
+      "accuracy": 0.524,
+      "eos_complete": 1000,
+      "text_alias_correct": 524,
+      "mean_text_f1": 0.6432485760026005
+    },
+    {
+      "method": "oracle_first_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "correct": 291,
+      "accuracy": 0.291,
+      "eos_complete": 1000,
+      "text_alias_correct": 291,
+      "mean_text_f1": 0.4022154708578688
+    },
+    {
+      "method": "lengthmatched_other_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "correct": 158,
+      "accuracy": 0.158,
+      "eos_complete": 995,
+      "text_alias_correct": 158,
+      "mean_text_f1": 0.2326489818545076
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "native",
+      "method_after": "oracle_second_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 364,
+      "after": 524,
+      "gains": 178,
+      "losses": 18,
+      "delta": 0.16,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.134,
+        0.186
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "oracle_first_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 364,
+      "after": 291,
+      "gains": 34,
+      "losses": 107,
+      "delta": -0.073,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.095,
+        -0.051
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "lengthmatched_other_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 364,
+      "after": 158,
+      "gains": 30,
+      "losses": 236,
+      "delta": -0.206,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.235,
+        -0.17797500000000013
+      ]
+    },
+    {
+      "method_before": "oracle_second_paragraph",
+      "method_after": "oracle_first_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 524,
+      "after": 291,
+      "gains": 17,
+      "losses": 250,
+      "delta": -0.233,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.261,
+        -0.204
+      ]
+    },
+    {
+      "method_before": "oracle_second_paragraph",
+      "method_after": "lengthmatched_other_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 524,
+      "after": 158,
+      "gains": 17,
+      "losses": 383,
+      "delta": -0.366,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.396025,
+        -0.335
+      ]
+    },
+    {
+      "method_before": "oracle_first_paragraph",
+      "method_after": "lengthmatched_other_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 291,
+      "after": 158,
+      "gains": 38,
+      "losses": 171,
+      "delta": -0.133,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.161,
+        -0.107
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report",
+  "arms": [
+    "native",
+    "oracle_second_paragraph",
+    "oracle_first_paragraph",
+    "lengthmatched_other_paragraph"
+  ],
+  "interpretation": "Privileged diagnostic source addressing, not deployed repair; all arms use the same discovery-frozen per-head tau.",
+  "no_other_control_noops": 0
+}

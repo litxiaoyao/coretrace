@@ -1,0 +1,100 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/LLM_model/Qwen3-4B",
+    "model_type": "qwen3",
+    "native_parameters": 4022468096,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "native",
+      "query": "hotpot",
+      "n": 7405,
+      "correct": 3475,
+      "accuracy": 0.46927751519243754,
+      "eos_complete": 7292,
+      "text_alias_correct": 3476,
+      "mean_text_f1": 0.6015787895178484
+    },
+    {
+      "method": "head_tuning",
+      "query": "hotpot",
+      "n": 7405,
+      "correct": 3548,
+      "accuracy": 0.47913571910871033,
+      "eos_complete": 7402,
+      "text_alias_correct": 3548,
+      "mean_text_f1": 0.6234863000841941
+    },
+    {
+      "method": "final",
+      "query": "hotpot",
+      "n": 7405,
+      "correct": 3743,
+      "accuracy": 0.5054692775151924,
+      "eos_complete": 7399,
+      "text_alias_correct": 3743,
+      "mean_text_f1": 0.6523290296185882
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "native",
+      "method_after": "head_tuning",
+      "query": "hotpot",
+      "n": 7405,
+      "metric": "correct",
+      "before": 3475,
+      "after": 3548,
+      "gains": 901,
+      "losses": 828,
+      "delta": 0.009858203916272788,
+      "cluster_count": 7405,
+      "paired_cluster_CI95": [
+        -0.0010837272113436865,
+        0.020661715057393653
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final",
+      "query": "hotpot",
+      "n": 7405,
+      "metric": "correct",
+      "before": 3475,
+      "after": 3743,
+      "gains": 993,
+      "losses": 725,
+      "delta": 0.036191762322754895,
+      "cluster_count": 7405,
+      "paired_cluster_CI95": [
+        0.025793382849426064,
+        0.04686022957461175
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "hotpot",
+      "n": 7405,
+      "metric": "correct",
+      "before": 3548,
+      "after": 3743,
+      "gains": 412,
+      "losses": 217,
+      "delta": 0.02633355840648211,
+      "cluster_count": 7405,
+      "paired_cluster_CI95": [
+        0.019446320054017557,
+        0.03322079675894666
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report"
+}

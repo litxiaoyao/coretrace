@@ -1,0 +1,628 @@
+{
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "dataset_version": "CoRe-2Wiki-v1.0",
+  "groups": [
+    {
+      "model": "qwen3_4b",
+      "benchmark": "core",
+      "method": "native",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core"
+      ],
+      "deterministic_reference": true
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "core",
+      "method": "native_text",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "core",
+      "method": "head_tuning",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "core",
+      "method": "scoped_body",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "core",
+      "method": "graphfirst",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "core",
+      "method": "final",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "core",
+      "method": "final_attention",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "core",
+      "method": "final_metadata",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "hotpot",
+      "method": "native",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/hotpot"
+      ],
+      "deterministic_reference": true
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "hotpot",
+      "method": "head_tuning",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/hotpot"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "hotpot",
+      "method": "final",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/hotpot"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "mmlu",
+      "method": "native",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/mmlu"
+      ],
+      "deterministic_reference": true
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "mmlu",
+      "method": "head_tuning",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/mmlu"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "mmlu",
+      "method": "final",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/mmlu"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "gsm8k",
+      "method": "native",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/gsm8k"
+      ],
+      "deterministic_reference": true
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "gsm8k",
+      "method": "head_tuning",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/gsm8k"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "gsm8k",
+      "method": "final",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/gsm8k"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "core",
+      "method": "FullFT",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation_fullft/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation_fullft/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation_fullft/core"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "hotpot",
+      "method": "FullFT",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation_fullft/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation_fullft/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation_fullft/hotpot"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "mmlu",
+      "method": "FullFT",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation_fullft/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation_fullft/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation_fullft/mmlu"
+      ]
+    },
+    {
+      "model": "qwen3_4b",
+      "benchmark": "gsm8k",
+      "method": "FullFT",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation_fullft/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation_fullft/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation_fullft/gsm8k"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "core",
+      "method": "native",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core"
+      ],
+      "deterministic_reference": true
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "core",
+      "method": "native_text",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "core",
+      "method": "head_tuning",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "core",
+      "method": "scoped_body",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "core",
+      "method": "graphfirst",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "core",
+      "method": "final",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "core",
+      "method": "final_attention",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "core",
+      "method": "final_metadata",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "hotpot",
+      "method": "native",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/hotpot"
+      ],
+      "deterministic_reference": true
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "hotpot",
+      "method": "head_tuning",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/hotpot"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "hotpot",
+      "method": "final",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/hotpot"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "mmlu",
+      "method": "native",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/mmlu"
+      ],
+      "deterministic_reference": true
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "mmlu",
+      "method": "head_tuning",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/mmlu"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "mmlu",
+      "method": "final",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/mmlu"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "gsm8k",
+      "method": "native",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/gsm8k"
+      ],
+      "deterministic_reference": true
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "gsm8k",
+      "method": "head_tuning",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/gsm8k"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "gsm8k",
+      "method": "final",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/gsm8k"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "core",
+      "method": "FullFT",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation_fullft/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation_fullft/core",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation_fullft/core"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "hotpot",
+      "method": "FullFT",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation_fullft/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation_fullft/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation_fullft/hotpot"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "mmlu",
+      "method": "FullFT",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation_fullft/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation_fullft/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation_fullft/mmlu"
+      ]
+    },
+    {
+      "model": "qwen3_8b",
+      "benchmark": "gsm8k",
+      "method": "FullFT",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation_fullft/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation_fullft/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation_fullft/gsm8k"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "core",
+      "method": "native",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core"
+      ],
+      "deterministic_reference": true
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "core",
+      "method": "native_text",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "core",
+      "method": "head_tuning",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "core",
+      "method": "scoped_body",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "core",
+      "method": "graphfirst",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "core",
+      "method": "final",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "core",
+      "method": "final_attention",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "core",
+      "method": "final_metadata",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "hotpot",
+      "method": "native",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/hotpot"
+      ],
+      "deterministic_reference": true
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "hotpot",
+      "method": "head_tuning",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/hotpot"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "hotpot",
+      "method": "final",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/hotpot"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "mmlu",
+      "method": "native",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/mmlu"
+      ],
+      "deterministic_reference": true
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "mmlu",
+      "method": "head_tuning",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/mmlu"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "mmlu",
+      "method": "final",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/mmlu"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "gsm8k",
+      "method": "native",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/gsm8k"
+      ],
+      "deterministic_reference": true
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "gsm8k",
+      "method": "head_tuning",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/gsm8k"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "gsm8k",
+      "method": "final",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/gsm8k"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "core",
+      "method": "FullFT",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation_fullft/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation_fullft/core",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation_fullft/core"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "hotpot",
+      "method": "FullFT",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation_fullft/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation_fullft/hotpot",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation_fullft/hotpot"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "mmlu",
+      "method": "FullFT",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation_fullft/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation_fullft/mmlu",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation_fullft/mmlu"
+      ]
+    },
+    {
+      "model": "llama3_8b",
+      "benchmark": "gsm8k",
+      "method": "FullFT",
+      "directories": [
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation_fullft/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation_fullft/gsm8k",
+        "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation_fullft/gsm8k"
+      ]
+    }
+  ]
+}

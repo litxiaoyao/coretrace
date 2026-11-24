@@ -1,0 +1,19 @@
+{
+  "model": {
+    "path": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/fullft/final_model",
+    "family": "llama"
+  },
+  "seed": 43,
+  "dataset_version": "CoRe-2Wiki-v1.0",
+  "dataset": {
+    "kind": "gsm8k",
+    "path": "/data/xiaoyao/projects/coretrace/data/benchmarks/gsm8k.jsonl"
+  },
+  "methods": [
+    {
+      "name": "FullFT"
+    }
+  ],
+  "output": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation_fullft/gsm8k",
+  "batch_size": 4
+}

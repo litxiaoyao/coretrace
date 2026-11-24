@@ -1,0 +1,29 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/fullft/final_model",
+    "model_type": "qwen3",
+    "native_parameters": 8190735360,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "FullFT",
+      "query": "hotpot",
+      "n": 7405,
+      "correct": 2137,
+      "accuracy": 0.28858879135719107,
+      "eos_complete": 7398,
+      "text_alias_correct": 2137,
+      "mean_text_f1": 0.3997743393036576
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report"
+}

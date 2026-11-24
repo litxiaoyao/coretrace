@@ -1,0 +1,157 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/LLM_model/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct",
+    "model_type": "llama",
+    "native_parameters": 8030261248,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "native",
+      "query": "mmlu",
+      "n": 14042,
+      "correct": 7659,
+      "accuracy": 0.5454351232018231,
+      "logprob_correct": 9346,
+      "eos_complete": 14042,
+      "format_failure": 2227,
+      "subject_macro_accuracy": 0.5520405788728773,
+      "subject_macro_logprob_accuracy": 0.6677233449088559
+    },
+    {
+      "method": "head_tuning",
+      "query": "mmlu",
+      "n": 14042,
+      "correct": 9037,
+      "accuracy": 0.6435692921236291,
+      "logprob_correct": 9050,
+      "eos_complete": 14042,
+      "format_failure": 23,
+      "subject_macro_accuracy": 0.647655228838752,
+      "subject_macro_logprob_accuracy": 0.6486754171033163
+    },
+    {
+      "method": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "correct": 9143,
+      "accuracy": 0.6511180743483834,
+      "logprob_correct": 9144,
+      "eos_complete": 14042,
+      "format_failure": 2,
+      "subject_macro_accuracy": 0.6565524884150518,
+      "subject_macro_logprob_accuracy": 0.6566174656730114
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "native",
+      "method_after": "head_tuning",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "correct",
+      "before": 7659,
+      "after": 9037,
+      "gains": 2339,
+      "losses": 961,
+      "delta": 0.09813416892180601,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        0.09043939609742202,
+        0.10554052129326306
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "head_tuning",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "logprob_correct",
+      "before": 9346,
+      "after": 9050,
+      "gains": 739,
+      "losses": 1035,
+      "delta": -0.021079618287993162,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        -0.027132887053126335,
+        -0.015097564449508617
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "correct",
+      "before": 7659,
+      "after": 9143,
+      "gains": 2288,
+      "losses": 804,
+      "delta": 0.10568295114656032,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        0.09827303802877084,
+        0.11294865403788633
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "logprob_correct",
+      "before": 9346,
+      "after": 9144,
+      "gains": 667,
+      "losses": 869,
+      "delta": -0.014385415183022362,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        -0.01994195983478137,
+        -0.009113730237857864
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "correct",
+      "before": 9037,
+      "after": 9143,
+      "gains": 252,
+      "losses": 146,
+      "delta": 0.0075487822247543085,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        0.004842615012106538,
+        0.010327944737216911
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "logprob_correct",
+      "before": 9050,
+      "after": 9144,
+      "gains": 243,
+      "losses": 149,
+      "delta": 0.006694203104970802,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        0.003916820965674406,
+        0.009471585244267198
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report"
+}

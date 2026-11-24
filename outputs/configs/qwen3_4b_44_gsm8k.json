@@ -1,0 +1,37 @@
+{
+  "model": {
+    "path": "/data/LLM_model/Qwen3-4B",
+    "family": "qwen3"
+  },
+  "seed": 44,
+  "dataset_version": "CoRe-2Wiki-v1.0",
+  "dataset": {
+    "kind": "gsm8k",
+    "path": "/data/xiaoyao/projects/coretrace/data/benchmarks/gsm8k.jsonl"
+  },
+  "methods": [
+    {
+      "name": "head_tuning",
+      "artifact": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/head_tuning"
+    },
+    {
+      "name": "final",
+      "artifact": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/head_tuning",
+      "scope": {
+        "components": "vo",
+        "role": "prefix_before_question",
+        "layers": [
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      "selector": "decoded_text",
+      "paragraph_boundary": "leading_newline",
+      "readout": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/readout/address_readout.json"
+    }
+  ],
+  "output": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/gsm8k",
+  "batch_size": 4
+}

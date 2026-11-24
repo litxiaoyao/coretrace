@@ -1,0 +1,173 @@
+{
+  "status": "COMPLETE_MATCHED_CONTENT_CAUSAL_ASSESSMENT",
+  "summary": [
+    {
+      "variant": "native",
+      "pool": "all_sources",
+      "n": 100,
+      "original_old_correct": 51,
+      "edited_new_follow": 32,
+      "edited_old_persistence": 14,
+      "original_correct_then_new": 29,
+      "address_prefills": 0
+    },
+    {
+      "variant": "native",
+      "pool": "actual_swaps",
+      "n": 100,
+      "original_old_correct": 51,
+      "edited_new_follow": 32,
+      "edited_old_persistence": 14,
+      "original_correct_then_new": 29,
+      "address_prefills": 0
+    },
+    {
+      "variant": "native_budget",
+      "pool": "all_sources",
+      "n": 100,
+      "original_old_correct": 64,
+      "edited_new_follow": 52,
+      "edited_old_persistence": 9,
+      "original_correct_then_new": 49,
+      "address_prefills": 0
+    },
+    {
+      "variant": "native_budget",
+      "pool": "actual_swaps",
+      "n": 100,
+      "original_old_correct": 64,
+      "edited_new_follow": 52,
+      "edited_old_persistence": 9,
+      "original_correct_then_new": 49,
+      "address_prefills": 0
+    },
+    {
+      "variant": "body",
+      "pool": "all_sources",
+      "n": 100,
+      "original_old_correct": 85,
+      "edited_new_follow": 72,
+      "edited_old_persistence": 16,
+      "original_correct_then_new": 69,
+      "address_prefills": 0
+    },
+    {
+      "variant": "body",
+      "pool": "actual_swaps",
+      "n": 100,
+      "original_old_correct": 85,
+      "edited_new_follow": 72,
+      "edited_old_persistence": 16,
+      "original_correct_then_new": 69,
+      "address_prefills": 0
+    },
+    {
+      "variant": "final",
+      "pool": "all_sources",
+      "n": 100,
+      "original_old_correct": 88,
+      "edited_new_follow": 80,
+      "edited_old_persistence": 4,
+      "original_correct_then_new": 77,
+      "address_prefills": 6
+    },
+    {
+      "variant": "final",
+      "pool": "actual_swaps",
+      "n": 100,
+      "original_old_correct": 88,
+      "edited_new_follow": 80,
+      "edited_old_persistence": 4,
+      "original_correct_then_new": 77,
+      "address_prefills": 6
+    }
+  ],
+  "paired_method_contrasts": [
+    {
+      "before": "native",
+      "after": "native_budget",
+      "n": 100,
+      "metric": "edited_new_follow",
+      "gains": 24,
+      "losses": 4,
+      "delta": 0.2,
+      "quad_clusters": 25,
+      "quad_cluster_CI95": [
+        0.09,
+        0.31
+      ]
+    },
+    {
+      "before": "native",
+      "after": "body",
+      "n": 100,
+      "metric": "edited_new_follow",
+      "gains": 46,
+      "losses": 6,
+      "delta": 0.4,
+      "quad_clusters": 25,
+      "quad_cluster_CI95": [
+        0.3,
+        0.5
+      ]
+    },
+    {
+      "before": "native",
+      "after": "final",
+      "n": 100,
+      "metric": "edited_new_follow",
+      "gains": 51,
+      "losses": 3,
+      "delta": 0.48,
+      "quad_clusters": 25,
+      "quad_cluster_CI95": [
+        0.35,
+        0.6
+      ]
+    },
+    {
+      "before": "native_budget",
+      "after": "body",
+      "n": 100,
+      "metric": "edited_new_follow",
+      "gains": 27,
+      "losses": 7,
+      "delta": 0.2,
+      "quad_clusters": 25,
+      "quad_cluster_CI95": [
+        0.12,
+        0.29
+      ]
+    },
+    {
+      "before": "native_budget",
+      "after": "final",
+      "n": 100,
+      "metric": "edited_new_follow",
+      "gains": 31,
+      "losses": 3,
+      "delta": 0.28,
+      "quad_clusters": 25,
+      "quad_cluster_CI95": [
+        0.18,
+        0.38
+      ]
+    },
+    {
+      "before": "body",
+      "after": "final",
+      "n": 100,
+      "metric": "edited_new_follow",
+      "gains": 11,
+      "losses": 3,
+      "delta": 0.08,
+      "quad_clusters": 25,
+      "quad_cluster_CI95": [
+        0.01,
+        0.16
+      ]
+    }
+  ],
+  "noops_receive_new_target_credit": false,
+  "interpretation": "Auxiliary input counterfactual, separate from canonical QA benchmark scores; all original sources and flags retained."
+}

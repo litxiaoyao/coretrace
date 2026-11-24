@@ -1,0 +1,32 @@
+{
+  "model": {
+    "path": "/data/LLM_model/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct",
+    "family": "llama"
+  },
+  "seed": 43,
+  "dataset_version": "CoRe-2Wiki-v1.0",
+  "dataset": {
+    "kind": "hotpot",
+    "path": "/data/xiaoyao/projects/coretrace/data/benchmarks/hotpot.jsonl"
+  },
+  "methods": [
+    {
+      "name": "head_tuning",
+      "artifact": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/head_tuning"
+    },
+    {
+      "name": "final",
+      "artifact": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/head_tuning",
+      "scope": {
+        "components": "v",
+        "role": "prefix_before_question",
+        "layers": "selected"
+      },
+      "selector": "decoded_text",
+      "paragraph_boundary": "line_start",
+      "readout": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/readout/address_readout.json"
+    }
+  ],
+  "output": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/hotpot",
+  "batch_size": 4
+}

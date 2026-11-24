@@ -1,0 +1,31 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/fullft/final_model",
+    "model_type": "llama",
+    "native_parameters": 8030261248,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "FullFT",
+      "query": "mmlu",
+      "n": 14042,
+      "correct": 435,
+      "accuracy": 0.030978493092152115,
+      "logprob_correct": 3521,
+      "eos_complete": 13928,
+      "format_failure": 12235,
+      "subject_macro_accuracy": 0.03057922999660425,
+      "subject_macro_logprob_accuracy": 0.25231968795572063
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report"
+}

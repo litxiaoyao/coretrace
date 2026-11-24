@@ -1,0 +1,6 @@
+model,method,n,accuracy,source_summary
+qwen3_4b,native,100,0.34,/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_4b,identity,100,0.34,/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_4b,mass_only,100,0.41,/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_4b,conditional_only,100,0.28,/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_4b,both,100,0.43,/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/causal_factorization/summary.json

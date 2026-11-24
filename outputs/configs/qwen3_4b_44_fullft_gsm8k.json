@@ -1,0 +1,19 @@
+{
+  "model": {
+    "path": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/fullft/final_model",
+    "family": "qwen3"
+  },
+  "seed": 44,
+  "dataset_version": "CoRe-2Wiki-v1.0",
+  "dataset": {
+    "kind": "gsm8k",
+    "path": "/data/xiaoyao/projects/coretrace/data/benchmarks/gsm8k.jsonl"
+  },
+  "methods": [
+    {
+      "name": "FullFT"
+    }
+  ],
+  "output": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation_fullft/gsm8k",
+  "batch_size": 4
+}

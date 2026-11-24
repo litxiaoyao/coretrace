@@ -1,0 +1,169 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "path": "/data/LLM_model/Qwen3-4B",
+    "model_type": "qwen3",
+    "native_parameters": 4022468096
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "native",
+      "query": "composed",
+      "n": 1000,
+      "correct": 269,
+      "accuracy": 0.269,
+      "eos_complete": 965,
+      "text_alias_correct": 269,
+      "mean_text_f1": 0.39478057471154665
+    },
+    {
+      "method": "oracle_second_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "correct": 318,
+      "accuracy": 0.318,
+      "eos_complete": 974,
+      "text_alias_correct": 318,
+      "mean_text_f1": 0.4411972967839208
+    },
+    {
+      "method": "oracle_first_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "correct": 223,
+      "accuracy": 0.223,
+      "eos_complete": 957,
+      "text_alias_correct": 223,
+      "mean_text_f1": 0.3409333062191394
+    },
+    {
+      "method": "lengthmatched_other_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "correct": 195,
+      "accuracy": 0.195,
+      "eos_complete": 955,
+      "text_alias_correct": 195,
+      "mean_text_f1": 0.30814193765881054
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "native",
+      "method_after": "oracle_second_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 269,
+      "after": 318,
+      "gains": 72,
+      "losses": 23,
+      "delta": 0.049,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.029,
+        0.068
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "oracle_first_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 269,
+      "after": 223,
+      "gains": 25,
+      "losses": 71,
+      "delta": -0.046,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.065,
+        -0.027
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "lengthmatched_other_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 269,
+      "after": 195,
+      "gains": 19,
+      "losses": 93,
+      "delta": -0.074,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.094,
+        -0.054
+      ]
+    },
+    {
+      "method_before": "oracle_second_paragraph",
+      "method_after": "oracle_first_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 318,
+      "after": 223,
+      "gains": 16,
+      "losses": 111,
+      "delta": -0.095,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.117025,
+        -0.073
+      ]
+    },
+    {
+      "method_before": "oracle_second_paragraph",
+      "method_after": "lengthmatched_other_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 318,
+      "after": 195,
+      "gains": 20,
+      "losses": 143,
+      "delta": -0.123,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.147,
+        -0.099
+      ]
+    },
+    {
+      "method_before": "oracle_first_paragraph",
+      "method_after": "lengthmatched_other_paragraph",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 223,
+      "after": 195,
+      "gains": 43,
+      "losses": 71,
+      "delta": -0.028,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.049,
+        -0.007
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report",
+  "arms": [
+    "native",
+    "oracle_second_paragraph",
+    "oracle_first_paragraph",
+    "lengthmatched_other_paragraph"
+  ],
+  "interpretation": "Privileged diagnostic source addressing, not deployed repair; all arms use the same discovery-frozen per-head tau.",
+  "no_other_control_noops": 0
+}

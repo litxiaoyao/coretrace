@@ -1,0 +1,3234 @@
+[
+  {
+    "model": "llama3_8b",
+    "source_id": "00df5d8c0bde11eba7f7acde48001122",
+    "source": {
+      "source_id": "00df5d8c0bde11eba7f7acde48001122",
+      "global_split": "test",
+      "official_parent_split": "dev",
+      "original_question": "When did Christine Juliane Of Baden-Durlach's father die?",
+      "original_gold": "24 October 1703",
+      "original_context": [
+        [
+          "Johanna Elisabeth of Baden-Durlach",
+          [
+            "Johanna Elisabeth of Baden- Durlach( 3 October 1680 – 2 July 1757), was a Duchess of Württemberg by marriage."
+          ]
+        ],
+        [
+          "Georg Friedrich, Margrave of Baden-Durlach",
+          [
+            "George Frederick of Baden-Durlach (30 January 1573 – 24 September 1638) was Margrave of Baden-Durlach from 1604 until his abdication in 1622.",
+            "He also ruled Baden-Baden.",
+            "He was the third son of margrave Charles II of Baden-Durlach and his second wife, Anna of Veldenz.",
+            "He was the youngest of eight children and was only four years old when his father died.",
+            "He succeeded his brother Ernest Frederick as margrave in 1604.",
+            "He also continued his brother's occupation of Baden-Baden.",
+            "George Frederick was a prominent member of the Protestant Union.",
+            "He raised an army of 12,000 men at the beginning of the Thirty Years' War in 1618.",
+            "When Catholic League forces under General Tilly approached Baden in 1622 (Palatinate campaign), he marched against them, but came too late for the Battle of Mingolsheim.",
+            "Setting off to pursue the retreating Catholics, he was defeated at the Battle of Wimpfen, and his army was destroyed, a few days later.",
+            "In 1627 he joined the Danish army.",
+            "He died at Strasbourg in 1638."
+          ]
+        ],
+        [
+          "Christopher of Baden-Durlach",
+          [
+            "Christopher of Baden- Durlach( 9 October 1684, Karlsburg Castle, Durlach – 2 May 1723, Karlsruhe) was Prince and( titular) Margrave of Baden- Durlach.",
+            "Christopher was the son of Margrave Frederick VII Magnus of Baden- Durlach and Augusta Marie of Holstein- Gottorp( born February 6, 1649 – † April 25, 1728), daughter of the Duke Frederick III of Holstein- Gottorp.",
+            "He was the brother of the ruling Margrave Charles III William, who reigned from 1709 till 1738."
+          ]
+        ],
+        [
+          "Princess Albertina Frederica of Baden-Durlach",
+          [
+            "Princess and Margravine Albertina Frederica of Baden-Durlach (3 July 1682 – 22 December 1755) was a German princess.",
+            "She was the daughter of Frederick VII, Margrave of Baden-Durlach and his wife Duchess Augusta Marie of Holstein-Gottorp.",
+            "She married Christian August of Holstein-Gottorp, Prince of Eutin."
+          ]
+        ],
+        [
+          "Countess Palatine Anna of Veldenz",
+          [
+            "Countess Palatine Anna of Veldenz( 12 November 1540 – 30 March 1586) was Margravine of Baden- Durlach by marriage to Charles II, Margrave of Baden- Durlach, and co-regent of the Margraviate of Baden- Durlach during the minority of her son Ernest Frederick from 1577 to 1584."
+          ]
+        ],
+        [
+          "Frederick VI, Margrave of Baden-Durlach",
+          [
+            "Frederick VI, Margrave of Baden- Durlach( 16 November 1617 – 10 or 31 January 1677) was the Margrave of Baden- Durlach from 1659 until his death."
+          ]
+        ],
+        [
+          "Christine Juliane of Baden-Durlach",
+          [
+            "Christine Juliane of Baden-Durlach (12 September 1678 – 10 July 1707), was a German noblewoman member of the House of Zähringen and by marriage Duchess of Saxe-Eisenach.",
+            "Born at Karlsburg Castle in Karlsruhe, Durlach, she was the oldest of the four children of Prince Charles Gustav of Baden-Durlach (younger brother of Frederick VII, Margrave of Baden-Durlach) and Anna Sophia of Brunswick-Wolfenbüttel."
+          ]
+        ],
+        [
+          "Charles Gustav of Baden-Durlach",
+          [
+            "Margrave (Prince)",
+            "Charles Gustav of Baden-Durlach (27 September 1648 in Durlach – 24 October 1703 at the Karlsburg Castle in Durlach) was a German general.",
+            "He was the son of Margrave Frederick VI of Baden-Durlach and his wife Christina Magdalena of the Palatinate-Zweibrücken.",
+            "Within the Swabian Circle he was royal colonel of the Protestant Circle Infantry Regiment (1673-1677) and from 1683 of the Second Circle Infantry Regiment (Evangelical).",
+            "In 1683, he served as major general and at the same time commander-in-chief of the circle troops.",
+            "In 1686 he was promoted to field marshal lieutenant of the infantry in the Swabian Circle, in 1692 to General Feldzeugmeister and in 1697 to field marshal."
+          ]
+        ],
+        [
+          "Frederick, Hereditary Prince of Baden-Durlach",
+          [
+            "Frederick, Hereditary Prince of Baden-Durlach (7 October 1703 – 26 March 1732) was a German hereditary prince of the Margraviate of Baden-Durlach.",
+            "Frederick was the son of Charles III William, Margrave of Baden-Durlach, and Magdalena Wilhelmine of Württemberg (7 November 1677 - 30 October 1742), the daughter of William Louis, Duke of Württemberg.",
+            "He became heir apparent when his elder brother Charles Magnus died in 1712.",
+            "However, he died before his father did and therefore never came to government in Durlach.",
+            "He served in the imperial army.",
+            "In 1724, he was appointed colonel, in 1728, he was promoted to major general."
+          ]
+        ],
+        [
+          "Frederick V, Margrave of Baden-Durlach",
+          [
+            "Frederick V, Margrave of Baden- Durlach( 6 July 1594, Sulzburg, Hochschwarzwald – 8 September 1659, Durlach) was a German nobleman, who ruled as margrave of Baden- Durlach from 1622 to his death.",
+            "He was succeeded by his son Frederick VI, Margrave of Baden- Durlach."
+          ]
+        ]
+      ],
+      "supporting_facts": [
+        [
+          "Christine Juliane of Baden-Durlach",
+          1
+        ],
+        [
+          "Charles Gustav of Baden-Durlach",
+          1
+        ]
+      ],
+      "official_evidence_triples": [
+        [
+          "Christine Juliane of Baden-Durlach",
+          "father",
+          "Charles Gustav of Baden-Durlach"
+        ],
+        [
+          "Charles Gustav of Baden-Durlach",
+          "date of death",
+          "24 October 1703"
+        ]
+      ],
+      "official_evidence_ids": [
+        [
+          "Q6334303",
+          "father",
+          "Q78224"
+        ],
+        [
+          "Q78224",
+          "date of death",
+          "date_information"
+        ]
+      ],
+      "official_answer_id": null,
+      "official_root_id": "Q6334303",
+      "official_type": "compositional",
+      "root": "Christine Juliane of Baden-Durlach",
+      "bridge": "Charles Gustav of Baden-Durlach",
+      "relation1": "father",
+      "relation2": "date of death",
+      "edges": {
+        "first_target": {
+          "subject": "Christine Juliane of Baden-Durlach",
+          "relation": "father",
+          "object": "Charles Gustav of Baden-Durlach",
+          "title": "Christine Juliane of Baden-Durlach",
+          "sent_id": 1,
+          "text": "Born at Karlsburg Castle in Karlsruhe, Durlach, she was the oldest of the four children of Prince Charles Gustav of Baden-Durlach (younger brother of Frederick VII, Margrave of Baden-Durlach) and Anna Sophia of Brunswick-Wolfenbüttel.",
+          "support_basis": "Official relation triple plus official supporting_facts, matching subject paragraph title, whole object mention in exact sentence. No hardcoded four-relation or profession/predicate heuristic.",
+          "source_id": "00df5d8c0bde11eba7f7acde48001122"
+        },
+        "second_target": {
+          "subject": "Charles Gustav of Baden-Durlach",
+          "relation": "date of death",
+          "object": "24 October 1703",
+          "title": "Charles Gustav of Baden-Durlach",
+          "sent_id": 1,
+          "text": "Charles Gustav of Baden-Durlach (27 September 1648 in Durlach – 24 October 1703 at the Karlsburg Castle in Durlach) was a German general.",
+          "support_basis": "Official relation triple plus official supporting_facts, matching subject paragraph title, whole object mention in exact sentence. No hardcoded four-relation or profession/predicate heuristic.",
+          "source_id": "00df5d8c0bde11eba7f7acde48001122"
+        }
+      },
+      "query_ids": {
+        "composed": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "direct_first": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "direct_target": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      "original868_training_source": false,
+      "chain_validation": {
+        "kind": "strict_subject_title_and_support",
+        "flags": []
+      },
+      "cluster_id": "67db5440f90097b542b5c2e5",
+      "split_cluster_id": "67db5440f90097b542b5c2e5"
+    },
+    "selection": "First source ID with native constituent success, composition failure and final repair success",
+    "predictions": [
+      {
+        "answer": "Her father, Prince Charles Gustav of Baden-Durlach, died on 24 October 1703.",
+        "generated_token_ids": [
+          21364,
+          7126,
+          11,
+          19912,
+          15274,
+          49720,
+          402,
+          315,
+          11717,
+          268,
+          9607,
+          1103,
+          613,
+          11,
+          8636,
+          389,
+          220,
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          13,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1425,
+        "generated_tokens": 24,
+        "seconds": 1.3125560679472983,
+        "total_inference_seconds": 1.3145967070013285,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "native",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.4,
+        "job_id": "native:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Gustav of Baden-Durlach.",
+        "generated_token_ids": [
+          54567,
+          49720,
+          402,
+          315,
+          11717,
+          268,
+          9607,
+          1103,
+          613,
+          13,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1425,
+        "generated_tokens": 11,
+        "seconds": 0.6596663299715146,
+        "total_inference_seconds": 0.6606047360692173,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "native",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "native:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1438,
+        "generated_tokens": 6,
+        "seconds": 0.47710678598377854,
+        "total_inference_seconds": 0.4784834199817851,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "native",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "native:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 404,
+        "generated_tokens": 6,
+        "seconds": 0.34069139300845563,
+        "total_inference_seconds": 0.34467541496269405,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "native_text",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              7
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 7,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "native_text:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Prince Charles Gustav of Baden-Durlach.",
+        "generated_token_ids": [
+          69032,
+          15274,
+          49720,
+          402,
+          315,
+          11717,
+          268,
+          9607,
+          1103,
+          613,
+          13,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 404,
+        "generated_tokens": 12,
+        "seconds": 0.6289572889218107,
+        "total_inference_seconds": 0.6311422839062288,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "native_text",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              7
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 7,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.888888888888889,
+        "job_id": "native_text:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1438,
+        "generated_tokens": 6,
+        "seconds": 0.41931746795307845,
+        "total_inference_seconds": 0.42045456799678504,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "native_text",
+        "selection": {
+          "graph": {
+            "root": 7,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              7
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "native_text:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1425,
+        "generated_tokens": 6,
+        "seconds": 0.44069093198049814,
+        "total_inference_seconds": 0.44302073505241424,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "head_tuning",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "head_tuning:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles II",
+        "generated_token_ids": [
+          54567,
+          8105,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1425,
+        "generated_tokens": 3,
+        "seconds": 0.28074438008479774,
+        "total_inference_seconds": 0.28110348992049694,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "head_tuning",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.3333333333333333,
+        "job_id": "head_tuning:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1438,
+        "generated_tokens": 6,
+        "seconds": 0.4125163360731676,
+        "total_inference_seconds": 0.4128493469906971,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "head_tuning",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "head_tuning:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1425,
+        "generated_tokens": 6,
+        "seconds": 0.43661497393622994,
+        "total_inference_seconds": 0.4387725710403174,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "scoped_body",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "scoped_body:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Gustav of Baden-Durlach",
+        "generated_token_ids": [
+          54567,
+          49720,
+          402,
+          315,
+          11717,
+          268,
+          9607,
+          1103,
+          613,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1425,
+        "generated_tokens": 10,
+        "seconds": 0.6316013139439747,
+        "total_inference_seconds": 0.6336830169893801,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "scoped_body",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "scoped_body:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1438,
+        "generated_tokens": 6,
+        "seconds": 0.4153198110871017,
+        "total_inference_seconds": 0.4157362279947847,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "scoped_body",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "scoped_body:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 404,
+        "generated_tokens": 6,
+        "seconds": 0.37583445897325873,
+        "total_inference_seconds": 0.38155028701294214,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "graphfirst",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              7
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 7,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "graphfirst:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Gustav of Baden-Durlach",
+        "generated_token_ids": [
+          54567,
+          49720,
+          402,
+          315,
+          11717,
+          268,
+          9607,
+          1103,
+          613,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 404,
+        "generated_tokens": 10,
+        "seconds": 0.5522950020385906,
+        "total_inference_seconds": 0.5550675219856203,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "graphfirst",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              7
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 7,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "graphfirst:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1438,
+        "generated_tokens": 6,
+        "seconds": 0.5065955650061369,
+        "total_inference_seconds": 0.5085749329300597,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "graphfirst",
+        "selection": {
+          "graph": {
+            "root": 7,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              7
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "graphfirst:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 404,
+        "generated_tokens": 6,
+        "seconds": 0.4822261109948158,
+        "total_inference_seconds": 0.4856557509629056,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "final",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              7
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 7,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Gustav of Baden-Durlach",
+        "generated_token_ids": [
+          54567,
+          49720,
+          402,
+          315,
+          11717,
+          268,
+          9607,
+          1103,
+          613,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 404,
+        "generated_tokens": 10,
+        "seconds": 0.7602760050212964,
+        "total_inference_seconds": 0.7624967129668221,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "final",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              7
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 7,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1438,
+        "generated_tokens": 6,
+        "seconds": 0.5736661619739607,
+        "total_inference_seconds": 0.5749542850535363,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "final",
+        "selection": {
+          "graph": {
+            "root": 7,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              7
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 404,
+        "generated_tokens": 6,
+        "seconds": 0.34482910099904984,
+        "total_inference_seconds": 0.34912510809954256,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "final_attention",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              7
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 7,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final_attention:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Gustav of Baden-Durlach",
+        "generated_token_ids": [
+          54567,
+          49720,
+          402,
+          315,
+          11717,
+          268,
+          9607,
+          1103,
+          613,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 404,
+        "generated_tokens": 10,
+        "seconds": 0.45319210598245263,
+        "total_inference_seconds": 0.45672619598917663,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "final_attention",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              7
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 7,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final_attention:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1438,
+        "generated_tokens": 6,
+        "seconds": 0.4378114929422736,
+        "total_inference_seconds": 0.43908093392383307,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "final_attention",
+        "selection": {
+          "graph": {
+            "root": 7,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              7
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final_attention:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 404,
+        "generated_tokens": 6,
+        "seconds": 0.3007892690366134,
+        "total_inference_seconds": 0.3031922549707815,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "final_metadata",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              7
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 7,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final_metadata:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Gustav of Baden-Durlach",
+        "generated_token_ids": [
+          54567,
+          49720,
+          402,
+          315,
+          11717,
+          268,
+          9607,
+          1103,
+          613,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 404,
+        "generated_tokens": 10,
+        "seconds": 0.4243905679322779,
+        "total_inference_seconds": 0.4264544260222465,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "final_metadata",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              7
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 7,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final_metadata:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "24 October 1703",
+        "generated_token_ids": [
+          1187,
+          6664,
+          220,
+          8258,
+          18,
+          128009
+        ],
+        "eos_complete": true,
+        "input_tokens": 1438,
+        "generated_tokens": 6,
+        "seconds": 0.39110697305295616,
+        "total_inference_seconds": 0.39307446603197604,
+        "id": "00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "final_metadata",
+        "selection": {
+          "graph": {
+            "root": 7,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              7
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "cluster_id": "67db5440f90097b542b5c2e5",
+        "split_cluster_id": "67db5440f90097b542b5c2e5",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final_metadata:00df5d8c0bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      }
+    ]
+  },
+  {
+    "model": "qwen3_4b",
+    "source_id": "004430780bde11eba7f7acde48001122",
+    "source": {
+      "source_id": "004430780bde11eba7f7acde48001122",
+      "global_split": "test",
+      "official_parent_split": "dev",
+      "original_question": "Where was the place of death of Benedict Swingate Calvert's father?",
+      "original_gold": "England",
+      "original_context": [
+        [
+          "Place of birth",
+          [
+            "The place of birth( POB) or birthplace is the place where a person was born.",
+            "This place is often used in legal documents, together with name and date of birth, to uniquely identify a person.",
+            "As a general rule with respect to passports, the place of birth is determined to be the country that currently has\" sovereignty\" over the actual place of birth, regardless of when the birth actually occurred.",
+            "The place of birth is not necessarily the place where the parents of the new baby live.",
+            "If the baby is born in a hospital in another place, that place is the place of birth.",
+            "In many countries, this also means that the government requires that the birth of the new baby is registered in the place of birth.",
+            "Some countries place less or no importance on the place of birth, instead using alternative geographical characteristics for the purpose of identity documents.",
+            "For example, Sweden has used the concept of\" födelsehemortdomicile of birth\") since 1947.",
+            "This means that the domicile of the baby's mother is the registered place of birth.",
+            "The location of the maternity ward or other physical birthplace is considered unimportant.",
+            "Similarly, Switzerland uses the concept of\" Heimatortlieu d'origineluogo d'origineplace of origin\" in German, French and Italian respectively).",
+            "A child born to Swiss parents is automatically assigned the place of origin of the parent with the same last name, so the child either gets their mother's or father's place of origin.",
+            "A child born to one Swiss parent and one foreign parent acquires the place of origin of their Swiss parent.",
+            "In a Swiss passport and identity card, the holder's place of origin is stated, not their place of birth.",
+            "In some countries( primarily in the Americas), the place of birth automatically determines the nationality of the baby, a practice often referred to by the Latin phrase\" jus soli\".",
+            "Almost all countries outside the Americas instead attribute nationality based on the nationality( ies) of the baby's parents( referred to as\" jus sanguinis\").",
+            "There can be some confusion regarding the place of birth if the birth takes place in an unusual way: when babies are born on an airplane or at sea, difficulties can arise.",
+            "The place of birth of such a person depends on the law of the countries involved, which include the nationality of the plane or ship, the nationality( ies) of the parents and/ or the location of the plane or ship( if the birth occurs in the territorial waters or airspace of a country).",
+            "Some administrative forms may request the applicant's\" country of birth\".",
+            "It is important to determine from the requester whether the information requested refers to the applicant's\" place of birth\" or\" nationality at birth\".",
+            "For US citizens born abroad who under the US Constitution acquire US citizenship at the time of birth, the nationality at birth will be USA( American), while the place of birth would be the country in which the actual birth takes place."
+          ]
+        ],
+        [
+          "Hannah Arnold",
+          [
+            "Hannah Arnold, also known as Hannah Waterman King, was the grandmother of Benedict Arnolds children."
+          ]
+        ],
+        [
+          "Where Was I",
+          [
+            "\" Where Was I?\" may refer to:"
+          ]
+        ],
+        [
+          "Motherland (disambiguation)",
+          [
+            "Motherland is the place of one's birth, the place of one's ancestors, or the place of origin of an ethnic group.",
+            "Motherland may also refer to:"
+          ]
+        ],
+        [
+          "Melusina von der Schulenburg, Countess of Walsingham",
+          [
+            "Petronilla Melusine von der Schulenburg, Countess of Walsingham (1 April 1693 – 16 September 1778) was the natural daughter of King George I of Great Britain and his longtime mistress, Melusine von der Schulenburg, Duchess of Kendal.",
+            "In 1722, Melusina was created Baroness Aldborough and Countess of Walsingham as a life peer.",
+            "After the death of her father in 1727, she lived mainly with her mother at Kendal House in Isleworth.",
+            "In Isleworth, Middlesex, on 5 September 1733 she married Philip Stanhope, 4th Earl of Chesterfield, a leading Whig politician.",
+            "The couple had no children, but it is said that \"family letters\" suggest that Melusina may have been the mother, through an intimacy with Charles Calvert, 5th Baron Baltimore, of Benedict Swingate Calvert.",
+            "Calvert was born in England in around 1730-32, the illegitimate son of Charles Calvert, 5th Baron Baltimore.",
+            "His mother's identity is otherwise unknown."
+          ]
+        ],
+        [
+          "Beaulieu-sur-Loire",
+          [
+            "Beaulieu- sur- Loire is a commune in the Loiret department in north -central France.",
+            "It is also the place of death of Jacques MacDonald, a French general who served in the Napoleonic Wars"
+          ]
+        ],
+        [
+          "Benedict Swingate Calvert",
+          [
+            "Benedict Swingate Calvert (January 27, 1722 – January 9, 1788) was a planter, politician and a Loyalist in Maryland during the American Revolution.",
+            "He was the son of Charles Calvert, 5th Baron Baltimore, the third Proprietor Governor of Maryland (1699–1751), and may have been the grandson of King George I of Great Britain.",
+            "His mother's identity is not known, though one source suggests Melusina von der Schulenburg, Countess of Walsingham, an illegitimate daughter of the King.",
+            "He was certainly a descendant of Charles II through Charlotte Lee, Countess of Lichfield, the daughter of Barbara Palmer, Duchess of Cleveland, one of the king's mistresses.",
+            "As he was illegitimate, he was not able to inherit his father's title or estates, which passed instead to his half brother Frederick Calvert, 6th Baron Baltimore (1731–1771).",
+            "Benedict Calvert spent most of his life as a politician and planter in Maryland, though Frederick, by contrast, never visited the colony.",
+            "Calvert became wealthy through proprietarial patronage and became an important colonial official, but he would lose his offices and his political power, though not his land and wealth, during the American Revolution."
+          ]
+        ],
+        [
+          "Filippo Raguzzini",
+          [
+            "Filippo Raguzzini( 19 July 1690 – 21 February 1771) was an Italian architect best known for a range of buildings constructed during the reign of Benedict XIII."
+          ]
+        ],
+        [
+          "Charles Calvert, 5th Baron Baltimore",
+          [
+            "Charles Calvert, 5th Baron Baltimore, (29 September 1699 – 24 April 1751) was a British nobleman and Proprietary Governor of the Province of Maryland.",
+            "He inherited the title to Maryland aged just fifteen, on the death of his father and grandfather, when the colony was restored by the British Monarchy to the Calvert family's control, following its seizure in 1688.",
+            "In 1721 Charles came of age and assumed personal control of Maryland, travelling there briefly in 1732.",
+            "For most of his life he remained in England, where he pursued an active career in politics, rising to become Lord of the Admiralty from 1742 to 1744.",
+            "He died in 1751 in England, aged 52."
+          ]
+        ],
+        [
+          "Elizabeth Calvert",
+          [
+            "Elizabeth Calvert( 1731 – 1788) was the daughter of Maryland Governor Captain Charles Calvert and Rebecca Gerard, and a wealthy heiress in colonial Maryland.",
+            "Her parents died when she was young, leaving her their substantial fortune.",
+            "In 1748, aged 17, she married her cousin Benedict Swingate Calvert, a Loyalist politician and planter and the illegitimate son of Charles Calvert, 5th Baron Baltimore.",
+            "Benedict's connections to the ruling Calvert family allowed him to benefit from considerable proprietarial patronage, until the American Revolution saw the overthrow of British rule and the end of Calvert power in Maryland.",
+            "Benedict and Elizabeth had to pay triple taxes after the war's end but, unlike many loyalists, their lands and fortune remained unconfiscated.",
+            "Elizabeth was the grandmother of Charles Benedict Calvert( 1808 – 1864), a U.S. Congressman who founded what is now the University of Maryland, College Park, chartered in 1856.",
+            "Elizabeth's portrait, painted by John Wollaston, still hangs on display, along with those of many of her Calvert relatives, in the Baltimore Museum of Art."
+          ]
+        ]
+      ],
+      "supporting_facts": [
+        [
+          "Benedict Swingate Calvert",
+          1
+        ],
+        [
+          "Charles Calvert, 5th Baron Baltimore",
+          3
+        ]
+      ],
+      "official_evidence_triples": [
+        [
+          "Benedict Swingate Calvert",
+          "father",
+          "Charles Calvert, 5th Baron Baltimore"
+        ],
+        [
+          "Charles Calvert, 5th Baron Baltimore",
+          "place of death",
+          "England"
+        ]
+      ],
+      "official_evidence_ids": [
+        [
+          "Q4887318",
+          "father",
+          "Q5076056"
+        ],
+        [
+          "Q5076056",
+          "place of death",
+          "Q21"
+        ]
+      ],
+      "official_answer_id": "Q21",
+      "official_root_id": "Q4887318",
+      "official_type": "compositional",
+      "root": "Benedict Swingate Calvert",
+      "bridge": "Charles Calvert, 5th Baron Baltimore",
+      "relation1": "father",
+      "relation2": "place of death",
+      "edges": {
+        "first_target": {
+          "subject": "Benedict Swingate Calvert",
+          "relation": "father",
+          "object": "Charles Calvert, 5th Baron Baltimore",
+          "title": "Benedict Swingate Calvert",
+          "sent_id": 1,
+          "text": "He was the son of Charles Calvert, 5th Baron Baltimore, the third Proprietor Governor of Maryland (1699–1751), and may have been the grandson of King George I of Great Britain.",
+          "support_basis": "Official relation triple plus official supporting_facts, matching subject paragraph title, whole object mention in exact sentence. No hardcoded four-relation or profession/predicate heuristic.",
+          "source_id": "004430780bde11eba7f7acde48001122"
+        },
+        "second_target": {
+          "subject": "Charles Calvert, 5th Baron Baltimore",
+          "relation": "place of death",
+          "object": "England",
+          "title": "Charles Calvert, 5th Baron Baltimore",
+          "sent_id": 3,
+          "text": "For most of his life he remained in England, where he pursued an active career in politics, rising to become Lord of the Admiralty from 1742 to 1744.",
+          "support_basis": "Official relation triple plus official supporting_facts, matching subject paragraph title, whole object mention in exact sentence. No hardcoded four-relation or profession/predicate heuristic.",
+          "source_id": "004430780bde11eba7f7acde48001122"
+        }
+      },
+      "query_ids": {
+        "composed": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "direct_first": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "direct_target": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      "original868_training_source": false,
+      "chain_validation": {
+        "kind": "strict_subject_title_and_support",
+        "flags": []
+      },
+      "cluster_id": "040bd256c44e38ec3b9f731d",
+      "split_cluster_id": "040bd256c44e38ec3b9f731d"
+    },
+    "selection": "First source ID with native constituent success, composition failure and final repair success",
+    "predictions": [
+      {
+        "answer": "Beaulieu-sur-Loire",
+        "generated_token_ids": [
+          3430,
+          4943,
+          25173,
+          67706,
+          12,
+          4262,
+          554,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1860,
+        "generated_tokens": 8,
+        "seconds": 0.6777542579220608,
+        "total_inference_seconds": 0.6782600180013105,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "native",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.0,
+        "job_id": "native:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert, 5th Baron Baltimore",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          11,
+          220,
+          20,
+          339,
+          52907,
+          23947,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1856,
+        "generated_tokens": 10,
+        "seconds": 0.8246007900452241,
+        "total_inference_seconds": 0.8261555470526218,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "native",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "native:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.3366084729786962,
+        "total_inference_seconds": 0.3375159869901836,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "native",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "native:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 539,
+        "generated_tokens": 2,
+        "seconds": 0.1281288410536945,
+        "total_inference_seconds": 0.40140870306640863,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "native_text",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 8,
+          "address_prefills": 1
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "native_text:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert, 5th Baron Baltimore.",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          11,
+          220,
+          20,
+          339,
+          52907,
+          23947,
+          13,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 535,
+        "generated_tokens": 11,
+        "seconds": 0.6685099600581452,
+        "total_inference_seconds": 0.9477603849954903,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "native_text",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 8,
+          "address_prefills": 1
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "native_text:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.3444954809965566,
+        "total_inference_seconds": 0.345513042062521,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "native_text",
+        "selection": {
+          "graph": {
+            "root": 8,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              8
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "native_text:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1860,
+        "generated_tokens": 2,
+        "seconds": 0.2727928729727864,
+        "total_inference_seconds": 0.27320358995348215,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "head_tuning",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "head_tuning:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "George I",
+        "generated_token_ids": [
+          38952,
+          358,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1856,
+        "generated_tokens": 3,
+        "seconds": 0.34392486489377916,
+        "total_inference_seconds": 0.34604032698553056,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "head_tuning",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.0,
+        "job_id": "head_tuning:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.25204693095292896,
+        "total_inference_seconds": 0.2524264910025522,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "head_tuning",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "head_tuning:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1860,
+        "generated_tokens": 2,
+        "seconds": 0.34354073693975806,
+        "total_inference_seconds": 0.3456643240060657,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "scoped_body",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "scoped_body:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "King George I of Great Britain",
+        "generated_token_ids": [
+          33555,
+          9857,
+          358,
+          315,
+          8513,
+          13224,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1856,
+        "generated_tokens": 7,
+        "seconds": 0.5980132230324671,
+        "total_inference_seconds": 0.598543461994268,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "scoped_body",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.0,
+        "job_id": "scoped_body:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.30303717497736216,
+        "total_inference_seconds": 0.3035391310695559,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "scoped_body",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "scoped_body:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "Maryland",
+        "generated_token_ids": [
+          41484,
+          1933,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 611,
+        "generated_tokens": 3,
+        "seconds": 0.19662731909193099,
+        "total_inference_seconds": 0.19961313798557967,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "graphfirst",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 4,
+          "address_prefills": 0
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.0,
+        "job_id": "graphfirst:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 607,
+        "generated_tokens": 4,
+        "seconds": 0.23973983398173004,
+        "total_inference_seconds": 0.24367526697460562,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "graphfirst",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 4,
+          "address_prefills": 0
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.6666666666666666,
+        "job_id": "graphfirst:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.310374898952432,
+        "total_inference_seconds": 0.3122433419339359,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "graphfirst",
+        "selection": {
+          "graph": {
+            "root": 8,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              8
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "graphfirst:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 539,
+        "generated_tokens": 2,
+        "seconds": 0.22145465994253755,
+        "total_inference_seconds": 0.5923366979695857,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "final",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 8,
+          "address_prefills": 1
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 535,
+        "generated_tokens": 4,
+        "seconds": 0.3086866909870878,
+        "total_inference_seconds": 0.6533004730008543,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "final",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 8,
+          "address_prefills": 1
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.6666666666666666,
+        "job_id": "final:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.363114338950254,
+        "total_inference_seconds": 0.36528867797460407,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "final",
+        "selection": {
+          "graph": {
+            "root": 8,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              8
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 539,
+        "generated_tokens": 2,
+        "seconds": 0.1488381939707324,
+        "total_inference_seconds": 0.5960279970895499,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "final_attention",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 8,
+          "address_prefills": 1
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final_attention:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 535,
+        "generated_tokens": 4,
+        "seconds": 0.3013870830181986,
+        "total_inference_seconds": 0.6903890130342916,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "final_attention",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 8,
+          "address_prefills": 1
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.6666666666666666,
+        "job_id": "final_attention:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.3738933359272778,
+        "total_inference_seconds": 0.3746936230454594,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "final_attention",
+        "selection": {
+          "graph": {
+            "root": 8,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              8
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final_attention:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "Maryland",
+        "generated_token_ids": [
+          41484,
+          1933,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 611,
+        "generated_tokens": 3,
+        "seconds": 0.21471465204376727,
+        "total_inference_seconds": 0.6094690129393712,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "final_metadata",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 4,
+          "address_prefills": 1
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.0,
+        "job_id": "final_metadata:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 607,
+        "generated_tokens": 4,
+        "seconds": 0.3281932129757479,
+        "total_inference_seconds": 0.6669918629340827,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "final_metadata",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 4,
+          "address_prefills": 1
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.6666666666666666,
+        "job_id": "final_metadata:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.3926986560691148,
+        "total_inference_seconds": 0.395036204950884,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "final_metadata",
+        "selection": {
+          "graph": {
+            "root": 8,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              8
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "job_id": "final_metadata:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      }
+    ]
+  },
+  {
+    "model": "qwen3_8b",
+    "source_id": "004430780bde11eba7f7acde48001122",
+    "source": {
+      "source_id": "004430780bde11eba7f7acde48001122",
+      "global_split": "test",
+      "official_parent_split": "dev",
+      "original_question": "Where was the place of death of Benedict Swingate Calvert's father?",
+      "original_gold": "England",
+      "original_context": [
+        [
+          "Place of birth",
+          [
+            "The place of birth( POB) or birthplace is the place where a person was born.",
+            "This place is often used in legal documents, together with name and date of birth, to uniquely identify a person.",
+            "As a general rule with respect to passports, the place of birth is determined to be the country that currently has\" sovereignty\" over the actual place of birth, regardless of when the birth actually occurred.",
+            "The place of birth is not necessarily the place where the parents of the new baby live.",
+            "If the baby is born in a hospital in another place, that place is the place of birth.",
+            "In many countries, this also means that the government requires that the birth of the new baby is registered in the place of birth.",
+            "Some countries place less or no importance on the place of birth, instead using alternative geographical characteristics for the purpose of identity documents.",
+            "For example, Sweden has used the concept of\" födelsehemortdomicile of birth\") since 1947.",
+            "This means that the domicile of the baby's mother is the registered place of birth.",
+            "The location of the maternity ward or other physical birthplace is considered unimportant.",
+            "Similarly, Switzerland uses the concept of\" Heimatortlieu d'origineluogo d'origineplace of origin\" in German, French and Italian respectively).",
+            "A child born to Swiss parents is automatically assigned the place of origin of the parent with the same last name, so the child either gets their mother's or father's place of origin.",
+            "A child born to one Swiss parent and one foreign parent acquires the place of origin of their Swiss parent.",
+            "In a Swiss passport and identity card, the holder's place of origin is stated, not their place of birth.",
+            "In some countries( primarily in the Americas), the place of birth automatically determines the nationality of the baby, a practice often referred to by the Latin phrase\" jus soli\".",
+            "Almost all countries outside the Americas instead attribute nationality based on the nationality( ies) of the baby's parents( referred to as\" jus sanguinis\").",
+            "There can be some confusion regarding the place of birth if the birth takes place in an unusual way: when babies are born on an airplane or at sea, difficulties can arise.",
+            "The place of birth of such a person depends on the law of the countries involved, which include the nationality of the plane or ship, the nationality( ies) of the parents and/ or the location of the plane or ship( if the birth occurs in the territorial waters or airspace of a country).",
+            "Some administrative forms may request the applicant's\" country of birth\".",
+            "It is important to determine from the requester whether the information requested refers to the applicant's\" place of birth\" or\" nationality at birth\".",
+            "For US citizens born abroad who under the US Constitution acquire US citizenship at the time of birth, the nationality at birth will be USA( American), while the place of birth would be the country in which the actual birth takes place."
+          ]
+        ],
+        [
+          "Hannah Arnold",
+          [
+            "Hannah Arnold, also known as Hannah Waterman King, was the grandmother of Benedict Arnolds children."
+          ]
+        ],
+        [
+          "Where Was I",
+          [
+            "\" Where Was I?\" may refer to:"
+          ]
+        ],
+        [
+          "Motherland (disambiguation)",
+          [
+            "Motherland is the place of one's birth, the place of one's ancestors, or the place of origin of an ethnic group.",
+            "Motherland may also refer to:"
+          ]
+        ],
+        [
+          "Melusina von der Schulenburg, Countess of Walsingham",
+          [
+            "Petronilla Melusine von der Schulenburg, Countess of Walsingham (1 April 1693 – 16 September 1778) was the natural daughter of King George I of Great Britain and his longtime mistress, Melusine von der Schulenburg, Duchess of Kendal.",
+            "In 1722, Melusina was created Baroness Aldborough and Countess of Walsingham as a life peer.",
+            "After the death of her father in 1727, she lived mainly with her mother at Kendal House in Isleworth.",
+            "In Isleworth, Middlesex, on 5 September 1733 she married Philip Stanhope, 4th Earl of Chesterfield, a leading Whig politician.",
+            "The couple had no children, but it is said that \"family letters\" suggest that Melusina may have been the mother, through an intimacy with Charles Calvert, 5th Baron Baltimore, of Benedict Swingate Calvert.",
+            "Calvert was born in England in around 1730-32, the illegitimate son of Charles Calvert, 5th Baron Baltimore.",
+            "His mother's identity is otherwise unknown."
+          ]
+        ],
+        [
+          "Beaulieu-sur-Loire",
+          [
+            "Beaulieu- sur- Loire is a commune in the Loiret department in north -central France.",
+            "It is also the place of death of Jacques MacDonald, a French general who served in the Napoleonic Wars"
+          ]
+        ],
+        [
+          "Benedict Swingate Calvert",
+          [
+            "Benedict Swingate Calvert (January 27, 1722 – January 9, 1788) was a planter, politician and a Loyalist in Maryland during the American Revolution.",
+            "He was the son of Charles Calvert, 5th Baron Baltimore, the third Proprietor Governor of Maryland (1699–1751), and may have been the grandson of King George I of Great Britain.",
+            "His mother's identity is not known, though one source suggests Melusina von der Schulenburg, Countess of Walsingham, an illegitimate daughter of the King.",
+            "He was certainly a descendant of Charles II through Charlotte Lee, Countess of Lichfield, the daughter of Barbara Palmer, Duchess of Cleveland, one of the king's mistresses.",
+            "As he was illegitimate, he was not able to inherit his father's title or estates, which passed instead to his half brother Frederick Calvert, 6th Baron Baltimore (1731–1771).",
+            "Benedict Calvert spent most of his life as a politician and planter in Maryland, though Frederick, by contrast, never visited the colony.",
+            "Calvert became wealthy through proprietarial patronage and became an important colonial official, but he would lose his offices and his political power, though not his land and wealth, during the American Revolution."
+          ]
+        ],
+        [
+          "Filippo Raguzzini",
+          [
+            "Filippo Raguzzini( 19 July 1690 – 21 February 1771) was an Italian architect best known for a range of buildings constructed during the reign of Benedict XIII."
+          ]
+        ],
+        [
+          "Charles Calvert, 5th Baron Baltimore",
+          [
+            "Charles Calvert, 5th Baron Baltimore, (29 September 1699 – 24 April 1751) was a British nobleman and Proprietary Governor of the Province of Maryland.",
+            "He inherited the title to Maryland aged just fifteen, on the death of his father and grandfather, when the colony was restored by the British Monarchy to the Calvert family's control, following its seizure in 1688.",
+            "In 1721 Charles came of age and assumed personal control of Maryland, travelling there briefly in 1732.",
+            "For most of his life he remained in England, where he pursued an active career in politics, rising to become Lord of the Admiralty from 1742 to 1744.",
+            "He died in 1751 in England, aged 52."
+          ]
+        ],
+        [
+          "Elizabeth Calvert",
+          [
+            "Elizabeth Calvert( 1731 – 1788) was the daughter of Maryland Governor Captain Charles Calvert and Rebecca Gerard, and a wealthy heiress in colonial Maryland.",
+            "Her parents died when she was young, leaving her their substantial fortune.",
+            "In 1748, aged 17, she married her cousin Benedict Swingate Calvert, a Loyalist politician and planter and the illegitimate son of Charles Calvert, 5th Baron Baltimore.",
+            "Benedict's connections to the ruling Calvert family allowed him to benefit from considerable proprietarial patronage, until the American Revolution saw the overthrow of British rule and the end of Calvert power in Maryland.",
+            "Benedict and Elizabeth had to pay triple taxes after the war's end but, unlike many loyalists, their lands and fortune remained unconfiscated.",
+            "Elizabeth was the grandmother of Charles Benedict Calvert( 1808 – 1864), a U.S. Congressman who founded what is now the University of Maryland, College Park, chartered in 1856.",
+            "Elizabeth's portrait, painted by John Wollaston, still hangs on display, along with those of many of her Calvert relatives, in the Baltimore Museum of Art."
+          ]
+        ]
+      ],
+      "supporting_facts": [
+        [
+          "Benedict Swingate Calvert",
+          1
+        ],
+        [
+          "Charles Calvert, 5th Baron Baltimore",
+          3
+        ]
+      ],
+      "official_evidence_triples": [
+        [
+          "Benedict Swingate Calvert",
+          "father",
+          "Charles Calvert, 5th Baron Baltimore"
+        ],
+        [
+          "Charles Calvert, 5th Baron Baltimore",
+          "place of death",
+          "England"
+        ]
+      ],
+      "official_evidence_ids": [
+        [
+          "Q4887318",
+          "father",
+          "Q5076056"
+        ],
+        [
+          "Q5076056",
+          "place of death",
+          "Q21"
+        ]
+      ],
+      "official_answer_id": "Q21",
+      "official_root_id": "Q4887318",
+      "official_type": "compositional",
+      "root": "Benedict Swingate Calvert",
+      "bridge": "Charles Calvert, 5th Baron Baltimore",
+      "relation1": "father",
+      "relation2": "place of death",
+      "edges": {
+        "first_target": {
+          "subject": "Benedict Swingate Calvert",
+          "relation": "father",
+          "object": "Charles Calvert, 5th Baron Baltimore",
+          "title": "Benedict Swingate Calvert",
+          "sent_id": 1,
+          "text": "He was the son of Charles Calvert, 5th Baron Baltimore, the third Proprietor Governor of Maryland (1699–1751), and may have been the grandson of King George I of Great Britain.",
+          "support_basis": "Official relation triple plus official supporting_facts, matching subject paragraph title, whole object mention in exact sentence. No hardcoded four-relation or profession/predicate heuristic.",
+          "source_id": "004430780bde11eba7f7acde48001122"
+        },
+        "second_target": {
+          "subject": "Charles Calvert, 5th Baron Baltimore",
+          "relation": "place of death",
+          "object": "England",
+          "title": "Charles Calvert, 5th Baron Baltimore",
+          "sent_id": 3,
+          "text": "For most of his life he remained in England, where he pursued an active career in politics, rising to become Lord of the Admiralty from 1742 to 1744.",
+          "support_basis": "Official relation triple plus official supporting_facts, matching subject paragraph title, whole object mention in exact sentence. No hardcoded four-relation or profession/predicate heuristic.",
+          "source_id": "004430780bde11eba7f7acde48001122"
+        }
+      },
+      "query_ids": {
+        "composed": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "direct_first": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "direct_target": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      "original868_training_source": false,
+      "chain_validation": {
+        "kind": "strict_subject_title_and_support",
+        "flags": []
+      },
+      "cluster_id": "040bd256c44e38ec3b9f731d",
+      "split_cluster_id": "040bd256c44e38ec3b9f731d"
+    },
+    "selection": "First source ID with native constituent success, composition failure and final repair success",
+    "predictions": [
+      {
+        "answer": "Beaulieu-sur-Loire",
+        "generated_token_ids": [
+          3430,
+          4943,
+          25173,
+          67706,
+          12,
+          4262,
+          554,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1860,
+        "generated_tokens": 8,
+        "seconds": 0.3397941082366742,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.3591764329466969,
+        "padded_input_tokens": 1860,
+        "batch_processed_decode_steps": 10,
+        "total_inference_seconds": 0.3400327014969662,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "native",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "native:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert, 5th Baron Baltimore",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          11,
+          220,
+          20,
+          339,
+          52907,
+          23947,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1856,
+        "generated_tokens": 10,
+        "seconds": 0.3397941082366742,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.3591764329466969,
+        "padded_input_tokens": 1860,
+        "batch_processed_decode_steps": 10,
+        "total_inference_seconds": 0.3400327014969662,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "native",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "native:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.30579791698255576,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.223191667930223,
+        "padded_input_tokens": 1858,
+        "batch_processed_decode_steps": 7,
+        "total_inference_seconds": 0.3060135232517496,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "native",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "native:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 539,
+        "generated_tokens": 2,
+        "seconds": 0.17192420951323584,
+        "batch_size": 4,
+        "batch_wall_seconds": 0.6876968380529433,
+        "padded_input_tokens": 731,
+        "batch_processed_decode_steps": 10,
+        "total_inference_seconds": 0.27220418176148087,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "native_text",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 8,
+          "address_prefills": 1
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "native_text:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert, 5th Baron Baltimore",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          11,
+          220,
+          20,
+          339,
+          52907,
+          23947,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 535,
+        "generated_tokens": 10,
+        "seconds": 0.17192420951323584,
+        "batch_size": 4,
+        "batch_wall_seconds": 0.6876968380529433,
+        "padded_input_tokens": 731,
+        "batch_processed_decode_steps": 10,
+        "total_inference_seconds": 0.27220418176148087,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "native_text",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 8,
+          "address_prefills": 1
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "native_text:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.30281492025824264,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.2112596810329705,
+        "padded_input_tokens": 1858,
+        "batch_processed_decode_steps": 7,
+        "total_inference_seconds": 0.3035889559832867,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "native_text",
+        "selection": {
+          "graph": {
+            "root": 8,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              8
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "native_text:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1860,
+        "generated_tokens": 2,
+        "seconds": 0.336894338746788,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.347577354987152,
+        "padded_input_tokens": 1860,
+        "batch_processed_decode_steps": 10,
+        "total_inference_seconds": 0.33713240624638274,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "head_tuning",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "head_tuning:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert, 5th Baron Baltimore",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          11,
+          220,
+          20,
+          339,
+          52907,
+          23947,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1856,
+        "generated_tokens": 10,
+        "seconds": 0.336894338746788,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.347577354987152,
+        "padded_input_tokens": 1860,
+        "batch_processed_decode_steps": 10,
+        "total_inference_seconds": 0.33713240624638274,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "head_tuning",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "head_tuning:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.30189301300561056,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.2075720520224422,
+        "padded_input_tokens": 1858,
+        "batch_processed_decode_steps": 7,
+        "total_inference_seconds": 0.3021051417745184,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "head_tuning",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "head_tuning:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1860,
+        "generated_tokens": 2,
+        "seconds": 0.34175946400500834,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.3670378560200334,
+        "padded_input_tokens": 1860,
+        "batch_processed_decode_steps": 10,
+        "total_inference_seconds": 0.3420132107567042,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "scoped_body",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "scoped_body:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert, 5th Baron Baltimore",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          11,
+          220,
+          20,
+          339,
+          52907,
+          23947,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1856,
+        "generated_tokens": 10,
+        "seconds": 0.34175946400500834,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.3670378560200334,
+        "padded_input_tokens": 1860,
+        "batch_processed_decode_steps": 10,
+        "total_inference_seconds": 0.3420132107567042,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "scoped_body",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "scoped_body:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.3062413900042884,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.2249655600171536,
+        "padded_input_tokens": 1858,
+        "batch_processed_decode_steps": 7,
+        "total_inference_seconds": 0.30645646326593123,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "scoped_body",
+        "selection": {
+          "chosen": null,
+          "address_prefills": 0,
+          "graph": null
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "scoped_body:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "Maryland",
+        "generated_token_ids": [
+          41484,
+          1933,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 611,
+        "generated_tokens": 3,
+        "seconds": 0.09925429776194505,
+        "batch_size": 4,
+        "batch_wall_seconds": 0.3970171910477802,
+        "padded_input_tokens": 731,
+        "batch_processed_decode_steps": 4,
+        "total_inference_seconds": 0.10064683450036682,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "graphfirst",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 4,
+          "address_prefills": 0
+        },
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "graphfirst:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 607,
+        "generated_tokens": 4,
+        "seconds": 0.09925429776194505,
+        "batch_size": 4,
+        "batch_wall_seconds": 0.3970171910477802,
+        "padded_input_tokens": 731,
+        "batch_processed_decode_steps": 4,
+        "total_inference_seconds": 0.10064683450036682,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "graphfirst",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 4,
+          "address_prefills": 0
+        },
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.6666666666666666,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "graphfirst:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.313954284763895,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.25581713905558,
+        "padded_input_tokens": 1858,
+        "batch_processed_decode_steps": 7,
+        "total_inference_seconds": 0.3147391565144062,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "graphfirst",
+        "selection": {
+          "graph": {
+            "root": 8,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              8
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "graphfirst:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 539,
+        "generated_tokens": 2,
+        "seconds": 0.10263167123775929,
+        "batch_size": 4,
+        "batch_wall_seconds": 0.41052668495103717,
+        "padded_input_tokens": 731,
+        "batch_processed_decode_steps": 4,
+        "total_inference_seconds": 0.20747514499817044,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "final",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 8,
+          "address_prefills": 1
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "final:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 535,
+        "generated_tokens": 4,
+        "seconds": 0.10263167123775929,
+        "batch_size": 4,
+        "batch_wall_seconds": 0.41052668495103717,
+        "padded_input_tokens": 731,
+        "batch_processed_decode_steps": 4,
+        "total_inference_seconds": 0.20747514499817044,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "final",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 8,
+          "address_prefills": 1
+        },
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.6666666666666666,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "final:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.30705585025134496,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.2282234010053799,
+        "padded_input_tokens": 1858,
+        "batch_processed_decode_steps": 7,
+        "total_inference_seconds": 0.3078342867665924,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "final",
+        "selection": {
+          "graph": {
+            "root": 8,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              8
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "final:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 539,
+        "generated_tokens": 2,
+        "seconds": 0.10368003824260086,
+        "batch_size": 4,
+        "batch_wall_seconds": 0.41472015297040343,
+        "padded_input_tokens": 731,
+        "batch_processed_decode_steps": 4,
+        "total_inference_seconds": 0.210243595240172,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "final_attention",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 8,
+          "address_prefills": 1
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "final_attention:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 535,
+        "generated_tokens": 4,
+        "seconds": 0.10368003824260086,
+        "batch_size": 4,
+        "batch_wall_seconds": 0.41472015297040343,
+        "padded_input_tokens": 731,
+        "batch_processed_decode_steps": 4,
+        "total_inference_seconds": 0.210243595240172,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "final_attention",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 8,
+          "address_prefills": 1
+        },
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.6666666666666666,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "final_attention:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.3124038884998299,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.2496155539993197,
+        "padded_input_tokens": 1858,
+        "batch_processed_decode_steps": 7,
+        "total_inference_seconds": 0.313245835743146,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "final_attention",
+        "selection": {
+          "graph": {
+            "root": 8,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              8
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "final_attention:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      },
+      {
+        "answer": "Maryland",
+        "generated_token_ids": [
+          41484,
+          1933,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 611,
+        "generated_tokens": 3,
+        "seconds": 0.10278210899559781,
+        "batch_size": 4,
+        "batch_wall_seconds": 0.41112843598239124,
+        "padded_input_tokens": 731,
+        "batch_processed_decode_steps": 4,
+        "total_inference_seconds": 0.20713473949581385,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__composed",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "composed",
+        "method": "final_metadata",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 4,
+          "address_prefills": 1
+        },
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "final_metadata:004430780bde11eba7f7acde48001122__core2wiki_v1__composed"
+      },
+      {
+        "answer": "Charles Calvert",
+        "generated_token_ids": [
+          53467,
+          3319,
+          1621,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 607,
+        "generated_tokens": 4,
+        "seconds": 0.10278210899559781,
+        "batch_size": 4,
+        "batch_wall_seconds": 0.41112843598239124,
+        "padded_input_tokens": 731,
+        "batch_processed_decode_steps": 4,
+        "total_inference_seconds": 0.20713473949581385,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_first",
+        "method": "final_metadata",
+        "selection": {
+          "graph": {
+            "root": 6,
+            "neighbors": [
+              4,
+              8
+            ],
+            "reason": "explicit_root_title_links",
+            "maximal_roots": [
+              6
+            ]
+          },
+          "chosen": 4,
+          "address_prefills": 1
+        },
+        "correct": false,
+        "text_alias_correct": false,
+        "text_f1": 0.6666666666666666,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "final_metadata:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_first"
+      },
+      {
+        "answer": "England",
+        "generated_token_ids": [
+          66208,
+          151645
+        ],
+        "eos_complete": true,
+        "input_tokens": 1858,
+        "generated_tokens": 2,
+        "seconds": 0.30665343324653804,
+        "batch_size": 4,
+        "batch_wall_seconds": 1.2266137329861522,
+        "padded_input_tokens": 1858,
+        "batch_processed_decode_steps": 7,
+        "total_inference_seconds": 0.30743237724527717,
+        "id": "004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target",
+        "source_id": "004430780bde11eba7f7acde48001122",
+        "query": "direct_target",
+        "method": "final_metadata",
+        "selection": {
+          "graph": {
+            "root": 8,
+            "neighbors": [],
+            "reason": "no_explicit_neighbor_title",
+            "maximal_roots": [
+              8
+            ]
+          },
+          "chosen": null,
+          "address_prefills": 0
+        },
+        "correct": true,
+        "text_alias_correct": true,
+        "text_f1": 1.0,
+        "cluster_id": "040bd256c44e38ec3b9f731d",
+        "split_cluster_id": "040bd256c44e38ec3b9f731d",
+        "job_id": "final_metadata:004430780bde11eba7f7acde48001122__core2wiki_v1__direct_target"
+      }
+    ]
+  }
+]

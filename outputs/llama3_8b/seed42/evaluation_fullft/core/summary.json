@@ -1,0 +1,64 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/fullft/final_model",
+    "model_type": "llama",
+    "native_parameters": 8030261248,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "FullFT",
+      "query": "composed",
+      "n": 1000,
+      "correct": 328,
+      "accuracy": 0.328,
+      "eos_complete": 964,
+      "text_alias_correct": 328,
+      "mean_text_f1": 0.414191774891775
+    },
+    {
+      "method": "FullFT",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 151,
+      "accuracy": 0.151,
+      "eos_complete": 990,
+      "text_alias_correct": 151,
+      "mean_text_f1": 0.2526482683982685
+    },
+    {
+      "method": "FullFT",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 327,
+      "accuracy": 0.327,
+      "eos_complete": 963,
+      "text_alias_correct": 327,
+      "mean_text_f1": 0.4004580808080808
+    }
+  ],
+  "all3": [
+    {
+      "method": "FullFT",
+      "n": 1000,
+      "correct": 41,
+      "accuracy": 0.041
+    }
+  ],
+  "conditional_composition": [
+    {
+      "method": "FullFT",
+      "n_sources": 1000,
+      "both_constituents_correct": 48,
+      "composition_failures": 7,
+      "conditional_failure_rate": 0.14583333333333334
+    }
+  ],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report"
+}

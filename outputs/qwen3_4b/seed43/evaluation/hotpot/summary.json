@@ -1,0 +1,57 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/LLM_model/Qwen3-4B",
+    "model_type": "qwen3",
+    "native_parameters": 4022468096,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 43,
+  "summary": [
+    {
+      "method": "head_tuning",
+      "query": "hotpot",
+      "n": 7405,
+      "correct": 3541,
+      "accuracy": 0.47819041188386224,
+      "eos_complete": 7402,
+      "text_alias_correct": 3541,
+      "mean_text_f1": 0.6238636310718776
+    },
+    {
+      "method": "final",
+      "query": "hotpot",
+      "n": 7405,
+      "correct": 3732,
+      "accuracy": 0.5039837947332884,
+      "eos_complete": 7400,
+      "text_alias_correct": 3732,
+      "mean_text_f1": 0.6508482956327901
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "hotpot",
+      "n": 7405,
+      "metric": "correct",
+      "before": 3541,
+      "after": 3732,
+      "gains": 419,
+      "losses": 228,
+      "delta": 0.025793382849426064,
+      "cluster_count": 7405,
+      "paired_cluster_CI95": [
+        0.01850101282916948,
+        0.03227548953409858
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 43,
+  "model_aggregation": "None; one model per report"
+}

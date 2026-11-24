@@ -1,0 +1,57 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/LLM_model/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct",
+    "model_type": "llama",
+    "native_parameters": 8030261248,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 43,
+  "summary": [
+    {
+      "method": "head_tuning",
+      "query": "hotpot",
+      "n": 7405,
+      "correct": 3215,
+      "accuracy": 0.43416610398379474,
+      "eos_complete": 7404,
+      "text_alias_correct": 3215,
+      "mean_text_f1": 0.5689972786796501
+    },
+    {
+      "method": "final",
+      "query": "hotpot",
+      "n": 7405,
+      "correct": 3742,
+      "accuracy": 0.5053342336259284,
+      "eos_complete": 7403,
+      "text_alias_correct": 3742,
+      "mean_text_f1": 0.6425880129730503
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "hotpot",
+      "n": 7405,
+      "metric": "correct",
+      "before": 3215,
+      "after": 3742,
+      "gains": 749,
+      "losses": 222,
+      "delta": 0.07116812964213369,
+      "cluster_count": 7405,
+      "paired_cluster_CI95": [
+        0.06293045239702903,
+        0.07913571910871033
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 43,
+  "model_aggregation": "None; one model per report"
+}

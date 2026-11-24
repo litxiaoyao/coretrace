@@ -1,0 +1,2351 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/LLM_model/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct",
+    "model_type": "llama",
+    "native_parameters": 8030261248,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "native",
+      "query": "composed",
+      "n": 1000,
+      "correct": 364,
+      "accuracy": 0.364,
+      "eos_complete": 1000,
+      "text_alias_correct": 364,
+      "mean_text_f1": 0.4982569849569078
+    },
+    {
+      "method": "native_text",
+      "query": "composed",
+      "n": 1000,
+      "correct": 535,
+      "accuracy": 0.535,
+      "eos_complete": 1000,
+      "text_alias_correct": 535,
+      "mean_text_f1": 0.6507824557399944
+    },
+    {
+      "method": "head_tuning",
+      "query": "composed",
+      "n": 1000,
+      "correct": 634,
+      "accuracy": 0.634,
+      "eos_complete": 1000,
+      "text_alias_correct": 634,
+      "mean_text_f1": 0.7055161616161609
+    },
+    {
+      "method": "scoped_body",
+      "query": "composed",
+      "n": 1000,
+      "correct": 663,
+      "accuracy": 0.663,
+      "eos_complete": 1000,
+      "text_alias_correct": 663,
+      "mean_text_f1": 0.7351155393625977
+    },
+    {
+      "method": "graphfirst",
+      "query": "composed",
+      "n": 1000,
+      "correct": 656,
+      "accuracy": 0.656,
+      "eos_complete": 1000,
+      "text_alias_correct": 656,
+      "mean_text_f1": 0.7270900703871287
+    },
+    {
+      "method": "final",
+      "query": "composed",
+      "n": 1000,
+      "correct": 695,
+      "accuracy": 0.695,
+      "eos_complete": 1000,
+      "text_alias_correct": 695,
+      "mean_text_f1": 0.7660614989585574
+    },
+    {
+      "method": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "correct": 695,
+      "accuracy": 0.695,
+      "eos_complete": 1000,
+      "text_alias_correct": 695,
+      "mean_text_f1": 0.7653948322918905
+    },
+    {
+      "method": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "correct": 665,
+      "accuracy": 0.665,
+      "eos_complete": 1000,
+      "text_alias_correct": 665,
+      "mean_text_f1": 0.738212292609351
+    },
+    {
+      "method": "native",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 852,
+      "accuracy": 0.852,
+      "eos_complete": 991,
+      "text_alias_correct": 852,
+      "mean_text_f1": 0.9206499440875596
+    },
+    {
+      "method": "native_text",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 852,
+      "accuracy": 0.852,
+      "eos_complete": 990,
+      "text_alias_correct": 852,
+      "mean_text_f1": 0.9229358165484325
+    },
+    {
+      "method": "head_tuning",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 377,
+      "accuracy": 0.377,
+      "eos_complete": 1000,
+      "text_alias_correct": 377,
+      "mean_text_f1": 0.495853893328893
+    },
+    {
+      "method": "scoped_body",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 650,
+      "accuracy": 0.65,
+      "eos_complete": 1000,
+      "text_alias_correct": 650,
+      "mean_text_f1": 0.7533372294372298
+    },
+    {
+      "method": "graphfirst",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 668,
+      "accuracy": 0.668,
+      "eos_complete": 999,
+      "text_alias_correct": 668,
+      "mean_text_f1": 0.771674691974692
+    },
+    {
+      "method": "final",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 661,
+      "accuracy": 0.661,
+      "eos_complete": 999,
+      "text_alias_correct": 661,
+      "mean_text_f1": 0.7653197136197137
+    },
+    {
+      "method": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 661,
+      "accuracy": 0.661,
+      "eos_complete": 999,
+      "text_alias_correct": 661,
+      "mean_text_f1": 0.7653197136197137
+    },
+    {
+      "method": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 670,
+      "accuracy": 0.67,
+      "eos_complete": 999,
+      "text_alias_correct": 670,
+      "mean_text_f1": 0.7710032634032635
+    },
+    {
+      "method": "native",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 586,
+      "accuracy": 0.586,
+      "eos_complete": 990,
+      "text_alias_correct": 586,
+      "mean_text_f1": 0.7136265026187723
+    },
+    {
+      "method": "native_text",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 587,
+      "accuracy": 0.587,
+      "eos_complete": 990,
+      "text_alias_correct": 587,
+      "mean_text_f1": 0.7155689268611964
+    },
+    {
+      "method": "head_tuning",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 685,
+      "accuracy": 0.685,
+      "eos_complete": 1000,
+      "text_alias_correct": 685,
+      "mean_text_f1": 0.75392498057498
+    },
+    {
+      "method": "scoped_body",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 708,
+      "accuracy": 0.708,
+      "eos_complete": 1000,
+      "text_alias_correct": 708,
+      "mean_text_f1": 0.7759242695213275
+    },
+    {
+      "method": "graphfirst",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 702,
+      "accuracy": 0.702,
+      "eos_complete": 999,
+      "text_alias_correct": 702,
+      "mean_text_f1": 0.7753389825860406
+    },
+    {
+      "method": "final",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 702,
+      "accuracy": 0.702,
+      "eos_complete": 999,
+      "text_alias_correct": 702,
+      "mean_text_f1": 0.7753389825860406
+    },
+    {
+      "method": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 702,
+      "accuracy": 0.702,
+      "eos_complete": 999,
+      "text_alias_correct": 702,
+      "mean_text_f1": 0.7753389825860406
+    },
+    {
+      "method": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 702,
+      "accuracy": 0.702,
+      "eos_complete": 999,
+      "text_alias_correct": 702,
+      "mean_text_f1": 0.7753389825860406
+    }
+  ],
+  "all3": [
+    {
+      "method": "native",
+      "n": 1000,
+      "correct": 258,
+      "accuracy": 0.258
+    },
+    {
+      "method": "native_text",
+      "n": 1000,
+      "correct": 394,
+      "accuracy": 0.394
+    },
+    {
+      "method": "head_tuning",
+      "n": 1000,
+      "correct": 251,
+      "accuracy": 0.251
+    },
+    {
+      "method": "scoped_body",
+      "n": 1000,
+      "correct": 427,
+      "accuracy": 0.427
+    },
+    {
+      "method": "graphfirst",
+      "n": 1000,
+      "correct": 404,
+      "accuracy": 0.404
+    },
+    {
+      "method": "final",
+      "n": 1000,
+      "correct": 423,
+      "accuracy": 0.423
+    },
+    {
+      "method": "final_attention",
+      "n": 1000,
+      "correct": 423,
+      "accuracy": 0.423
+    },
+    {
+      "method": "final_metadata",
+      "n": 1000,
+      "correct": 411,
+      "accuracy": 0.411
+    }
+  ],
+  "conditional_composition": [
+    {
+      "method": "native",
+      "n_sources": 1000,
+      "both_constituents_correct": 501,
+      "composition_failures": 243,
+      "conditional_failure_rate": 0.48502994011976047
+    },
+    {
+      "method": "native_text",
+      "n_sources": 1000,
+      "both_constituents_correct": 505,
+      "composition_failures": 111,
+      "conditional_failure_rate": 0.2198019801980198
+    },
+    {
+      "method": "head_tuning",
+      "n_sources": 1000,
+      "both_constituents_correct": 268,
+      "composition_failures": 17,
+      "conditional_failure_rate": 0.06343283582089553
+    },
+    {
+      "method": "scoped_body",
+      "n_sources": 1000,
+      "both_constituents_correct": 468,
+      "composition_failures": 41,
+      "conditional_failure_rate": 0.0876068376068376
+    },
+    {
+      "method": "graphfirst",
+      "n_sources": 1000,
+      "both_constituents_correct": 470,
+      "composition_failures": 66,
+      "conditional_failure_rate": 0.14042553191489363
+    },
+    {
+      "method": "final",
+      "n_sources": 1000,
+      "both_constituents_correct": 464,
+      "composition_failures": 41,
+      "conditional_failure_rate": 0.08836206896551724
+    },
+    {
+      "method": "final_attention",
+      "n_sources": 1000,
+      "both_constituents_correct": 464,
+      "composition_failures": 41,
+      "conditional_failure_rate": 0.08836206896551724
+    },
+    {
+      "method": "final_metadata",
+      "n_sources": 1000,
+      "both_constituents_correct": 472,
+      "composition_failures": 61,
+      "conditional_failure_rate": 0.1292372881355932
+    }
+  ],
+  "native_conditioned_composition": [
+    {
+      "method": "native",
+      "population": "Native both-constituent-correct sources; fixed across methods",
+      "n": 501,
+      "correct": 258,
+      "native_composition_failures": 243,
+      "repaired_native_failures": 0,
+      "native_composition_successes": 258,
+      "lost_native_successes": 0
+    },
+    {
+      "method": "native_text",
+      "population": "Native both-constituent-correct sources; fixed across methods",
+      "n": 501,
+      "correct": 392,
+      "native_composition_failures": 243,
+      "repaired_native_failures": 150,
+      "native_composition_successes": 258,
+      "lost_native_successes": 16
+    },
+    {
+      "method": "head_tuning",
+      "population": "Native both-constituent-correct sources; fixed across methods",
+      "n": 501,
+      "correct": 381,
+      "native_composition_failures": 243,
+      "repaired_native_failures": 151,
+      "native_composition_successes": 258,
+      "lost_native_successes": 28
+    },
+    {
+      "method": "scoped_body",
+      "population": "Native both-constituent-correct sources; fixed across methods",
+      "n": 501,
+      "correct": 417,
+      "native_composition_failures": 243,
+      "repaired_native_failures": 170,
+      "native_composition_successes": 258,
+      "lost_native_successes": 11
+    },
+    {
+      "method": "graphfirst",
+      "population": "Native both-constituent-correct sources; fixed across methods",
+      "n": 501,
+      "correct": 404,
+      "native_composition_failures": 243,
+      "repaired_native_failures": 177,
+      "native_composition_successes": 258,
+      "lost_native_successes": 31
+    },
+    {
+      "method": "final",
+      "population": "Native both-constituent-correct sources; fixed across methods",
+      "n": 501,
+      "correct": 433,
+      "native_composition_failures": 243,
+      "repaired_native_failures": 189,
+      "native_composition_successes": 258,
+      "lost_native_successes": 14
+    },
+    {
+      "method": "final_attention",
+      "population": "Native both-constituent-correct sources; fixed across methods",
+      "n": 501,
+      "correct": 433,
+      "native_composition_failures": 243,
+      "repaired_native_failures": 189,
+      "native_composition_successes": 258,
+      "lost_native_successes": 14
+    },
+    {
+      "method": "final_metadata",
+      "population": "Native both-constituent-correct sources; fixed across methods",
+      "n": 501,
+      "correct": 410,
+      "native_composition_failures": 243,
+      "repaired_native_failures": 183,
+      "native_composition_successes": 258,
+      "lost_native_successes": 31
+    }
+  ],
+  "paired_comparisons": [
+    {
+      "method_before": "native",
+      "method_after": "native_text",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 364,
+      "after": 535,
+      "gains": 212,
+      "losses": 41,
+      "delta": 0.171,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.141,
+        0.2
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "head_tuning",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 364,
+      "after": 634,
+      "gains": 315,
+      "losses": 45,
+      "delta": 0.27,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.237975,
+        0.303
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "scoped_body",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 364,
+      "after": 663,
+      "gains": 320,
+      "losses": 21,
+      "delta": 0.299,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.267975,
+        0.33
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "graphfirst",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 364,
+      "after": 656,
+      "gains": 336,
+      "losses": 44,
+      "delta": 0.292,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.258,
+        0.326
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 364,
+      "after": 695,
+      "gains": 353,
+      "losses": 22,
+      "delta": 0.331,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.3,
+        0.363
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 364,
+      "after": 695,
+      "gains": 353,
+      "losses": 22,
+      "delta": 0.331,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.299,
+        0.363
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 364,
+      "after": 665,
+      "gains": 343,
+      "losses": 42,
+      "delta": 0.301,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.267975,
+        0.3350249999999999
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "head_tuning",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 535,
+      "after": 634,
+      "gains": 203,
+      "losses": 104,
+      "delta": 0.099,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.065975,
+        0.133
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "scoped_body",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 535,
+      "after": 663,
+      "gains": 196,
+      "losses": 68,
+      "delta": 0.128,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.096,
+        0.15802499999999986
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "graphfirst",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 535,
+      "after": 656,
+      "gains": 190,
+      "losses": 69,
+      "delta": 0.121,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.09,
+        0.15102499999999985
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 535,
+      "after": 695,
+      "gains": 199,
+      "losses": 39,
+      "delta": 0.16,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.131,
+        0.189
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 535,
+      "after": 695,
+      "gains": 199,
+      "losses": 39,
+      "delta": 0.16,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.131,
+        0.189
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 535,
+      "after": 665,
+      "gains": 192,
+      "losses": 62,
+      "delta": 0.13,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.101,
+        0.161
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "scoped_body",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 634,
+      "after": 663,
+      "gains": 68,
+      "losses": 39,
+      "delta": 0.029,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.008,
+        0.048
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "graphfirst",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 634,
+      "after": 656,
+      "gains": 104,
+      "losses": 82,
+      "delta": 0.022,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.006024999999999999,
+        0.05102499999999986
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 634,
+      "after": 695,
+      "gains": 113,
+      "losses": 52,
+      "delta": 0.061,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.037,
+        0.087
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 634,
+      "after": 695,
+      "gains": 113,
+      "losses": 52,
+      "delta": 0.061,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.036,
+        0.085
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 634,
+      "after": 665,
+      "gains": 106,
+      "losses": 75,
+      "delta": 0.031,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.006,
+        0.057
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "graphfirst",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 663,
+      "after": 656,
+      "gains": 63,
+      "losses": 70,
+      "delta": -0.007,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.031,
+        0.016
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 663,
+      "after": 695,
+      "gains": 68,
+      "losses": 36,
+      "delta": 0.032,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.013,
+        0.052
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 663,
+      "after": 695,
+      "gains": 68,
+      "losses": 36,
+      "delta": 0.032,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.013,
+        0.053
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 663,
+      "after": 665,
+      "gains": 64,
+      "losses": 62,
+      "delta": 0.002,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.019,
+        0.024
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 656,
+      "after": 695,
+      "gains": 40,
+      "losses": 1,
+      "delta": 0.039,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.027,
+        0.053
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 656,
+      "after": 695,
+      "gains": 40,
+      "losses": 1,
+      "delta": 0.039,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.027,
+        0.052
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 656,
+      "after": 665,
+      "gains": 23,
+      "losses": 14,
+      "delta": 0.009,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.002,
+        0.021
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 695,
+      "after": 695,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 695,
+      "after": 665,
+      "gains": 1,
+      "losses": 31,
+      "delta": -0.03,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.041,
+        -0.02
+      ]
+    },
+    {
+      "method_before": "final_attention",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 695,
+      "after": 665,
+      "gains": 1,
+      "losses": 31,
+      "delta": -0.03,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.041,
+        -0.019
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "native_text",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 852,
+      "gains": 31,
+      "losses": 31,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.015,
+        0.015
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "head_tuning",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 377,
+      "gains": 34,
+      "losses": 509,
+      "delta": -0.475,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.51,
+        -0.439
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "scoped_body",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 650,
+      "gains": 69,
+      "losses": 271,
+      "delta": -0.202,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.235,
+        -0.16897500000000015
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "graphfirst",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 668,
+      "gains": 73,
+      "losses": 257,
+      "delta": -0.184,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.218,
+        -0.149
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 661,
+      "gains": 72,
+      "losses": 263,
+      "delta": -0.191,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.223025,
+        -0.158
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 661,
+      "gains": 72,
+      "losses": 263,
+      "delta": -0.191,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.226,
+        -0.157
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 670,
+      "gains": 74,
+      "losses": 256,
+      "delta": -0.182,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.218025,
+        -0.151
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "head_tuning",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 377,
+      "gains": 34,
+      "losses": 509,
+      "delta": -0.475,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.51,
+        -0.4389750000000001
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "scoped_body",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 650,
+      "gains": 72,
+      "losses": 274,
+      "delta": -0.202,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.234,
+        -0.166
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "graphfirst",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 668,
+      "gains": 64,
+      "losses": 248,
+      "delta": -0.184,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.216025,
+        -0.15197500000000014
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 661,
+      "gains": 63,
+      "losses": 254,
+      "delta": -0.191,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.225,
+        -0.158
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 661,
+      "gains": 63,
+      "losses": 254,
+      "delta": -0.191,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.224,
+        -0.15997500000000014
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 852,
+      "after": 670,
+      "gains": 63,
+      "losses": 245,
+      "delta": -0.182,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.212,
+        -0.148
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "scoped_body",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 377,
+      "after": 650,
+      "gains": 282,
+      "losses": 9,
+      "delta": 0.273,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.243,
+        0.302
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "graphfirst",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 377,
+      "after": 668,
+      "gains": 304,
+      "losses": 13,
+      "delta": 0.291,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.262,
+        0.321
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 377,
+      "after": 661,
+      "gains": 298,
+      "losses": 14,
+      "delta": 0.284,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.254,
+        0.313
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 377,
+      "after": 661,
+      "gains": 298,
+      "losses": 14,
+      "delta": 0.284,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.254975,
+        0.314
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 377,
+      "after": 670,
+      "gains": 305,
+      "losses": 12,
+      "delta": 0.293,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.263,
+        0.324
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "graphfirst",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 650,
+      "after": 668,
+      "gains": 63,
+      "losses": 45,
+      "delta": 0.018,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.003,
+        0.039
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 650,
+      "after": 661,
+      "gains": 59,
+      "losses": 48,
+      "delta": 0.011,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.009,
+        0.031
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 650,
+      "after": 661,
+      "gains": 59,
+      "losses": 48,
+      "delta": 0.011,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.01,
+        0.031
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 650,
+      "after": 670,
+      "gains": 63,
+      "losses": 43,
+      "delta": 0.02,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.04
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 668,
+      "after": 661,
+      "gains": 1,
+      "losses": 8,
+      "delta": -0.007,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.013,
+        -0.002
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 668,
+      "after": 661,
+      "gains": 1,
+      "losses": 8,
+      "delta": -0.007,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.013,
+        -0.0019750000000001364
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 668,
+      "after": 670,
+      "gains": 5,
+      "losses": 3,
+      "delta": 0.002,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.003,
+        0.008
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 661,
+      "after": 661,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 661,
+      "after": 670,
+      "gains": 9,
+      "losses": 0,
+      "delta": 0.009,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.004,
+        0.015
+      ]
+    },
+    {
+      "method_before": "final_attention",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 661,
+      "after": 670,
+      "gains": 9,
+      "losses": 0,
+      "delta": 0.009,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.004,
+        0.015
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "native_text",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 586,
+      "after": 587,
+      "gains": 1,
+      "losses": 0,
+      "delta": 0.001,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.003
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "head_tuning",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 586,
+      "after": 685,
+      "gains": 203,
+      "losses": 104,
+      "delta": 0.099,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.065,
+        0.135
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "scoped_body",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 586,
+      "after": 708,
+      "gains": 184,
+      "losses": 62,
+      "delta": 0.122,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.093,
+        0.152
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "graphfirst",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 586,
+      "after": 702,
+      "gains": 183,
+      "losses": 67,
+      "delta": 0.116,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.086,
+        0.145
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 586,
+      "after": 702,
+      "gains": 183,
+      "losses": 67,
+      "delta": 0.116,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.085,
+        0.144
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 586,
+      "after": 702,
+      "gains": 183,
+      "losses": 67,
+      "delta": 0.116,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.086,
+        0.146
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 586,
+      "after": 702,
+      "gains": 183,
+      "losses": 67,
+      "delta": 0.116,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.087,
+        0.14602499999999985
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "head_tuning",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 587,
+      "after": 685,
+      "gains": 202,
+      "losses": 104,
+      "delta": 0.098,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.066,
+        0.131
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "scoped_body",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 587,
+      "after": 708,
+      "gains": 183,
+      "losses": 62,
+      "delta": 0.121,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.091,
+        0.15
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "graphfirst",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 587,
+      "after": 702,
+      "gains": 182,
+      "losses": 67,
+      "delta": 0.115,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.087,
+        0.146
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 587,
+      "after": 702,
+      "gains": 182,
+      "losses": 67,
+      "delta": 0.115,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.084,
+        0.145
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 587,
+      "after": 702,
+      "gains": 182,
+      "losses": 67,
+      "delta": 0.115,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.084,
+        0.144
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 587,
+      "after": 702,
+      "gains": 182,
+      "losses": 67,
+      "delta": 0.115,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.086,
+        0.147
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "scoped_body",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 685,
+      "after": 708,
+      "gains": 68,
+      "losses": 45,
+      "delta": 0.023,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.003,
+        0.045
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "graphfirst",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 685,
+      "after": 702,
+      "gains": 63,
+      "losses": 46,
+      "delta": 0.017,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.004,
+        0.038024999999999864
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 685,
+      "after": 702,
+      "gains": 63,
+      "losses": 46,
+      "delta": 0.017,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.003,
+        0.037
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 685,
+      "after": 702,
+      "gains": 63,
+      "losses": 46,
+      "delta": 0.017,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.004,
+        0.038
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 685,
+      "after": 702,
+      "gains": 63,
+      "losses": 46,
+      "delta": 0.017,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.005,
+        0.038
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "graphfirst",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 708,
+      "after": 702,
+      "gains": 0,
+      "losses": 6,
+      "delta": -0.006,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.011,
+        -0.002
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 708,
+      "after": 702,
+      "gains": 0,
+      "losses": 6,
+      "delta": -0.006,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.011,
+        -0.002
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 708,
+      "after": 702,
+      "gains": 0,
+      "losses": 6,
+      "delta": -0.006,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.011,
+        -0.002
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 708,
+      "after": 702,
+      "gains": 0,
+      "losses": 6,
+      "delta": -0.006,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.011,
+        -0.002
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 702,
+      "after": 702,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 702,
+      "after": 702,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 702,
+      "after": 702,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 702,
+      "after": 702,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 702,
+      "after": 702,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "final_attention",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 702,
+      "after": 702,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "native_text",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 258,
+      "after": 394,
+      "gains": 157,
+      "losses": 21,
+      "delta": 0.136,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.113,
+        0.163
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "head_tuning",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 258,
+      "after": 251,
+      "gains": 142,
+      "losses": 149,
+      "delta": -0.007,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.041,
+        0.026
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "scoped_body",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 258,
+      "after": 427,
+      "gains": 241,
+      "losses": 72,
+      "delta": 0.169,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.136,
+        0.20202499999999987
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "graphfirst",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 258,
+      "after": 404,
+      "gains": 237,
+      "losses": 91,
+      "delta": 0.146,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.112,
+        0.17802499999999985
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 258,
+      "after": 423,
+      "gains": 246,
+      "losses": 81,
+      "delta": 0.165,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.132,
+        0.198
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final_attention",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 258,
+      "after": 423,
+      "gains": 246,
+      "losses": 81,
+      "delta": 0.165,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.131,
+        0.2
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 258,
+      "after": 411,
+      "gains": 242,
+      "losses": 89,
+      "delta": 0.153,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.119,
+        0.188
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "head_tuning",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 394,
+      "after": 251,
+      "gains": 111,
+      "losses": 254,
+      "delta": -0.143,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.181,
+        -0.106
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "scoped_body",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 394,
+      "after": 427,
+      "gains": 188,
+      "losses": 155,
+      "delta": 0.033,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.001,
+        0.06802499999999986
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "graphfirst",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 394,
+      "after": 404,
+      "gains": 169,
+      "losses": 159,
+      "delta": 0.01,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.027,
+        0.045024999999999864
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 394,
+      "after": 423,
+      "gains": 177,
+      "losses": 148,
+      "delta": 0.029,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.005024999999999999,
+        0.063
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_attention",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 394,
+      "after": 423,
+      "gains": 177,
+      "losses": 148,
+      "delta": 0.029,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.006,
+        0.065
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 394,
+      "after": 411,
+      "gains": 172,
+      "losses": 155,
+      "delta": 0.017,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.016,
+        0.05202499999999986
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "scoped_body",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 251,
+      "after": 427,
+      "gains": 194,
+      "losses": 18,
+      "delta": 0.176,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.151,
+        0.202
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "graphfirst",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 251,
+      "after": 404,
+      "gains": 198,
+      "losses": 45,
+      "delta": 0.153,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.125,
+        0.18
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 251,
+      "after": 423,
+      "gains": 205,
+      "losses": 33,
+      "delta": 0.172,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.144,
+        0.201
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_attention",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 251,
+      "after": 423,
+      "gains": 205,
+      "losses": 33,
+      "delta": 0.172,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.145,
+        0.2
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 251,
+      "after": 411,
+      "gains": 199,
+      "losses": 39,
+      "delta": 0.16,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.132975,
+        0.189
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "graphfirst",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 427,
+      "after": 404,
+      "gains": 41,
+      "losses": 64,
+      "delta": -0.023,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.043,
+        -0.004
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 427,
+      "after": 423,
+      "gains": 42,
+      "losses": 46,
+      "delta": -0.004,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.023,
+        0.015
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_attention",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 427,
+      "after": 423,
+      "gains": 42,
+      "losses": 46,
+      "delta": -0.004,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.023,
+        0.014024999999999864
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 427,
+      "after": 411,
+      "gains": 41,
+      "losses": 57,
+      "delta": -0.016,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.035,
+        0.003
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 404,
+      "after": 423,
+      "gains": 20,
+      "losses": 1,
+      "delta": 0.019,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.011,
+        0.028
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_attention",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 404,
+      "after": 423,
+      "gains": 20,
+      "losses": 1,
+      "delta": 0.019,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.011,
+        0.029
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 404,
+      "after": 411,
+      "gains": 13,
+      "losses": 6,
+      "delta": 0.007,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.002,
+        0.016
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_attention",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 423,
+      "after": 423,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 423,
+      "after": 411,
+      "gains": 2,
+      "losses": 14,
+      "delta": -0.012,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.02,
+        -0.005
+      ]
+    },
+    {
+      "method_before": "final_attention",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 423,
+      "after": 411,
+      "gains": 2,
+      "losses": 14,
+      "delta": -0.012,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.02,
+        -0.005
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report"
+}

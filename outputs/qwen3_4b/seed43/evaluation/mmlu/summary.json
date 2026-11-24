@@ -1,0 +1,78 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/LLM_model/Qwen3-4B",
+    "model_type": "qwen3",
+    "native_parameters": 4022468096,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 43,
+  "summary": [
+    {
+      "method": "head_tuning",
+      "query": "mmlu",
+      "n": 14042,
+      "correct": 5932,
+      "accuracy": 0.4224469448796468,
+      "logprob_correct": 9287,
+      "eos_complete": 14005,
+      "format_failure": 5153,
+      "subject_macro_accuracy": 0.4565845526621307,
+      "subject_macro_logprob_accuracy": 0.6819120169551605
+    },
+    {
+      "method": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "correct": 4762,
+      "accuracy": 0.3391254807007549,
+      "logprob_correct": 9287,
+      "eos_complete": 13974,
+      "format_failure": 6843,
+      "subject_macro_accuracy": 0.37300563530096803,
+      "subject_macro_logprob_accuracy": 0.6818591575061812
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "correct",
+      "before": 5932,
+      "after": 4762,
+      "gains": 45,
+      "losses": 1215,
+      "delta": -0.0833214641788919,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        -0.08787921948440393,
+        -0.0786212790200826
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "logprob_correct",
+      "before": 9287,
+      "after": 9287,
+      "gains": 78,
+      "losses": 78,
+      "delta": 0.0,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        -0.0016379433129183876,
+        0.001568508759435968
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 43,
+  "model_aggregation": "None; one model per report"
+}

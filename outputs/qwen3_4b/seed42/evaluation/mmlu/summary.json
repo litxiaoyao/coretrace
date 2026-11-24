@@ -1,0 +1,157 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/LLM_model/Qwen3-4B",
+    "model_type": "qwen3",
+    "native_parameters": 4022468096,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "native",
+      "query": "mmlu",
+      "n": 14042,
+      "correct": 1112,
+      "accuracy": 0.07919099843327161,
+      "logprob_correct": 9311,
+      "eos_complete": 13748,
+      "format_failure": 12276,
+      "subject_macro_accuracy": 0.09040004342477292,
+      "subject_macro_logprob_accuracy": 0.6838491712816694
+    },
+    {
+      "method": "head_tuning",
+      "query": "mmlu",
+      "n": 14042,
+      "correct": 5932,
+      "accuracy": 0.4224469448796468,
+      "logprob_correct": 9287,
+      "eos_complete": 14005,
+      "format_failure": 5153,
+      "subject_macro_accuracy": 0.4565845526621307,
+      "subject_macro_logprob_accuracy": 0.6819120169551605
+    },
+    {
+      "method": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "correct": 4762,
+      "accuracy": 0.3391254807007549,
+      "logprob_correct": 9287,
+      "eos_complete": 13974,
+      "format_failure": 6843,
+      "subject_macro_accuracy": 0.37300563530096803,
+      "subject_macro_logprob_accuracy": 0.6818591575061812
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "native",
+      "method_after": "head_tuning",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "correct",
+      "before": 1112,
+      "after": 5932,
+      "gains": 4857,
+      "losses": 37,
+      "delta": 0.34325594644637514,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        0.33577659877510324,
+        0.3508047286711295
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "head_tuning",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "logprob_correct",
+      "before": 9311,
+      "after": 9287,
+      "gains": 277,
+      "losses": 301,
+      "delta": -0.0017091582395670133,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        -0.004986825238570004,
+        0.0018515880928642644
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "correct",
+      "before": 1112,
+      "after": 4762,
+      "gains": 3689,
+      "losses": 39,
+      "delta": 0.2599344822674833,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        0.252955419455918,
+        0.2672714000854579
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "logprob_correct",
+      "before": 9311,
+      "after": 9287,
+      "gains": 252,
+      "losses": 276,
+      "delta": -0.0017091582395670133,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        -0.004700185158809287,
+        0.0017091582395670133
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "correct",
+      "before": 5932,
+      "after": 4762,
+      "gains": 45,
+      "losses": 1215,
+      "delta": -0.0833214641788919,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        -0.08795221478421877,
+        -0.07883492380002849
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "logprob_correct",
+      "before": 9287,
+      "after": 9287,
+      "gains": 78,
+      "losses": 78,
+      "delta": 0.0,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        -0.0016379433129183876,
+        0.0016379433129183876
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report"
+}

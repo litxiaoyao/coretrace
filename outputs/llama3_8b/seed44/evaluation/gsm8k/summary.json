@@ -1,0 +1,55 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/LLM_model/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct",
+    "model_type": "llama",
+    "native_parameters": 8030261248,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 44,
+  "summary": [
+    {
+      "method": "head_tuning",
+      "query": "gsm8k",
+      "n": 1319,
+      "correct": 639,
+      "accuracy": 0.4844579226686884,
+      "eos_complete": 1316,
+      "format_failure": 546
+    },
+    {
+      "method": "final",
+      "query": "gsm8k",
+      "n": 1319,
+      "correct": 1060,
+      "accuracy": 0.8036391205458681,
+      "eos_complete": 1313,
+      "format_failure": 48
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "gsm8k",
+      "n": 1319,
+      "metric": "correct",
+      "before": 639,
+      "after": 1060,
+      "gains": 461,
+      "losses": 40,
+      "delta": 0.3191811978771797,
+      "cluster_count": 1319,
+      "paired_cluster_CI95": [
+        0.2918877937831691,
+        0.34950720242608035
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 44,
+  "model_aggregation": "None; one model per report"
+}

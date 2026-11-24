@@ -1,0 +1,14 @@
+{
+  "model": {
+    "path": "/data/LLM_model/Qwen3-8B",
+    "family": "qwen3"
+  },
+  "dataset": "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0",
+  "candidate_counts": [
+    20,
+    40,
+    80
+  ],
+  "seed": 42,
+  "output": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/discovery"
+}

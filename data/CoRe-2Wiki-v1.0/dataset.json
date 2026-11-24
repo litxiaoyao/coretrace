@@ -1,0 +1,21 @@
+{
+  "name": "CoRe-2Wiki",
+  "version": "1.0",
+  "id": "CoRe-2Wiki-v1.0",
+  "source": "2WikiMultiHopQA official train/development data; real Wikipedia paragraphs and annotated two-hop paths",
+  "splits": {
+    "discovery": 100,
+    "train": 2000,
+    "test": 1000
+  },
+  "queries": [
+    "composed",
+    "direct_first",
+    "direct_target"
+  ],
+  "training_queries": [
+    "composed"
+  ],
+  "mechanism_view": "25 fixed discovery quadruplets; derived probes keep original source IDs",
+  "policy": "Fixed source IDs, questions, contexts and official aliases. Pilot overlap is permitted; this test set is not claimed to be never examined."
+}

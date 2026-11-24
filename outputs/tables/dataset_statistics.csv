@@ -1,0 +1,7 @@
+dataset,split,sources,queries,LLM_gradient_queries,role
+CoRe-2Wiki-v1.0,discovery,100,300,0,Mechanism localization
+CoRe-2Wiki-v1.0,train,2000,6000,2000,Composed-question LLM training; constituent queries are diagnostic
+CoRe-2Wiki-v1.0,test,1000,3000,0,Paired main-task evaluation
+HotpotQA,validation,7405,7405,0,General capability retention
+MMLU,test,14042,14042,0,General capability retention
+GSM8K,test,1319,1319,0,General capability retention

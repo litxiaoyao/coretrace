@@ -1,0 +1,14 @@
+{
+  "model": {
+    "path": "/data/LLM_model/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct",
+    "family": "llama"
+  },
+  "dataset": "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0",
+  "candidate_counts": [
+    20,
+    40,
+    80
+  ],
+  "seed": 42,
+  "output": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/discovery"
+}

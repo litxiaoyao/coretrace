@@ -1,0 +1,158 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/LLM_model/Qwen3-8B",
+    "model_type": "qwen3",
+    "native_parameters": 8190735360,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "native",
+      "query": "mmlu",
+      "n": 14042,
+      "correct": 9416,
+      "accuracy": 0.6705597493234582,
+      "logprob_correct": 9888,
+      "eos_complete": 14038,
+      "format_failure": 617,
+      "subject_macro_accuracy": 0.6954551378727627,
+      "subject_macro_logprob_accuracy": 0.7303775416563331
+    },
+    {
+      "method": "head_tuning",
+      "query": "mmlu",
+      "n": 14042,
+      "correct": 9794,
+      "accuracy": 0.6974789915966386,
+      "logprob_correct": 9856,
+      "eos_complete": 14042,
+      "format_failure": 79,
+      "subject_macro_accuracy": 0.7246704413624497,
+      "subject_macro_logprob_accuracy": 0.7292774387126942
+    },
+    {
+      "method": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "correct": 9799,
+      "accuracy": 0.6978350662298818,
+      "logprob_correct": 9857,
+      "eos_complete": 14042,
+      "format_failure": 78,
+      "subject_macro_accuracy": 0.7249024914769273,
+      "subject_macro_logprob_accuracy": 0.7292408092801073
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "native",
+      "method_after": "head_tuning",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "correct",
+      "before": 9416,
+      "after": 9794,
+      "gains": 634,
+      "losses": 256,
+      "delta": 0.026919242273180457,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        0.02307363623415468,
+        0.031122703318615573
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "head_tuning",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "logprob_correct",
+      "before": 9888,
+      "after": 9856,
+      "gains": 238,
+      "losses": 270,
+      "delta": -0.0022788776527560175,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        -0.0052699045719982905,
+        0.0008545791197835066
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "correct",
+      "before": 9416,
+      "after": 9799,
+      "gains": 627,
+      "losses": 244,
+      "delta": 0.027275316906423586,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        0.02321606608745193,
+        0.031265133171912825
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "logprob_correct",
+      "before": 9888,
+      "after": 9857,
+      "gains": 226,
+      "losses": 257,
+      "delta": -0.002207662726107392,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        -0.0052699045719982905,
+        0.00064093433983763
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "correct",
+      "before": 9794,
+      "after": 9799,
+      "gains": 71,
+      "losses": 66,
+      "delta": 0.00035607463324312775,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        -0.00128186867967526,
+        0.0019940179461615153
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "mmlu",
+      "n": 14042,
+      "metric": "logprob_correct",
+      "before": 9856,
+      "after": 9857,
+      "gains": 65,
+      "losses": 64,
+      "delta": 7.121492664862555e-05,
+      "cluster_count": 14042,
+      "paired_cluster_CI95": [
+        -0.001424298532972511,
+        0.0017091582395670133
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report"
+}

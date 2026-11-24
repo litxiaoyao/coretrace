@@ -1,0 +1,6 @@
+model,method,n,accuracy,source_summary
+llama3_8b,native,100,0.51,/data/xiaoyao/projects/coretrace/outputs/llama3_8b/causal_factorization/summary.json
+llama3_8b,identity,100,0.51,/data/xiaoyao/projects/coretrace/outputs/llama3_8b/causal_factorization/summary.json
+llama3_8b,mass_only,100,0.64,/data/xiaoyao/projects/coretrace/outputs/llama3_8b/causal_factorization/summary.json
+llama3_8b,conditional_only,100,0.47,/data/xiaoyao/projects/coretrace/outputs/llama3_8b/causal_factorization/summary.json
+llama3_8b,both,100,0.76,/data/xiaoyao/projects/coretrace/outputs/llama3_8b/causal_factorization/summary.json

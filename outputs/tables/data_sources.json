@@ -1,0 +1,56 @@
+{
+  "table": "dataset_statistics.csv",
+  "rows": [
+    {
+      "row": 0,
+      "files": [
+        "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0/dataset.json",
+        "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0/splits/discovery.json",
+        "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0/queries.jsonl"
+      ],
+      "formula": "Count source_ids in split and its canonical_query_ids. Only composed train queries update LLM weights."
+    },
+    {
+      "row": 1,
+      "files": [
+        "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0/dataset.json",
+        "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0/splits/train.json",
+        "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0/queries.jsonl"
+      ],
+      "formula": "Count source_ids in split and its canonical_query_ids. Only composed train queries update LLM weights."
+    },
+    {
+      "row": 2,
+      "files": [
+        "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0/dataset.json",
+        "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0/splits/test.json",
+        "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0/queries.jsonl"
+      ],
+      "formula": "Count source_ids in split and its canonical_query_ids. Only composed train queries update LLM weights."
+    },
+    {
+      "row": 3,
+      "files": [
+        "/data/xiaoyao/projects/coretrace/data/benchmarks/datasets.json",
+        "/data/xiaoyao/projects/coretrace/data/benchmarks/hotpot.jsonl"
+      ],
+      "formula": "All rows in the complete official evaluation split."
+    },
+    {
+      "row": 4,
+      "files": [
+        "/data/xiaoyao/projects/coretrace/data/benchmarks/datasets.json",
+        "/data/xiaoyao/projects/coretrace/data/benchmarks/mmlu.jsonl"
+      ],
+      "formula": "All rows in the complete official evaluation split."
+    },
+    {
+      "row": 5,
+      "files": [
+        "/data/xiaoyao/projects/coretrace/data/benchmarks/datasets.json",
+        "/data/xiaoyao/projects/coretrace/data/benchmarks/gsm8k.jsonl"
+      ],
+      "formula": "All rows in the complete official evaluation split."
+    }
+  ]
+}

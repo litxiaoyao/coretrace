@@ -1,0 +1,1196 @@
+{
+  "inference_table": "inference_costs.csv",
+  "inference_rows": [
+    {
+      "row": 0,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl",
+      "method": "native",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 1,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl",
+      "method": "native_text",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 2,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core/predictions.jsonl",
+      "method": "native_text",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 3,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core/predictions.jsonl",
+      "method": "native_text",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 4,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 5,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 6,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 7,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl",
+      "method": "scoped_body",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 8,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core/predictions.jsonl",
+      "method": "scoped_body",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 9,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core/predictions.jsonl",
+      "method": "scoped_body",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 10,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl",
+      "method": "graphfirst",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 11,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core/predictions.jsonl",
+      "method": "graphfirst",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 12,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core/predictions.jsonl",
+      "method": "graphfirst",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 13,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 14,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 15,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 16,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl",
+      "method": "final_attention",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 17,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core/predictions.jsonl",
+      "method": "final_attention",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 18,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core/predictions.jsonl",
+      "method": "final_attention",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 19,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl",
+      "method": "final_metadata",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 20,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/core/predictions.jsonl",
+      "method": "final_metadata",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 21,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/core/predictions.jsonl",
+      "method": "final_metadata",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 22,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/hotpot/predictions.jsonl",
+      "method": "native",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 23,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/hotpot/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 24,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/hotpot/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 25,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/hotpot/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 26,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/hotpot/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 27,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/hotpot/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 28,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/hotpot/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 29,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/mmlu/predictions.jsonl",
+      "method": "native",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 30,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/mmlu/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 31,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/mmlu/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 32,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/mmlu/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 33,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/mmlu/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 34,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/mmlu/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 35,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/mmlu/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 36,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/gsm8k/predictions.jsonl",
+      "method": "native",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 37,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/gsm8k/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 38,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/gsm8k/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 39,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/gsm8k/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 40,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation/gsm8k/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 41,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation/gsm8k/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 42,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation/gsm8k/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 43,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation_fullft/core/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 44,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation_fullft/core/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 45,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation_fullft/core/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 46,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation_fullft/hotpot/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 47,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation_fullft/hotpot/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 48,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation_fullft/hotpot/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 49,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation_fullft/mmlu/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 50,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation_fullft/mmlu/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 51,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation_fullft/mmlu/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 52,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/evaluation_fullft/gsm8k/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 53,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/evaluation_fullft/gsm8k/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 54,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation_fullft/gsm8k/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 55,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "native",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 56,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "native_text",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 57,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "native_text",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 58,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "native_text",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 59,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 60,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 61,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 62,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "scoped_body",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 63,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "scoped_body",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 64,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "scoped_body",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 65,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "graphfirst",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 66,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "graphfirst",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 67,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "graphfirst",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 68,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 69,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 70,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 71,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "final_attention",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 72,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "final_attention",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 73,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "final_attention",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 74,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "final_metadata",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 75,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "final_metadata",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 76,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "final_metadata",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 77,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/hotpot/predictions.jsonl",
+      "method": "native",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 78,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/hotpot/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 79,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/hotpot/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 80,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/hotpot/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 81,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/hotpot/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 82,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/hotpot/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 83,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/hotpot/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 84,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/mmlu/predictions.jsonl",
+      "method": "native",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 85,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/mmlu/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 86,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/mmlu/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 87,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/mmlu/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 88,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/mmlu/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 89,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/mmlu/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 90,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/mmlu/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 91,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/gsm8k/predictions.jsonl",
+      "method": "native",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 92,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/gsm8k/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 93,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/gsm8k/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 94,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/gsm8k/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 95,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/gsm8k/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 96,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/gsm8k/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 97,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation/gsm8k/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 98,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation_fullft/core/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 99,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation_fullft/core/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 100,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation_fullft/core/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 101,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation_fullft/hotpot/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 102,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation_fullft/hotpot/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 103,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation_fullft/hotpot/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 104,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation_fullft/mmlu/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 105,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation_fullft/mmlu/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 106,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation_fullft/mmlu/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 107,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation_fullft/gsm8k/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 108,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation_fullft/gsm8k/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 109,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/evaluation_fullft/gsm8k/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 110,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "native",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 111,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "native_text",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 112,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "native_text",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 113,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "native_text",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 114,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 115,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 116,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 117,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "scoped_body",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 118,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "scoped_body",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 119,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "scoped_body",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 120,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "graphfirst",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 121,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "graphfirst",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 122,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "graphfirst",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 123,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 124,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 125,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 126,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "final_attention",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 127,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "final_attention",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 128,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "final_attention",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 129,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl",
+      "method": "final_metadata",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 130,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/core/predictions.jsonl",
+      "method": "final_metadata",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 131,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/core/predictions.jsonl",
+      "method": "final_metadata",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 132,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/hotpot/predictions.jsonl",
+      "method": "native",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 133,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/hotpot/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 134,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/hotpot/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 135,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/hotpot/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 136,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/hotpot/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 137,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/hotpot/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 138,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/hotpot/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 139,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/mmlu/predictions.jsonl",
+      "method": "native",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 140,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/mmlu/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 141,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/mmlu/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 142,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/mmlu/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 143,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/mmlu/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 144,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/mmlu/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 145,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/mmlu/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 146,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/gsm8k/predictions.jsonl",
+      "method": "native",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 147,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/gsm8k/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 148,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/gsm8k/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 149,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/gsm8k/predictions.jsonl",
+      "method": "head_tuning",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 150,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation/gsm8k/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 151,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation/gsm8k/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 152,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation/gsm8k/predictions.jsonl",
+      "method": "final",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 153,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation_fullft/core/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 154,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation_fullft/core/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 155,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation_fullft/core/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 156,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation_fullft/hotpot/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 157,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation_fullft/hotpot/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 158,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation_fullft/hotpot/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 159,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation_fullft/mmlu/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 160,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation_fullft/mmlu/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 161,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation_fullft/mmlu/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 162,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/evaluation_fullft/gsm8k/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 163,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/evaluation_fullft/gsm8k/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    },
+    {
+      "row": 164,
+      "predictions": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation_fullft/gsm8k/predictions.jsonl",
+      "method": "FullFT",
+      "formula": "Select matching method; count rows and sum total_inference_seconds (generation seconds fallback), input_tokens, generated_tokens and selection.address_prefills."
+    }
+  ],
+  "training_table": "training_costs.csv",
+  "training_rows": [
+    {
+      "row": 0,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/head_tuning/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 1,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed42/fullft/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 2,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/head_tuning/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 3,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed43/fullft/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 4,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/head_tuning/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 5,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/fullft/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 6,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/head_tuning/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 7,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/fullft/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 8,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/head_tuning/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 9,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/fullft/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 10,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/head_tuning/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 11,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/fullft/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 12,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/head_tuning/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 13,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed42/fullft/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 14,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/head_tuning/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 15,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed43/fullft/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 16,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/head_tuning/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    },
+    {
+      "row": 17,
+      "training": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/fullft/training.json",
+      "fields": {
+        "sources": "actual_sources",
+        "optimizer_steps": "actual_steps",
+        "trainable_parameters": "parameter_count for selected heads; all_parameter_elements for FullFT",
+        "seconds": "seconds"
+      },
+      "scope": "LLM training wall time; final and component methods share the selected-head checkpoint."
+    }
+  ]
+}

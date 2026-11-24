@@ -1,0 +1,19 @@
+{
+  "model": {
+    "path": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/fullft/final_model",
+    "family": "qwen3"
+  },
+  "seed": 44,
+  "dataset_version": "CoRe-2Wiki-v1.0",
+  "dataset": {
+    "kind": "hotpot",
+    "path": "/data/xiaoyao/projects/coretrace/data/benchmarks/hotpot.jsonl"
+  },
+  "methods": [
+    {
+      "name": "FullFT"
+    }
+  ],
+  "output": "/data/xiaoyao/projects/coretrace/outputs/qwen3_4b/seed44/evaluation_fullft/hotpot",
+  "batch_size": 4
+}

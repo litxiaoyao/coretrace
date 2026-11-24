@@ -1,0 +1,20 @@
+{
+  "model": {
+    "path": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/fullft/final_model",
+    "family": "llama"
+  },
+  "seed": 44,
+  "dataset_version": "CoRe-2Wiki-v1.0",
+  "dataset": {
+    "kind": "core",
+    "path": "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0",
+    "split": "test"
+  },
+  "methods": [
+    {
+      "name": "FullFT"
+    }
+  ],
+  "output": "/data/xiaoyao/projects/coretrace/outputs/llama3_8b/seed44/evaluation_fullft/core",
+  "batch_size": 4
+}

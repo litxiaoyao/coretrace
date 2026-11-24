@@ -1,0 +1,15 @@
+{
+  "dataset": "data/CoRe-2Wiki-v1.0",
+  "dataset_version": "CoRe-2Wiki-v1.0",
+  "seeds": [42, 43, 44],
+  "candidate_counts": [20, 40, 80],
+  "mmlu_batch_size": 4,
+  "qa_batch_size": 4,
+  "gsm8k_batch_size": 4,
+  "benchmarks": ["core", "hotpot", "mmlu", "gsm8k"],
+  "models": {
+    "qwen3_4b": {"family": "qwen3", "scope": {"components": "vo", "role": "prefix_before_question", "layers": [16, 17, 18, 19]}},
+    "qwen3_8b": {"family": "qwen3", "scope": {"components": "vo", "role": "question_prefill", "layers": [12, 13, 14, 15, 16, 17, 18, 19]}},
+    "llama3_8b": {"family": "llama", "scope": {"components": "v", "role": "prefix_before_question", "layers": "selected"}}
+  }
+}

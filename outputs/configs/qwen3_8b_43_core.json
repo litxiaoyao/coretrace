@@ -1,0 +1,176 @@
+{
+  "model": {
+    "path": "/data/LLM_model/Qwen3-8B",
+    "family": "qwen3"
+  },
+  "seed": 43,
+  "dataset_version": "CoRe-2Wiki-v1.0",
+  "dataset": {
+    "kind": "core",
+    "path": "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0",
+    "split": "test"
+  },
+  "methods": [
+    {
+      "name": "native_text",
+      "selector": "decoded_text",
+      "paragraph_boundary": "leading_newline",
+      "head_map": {
+        "23": [
+          10
+        ],
+        "13": [
+          13,
+          19
+        ],
+        "16": [
+          23
+        ],
+        "24": [
+          23,
+          29,
+          5,
+          13
+        ],
+        "20": [
+          15
+        ],
+        "17": [
+          4
+        ],
+        "15": [
+          9,
+          13,
+          11
+        ],
+        "18": [
+          15
+        ],
+        "21": [
+          11,
+          10
+        ],
+        "12": [
+          24
+        ],
+        "19": [
+          24
+        ],
+        "9": [
+          29
+        ],
+        "14": [
+          7
+        ]
+      },
+      "readout": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/native_readout/address_readout.json"
+    },
+    {
+      "name": "head_tuning",
+      "artifact": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/head_tuning"
+    },
+    {
+      "name": "scoped_body",
+      "artifact": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/head_tuning",
+      "scope": {
+        "components": "vo",
+        "role": "question_prefill",
+        "layers": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      }
+    },
+    {
+      "name": "graphfirst",
+      "artifact": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/head_tuning",
+      "scope": {
+        "components": "vo",
+        "role": "question_prefill",
+        "layers": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      "selector": "graphfirst_text",
+      "paragraph_boundary": "leading_newline"
+    },
+    {
+      "name": "final",
+      "artifact": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/head_tuning",
+      "scope": {
+        "components": "vo",
+        "role": "question_prefill",
+        "layers": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      "selector": "decoded_text",
+      "paragraph_boundary": "leading_newline",
+      "readout": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/readout/address_readout.json"
+    },
+    {
+      "name": "final_attention",
+      "artifact": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/head_tuning",
+      "scope": {
+        "components": "vo",
+        "role": "question_prefill",
+        "layers": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      "selector": "decoded_text",
+      "paragraph_boundary": "leading_newline",
+      "readout": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/readout/attention_readout.json"
+    },
+    {
+      "name": "final_metadata",
+      "artifact": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/head_tuning",
+      "scope": {
+        "components": "vo",
+        "role": "question_prefill",
+        "layers": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      "selector": "decoded_text",
+      "paragraph_boundary": "leading_newline",
+      "readout": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/readout/metadata_readout.json"
+    }
+  ],
+  "output": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation/core",
+  "batch_size": 4
+}

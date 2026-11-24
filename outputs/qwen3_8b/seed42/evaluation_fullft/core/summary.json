@@ -1,0 +1,64 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/fullft/final_model",
+    "model_type": "qwen3",
+    "native_parameters": 8190735360,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "FullFT",
+      "query": "composed",
+      "n": 1000,
+      "correct": 527,
+      "accuracy": 0.527,
+      "eos_complete": 1000,
+      "text_alias_correct": 527,
+      "mean_text_f1": 0.6018584637584636
+    },
+    {
+      "method": "FullFT",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 191,
+      "accuracy": 0.191,
+      "eos_complete": 989,
+      "text_alias_correct": 191,
+      "mean_text_f1": 0.30182082478924577
+    },
+    {
+      "method": "FullFT",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 564,
+      "accuracy": 0.564,
+      "eos_complete": 1000,
+      "text_alias_correct": 564,
+      "mean_text_f1": 0.636058732280791
+    }
+  ],
+  "all3": [
+    {
+      "method": "FullFT",
+      "n": 1000,
+      "correct": 75,
+      "accuracy": 0.075
+    }
+  ],
+  "conditional_composition": [
+    {
+      "method": "FullFT",
+      "n_sources": 1000,
+      "both_constituents_correct": 88,
+      "composition_failures": 13,
+      "conditional_failure_rate": 0.14772727272727273
+    }
+  ],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report"
+}

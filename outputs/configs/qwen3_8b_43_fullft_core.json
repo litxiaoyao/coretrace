@@ -1,0 +1,20 @@
+{
+  "model": {
+    "path": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/fullft/final_model",
+    "family": "qwen3"
+  },
+  "seed": 43,
+  "dataset_version": "CoRe-2Wiki-v1.0",
+  "dataset": {
+    "kind": "core",
+    "path": "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0",
+    "split": "test"
+  },
+  "methods": [
+    {
+      "name": "FullFT"
+    }
+  ],
+  "output": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed43/evaluation_fullft/core",
+  "batch_size": 4
+}

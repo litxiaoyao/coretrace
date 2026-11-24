@@ -1,0 +1,17 @@
+\section{Related Work}
+\label{sec:related-work}
+
+\paragraph{Multi-hop reasoning in language models.}
+Multi-hop question answering requires combining facts across successive relations.
+\citet{press2023compositionality} measure the gap between answering constituent questions and solving their composition, and improve performance through explicit decomposition.
+2WikiMultiHopQA connects document-grounded questions to annotated evidence paths, supporting evaluation of individual reasoning steps \citep{ho2020constructing}.
+Studies of contextual QA further show that models' use of available evidence depends on its position in the input \citep{liu2024lost}.
+Recent mechanistic work examines how multi-hop answers emerge across layers: \citet{liu2026layerorder} find that final answers can become decodable before intermediate entities, challenging a sequential account of latent reasoning.
+We study composition failures under correct constituent answers, tracing how the model accesses and reads the relevant evidence paragraphs.
+
+\paragraph{Mechanisms of factual information processing.}
+Causal tracing localizes factual associations and enables targeted model editing \citep{meng2022locating}.
+\citet{geva2023dissecting} analyze factual recall through subject enrichment, relation propagation, and attribute extraction, revealing distinct roles for feed-forward and attention modules.
+For contextual information, \citet{wu2025retrieval} identify retrieval heads that causally support extraction from long inputs, while \citet{yuksekgonul2024attention} relate factual errors to attention constraints.
+In multilingual multi-hop reasoning, \citet{sun2026bridging} trace shared knowledge circuits and use the identified attention pathways to guide head tuning.
+We investigate how paragraph-level access and relation-specific content reading support contextual composition, and derive a targeted evidence-selection repair from these operations.

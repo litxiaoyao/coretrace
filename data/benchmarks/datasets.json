@@ -1,0 +1,36 @@
+{
+  "scope": "Complete official evaluation splits, not sampled subsets",
+  "datasets": {
+    "hotpot": {
+      "name": "HotpotQA",
+      "configuration": "distractor",
+      "split": "validation",
+      "rows": 7405,
+      "source": "https://huggingface.co/datasets/hotpotqa/hotpot_qa",
+      "role": "Contextual QA capability preservation",
+      "metric": "Answer EM/F1, EOS completion diagnostics; no support labels used by repair"
+    },
+    "mmlu": {
+      "name": "MMLU",
+      "configuration": "all",
+      "split": "test",
+      "rows": 14042,
+      "source": "https://huggingface.co/datasets/cais/mmlu",
+      "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+      "metric": "Primary: same-prefill ABCD option-logprob accuracy; micro and subject-macro. Generated-letter/EOS correctness is secondary.",
+      "shots": 0
+    },
+    "gsm8k": {
+      "name": "GSM8K",
+      "configuration": "main",
+      "split": "test",
+      "rows": 1319,
+      "source": "https://huggingface.co/datasets/openai/gsm8k",
+      "revision": "740312add88f781978c0658806c59bc2815b9866",
+      "metric": "Decimal numeric equality on final #### NUMBER line; no EOS gate",
+      "shots": 0
+    }
+  },
+  "method": "Same checkpoint, original input questions, native chat template, greedy decoding, no truncation or output-based exclusion. QA max32 new tokens; GSM8K max512 new tokens.",
+  "reference": "Full-test capability-preservation convention follows Tracing the Persona Circuit AppendixB.1; task-specific prompting is defined explicitly here, not claimed identical to that paper."
+}

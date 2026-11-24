@@ -1,0 +1,38 @@
+{
+  "status": "COMPLETE_TRAIN_ONLY_ADDRESS_READOUT",
+  "diagnostics": {
+    "full": {
+      "train": {
+        "n": 2000,
+        "correct": 1856
+      },
+      "test": {
+        "n": 1000,
+        "correct": 803
+      }
+    },
+    "attention": {
+      "train": {
+        "n": 2000,
+        "correct": 1809
+      },
+      "test": {
+        "n": 1000,
+        "correct": 750
+      }
+    },
+    "metadata": {
+      "train": {
+        "n": 2000,
+        "correct": 873
+      },
+      "test": {
+        "n": 1000,
+        "correct": 435
+      }
+    }
+  },
+  "test_labels_used_for_fitting": false,
+  "LLM_updates": 0,
+  "dataset_version": "CoRe-2Wiki-v1.0"
+}

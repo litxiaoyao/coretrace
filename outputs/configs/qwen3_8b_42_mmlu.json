@@ -1,0 +1,44 @@
+{
+  "model": {
+    "path": "/data/LLM_model/Qwen3-8B",
+    "family": "qwen3"
+  },
+  "seed": 42,
+  "dataset_version": "CoRe-2Wiki-v1.0",
+  "dataset": {
+    "kind": "mmlu",
+    "path": "/data/xiaoyao/projects/coretrace/data/benchmarks/mmlu.jsonl"
+  },
+  "methods": [
+    {
+      "name": "native"
+    },
+    {
+      "name": "head_tuning",
+      "artifact": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/head_tuning"
+    },
+    {
+      "name": "final",
+      "artifact": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/head_tuning",
+      "scope": {
+        "components": "vo",
+        "role": "question_prefill",
+        "layers": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      "selector": "decoded_text",
+      "paragraph_boundary": "leading_newline",
+      "readout": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/readout/address_readout.json"
+    }
+  ],
+  "output": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed42/evaluation/mmlu",
+  "batch_size": 4
+}

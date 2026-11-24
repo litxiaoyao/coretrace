@@ -1,0 +1,98 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/LLM_model/Qwen3-8B",
+    "model_type": "qwen3",
+    "native_parameters": 8190735360,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "native",
+      "query": "gsm8k",
+      "n": 1319,
+      "correct": 1187,
+      "accuracy": 0.8999241849886277,
+      "eos_complete": 1303,
+      "format_failure": 53
+    },
+    {
+      "method": "head_tuning",
+      "query": "gsm8k",
+      "n": 1319,
+      "correct": 1194,
+      "accuracy": 0.9052312357846853,
+      "eos_complete": 1306,
+      "format_failure": 45
+    },
+    {
+      "method": "final",
+      "query": "gsm8k",
+      "n": 1319,
+      "correct": 1198,
+      "accuracy": 0.9082638362395754,
+      "eos_complete": 1311,
+      "format_failure": 42
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "native",
+      "method_after": "head_tuning",
+      "query": "gsm8k",
+      "n": 1319,
+      "metric": "correct",
+      "before": 1187,
+      "after": 1194,
+      "gains": 48,
+      "losses": 41,
+      "delta": 0.00530705079605762,
+      "cluster_count": 1319,
+      "paired_cluster_CI95": [
+        -0.008339651250947688,
+        0.019711902956785442
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "final",
+      "query": "gsm8k",
+      "n": 1319,
+      "metric": "correct",
+      "before": 1187,
+      "after": 1198,
+      "gains": 47,
+      "losses": 36,
+      "delta": 0.008339651250947688,
+      "cluster_count": 1319,
+      "paired_cluster_CI95": [
+        -0.00530705079605762,
+        0.02124715693707344
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "gsm8k",
+      "n": 1319,
+      "metric": "correct",
+      "before": 1194,
+      "after": 1198,
+      "gains": 32,
+      "losses": 28,
+      "delta": 0.003032600454890068,
+      "cluster_count": 1319,
+      "paired_cluster_CI95": [
+        -0.008339651250947688,
+        0.014404852160727824
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report"
+}

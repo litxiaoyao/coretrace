@@ -1,0 +1,55 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/LLM_model/Qwen3-8B",
+    "model_type": "qwen3",
+    "native_parameters": 8190735360,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 44,
+  "summary": [
+    {
+      "method": "head_tuning",
+      "query": "gsm8k",
+      "n": 1319,
+      "correct": 1194,
+      "accuracy": 0.9052312357846853,
+      "eos_complete": 1306,
+      "format_failure": 45
+    },
+    {
+      "method": "final",
+      "query": "gsm8k",
+      "n": 1319,
+      "correct": 1198,
+      "accuracy": 0.9082638362395754,
+      "eos_complete": 1311,
+      "format_failure": 42
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "gsm8k",
+      "n": 1319,
+      "metric": "correct",
+      "before": 1194,
+      "after": 1198,
+      "gains": 32,
+      "losses": 28,
+      "delta": 0.003032600454890068,
+      "cluster_count": 1319,
+      "paired_cluster_CI95": [
+        -0.009097801364670205,
+        0.015163002274450341
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 44,
+  "model_aggregation": "None; one model per report"
+}

@@ -1,0 +1,1751 @@
+{
+  "status": "COMPLETE_MODEL_EVALUATION_SUMMARY",
+  "model_identity": {
+    "model_path": "/data/LLM_model/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct",
+    "model_type": "llama",
+    "native_parameters": 8030261248,
+    "native_dtype": "torch.bfloat16"
+  },
+  "seed": 44,
+  "summary": [
+    {
+      "method": "native_text",
+      "query": "composed",
+      "n": 1000,
+      "correct": 534,
+      "accuracy": 0.534,
+      "eos_complete": 1000,
+      "text_alias_correct": 534,
+      "mean_text_f1": 0.6492019127535689
+    },
+    {
+      "method": "head_tuning",
+      "query": "composed",
+      "n": 1000,
+      "correct": 637,
+      "accuracy": 0.637,
+      "eos_complete": 1000,
+      "text_alias_correct": 637,
+      "mean_text_f1": 0.7076828282828276
+    },
+    {
+      "method": "scoped_body",
+      "query": "composed",
+      "n": 1000,
+      "correct": 663,
+      "accuracy": 0.663,
+      "eos_complete": 1000,
+      "text_alias_correct": 663,
+      "mean_text_f1": 0.7362822060292644
+    },
+    {
+      "method": "graphfirst",
+      "query": "composed",
+      "n": 1000,
+      "correct": 658,
+      "accuracy": 0.658,
+      "eos_complete": 1000,
+      "text_alias_correct": 658,
+      "mean_text_f1": 0.7308900703871287
+    },
+    {
+      "method": "final",
+      "query": "composed",
+      "n": 1000,
+      "correct": 698,
+      "accuracy": 0.698,
+      "eos_complete": 1000,
+      "text_alias_correct": 698,
+      "mean_text_f1": 0.7696948322918906
+    },
+    {
+      "method": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "correct": 698,
+      "accuracy": 0.698,
+      "eos_complete": 1000,
+      "text_alias_correct": 698,
+      "mean_text_f1": 0.769028165625224
+    },
+    {
+      "method": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "correct": 668,
+      "accuracy": 0.668,
+      "eos_complete": 1000,
+      "text_alias_correct": 668,
+      "mean_text_f1": 0.7413456259426843
+    },
+    {
+      "method": "native_text",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 850,
+      "accuracy": 0.85,
+      "eos_complete": 991,
+      "text_alias_correct": 850,
+      "mean_text_f1": 0.9231738681167472
+    },
+    {
+      "method": "head_tuning",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 375,
+      "accuracy": 0.375,
+      "eos_complete": 1000,
+      "text_alias_correct": 375,
+      "mean_text_f1": 0.4938139665889663
+    },
+    {
+      "method": "scoped_body",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 648,
+      "accuracy": 0.648,
+      "eos_complete": 1000,
+      "text_alias_correct": 648,
+      "mean_text_f1": 0.7512538961038964
+    },
+    {
+      "method": "graphfirst",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 665,
+      "accuracy": 0.665,
+      "eos_complete": 999,
+      "text_alias_correct": 665,
+      "mean_text_f1": 0.7698047064047064
+    },
+    {
+      "method": "final",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 659,
+      "accuracy": 0.659,
+      "eos_complete": 999,
+      "text_alias_correct": 659,
+      "mean_text_f1": 0.7638782994782994
+    },
+    {
+      "method": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 659,
+      "accuracy": 0.659,
+      "eos_complete": 999,
+      "text_alias_correct": 659,
+      "mean_text_f1": 0.7638782994782994
+    },
+    {
+      "method": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "correct": 667,
+      "accuracy": 0.667,
+      "eos_complete": 999,
+      "text_alias_correct": 667,
+      "mean_text_f1": 0.7691332778332778
+    },
+    {
+      "method": "native_text",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 587,
+      "accuracy": 0.587,
+      "eos_complete": 991,
+      "text_alias_correct": 587,
+      "mean_text_f1": 0.7138057808284852
+    },
+    {
+      "method": "head_tuning",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 685,
+      "accuracy": 0.685,
+      "eos_complete": 1000,
+      "text_alias_correct": 685,
+      "mean_text_f1": 0.7544670440670433
+    },
+    {
+      "method": "scoped_body",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 708,
+      "accuracy": 0.708,
+      "eos_complete": 1000,
+      "text_alias_correct": 708,
+      "mean_text_f1": 0.7759242695213275
+    },
+    {
+      "method": "graphfirst",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 702,
+      "accuracy": 0.702,
+      "eos_complete": 999,
+      "text_alias_correct": 702,
+      "mean_text_f1": 0.774772315919374
+    },
+    {
+      "method": "final",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 702,
+      "accuracy": 0.702,
+      "eos_complete": 999,
+      "text_alias_correct": 702,
+      "mean_text_f1": 0.774772315919374
+    },
+    {
+      "method": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 702,
+      "accuracy": 0.702,
+      "eos_complete": 999,
+      "text_alias_correct": 702,
+      "mean_text_f1": 0.774772315919374
+    },
+    {
+      "method": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "correct": 702,
+      "accuracy": 0.702,
+      "eos_complete": 999,
+      "text_alias_correct": 702,
+      "mean_text_f1": 0.774772315919374
+    }
+  ],
+  "all3": [
+    {
+      "method": "native_text",
+      "n": 1000,
+      "correct": 396,
+      "accuracy": 0.396
+    },
+    {
+      "method": "head_tuning",
+      "n": 1000,
+      "correct": 249,
+      "accuracy": 0.249
+    },
+    {
+      "method": "scoped_body",
+      "n": 1000,
+      "correct": 424,
+      "accuracy": 0.424
+    },
+    {
+      "method": "graphfirst",
+      "n": 1000,
+      "correct": 404,
+      "accuracy": 0.404
+    },
+    {
+      "method": "final",
+      "n": 1000,
+      "correct": 423,
+      "accuracy": 0.423
+    },
+    {
+      "method": "final_attention",
+      "n": 1000,
+      "correct": 423,
+      "accuracy": 0.423
+    },
+    {
+      "method": "final_metadata",
+      "n": 1000,
+      "correct": 411,
+      "accuracy": 0.411
+    }
+  ],
+  "conditional_composition": [
+    {
+      "method": "native_text",
+      "n_sources": 1000,
+      "both_constituents_correct": 504,
+      "composition_failures": 108,
+      "conditional_failure_rate": 0.21428571428571427
+    },
+    {
+      "method": "head_tuning",
+      "n_sources": 1000,
+      "both_constituents_correct": 265,
+      "composition_failures": 16,
+      "conditional_failure_rate": 0.06037735849056604
+    },
+    {
+      "method": "scoped_body",
+      "n_sources": 1000,
+      "both_constituents_correct": 467,
+      "composition_failures": 43,
+      "conditional_failure_rate": 0.09207708779443255
+    },
+    {
+      "method": "graphfirst",
+      "n_sources": 1000,
+      "both_constituents_correct": 468,
+      "composition_failures": 64,
+      "conditional_failure_rate": 0.13675213675213677
+    },
+    {
+      "method": "final",
+      "n_sources": 1000,
+      "both_constituents_correct": 462,
+      "composition_failures": 39,
+      "conditional_failure_rate": 0.08441558441558442
+    },
+    {
+      "method": "final_attention",
+      "n_sources": 1000,
+      "both_constituents_correct": 462,
+      "composition_failures": 39,
+      "conditional_failure_rate": 0.08441558441558442
+    },
+    {
+      "method": "final_metadata",
+      "n_sources": 1000,
+      "both_constituents_correct": 470,
+      "composition_failures": 59,
+      "conditional_failure_rate": 0.125531914893617
+    }
+  ],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "native_text",
+      "method_after": "head_tuning",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 534,
+      "after": 637,
+      "gains": 206,
+      "losses": 103,
+      "delta": 0.103,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.068,
+        0.13602499999999987
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "scoped_body",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 534,
+      "after": 663,
+      "gains": 197,
+      "losses": 68,
+      "delta": 0.129,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.099,
+        0.16
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "graphfirst",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 534,
+      "after": 658,
+      "gains": 191,
+      "losses": 67,
+      "delta": 0.124,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.094,
+        0.156
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 534,
+      "after": 698,
+      "gains": 201,
+      "losses": 37,
+      "delta": 0.164,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.136,
+        0.192
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 534,
+      "after": 698,
+      "gains": 201,
+      "losses": 37,
+      "delta": 0.164,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.13797500000000001,
+        0.192
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 534,
+      "after": 668,
+      "gains": 194,
+      "losses": 60,
+      "delta": 0.134,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.105,
+        0.163
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "scoped_body",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 637,
+      "after": 663,
+      "gains": 67,
+      "losses": 41,
+      "delta": 0.026,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.006,
+        0.047
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "graphfirst",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 637,
+      "after": 658,
+      "gains": 104,
+      "losses": 83,
+      "delta": 0.021,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.005,
+        0.048
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 637,
+      "after": 698,
+      "gains": 113,
+      "losses": 52,
+      "delta": 0.061,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.036,
+        0.08602499999999985
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 637,
+      "after": 698,
+      "gains": 113,
+      "losses": 52,
+      "delta": 0.061,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.036,
+        0.085
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 637,
+      "after": 668,
+      "gains": 106,
+      "losses": 75,
+      "delta": 0.031,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.003975000000000001,
+        0.057
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "graphfirst",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 663,
+      "after": 658,
+      "gains": 62,
+      "losses": 67,
+      "delta": -0.005,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.026,
+        0.016
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 663,
+      "after": 698,
+      "gains": 68,
+      "losses": 33,
+      "delta": 0.035,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.016,
+        0.054
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 663,
+      "after": 698,
+      "gains": 68,
+      "losses": 33,
+      "delta": 0.035,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.016,
+        0.055
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 663,
+      "after": 668,
+      "gains": 65,
+      "losses": 60,
+      "delta": 0.005,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.018,
+        0.026
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 658,
+      "after": 698,
+      "gains": 40,
+      "losses": 0,
+      "delta": 0.04,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.029,
+        0.05202499999999986
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 658,
+      "after": 698,
+      "gains": 40,
+      "losses": 0,
+      "delta": 0.04,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.028,
+        0.052
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 658,
+      "after": 668,
+      "gains": 23,
+      "losses": 13,
+      "delta": 0.01,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.001,
+        0.022
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_attention",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 698,
+      "after": 698,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 698,
+      "after": 668,
+      "gains": 1,
+      "losses": 31,
+      "delta": -0.03,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.042,
+        -0.02
+      ]
+    },
+    {
+      "method_before": "final_attention",
+      "method_after": "final_metadata",
+      "query": "composed",
+      "n": 1000,
+      "metric": "correct",
+      "before": 698,
+      "after": 668,
+      "gains": 1,
+      "losses": 31,
+      "delta": -0.03,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.041,
+        -0.02
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "head_tuning",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 850,
+      "after": 375,
+      "gains": 34,
+      "losses": 509,
+      "delta": -0.475,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.51,
+        -0.439
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "scoped_body",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 850,
+      "after": 648,
+      "gains": 74,
+      "losses": 276,
+      "delta": -0.202,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.238,
+        -0.16697500000000015
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "graphfirst",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 850,
+      "after": 665,
+      "gains": 65,
+      "losses": 250,
+      "delta": -0.185,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.219,
+        -0.152
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 850,
+      "after": 659,
+      "gains": 64,
+      "losses": 255,
+      "delta": -0.191,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.225,
+        -0.16
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 850,
+      "after": 659,
+      "gains": 64,
+      "losses": 255,
+      "delta": -0.191,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.224025,
+        -0.159
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 850,
+      "after": 667,
+      "gains": 64,
+      "losses": 247,
+      "delta": -0.183,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.216,
+        -0.15
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "scoped_body",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 375,
+      "after": 648,
+      "gains": 282,
+      "losses": 9,
+      "delta": 0.273,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.245,
+        0.304
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "graphfirst",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 375,
+      "after": 665,
+      "gains": 303,
+      "losses": 13,
+      "delta": 0.29,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.259,
+        0.32
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 375,
+      "after": 659,
+      "gains": 298,
+      "losses": 14,
+      "delta": 0.284,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.254,
+        0.312
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 375,
+      "after": 659,
+      "gains": 298,
+      "losses": 14,
+      "delta": 0.284,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.254975,
+        0.313
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 375,
+      "after": 667,
+      "gains": 304,
+      "losses": 12,
+      "delta": 0.292,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.263,
+        0.322
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "graphfirst",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 648,
+      "after": 665,
+      "gains": 63,
+      "losses": 46,
+      "delta": 0.017,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.004,
+        0.038
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 648,
+      "after": 659,
+      "gains": 59,
+      "losses": 48,
+      "delta": 0.011,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.008,
+        0.031
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 648,
+      "after": 659,
+      "gains": 59,
+      "losses": 48,
+      "delta": 0.011,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.009,
+        0.031
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 648,
+      "after": 667,
+      "gains": 63,
+      "losses": 44,
+      "delta": 0.019,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.001,
+        0.040024999999999866
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 665,
+      "after": 659,
+      "gains": 2,
+      "losses": 8,
+      "delta": -0.006,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.013,
+        0.0
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 665,
+      "after": 659,
+      "gains": 2,
+      "losses": 8,
+      "delta": -0.006,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.012,
+        0.0
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 665,
+      "after": 667,
+      "gains": 5,
+      "losses": 3,
+      "delta": 0.002,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.004,
+        0.008
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_attention",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 659,
+      "after": 659,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 659,
+      "after": 667,
+      "gains": 9,
+      "losses": 1,
+      "delta": 0.008,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.002,
+        0.014
+      ]
+    },
+    {
+      "method_before": "final_attention",
+      "method_after": "final_metadata",
+      "query": "direct_first",
+      "n": 1000,
+      "metric": "correct",
+      "before": 659,
+      "after": 667,
+      "gains": 9,
+      "losses": 1,
+      "delta": 0.008,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.002,
+        0.014
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "head_tuning",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 587,
+      "after": 685,
+      "gains": 199,
+      "losses": 101,
+      "delta": 0.098,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.065,
+        0.132
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "scoped_body",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 587,
+      "after": 708,
+      "gains": 183,
+      "losses": 62,
+      "delta": 0.121,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.093,
+        0.151
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "graphfirst",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 587,
+      "after": 702,
+      "gains": 182,
+      "losses": 67,
+      "delta": 0.115,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.085,
+        0.144
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 587,
+      "after": 702,
+      "gains": 182,
+      "losses": 67,
+      "delta": 0.115,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.085,
+        0.146
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 587,
+      "after": 702,
+      "gains": 182,
+      "losses": 67,
+      "delta": 0.115,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.08497500000000001,
+        0.14402499999999985
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 587,
+      "after": 702,
+      "gains": 182,
+      "losses": 67,
+      "delta": 0.115,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.084,
+        0.146
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "scoped_body",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 685,
+      "after": 708,
+      "gains": 67,
+      "losses": 44,
+      "delta": 0.023,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.002,
+        0.044
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "graphfirst",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 685,
+      "after": 702,
+      "gains": 63,
+      "losses": 46,
+      "delta": 0.017,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.003,
+        0.037
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 685,
+      "after": 702,
+      "gains": 63,
+      "losses": 46,
+      "delta": 0.017,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.004,
+        0.037
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 685,
+      "after": 702,
+      "gains": 63,
+      "losses": 46,
+      "delta": 0.017,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.003,
+        0.037
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 685,
+      "after": 702,
+      "gains": 63,
+      "losses": 46,
+      "delta": 0.017,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.003,
+        0.038
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "graphfirst",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 708,
+      "after": 702,
+      "gains": 1,
+      "losses": 7,
+      "delta": -0.006,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.012,
+        -0.001
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 708,
+      "after": 702,
+      "gains": 1,
+      "losses": 7,
+      "delta": -0.006,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.012,
+        -0.001
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 708,
+      "after": 702,
+      "gains": 1,
+      "losses": 7,
+      "delta": -0.006,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.012,
+        -0.001
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 708,
+      "after": 702,
+      "gains": 1,
+      "losses": 7,
+      "delta": -0.006,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.012,
+        -0.001
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 702,
+      "after": 702,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 702,
+      "after": 702,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 702,
+      "after": 702,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_attention",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 702,
+      "after": 702,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 702,
+      "after": 702,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "final_attention",
+      "method_after": "final_metadata",
+      "query": "direct_target",
+      "n": 1000,
+      "metric": "correct",
+      "before": 702,
+      "after": 702,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "head_tuning",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 396,
+      "after": 249,
+      "gains": 110,
+      "losses": 257,
+      "delta": -0.147,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.183,
+        -0.112
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "scoped_body",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 396,
+      "after": 424,
+      "gains": 186,
+      "losses": 158,
+      "delta": 0.028,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.009,
+        0.064
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "graphfirst",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 396,
+      "after": 404,
+      "gains": 168,
+      "losses": 160,
+      "delta": 0.008,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.027,
+        0.043
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 396,
+      "after": 423,
+      "gains": 176,
+      "losses": 149,
+      "delta": 0.027,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.009,
+        0.061024999999999864
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_attention",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 396,
+      "after": 423,
+      "gains": 176,
+      "losses": 149,
+      "delta": 0.027,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.009,
+        0.063
+      ]
+    },
+    {
+      "method_before": "native_text",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 396,
+      "after": 411,
+      "gains": 171,
+      "losses": 156,
+      "delta": 0.015,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.022,
+        0.05002499999999987
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "scoped_body",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 249,
+      "after": 424,
+      "gains": 193,
+      "losses": 18,
+      "delta": 0.175,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.149,
+        0.201
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "graphfirst",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 249,
+      "after": 404,
+      "gains": 199,
+      "losses": 44,
+      "delta": 0.155,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.125,
+        0.185
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 249,
+      "after": 423,
+      "gains": 206,
+      "losses": 32,
+      "delta": 0.174,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.146,
+        0.20202499999999987
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_attention",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 249,
+      "after": 423,
+      "gains": 206,
+      "losses": 32,
+      "delta": 0.174,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.145,
+        0.203
+      ]
+    },
+    {
+      "method_before": "head_tuning",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 249,
+      "after": 411,
+      "gains": 200,
+      "losses": 38,
+      "delta": 0.162,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.135,
+        0.189
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "graphfirst",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 424,
+      "after": 404,
+      "gains": 44,
+      "losses": 64,
+      "delta": -0.02,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.04,
+        -0.001
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 424,
+      "after": 423,
+      "gains": 45,
+      "losses": 46,
+      "delta": -0.001,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.02,
+        0.018
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_attention",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 424,
+      "after": 423,
+      "gains": 45,
+      "losses": 46,
+      "delta": -0.001,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.019,
+        0.018
+      ]
+    },
+    {
+      "method_before": "scoped_body",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 424,
+      "after": 411,
+      "gains": 44,
+      "losses": 57,
+      "delta": -0.013,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.033,
+        0.007
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 404,
+      "after": 423,
+      "gains": 20,
+      "losses": 1,
+      "delta": 0.019,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.01,
+        0.028
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_attention",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 404,
+      "after": 423,
+      "gains": 20,
+      "losses": 1,
+      "delta": 0.019,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.011,
+        0.028
+      ]
+    },
+    {
+      "method_before": "graphfirst",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 404,
+      "after": 411,
+      "gains": 13,
+      "losses": 6,
+      "delta": 0.007,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.001,
+        0.015
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_attention",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 423,
+      "after": 423,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "final",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 423,
+      "after": 411,
+      "gains": 2,
+      "losses": 14,
+      "delta": -0.012,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.02,
+        -0.005
+      ]
+    },
+    {
+      "method_before": "final_attention",
+      "method_after": "final_metadata",
+      "query": "all3",
+      "n": 1000,
+      "metric": "correct",
+      "before": 423,
+      "after": 411,
+      "gains": 2,
+      "losses": 14,
+      "delta": -0.012,
+      "cluster_count": 1000,
+      "paired_cluster_CI95": [
+        -0.020024999999999998,
+        -0.004
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 44,
+  "model_aggregation": "None; one model per report"
+}

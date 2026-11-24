@@ -1,0 +1,345 @@
+{
+  "status": "COMPLETE_FACTORIZED_CAUSAL_DIAGNOSIS",
+  "model_identity": {
+    "path": "/data/LLM_model/Qwen3-8B",
+    "family": "qwen3"
+  },
+  "seed": 42,
+  "summary": [
+    {
+      "method": "native",
+      "query": "composed",
+      "n": 100,
+      "correct": 48,
+      "accuracy": 0.48,
+      "eos_complete": 97,
+      "mean_text_f1": 0.5929465329991646
+    },
+    {
+      "method": "identity",
+      "query": "composed",
+      "n": 100,
+      "correct": 48,
+      "accuracy": 0.48,
+      "eos_complete": 97,
+      "mean_text_f1": 0.5929465329991646
+    },
+    {
+      "method": "mass_only",
+      "query": "composed",
+      "n": 100,
+      "correct": 52,
+      "accuracy": 0.52,
+      "eos_complete": 99,
+      "mean_text_f1": 0.6459834568596178
+    },
+    {
+      "method": "conditional_only",
+      "query": "composed",
+      "n": 100,
+      "correct": 50,
+      "accuracy": 0.5,
+      "eos_complete": 98,
+      "mean_text_f1": 0.6177063492063491
+    },
+    {
+      "method": "both",
+      "query": "composed",
+      "n": 100,
+      "correct": 59,
+      "accuracy": 0.59,
+      "eos_complete": 99,
+      "mean_text_f1": 0.7002008318478907
+    }
+  ],
+  "all3": [],
+  "conditional_composition": [],
+  "native_conditioned_composition": [],
+  "paired_comparisons": [
+    {
+      "method_before": "native",
+      "method_after": "identity",
+      "query": "composed",
+      "n": 100,
+      "metric": "correct",
+      "before": 48,
+      "after": 48,
+      "gains": 0,
+      "losses": 0,
+      "delta": 0.0,
+      "cluster_count": 25,
+      "paired_cluster_CI95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "mass_only",
+      "query": "composed",
+      "n": 100,
+      "metric": "correct",
+      "before": 48,
+      "after": 52,
+      "gains": 5,
+      "losses": 1,
+      "delta": 0.04,
+      "cluster_count": 25,
+      "paired_cluster_CI95": [
+        -0.01,
+        0.1
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "conditional_only",
+      "query": "composed",
+      "n": 100,
+      "metric": "correct",
+      "before": 48,
+      "after": 50,
+      "gains": 4,
+      "losses": 2,
+      "delta": 0.02,
+      "cluster_count": 25,
+      "paired_cluster_CI95": [
+        -0.03,
+        0.07
+      ]
+    },
+    {
+      "method_before": "native",
+      "method_after": "both",
+      "query": "composed",
+      "n": 100,
+      "metric": "correct",
+      "before": 48,
+      "after": 59,
+      "gains": 13,
+      "losses": 2,
+      "delta": 0.11,
+      "cluster_count": 25,
+      "paired_cluster_CI95": [
+        0.04,
+        0.18
+      ]
+    },
+    {
+      "method_before": "identity",
+      "method_after": "mass_only",
+      "query": "composed",
+      "n": 100,
+      "metric": "correct",
+      "before": 48,
+      "after": 52,
+      "gains": 5,
+      "losses": 1,
+      "delta": 0.04,
+      "cluster_count": 25,
+      "paired_cluster_CI95": [
+        -0.01,
+        0.1
+      ]
+    },
+    {
+      "method_before": "identity",
+      "method_after": "conditional_only",
+      "query": "composed",
+      "n": 100,
+      "metric": "correct",
+      "before": 48,
+      "after": 50,
+      "gains": 4,
+      "losses": 2,
+      "delta": 0.02,
+      "cluster_count": 25,
+      "paired_cluster_CI95": [
+        -0.03,
+        0.07
+      ]
+    },
+    {
+      "method_before": "identity",
+      "method_after": "both",
+      "query": "composed",
+      "n": 100,
+      "metric": "correct",
+      "before": 48,
+      "after": 59,
+      "gains": 13,
+      "losses": 2,
+      "delta": 0.11,
+      "cluster_count": 25,
+      "paired_cluster_CI95": [
+        0.05,
+        0.18
+      ]
+    },
+    {
+      "method_before": "mass_only",
+      "method_after": "conditional_only",
+      "query": "composed",
+      "n": 100,
+      "metric": "correct",
+      "before": 52,
+      "after": 50,
+      "gains": 4,
+      "losses": 6,
+      "delta": -0.02,
+      "cluster_count": 25,
+      "paired_cluster_CI95": [
+        -0.08,
+        0.03
+      ]
+    },
+    {
+      "method_before": "mass_only",
+      "method_after": "both",
+      "query": "composed",
+      "n": 100,
+      "metric": "correct",
+      "before": 52,
+      "after": 59,
+      "gains": 8,
+      "losses": 1,
+      "delta": 0.07,
+      "cluster_count": 25,
+      "paired_cluster_CI95": [
+        0.03,
+        0.12
+      ]
+    },
+    {
+      "method_before": "conditional_only",
+      "method_after": "both",
+      "query": "composed",
+      "n": 100,
+      "metric": "correct",
+      "before": 50,
+      "after": 59,
+      "gains": 10,
+      "losses": 1,
+      "delta": 0.09,
+      "cluster_count": 25,
+      "paired_cluster_CI95": [
+        0.04,
+        0.14
+      ]
+    }
+  ],
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 42,
+  "model_aggregation": "None; one model per report",
+  "donor": "Only normalized alpha, no answer residual or V/O transfer",
+  "calibration_overlap": "Discovery diagnostic sources also used for head/tau selection; not an independent generalization estimate.",
+  "endpoint_counts": {
+    "native": {
+      "C11": 17,
+      "C12": 6,
+      "C21": 16,
+      "C22": 11
+    },
+    "identity": {
+      "C11": 17,
+      "C12": 6,
+      "C21": 16,
+      "C22": 11
+    },
+    "mass_only": {
+      "C11": 17,
+      "C12": 8,
+      "C21": 16,
+      "C22": 12
+    },
+    "conditional_only": {
+      "C11": 18,
+      "C12": 8,
+      "C21": 14,
+      "C22": 11
+    },
+    "both": {
+      "C11": 19,
+      "C12": 13,
+      "C21": 16,
+      "C22": 12
+    }
+  },
+  "endpoint_alias_overlap_allowed": true,
+  "relative_endpoint_counts": {
+    "native": {
+      "own": 48,
+      "other_entity_same_relation": 2,
+      "same_entity_other_relation": 0,
+      "other_entity_other_relation": 0
+    },
+    "identity": {
+      "own": 48,
+      "other_entity_same_relation": 2,
+      "same_entity_other_relation": 0,
+      "other_entity_other_relation": 0
+    },
+    "mass_only": {
+      "own": 52,
+      "other_entity_same_relation": 1,
+      "same_entity_other_relation": 0,
+      "other_entity_other_relation": 0
+    },
+    "conditional_only": {
+      "own": 50,
+      "other_entity_same_relation": 1,
+      "same_entity_other_relation": 0,
+      "other_entity_other_relation": 0
+    },
+    "both": {
+      "own": 59,
+      "other_entity_same_relation": 1,
+      "same_entity_other_relation": 0,
+      "other_entity_other_relation": 0
+    }
+  },
+  "factorial_accuracy": {
+    "n": 100,
+    "clusters": 25,
+    "contrasts": {
+      "mass_effect_receiver_conditional": {
+        "estimate": 0.04,
+        "paired_cluster_CI95": [
+          -0.01,
+          0.1
+        ]
+      },
+      "mass_effect_donor_conditional": {
+        "estimate": 0.09,
+        "paired_cluster_CI95": [
+          0.04,
+          0.14
+        ]
+      },
+      "conditional_effect_native_mass": {
+        "estimate": 0.02,
+        "paired_cluster_CI95": [
+          -0.03,
+          0.07
+        ]
+      },
+      "conditional_effect_fixed_mass": {
+        "estimate": 0.07,
+        "paired_cluster_CI95": [
+          0.03,
+          0.11
+        ]
+      },
+      "interaction": {
+        "estimate": 0.05,
+        "paired_cluster_CI95": [
+          0.0,
+          0.1
+        ]
+      }
+    },
+    "bootstrap_seed": 42,
+    "bootstrap_reps": 2000,
+    "interaction_formula": "Accuracy(both) - Accuracy(mass_only) - Accuracy(conditional_only) + Accuracy(native)",
+    "population": "Shared-context discovery quadruplets; paired diagnostic, not independent test generalization"
+  }
+}

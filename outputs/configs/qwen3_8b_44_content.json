@@ -1,0 +1,20 @@
+{
+  "dataset": "/data/xiaoyao/projects/coretrace/data/CoRe-2Wiki-v1.0",
+  "model": {
+    "path": "/data/LLM_model/Qwen3-8B",
+    "family": "qwen3"
+  },
+  "seed": 44,
+  "variants": [
+    "native",
+    "native_budget",
+    "body",
+    "final"
+  ],
+  "heads": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/discovery/SELECTION_FROZEN.json",
+  "budget": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/discovery/SELECTION_FROZEN.json",
+  "checkpoint": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/head_tuning",
+  "scope": "/data/xiaoyao/projects/coretrace/outputs/configs/qwen3_8b_scope.json",
+  "readout": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/readout/address_readout.json",
+  "output": "/data/xiaoyao/projects/coretrace/outputs/qwen3_8b/seed44/causal_content"
+}
