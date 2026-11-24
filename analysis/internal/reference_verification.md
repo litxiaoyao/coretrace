@@ -1,6 +1,6 @@
 # Verified bibliography and citation placement
 
-Internal reference check, 2026-11-24. `bibliography_verified.bib` merges the existing nine-entry bibliography, the seven fully reviewed related papers (two keys overlap), and twelve additional model/method/data references: **26 distinct keys**. The original `paper/references.bib` has not been overwritten. The short Related Work has no unresolved citation keys. Publication metadata was checked against the primary records below; this metadata verification does not imply full reading of every newly added methods report.
+Internal reference check, 2026-11-24, updated for revision 3. The current `paper/references.bib` contains **27 distinct keys**. Both uploaded ICML 2026 papers are now cited in the circuit-guided repair paragraph, with their intervention details checked against the supplied PDFs and publication metadata verified against the official PMLR records. The bibliography has no unresolved manuscript citation keys. The initial merged bibliography remains in `bibliography_verified.bib` as an earlier internal snapshot.
 
 ## Required models, data and methods
 
@@ -31,9 +31,10 @@ Internal reference check, 2026-11-24. `bibliography_verified.bib` merges the exi
 | `kim2026bridge` | [EMNLP 2026](https://aclanthology.org/2026.emnlp-main.2605/) | Official export gives DOI `10.18653/2026.emnlp-main.2605` without `/v1/`. |
 | `sun2026bridging` | [AAAI publisher record](https://ojs.aaai.org/index.php/AAAI/article/view/40592); [author-institution record](https://researchportal.hkust.edu.hk/en/publications/bridging-the-language-gap-uncovering-and-aligning-shared-circuits/) | Enrich existing entry with volume 40, issue 39 and DOI. Institutional record confirms title, author order, pp.33091–33099 and DOI when publisher browser verification blocks text access. |
 | `sun2025mappings` | [ACL 2025](https://aclanthology.org/2025.acl-long.196/) | Included in short Related Work because its head localization, attention swapping and targeted tuning directly contextualize the intervention strategy. Its task remains demonstration-to-label matching, not contextual factual composition. |
-| `qin2026persona` | [ICML 2026 / PMLR 306](https://proceedings.mlr.press/v306/qin26h.html) | Optional citation only. Title, four authors and pp.101666–101687 verified. Useful if discussing diagnostic metrics for distributed behavior or circuit-guided intervention; not a multi-hop baseline. No persona citation is forced into the short Related Work. |
+| `qin2026persona` | [ICML 2026 / PMLR 306](https://proceedings.mlr.press/v306/qin26h.html) | Included in revision 3 Related Work. Guanzheng Qin, Chenghao Sun, Zhining Xie, Xinmei Tian; pp.101666–101687. Uploaded p.8 explicitly describes mean in-character critical-head activations and their injection through Personality Signal Enhancement. The comparison concerns the unmeasured paragraph-mass/conditional-reading interaction. |
+| `zhang2026emotional` | [ICML 2026 / PMLR 306](https://proceedings.mlr.press/v306/zhang26fi.html) | Included in revision 3 Related Work. Chengsheng Zhang, Chenghao Sun, Zhining Xie, Xinmei Tian; *Interpreting and Enhancing Emotional Circuits in Large Vision-Language Models via Cross-Modal Information Flow*, pp.158457–158476. Uploaded pp.4–5 specify visual-attention pre-softmax scaling and selected MLP-neuron activation scaling within VEENA. The text accurately names those operations and distinguishes our crossed mass/conditional-reading experiment. |
 
-The visual-emotion paper is a writing reference, but not a close scientific predecessor for this task. It is intentionally not added as a generic filler citation.
+Both ICML papers provide substantive examples of circuit-guided behavioral repair. Their causal tracing and token/activation analyses are acknowledged through accurate intervention descriptions; the manuscript does not claim they lack causal evidence or token-level analysis.
 
 ## Remaining existing entries checked
 

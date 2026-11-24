@@ -1,0 +1,5 @@
+{
+  "raw_summary_aggregate_checks": 153,
+  "failures": [],
+  "scope": "108 core mean/SD summaries, 27 primary capability mean/SD summaries, 18 native-conditioned counts against seed42 stored summaries. Seeds43/44 native-conditioned summaries are empty; their full-population computations remain sourced from previously verified per-example analysis."
+}

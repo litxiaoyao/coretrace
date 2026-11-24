@@ -33,7 +33,8 @@ ROOT = Path(__file__).resolve().parents[1]
 PAPER = ROOT / "paper"
 FORMAL_FIGURES = (
     "figure1_teaser",
-    "figure2_method",
+    "figure2_diagnosis",
+    "figure3_method",
     "data_fig3_diagnosis",
     "data_fig4_causal",
     "data_fig5_content",
@@ -42,7 +43,7 @@ FORMAL_FIGURES = (
     "data_app_ablation",
     "data_app_capabilities",
 )
-NUMERICAL_FIGURES = FORMAL_FIGURES[2:]
+NUMERICAL_FIGURES = FORMAL_FIGURES[3:]
 STYLE_FILES = ("icml2027.sty", "icml2027.bst", "algorithm.sty", "algorithmic.sty", "fancyhdr.sty")
 ARTIFACT_NAMES = (
     "coretrace_overleaf.zip",
@@ -362,7 +363,7 @@ See analysis/README.md for the scientific organization, exact scope, and populat
 and uncertainty conventions. SOURCE.json records the scientific baseline commit,
 packaging revision, dependency versions, and hashes of all small input files.
 The seven numerical figures and manuscript tables can be regenerated without
-models or raw prediction archives. Figures 1 and 2 are supplied separately in the
+models or raw prediction archives. Figures 1, 2, and 3 are supplied separately in the
 formal-figure archive; analysis/image_prompts.json records their prompts and edits.
 
 Optional audit_*.py scripts, when included, use the full repository data and
@@ -371,7 +372,7 @@ the full working tree and a compiled manuscript when creating all delivery files
 """
     figures_readme = "# Formal CoReTrace figures\n\n" + "\n".join(
         f"- {stem}.pdf and {stem}.png" for stem in FORMAL_FIGURES
-    ) + "\n\nFigures 1 and 2 are image-generated conceptual illustrations; their PDFs embed\n" \
+    ) + "\n\nFigures 1, 2, and 3 are image-generated conceptual illustrations; their PDFs embed\n" \
         "the PNGs unchanged. The remaining seven PDFs are vector numerical figures,\n" \
         "with 300-dpi PNG previews. Captions and scientific interpretation appear\n" \
         "in the accompanying manuscript.\n"

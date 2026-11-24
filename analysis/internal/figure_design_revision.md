@@ -1,3 +1,5 @@
+> Historical record of revision 2, superseded by `numerical_figures_revision3.md`. Direct inspection of the newly supplied screenshots corrected the reference-style reading: numerical plot labels are sans-serif; serif applies to the manuscript captions. The teal/serif design below is no longer used.
+
 # Numerical figure design revision
 
 ## Reference figures inspected visually

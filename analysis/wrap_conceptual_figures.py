@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Wrap the two supplied conceptual PNGs in font-free PDF containers.
+"""Wrap the three supplied conceptual PNGs in font-free PDF containers.
 
 This only embeds the existing generated image bytes at the publication width;
 it does not edit, redraw, resample, or regenerate their visual content.
@@ -14,7 +14,11 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[1]
-WIDTHS_PT = {"figure1_teaser": 3.25 * 72, "figure2_method": 6.75 * 72}
+WIDTHS_PT = {
+    "figure1_teaser": 3.25 * 72,
+    "figure2_diagnosis": 6.75 * 72,
+    "figure3_method": 6.75 * 72,
+}
 
 
 def wrap(stem: str) -> None:
@@ -42,5 +46,5 @@ def wrap(stem: str) -> None:
 
 
 if __name__ == "__main__":
-    for stem in ("figure1_teaser", "figure2_method"):
+    for stem in WIDTHS_PT:
         wrap(stem)

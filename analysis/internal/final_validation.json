@@ -1,15 +1,17 @@
 {
   "revision_date": "2026-11-24",
-  "pdf_sha256": "5bdc1ecdc0a02cb489e0051cd2c4af458e5c0af5c9624a4c37b5c12c35525694",
-  "pages": 25,
-  "main_text_last_page": 8,
+  "revision": 3,
+  "pdf_sha256": "7334dd36ca90137f77e085f0619ac9270f8d5a5f8794921c2995cbcf2a3c5d0a",
+  "pages": 23,
+  "main_text_last_page": 7,
+  "impact_statement_page": 8,
   "appendix_start_page": 10,
-  "main_figures": 5,
+  "main_figures": 6,
   "appendix_figures": 4,
   "main_tables": 2,
   "appendix_tables": 19,
   "generated_table_files": 18,
-  "font_resources": 33,
+  "font_resources": 26,
   "all_fonts_embedded": true,
   "type3_fonts": false,
   "portrait_teaser": {
@@ -34,13 +36,25 @@
     "unreferenced_figures_or_tables": [],
     "editorial_markers": []
   },
-  "reference_visual_style_review": [
-    "Persona pp.2/4/6/9",
-    "Emotion pp.1/3/5/8",
-    "AAAI pp.2/5/6",
-    "ACL pp.1/2/4/6/8"
-  ],
   "positive_result_families": 21,
-  "secondary_metric_scalar_means_verified": 120,
-  "figure_csv_observations_preserved": 3862
+  "table_scalar_checks": 153,
+  "reconstruction": {
+    "numerical_figures": 7,
+    "generated_tables": 18,
+    "data_csvs": 15,
+    "fresh_extraction_passed": true
+  },
+  "visual_style": {
+    "plot_font": "DejaVu Sans",
+    "series": [
+      "#1F77B4",
+      "#FF7F0E",
+      "#7F7F7F"
+    ],
+    "table_ours": "#FFF0BE",
+    "table_native": "#EEEEEE",
+    "table_gain": "#1F77B4",
+    "table_loss": "#D62728"
+  },
+  "official_template_unchanged": true
 }

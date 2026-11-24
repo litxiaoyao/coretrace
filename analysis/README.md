@@ -43,16 +43,21 @@ A partial run writes a separate partial manifest; a complete run refreshes the c
 | Manuscript role | File stem | Contents |
 | --- | --- | --- |
 | Figure 1 | `figure1_teaser` | The composition failure, access/reading interaction, and evidence-based repair |
-| Figure 2 | `figure2_method` | Offline preparation and inference from the input |
-| Figure 3 | `data_fig3_diagnosis` | Constituent-conditioned composition failure and address recovery on those failures |
-| Figure 4 | `data_fig4_causal` | Mass × conditional-attention interaction and paragraph-calibration controls |
-| Figure 5 | `data_fig5_content` | Edited-value following and obsolete-answer persistence |
-| Appendix | `data_app_localization` | Complete head maps and frozen selections |
+| Figure 2 | `figure2_diagnosis` | Head localization, access/reading factorization, and reciprocal content exchanges |
+| Figure 3 | `figure3_method` | Offline preparation and inference from the input |
+| Figure 4 | `data_fig3_diagnosis` | Constituent-conditioned composition failure and address recovery on those failures |
+| Figure 5 | `data_fig4_causal` | Mass × conditional-attention interaction and paragraph-calibration controls |
+| Figure 6 | `data_fig5_content` | Edited-value following and obsolete-answer persistence |
+| Appendix | `data_app_localization` | Complete head maps, frozen selections, and unsmoothed layer profiles |
 | Appendix | `data_app_necessity` | Selected and layer-matched random knockout controls |
-| Appendix | `data_app_ablation` | Complete component comparisons |
+| Appendix | `data_app_ablation` | Controlled effects of fixed projection restoration |
 | Appendix | `data_app_capabilities` | Changes on HotpotQA, MMLU, and GSM8K |
 
-Figures 1 and 2 were created with ChatGPT's built-in image generation and then inspected against the method. Their generation and editing prompts are in `analysis/image_prompts.json`. Their PDFs embed the supplied PNGs without resampling: Figure 1 at 3.25-inch single-column width and Figure 2 at 6.75-inch full-page width. These two conceptual illustrations are supplied assets; the Python numerical-plotting script regenerates the other seven figures. Reissuing an image-generation prompt need not produce pixel-identical illustrations. To rebuild just their font-free PDF containers from the supplied PNGs, install PyMuPDF and Pillow, then run `python analysis/wrap_conceptual_figures.py`. This operation preserves the original RGB pixels and does not regenerate the images.
+Figures 1, 2, and 3 were created with ChatGPT's built-in image generation and then inspected against the method. Their generation and editing prompts are in `analysis/image_prompts.json`. Their PDFs embed the supplied PNGs without resampling: Figure 1 at 3.25-inch single-column width and Figures 2 and 3 at 6.75-inch double-column width. These three conceptual illustrations are supplied assets; the Python numerical-plotting script regenerates the other seven figures. Reissuing an image-generation prompt need not produce pixel-identical illustrations. To rebuild just their font-free PDF containers from the supplied PNGs, install PyMuPDF and Pillow, then run `python analysis/wrap_conceptual_figures.py`. This operation preserves the original RGB pixels and does not regenerate the images.
+
+### Visual conventions
+
+Numerical panels use DejaVu Sans, black axes, blue/orange/gray series, light dashed grids, and measured markers. Head maps use a shared red–blue diverging scale. No curves are smoothed. Tables use light-gray native rows and pale-yellow complete-method rows, with blue positive changes and red negative changes. Main comparisons show Native, full fine-tuning, and CoReTrace; internal configurations appear together in one factor-based ablation table and the controlled mechanism diagnostics.
 
 ## Lightweight reproduction archive
 
@@ -93,8 +98,8 @@ The output directory must be outside the repository. The script uses an explicit
 | File | Contents |
 | --- | --- |
 | `coretrace_paper.pdf` | The compiled paper and appendix |
-| `coretrace_overleaf.zip` | Complete LaTeX source, official style files, tables, and the nine formal figure PDFs |
-| `coretrace_figures.zip` | The nine formal figures, each as PDF and PNG |
+| `coretrace_overleaf.zip` | Complete LaTeX source, official style files, tables, and the ten formal figure PDFs |
+| `coretrace_figures.zip` | The ten formal figures, each as PDF and PNG |
 | `coretrace_plotting_code.zip` | Plot/table scripts, prompts, small source inputs, requirements, and source metadata |
 | `delivery_manifest.json` | Artifact hashes, source metadata, and reconstruction-check outcome |
 | `SHA256SUMS.txt` | SHA-256 checksums for the delivered artifacts and manifest |

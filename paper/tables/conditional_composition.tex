@@ -2,37 +2,29 @@
 \begingroup\renewcommand{\arraystretch}{1.08}
 \begin{tabular}{llrrr}
 \toprule
+\multicolumn{5}{l}{\textit{(a) Composition within the constituent-correct population of each model state}} \\
 \textbf{Model} & \textbf{Method} & \textbf{\shortstack{Both constituents\\correct ($n$)}} & \textbf{\shortstack{Composition\\failures ($n$)}} & \textbf{\shortstack{Conditional failure\\rate (\%) $\downarrow$}} \\
 \midrule
 \rowcolor{tablebase}Qwen3-4B & Native & 457.0 & 234.0 & $51.20$ \\
- & Full fine-tuning & 182.7 & 8.7 & $\mathbf{4.58}{\color{black!60}\,\pm\,1.75}$ \\
- & Evidence filtering & 469.3 & 138.0 & $29.40{\color{black!60}\,\pm\,0.04}$ \\
- & Head tuning & 457.3 & 63.3 & $13.85{\color{black!60}\,\pm\,0.11}$ \\
- & Scoped adaptation & 492.3 & 74.3 & $15.10{\color{black!60}\,\pm\,0.40}$ \\
- & Graph-first selection & 472.7 & 80.3 & $17.00{\color{black!60}\,\pm\,0.08}$ \\
- & Attention-only reader & 467.7 & 53.3 & $11.40{\color{black!60}\,\pm\,0.10}$ \\
- & Metadata-only reader & 472.7 & 73.7 & $15.58{\color{black!60}\,\pm\,0.21}$ \\
-\rowcolor{tableours} & \method\ (Ours) & 467.7 & 54.3 & $11.62{\color{black!60}\,\pm\,0.09}$ \\
+\rowcolor{tableours} & \method\ (Ours) & 467.7 & 54.3 & $\mathbf{11.62}{\color{black!80}\,\pm\,0.09}$ \\
 \midrule
 \rowcolor{tablebase}Qwen3-8B & Native & 462.0 & 236.0 & $51.08$ \\
- & Full fine-tuning & 153.7 & 12.3 & $\mathbf{9.23}{\color{black!60}\,\pm\,4.82}$ \\
- & Evidence filtering & 481.0 & 143.0 & $29.73{\color{black!60}\,\pm\,0.00}$ \\
- & Head tuning & 491.0 & 75.0 & $15.27{\color{black!60}\,\pm\,0.00}$ \\
- & Scoped adaptation & 513.0 & 89.0 & $17.35{\color{black!60}\,\pm\,0.00}$ \\
- & Graph-first selection & 511.0 & 78.0 & $15.26{\color{black!60}\,\pm\,0.00}$ \\
- & Attention-only reader & 509.0 & 55.0 & $10.81{\color{black!60}\,\pm\,0.00}$ \\
- & Metadata-only reader & 514.0 & 73.0 & $14.20{\color{black!60}\,\pm\,0.00}$ \\
-\rowcolor{tableours} & \method\ (Ours) & 509.0 & 55.0 & $10.81{\color{black!60}\,\pm\,0.00}$ \\
+\rowcolor{tableours} & \method\ (Ours) & 509.0 & 55.0 & $\mathbf{10.81}{\color{black!80}\,\pm\,0.00}$ \\
 \midrule
 \rowcolor{tablebase}Llama-3.1-8B & Native & 501.0 & 243.0 & $48.50$ \\
- & Full fine-tuning & 39.7 & 3.7 & $8.39{\color{black!60}\,\pm\,5.67}$ \\
- & Evidence filtering & 504.3 & 109.0 & $21.61{\color{black!60}\,\pm\,0.32}$ \\
- & Head tuning & 266.0 & 16.3 & $\mathbf{6.14}{\color{black!60}\,\pm\,0.18}$ \\
- & Scoped adaptation & 467.3 & 42.3 & $9.06{\color{black!60}\,\pm\,0.26}$ \\
- & Graph-first selection & 468.7 & 64.7 & $13.80{\color{black!60}\,\pm\,0.21}$ \\
- & Attention-only reader & 462.7 & 39.7 & $8.57{\color{black!60}\,\pm\,0.23}$ \\
- & Metadata-only reader & 470.7 & 59.7 & $12.68{\color{black!60}\,\pm\,0.21}$ \\
-\rowcolor{tableours} & \method\ (Ours) & 462.7 & 39.7 & $8.57{\color{black!60}\,\pm\,0.23}$ \\
+\rowcolor{tableours} & \method\ (Ours) & 462.7 & 39.7 & $\mathbf{8.57}{\color{black!80}\,\pm\,0.23}$ \\
+\midrule
+\multicolumn{5}{l}{\textit{(b) Repair and retention on the fixed native constituent-correct population}} \\
+\textbf{Model} & \textbf{Method} & \textbf{\shortstack{Failures\\repaired (\%) $\uparrow$}} & \textbf{\shortstack{Successes\\retained (\%) $\uparrow$}} & \textbf{\shortstack{Fixed-population\\accuracy (\%) $\uparrow$}} \\
+\midrule
+\rowcolor{tablebase}Qwen3-4B & Native & $0.0$ & $\mathbf{100.0}$ & $48.8$ \\
+\rowcolor{tableours} & \method\ (Ours) & $\mathbf{80.8}{\color{black!80}\,\pm\,0.0}$ & $94.6{\color{black!80}\,\pm\,0.0}$ & $\mathbf{87.5}{\color{black!80}\,\pm\,0.0}$ \\
+\midrule
+\rowcolor{tablebase}Qwen3-8B & Native & $0.0$ & $\mathbf{100.0}$ & $48.9$ \\
+\rowcolor{tableours} & \method\ (Ours) & $\mathbf{80.9}{\color{black!80}\,\pm\,0.0}$ & $92.9{\color{black!80}\,\pm\,0.0}$ & $\mathbf{86.8}{\color{black!80}\,\pm\,0.0}$ \\
+\midrule
+\rowcolor{tablebase}Llama-3.1-8B & Native & $0.0$ & $\mathbf{100.0}$ & $51.5$ \\
+\rowcolor{tableours} & \method\ (Ours) & $\mathbf{77.8}{\color{black!80}\,\pm\,0.0}$ & $95.1{\color{black!80}\,\pm\,0.4}$ & $\mathbf{86.7}{\color{black!80}\,\pm\,0.2}$ \\
 \bottomrule
 \end{tabular}
 \endgroup

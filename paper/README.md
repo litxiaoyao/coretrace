@@ -4,7 +4,7 @@
 
 `main.tex` compiles the complete manuscript and appendix. The main text follows **Introduction – Related Work – Method – Experiments – Conclusion**. It asks why correct constituent answers fail to compose, distinguishes recoverable evidence location from effective evidence use, tests the interaction of paragraph access and local reading, and applies those findings through CoReTrace.
 
-The appendix contains the complete experimental protocols, head maps, necessity controls, reader and selector diagnostics, component comparisons, constituent results, capability evaluations, and uncertainty details. Appendix figures and tables have their own `A` numbering. Numerical results and captions share the source summaries described in the accompanying analysis documentation.
+The appendix contains the complete experimental protocols, head maps, necessity controls, reader and selector diagnostics, component interventions, constituent results, capability evaluations, and uncertainty details. Appendix figures and tables have their own `A` numbering. Numerical results and captions share the source summaries described in the accompanying analysis documentation.
 
 The supplied manuscript uses the official anonymous submission mode. Author, affiliation, and correspondence fields can be filled when preparing a named preprint or an accepted version.
 
@@ -42,21 +42,22 @@ For Overleaf, upload `coretrace_overleaf.zip`, choose `main.tex` as the main doc
 
 ## Formal figure set
 
-The manuscript uses exactly these nine figure stems, all under `figures/`:
+The manuscript uses exactly these ten figure stems, all under `figures/`:
 
 | Role | File stem |
 | --- | --- |
 | Figure 1: portrait scientific teaser (page 1, right column) | `figure1_teaser` |
-| Figure 2: method overview | `figure2_method` |
-| Figure 3: failure and address diagnosis | `data_fig3_diagnosis` |
-| Figure 4: access/reading interaction | `data_fig4_causal` |
-| Figure 5: local-content response | `data_fig5_content` |
+| Figure 2: causal diagnostic overview | `figure2_diagnosis` |
+| Figure 3: deployment method overview | `figure3_method` |
+| Figure 4: failure and address diagnosis | `data_fig3_diagnosis` |
+| Figure 5: access/reading interaction | `data_fig4_causal` |
+| Figure 6: local-content response | `data_fig5_content` |
 | Appendix: head localization | `data_app_localization` |
 | Appendix: necessity controls | `data_app_necessity` |
-| Appendix: component comparisons | `data_app_ablation` |
+| Appendix: controlled projection restoration | `data_app_ablation` |
 | Appendix: capability changes | `data_app_capabilities` |
 
-All formal figures are supplied as PDF and PNG. Figures 1 and 2 are image-generated conceptual illustrations; their PDFs embed the final PNGs at the original aspect ratio. The seven numerical figures are vector PDFs with embedded fonts and matching 300-dpi PNG previews. The LaTeX manuscript uses the PDFs. Earlier exploratory images are not included in the Overleaf or formal-figure delivery archives.
+All formal figures are supplied as PDF and PNG. Figures 1, 2, and 3 are image-generated conceptual illustrations; their PDFs embed the final PNGs at the original aspect ratio. The seven numerical figures are vector PDFs with embedded fonts and matching 300-dpi PNG previews. The LaTeX manuscript uses the PDFs. Earlier exploratory images are not included in the Overleaf or formal-figure delivery archives.
 
 ## Regenerate numerical figures and tables
 
@@ -69,7 +70,7 @@ python analysis/build_tables.py
 
 Python 3.10 or newer, NumPy, and Matplotlib are sufficient. `analysis/image_prompts.json` records the conceptual figure prompts and edits; those illustrations are supplied assets rather than outputs of the numerical plotting script. The reconstruction scripts, requirements, CSV figure data, and all small JSON/CSV inputs are provided in `coretrace_plotting_code.zip`. That archive preserves project-relative paths and includes its source commit and file hashes.
 
-The reconstruction archive contains the completed measurements used by the plotting and table scripts. It regenerates all seven numerical figures and the manuscript tables directly from those inputs. Figures 1 and 2 are supplied as the finalized image-generated assets.
+The reconstruction archive contains the completed measurements used by the plotting and table scripts. It regenerates all seven numerical figures and the manuscript tables directly from those inputs. Figures 1, 2, and 3 are supplied as the finalized image-generated assets.
 
 ## Packaging
 

@@ -4,35 +4,17 @@
 \toprule
 \textbf{Model} & \textbf{Method} & \textbf{Composed} & \textbf{First hop} & \textbf{Second hop} & \textbf{All three} \\
 \midrule
-\rowcolor{tablebase}Qwen3-4B & Native & $26.90$ & $87.20$ & $52.90$ & $22.30$ \\
- & Full fine-tuning & $57.13{\color{black!60}\,\pm\,2.37}$ & $29.97{\color{black!60}\,\pm\,4.52}$ & $58.90{\color{black!60}\,\pm\,2.51}$ & $17.40{\color{black!60}\,\pm\,2.16}$ \\
- & Evidence filtering & $47.23{\color{black!60}\,\pm\,0.12}$ & $\mathbf{88.33}{\color{black!60}\,\pm\,0.12}$ & $52.93{\color{black!60}\,\pm\,0.06}$ & $33.13{\color{black!60}\,\pm\,0.06}$ \\
- & Head tuning & $60.13{\color{black!60}\,\pm\,0.12}$ & $66.27{\color{black!60}\,\pm\,0.12}$ & $67.13{\color{black!60}\,\pm\,0.06}$ & $39.40{\color{black!60}\,\pm\,0.00}$ \\
- & Scoped adaptation & $60.43{\color{black!60}\,\pm\,0.12}$ & $71.27{\color{black!60}\,\pm\,0.29}$ & $\mathbf{67.63}{\color{black!60}\,\pm\,0.06}$ & $\mathbf{41.80}{\color{black!60}\,\pm\,0.00}$ \\
- & Graph-first selection & $63.37{\color{black!60}\,\pm\,0.23}$ & $70.40{\color{black!60}\,\pm\,0.00}$ & $67.57{\color{black!60}\,\pm\,0.12}$ & $39.23{\color{black!60}\,\pm\,0.06}$ \\
- & Attention-only reader & $\mathbf{66.80}{\color{black!60}\,\pm\,0.35}$ & $69.80{\color{black!60}\,\pm\,0.00}$ & $67.57{\color{black!60}\,\pm\,0.12}$ & $41.43{\color{black!60}\,\pm\,0.06}$ \\
- & Metadata-only reader & $64.03{\color{black!60}\,\pm\,0.29}$ & $70.40{\color{black!60}\,\pm\,0.00}$ & $67.57{\color{black!60}\,\pm\,0.12}$ & $39.90{\color{black!60}\,\pm\,0.00}$ \\
-\rowcolor{tableours} & \method\ (Ours) & $\mathbf{66.80}{\color{black!60}\,\pm\,0.35}$ & $69.80{\color{black!60}\,\pm\,0.00}$ & $67.57{\color{black!60}\,\pm\,0.12}$ & $41.33{\color{black!60}\,\pm\,0.06}$ \\
+\rowcolor{tablebase}Qwen3-4B & Native & $26.90$ & $\mathbf{87.20}$ & $52.90$ & $22.30$ \\
+ & Full fine-tuning & $57.13{\color{black!80}\,\pm\,2.37}$ & $29.97{\color{black!80}\,\pm\,4.52}$ & $58.90{\color{black!80}\,\pm\,2.51}$ & $17.40{\color{black!80}\,\pm\,2.16}$ \\
+\rowcolor{tableours} & \method\ (Ours) & $\mathbf{66.80}{\color{black!80}\,\pm\,0.35}$ & $69.80{\color{black!80}\,\pm\,0.00}$ & $\mathbf{67.57}{\color{black!80}\,\pm\,0.12}$ & $\mathbf{41.33}{\color{black!80}\,\pm\,0.06}$ \\
 \midrule
-\rowcolor{tablebase}Qwen3-8B & Native & $29.20$ & $86.00$ & $54.40$ & $22.60$ \\
- & Full fine-tuning & $55.17{\color{black!60}\,\pm\,5.35}$ & $28.47{\color{black!60}\,\pm\,8.81}$ & $56.93{\color{black!60}\,\pm\,5.42}$ & $14.13{\color{black!60}\,\pm\,5.84}$ \\
- & Evidence filtering & $48.10{\color{black!60}\,\pm\,0.00}$ & $\mathbf{89.10}{\color{black!60}\,\pm\,0.00}$ & $54.90{\color{black!60}\,\pm\,0.00}$ & $33.80{\color{black!60}\,\pm\,0.00}$ \\
- & Head tuning & $61.80{\color{black!60}\,\pm\,0.00}$ & $70.20{\color{black!60}\,\pm\,0.00}$ & $70.10{\color{black!60}\,\pm\,0.00}$ & $41.60{\color{black!60}\,\pm\,0.00}$ \\
- & Scoped adaptation & $60.90{\color{black!60}\,\pm\,0.00}$ & $72.60{\color{black!60}\,\pm\,0.00}$ & $\mathbf{70.40}{\color{black!60}\,\pm\,0.00}$ & $42.40{\color{black!60}\,\pm\,0.00}$ \\
- & Graph-first selection & $63.70{\color{black!60}\,\pm\,0.00}$ & $73.40{\color{black!60}\,\pm\,0.00}$ & $70.10{\color{black!60}\,\pm\,0.00}$ & $43.30{\color{black!60}\,\pm\,0.00}$ \\
- & Attention-only reader & $\mathbf{67.20}{\color{black!60}\,\pm\,0.00}$ & $73.40{\color{black!60}\,\pm\,0.00}$ & $70.10{\color{black!60}\,\pm\,0.00}$ & $\mathbf{45.40}{\color{black!60}\,\pm\,0.00}$ \\
- & Metadata-only reader & $64.60{\color{black!60}\,\pm\,0.00}$ & $73.80{\color{black!60}\,\pm\,0.00}$ & $70.10{\color{black!60}\,\pm\,0.00}$ & $44.10{\color{black!60}\,\pm\,0.00}$ \\
-\rowcolor{tableours} & \method\ (Ours) & $\mathbf{67.20}{\color{black!60}\,\pm\,0.00}$ & $73.40{\color{black!60}\,\pm\,0.00}$ & $70.10{\color{black!60}\,\pm\,0.00}$ & $\mathbf{45.40}{\color{black!60}\,\pm\,0.00}$ \\
+\rowcolor{tablebase}Qwen3-8B & Native & $29.20$ & $\mathbf{86.00}$ & $54.40$ & $22.60$ \\
+ & Full fine-tuning & $55.17{\color{black!80}\,\pm\,5.35}$ & $28.47{\color{black!80}\,\pm\,8.81}$ & $56.93{\color{black!80}\,\pm\,5.42}$ & $14.13{\color{black!80}\,\pm\,5.84}$ \\
+\rowcolor{tableours} & \method\ (Ours) & $\mathbf{67.20}{\color{black!80}\,\pm\,0.00}$ & $73.40{\color{black!80}\,\pm\,0.00}$ & $\mathbf{70.10}{\color{black!80}\,\pm\,0.00}$ & $\mathbf{45.40}{\color{black!80}\,\pm\,0.00}$ \\
 \midrule
 \rowcolor{tablebase}Llama-3.1-8B & Native & $36.40$ & $\mathbf{85.20}$ & $58.60$ & $25.80$ \\
- & Full fine-tuning & $35.20{\color{black!60}\,\pm\,3.41}$ & $12.13{\color{black!60}\,\pm\,3.00}$ & $33.50{\color{black!60}\,\pm\,4.45}$ & $3.60{\color{black!60}\,\pm\,0.70}$ \\
- & Evidence filtering & $53.43{\color{black!60}\,\pm\,0.06}$ & $85.07{\color{black!60}\,\pm\,0.12}$ & $58.70{\color{black!60}\,\pm\,0.00}$ & $39.53{\color{black!60}\,\pm\,0.12}$ \\
- & Head tuning & $63.60{\color{black!60}\,\pm\,0.17}$ & $37.57{\color{black!60}\,\pm\,0.12}$ & $68.50{\color{black!60}\,\pm\,0.00}$ & $24.97{\color{black!60}\,\pm\,0.12}$ \\
- & Scoped adaptation & $66.30{\color{black!60}\,\pm\,0.00}$ & $64.87{\color{black!60}\,\pm\,0.12}$ & $\mathbf{70.80}{\color{black!60}\,\pm\,0.00}$ & $\mathbf{42.50}{\color{black!60}\,\pm\,0.17}$ \\
- & Graph-first selection & $65.73{\color{black!60}\,\pm\,0.12}$ & $66.60{\color{black!60}\,\pm\,0.17}$ & $70.20{\color{black!60}\,\pm\,0.00}$ & $40.40{\color{black!60}\,\pm\,0.00}$ \\
- & Attention-only reader & $\mathbf{69.70}{\color{black!60}\,\pm\,0.17}$ & $65.97{\color{black!60}\,\pm\,0.12}$ & $70.20{\color{black!60}\,\pm\,0.00}$ & $42.30{\color{black!60}\,\pm\,0.00}$ \\
- & Metadata-only reader & $66.70{\color{black!60}\,\pm\,0.17}$ & $66.80{\color{black!60}\,\pm\,0.17}$ & $70.20{\color{black!60}\,\pm\,0.00}$ & $41.10{\color{black!60}\,\pm\,0.00}$ \\
-\rowcolor{tableours} & \method\ (Ours) & $\mathbf{69.70}{\color{black!60}\,\pm\,0.17}$ & $65.97{\color{black!60}\,\pm\,0.12}$ & $70.20{\color{black!60}\,\pm\,0.00}$ & $42.30{\color{black!60}\,\pm\,0.00}$ \\
+ & Full fine-tuning & $35.20{\color{black!80}\,\pm\,3.41}$ & $12.13{\color{black!80}\,\pm\,3.00}$ & $33.50{\color{black!80}\,\pm\,4.45}$ & $3.60{\color{black!80}\,\pm\,0.70}$ \\
+\rowcolor{tableours} & \method\ (Ours) & $\mathbf{69.70}{\color{black!80}\,\pm\,0.17}$ & $65.97{\color{black!80}\,\pm\,0.12}$ & $\mathbf{70.20}{\color{black!80}\,\pm\,0.00}$ & $\mathbf{42.30}{\color{black!80}\,\pm\,0.00}$ \\
 \bottomrule
 \end{tabular}
 \endgroup

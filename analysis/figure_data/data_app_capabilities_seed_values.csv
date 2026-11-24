@@ -1,8 +1,5 @@
 model,seed,method,dataset,query,n,correct,accuracy_percent,metric,source
 qwen3_4b,42,native,hotpot,hotpot,7405,3475,46.927751519243756,accuracy,outputs/qwen3_4b/seed42/evaluation/hotpot/summary.json
-qwen3_4b,42,head_tuning,hotpot,hotpot,7405,3548,47.913571910871035,accuracy,outputs/qwen3_4b/seed42/evaluation/hotpot/summary.json
-qwen3_4b,43,head_tuning,hotpot,hotpot,7405,3541,47.81904118838622,accuracy,outputs/qwen3_4b/seed43/evaluation/hotpot/summary.json
-qwen3_4b,44,head_tuning,hotpot,hotpot,7405,3541,47.81904118838622,accuracy,outputs/qwen3_4b/seed44/evaluation/hotpot/summary.json
 qwen3_4b,42,fullft,hotpot,hotpot,7405,1879,25.37474679270763,accuracy,outputs/qwen3_4b/seed42/evaluation_fullft/hotpot/summary.json
 qwen3_4b,43,fullft,hotpot,hotpot,7405,2079,28.075624577987845,accuracy,outputs/qwen3_4b/seed43/evaluation_fullft/hotpot/summary.json
 qwen3_4b,44,fullft,hotpot,hotpot,7405,1831,24.72653612424038,accuracy,outputs/qwen3_4b/seed44/evaluation_fullft/hotpot/summary.json
@@ -10,9 +7,6 @@ qwen3_4b,42,final,hotpot,hotpot,7405,3743,50.54692775151924,accuracy,outputs/qwe
 qwen3_4b,43,final,hotpot,hotpot,7405,3732,50.39837947332883,accuracy,outputs/qwen3_4b/seed43/evaluation/hotpot/summary.json
 qwen3_4b,44,final,hotpot,hotpot,7405,3732,50.39837947332883,accuracy,outputs/qwen3_4b/seed44/evaluation/hotpot/summary.json
 qwen3_8b,42,native,hotpot,hotpot,7405,3696,49.91222147197839,accuracy,outputs/qwen3_8b/seed42/evaluation/hotpot/summary.json
-qwen3_8b,42,head_tuning,hotpot,hotpot,7405,3978,53.7204591492235,accuracy,outputs/qwen3_8b/seed42/evaluation/hotpot/summary.json
-qwen3_8b,43,head_tuning,hotpot,hotpot,7405,3978,53.7204591492235,accuracy,outputs/qwen3_8b/seed43/evaluation/hotpot/summary.json
-qwen3_8b,44,head_tuning,hotpot,hotpot,7405,3978,53.7204591492235,accuracy,outputs/qwen3_8b/seed44/evaluation/hotpot/summary.json
 qwen3_8b,42,fullft,hotpot,hotpot,7405,2137,28.858879135719107,accuracy,outputs/qwen3_8b/seed42/evaluation_fullft/hotpot/summary.json
 qwen3_8b,43,fullft,hotpot,hotpot,7405,2611,35.25995948683322,accuracy,outputs/qwen3_8b/seed43/evaluation_fullft/hotpot/summary.json
 qwen3_8b,44,fullft,hotpot,hotpot,7405,2091,28.23767724510466,accuracy,outputs/qwen3_8b/seed44/evaluation_fullft/hotpot/summary.json
@@ -20,9 +14,6 @@ qwen3_8b,42,final,hotpot,hotpot,7405,3985,53.814989871708306,accuracy,outputs/qw
 qwen3_8b,43,final,hotpot,hotpot,7405,3985,53.814989871708306,accuracy,outputs/qwen3_8b/seed43/evaluation/hotpot/summary.json
 qwen3_8b,44,final,hotpot,hotpot,7405,3985,53.814989871708306,accuracy,outputs/qwen3_8b/seed44/evaluation/hotpot/summary.json
 llama3_8b,42,native,hotpot,hotpot,7405,3934,53.12626603646185,accuracy,outputs/llama3_8b/seed42/evaluation/hotpot/summary.json
-llama3_8b,42,head_tuning,hotpot,hotpot,7405,3205,43.281566509115464,accuracy,outputs/llama3_8b/seed42/evaluation/hotpot/summary.json
-llama3_8b,43,head_tuning,hotpot,hotpot,7405,3215,43.416610398379476,accuracy,outputs/llama3_8b/seed43/evaluation/hotpot/summary.json
-llama3_8b,44,head_tuning,hotpot,hotpot,7405,3215,43.416610398379476,accuracy,outputs/llama3_8b/seed44/evaluation/hotpot/summary.json
 llama3_8b,42,fullft,hotpot,hotpot,7405,425,5.739365293720459,accuracy,outputs/llama3_8b/seed42/evaluation_fullft/hotpot/summary.json
 llama3_8b,43,fullft,hotpot,hotpot,7405,607,8.197164078325455,accuracy,outputs/llama3_8b/seed43/evaluation_fullft/hotpot/summary.json
 llama3_8b,44,fullft,hotpot,hotpot,7405,554,7.481431465226199,accuracy,outputs/llama3_8b/seed44/evaluation_fullft/hotpot/summary.json
@@ -30,9 +21,6 @@ llama3_8b,42,final,hotpot,hotpot,7405,3749,50.62795408507765,accuracy,outputs/ll
 llama3_8b,43,final,hotpot,hotpot,7405,3742,50.53342336259284,accuracy,outputs/llama3_8b/seed43/evaluation/hotpot/summary.json
 llama3_8b,44,final,hotpot,hotpot,7405,3742,50.53342336259284,accuracy,outputs/llama3_8b/seed44/evaluation/hotpot/summary.json
 qwen3_4b,42,native,mmlu,mmlu,14042,9311,66.30821820253526,option_probability_accuracy,outputs/qwen3_4b/seed42/evaluation/mmlu/summary.json
-qwen3_4b,42,head_tuning,mmlu,mmlu,14042,9287,66.13730237857855,option_probability_accuracy,outputs/qwen3_4b/seed42/evaluation/mmlu/summary.json
-qwen3_4b,43,head_tuning,mmlu,mmlu,14042,9287,66.13730237857855,option_probability_accuracy,outputs/qwen3_4b/seed43/evaluation/mmlu/summary.json
-qwen3_4b,44,head_tuning,mmlu,mmlu,14042,9287,66.13730237857855,option_probability_accuracy,outputs/qwen3_4b/seed44/evaluation/mmlu/summary.json
 qwen3_4b,42,fullft,mmlu,mmlu,14042,5575,39.70232160660875,option_probability_accuracy,outputs/qwen3_4b/seed42/evaluation_fullft/mmlu/summary.json
 qwen3_4b,43,fullft,mmlu,mmlu,14042,6929,49.34482267483264,option_probability_accuracy,outputs/qwen3_4b/seed43/evaluation_fullft/mmlu/summary.json
 qwen3_4b,44,fullft,mmlu,mmlu,14042,6447,45.91226321036889,option_probability_accuracy,outputs/qwen3_4b/seed44/evaluation_fullft/mmlu/summary.json
@@ -40,9 +28,6 @@ qwen3_4b,42,final,mmlu,mmlu,14042,9287,66.13730237857855,option_probability_accu
 qwen3_4b,43,final,mmlu,mmlu,14042,9287,66.13730237857855,option_probability_accuracy,outputs/qwen3_4b/seed43/evaluation/mmlu/summary.json
 qwen3_4b,44,final,mmlu,mmlu,14042,9287,66.13730237857855,option_probability_accuracy,outputs/qwen3_4b/seed44/evaluation/mmlu/summary.json
 qwen3_8b,42,native,mmlu,mmlu,14042,9888,70.41731947016095,option_probability_accuracy,outputs/qwen3_8b/seed42/evaluation/mmlu/summary.json
-qwen3_8b,42,head_tuning,mmlu,mmlu,14042,9856,70.18943170488535,option_probability_accuracy,outputs/qwen3_8b/seed42/evaluation/mmlu/summary.json
-qwen3_8b,43,head_tuning,mmlu,mmlu,14042,9856,70.18943170488535,option_probability_accuracy,outputs/qwen3_8b/seed43/evaluation/mmlu/summary.json
-qwen3_8b,44,head_tuning,mmlu,mmlu,14042,9856,70.18943170488535,option_probability_accuracy,outputs/qwen3_8b/seed44/evaluation/mmlu/summary.json
 qwen3_8b,42,fullft,mmlu,mmlu,14042,8377,59.65674405355362,option_probability_accuracy,outputs/qwen3_8b/seed42/evaluation_fullft/mmlu/summary.json
 qwen3_8b,43,fullft,mmlu,mmlu,14042,6524,46.46061814556331,option_probability_accuracy,outputs/qwen3_8b/seed43/evaluation_fullft/mmlu/summary.json
 qwen3_8b,44,fullft,mmlu,mmlu,14042,7986,56.872240421592366,option_probability_accuracy,outputs/qwen3_8b/seed44/evaluation_fullft/mmlu/summary.json
@@ -50,9 +35,6 @@ qwen3_8b,42,final,mmlu,mmlu,14042,9857,70.1965531975502,option_probability_accur
 qwen3_8b,43,final,mmlu,mmlu,14042,9857,70.1965531975502,option_probability_accuracy,outputs/qwen3_8b/seed43/evaluation/mmlu/summary.json
 qwen3_8b,44,final,mmlu,mmlu,14042,9857,70.1965531975502,option_probability_accuracy,outputs/qwen3_8b/seed44/evaluation/mmlu/summary.json
 llama3_8b,42,native,mmlu,mmlu,14042,9346,66.55747044580544,option_probability_accuracy,outputs/llama3_8b/seed42/evaluation/mmlu/summary.json
-llama3_8b,42,head_tuning,mmlu,mmlu,14042,9050,64.44950861700613,option_probability_accuracy,outputs/llama3_8b/seed42/evaluation/mmlu/summary.json
-llama3_8b,43,head_tuning,mmlu,mmlu,14042,9050,64.44950861700613,option_probability_accuracy,outputs/llama3_8b/seed43/evaluation/mmlu/summary.json
-llama3_8b,44,head_tuning,mmlu,mmlu,14042,9050,64.44950861700613,option_probability_accuracy,outputs/llama3_8b/seed44/evaluation/mmlu/summary.json
 llama3_8b,42,fullft,mmlu,mmlu,14042,3521,25.07477567298106,option_probability_accuracy,outputs/llama3_8b/seed42/evaluation_fullft/mmlu/summary.json
 llama3_8b,43,fullft,mmlu,mmlu,14042,3212,22.874234439538526,option_probability_accuracy,outputs/llama3_8b/seed43/evaluation_fullft/mmlu/summary.json
 llama3_8b,44,fullft,mmlu,mmlu,14042,3411,24.291411479846175,option_probability_accuracy,outputs/llama3_8b/seed44/evaluation_fullft/mmlu/summary.json
@@ -60,9 +42,6 @@ llama3_8b,42,final,mmlu,mmlu,14042,9144,65.1189289275032,option_probability_accu
 llama3_8b,43,final,mmlu,mmlu,14042,9144,65.1189289275032,option_probability_accuracy,outputs/llama3_8b/seed43/evaluation/mmlu/summary.json
 llama3_8b,44,final,mmlu,mmlu,14042,9144,65.1189289275032,option_probability_accuracy,outputs/llama3_8b/seed44/evaluation/mmlu/summary.json
 qwen3_4b,42,native,gsm8k,gsm8k,1319,1180,89.46171341925701,accuracy,outputs/qwen3_4b/seed42/evaluation/gsm8k/summary.json
-qwen3_4b,42,head_tuning,gsm8k,gsm8k,1319,1141,86.5049279757392,accuracy,outputs/qwen3_4b/seed42/evaluation/gsm8k/summary.json
-qwen3_4b,43,head_tuning,gsm8k,gsm8k,1319,1141,86.5049279757392,accuracy,outputs/qwen3_4b/seed43/evaluation/gsm8k/summary.json
-qwen3_4b,44,head_tuning,gsm8k,gsm8k,1319,1148,87.03563305534496,accuracy,outputs/qwen3_4b/seed44/evaluation/gsm8k/summary.json
 qwen3_4b,42,fullft,gsm8k,gsm8k,1319,0,0.0,accuracy,outputs/qwen3_4b/seed42/evaluation_fullft/gsm8k/summary.json
 qwen3_4b,43,fullft,gsm8k,gsm8k,1319,0,0.0,accuracy,outputs/qwen3_4b/seed43/evaluation_fullft/gsm8k/summary.json
 qwen3_4b,44,fullft,gsm8k,gsm8k,1319,0,0.0,accuracy,outputs/qwen3_4b/seed44/evaluation_fullft/gsm8k/summary.json
@@ -70,9 +49,6 @@ qwen3_4b,42,final,gsm8k,gsm8k,1319,1145,86.8081880212282,accuracy,outputs/qwen3_
 qwen3_4b,43,final,gsm8k,gsm8k,1319,1145,86.8081880212282,accuracy,outputs/qwen3_4b/seed43/evaluation/gsm8k/summary.json
 qwen3_4b,44,final,gsm8k,gsm8k,1319,1157,87.71796815769522,accuracy,outputs/qwen3_4b/seed44/evaluation/gsm8k/summary.json
 qwen3_8b,42,native,gsm8k,gsm8k,1319,1187,89.99241849886278,accuracy,outputs/qwen3_8b/seed42/evaluation/gsm8k/summary.json
-qwen3_8b,42,head_tuning,gsm8k,gsm8k,1319,1194,90.52312357846854,accuracy,outputs/qwen3_8b/seed42/evaluation/gsm8k/summary.json
-qwen3_8b,43,head_tuning,gsm8k,gsm8k,1319,1194,90.52312357846854,accuracy,outputs/qwen3_8b/seed43/evaluation/gsm8k/summary.json
-qwen3_8b,44,head_tuning,gsm8k,gsm8k,1319,1194,90.52312357846854,accuracy,outputs/qwen3_8b/seed44/evaluation/gsm8k/summary.json
 qwen3_8b,42,fullft,gsm8k,gsm8k,1319,0,0.0,accuracy,outputs/qwen3_8b/seed42/evaluation_fullft/gsm8k/summary.json
 qwen3_8b,43,fullft,gsm8k,gsm8k,1319,0,0.0,accuracy,outputs/qwen3_8b/seed43/evaluation_fullft/gsm8k/summary.json
 qwen3_8b,44,fullft,gsm8k,gsm8k,1319,0,0.0,accuracy,outputs/qwen3_8b/seed44/evaluation_fullft/gsm8k/summary.json
@@ -80,9 +56,6 @@ qwen3_8b,42,final,gsm8k,gsm8k,1319,1198,90.82638362395754,accuracy,outputs/qwen3
 qwen3_8b,43,final,gsm8k,gsm8k,1319,1198,90.82638362395754,accuracy,outputs/qwen3_8b/seed43/evaluation/gsm8k/summary.json
 qwen3_8b,44,final,gsm8k,gsm8k,1319,1198,90.82638362395754,accuracy,outputs/qwen3_8b/seed44/evaluation/gsm8k/summary.json
 llama3_8b,42,native,gsm8k,gsm8k,1319,1135,86.05003790750568,accuracy,outputs/llama3_8b/seed42/evaluation/gsm8k/summary.json
-llama3_8b,42,head_tuning,gsm8k,gsm8k,1319,639,48.44579226686884,accuracy,outputs/llama3_8b/seed42/evaluation/gsm8k/summary.json
-llama3_8b,43,head_tuning,gsm8k,gsm8k,1319,639,48.44579226686884,accuracy,outputs/llama3_8b/seed43/evaluation/gsm8k/summary.json
-llama3_8b,44,head_tuning,gsm8k,gsm8k,1319,639,48.44579226686884,accuracy,outputs/llama3_8b/seed44/evaluation/gsm8k/summary.json
 llama3_8b,42,fullft,gsm8k,gsm8k,1319,0,0.0,accuracy,outputs/llama3_8b/seed42/evaluation_fullft/gsm8k/summary.json
 llama3_8b,43,fullft,gsm8k,gsm8k,1319,0,0.0,accuracy,outputs/llama3_8b/seed43/evaluation_fullft/gsm8k/summary.json
 llama3_8b,44,fullft,gsm8k,gsm8k,1319,0,0.0,accuracy,outputs/llama3_8b/seed44/evaluation_fullft/gsm8k/summary.json

@@ -53,7 +53,7 @@ The ranking in \cref{eq:ranking} uses discovery-only paired direct-target and co
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{figures/data_app_localization.pdf}
-  \caption{\textbf{Complete head-localization maps.} Color denotes the discovery mean difference in bridge-paragraph attention between the direct second-hop and composed questions, averaged over question-token rows. Marked cells identify the selected head set for each model. Layer and head indices are zero-based. The maps reveal the distribution of query-dependent evidence access across the model.}
+  \caption{\textbf{Head and layer localization of evidence access.} (a--c) Discovery mean differences in bridge-paragraph attention between direct second-hop and composed questions, averaged over question-token rows. Black boxes identify selected heads; indices are zero-based. (d--f) The mean and maximum head score in each layer, connecting the measured values without smoothing. Together the panels show how query-dependent evidence access is distributed across heads and layers.}
   \label{fig:localization}
 \end{figure}
 
@@ -112,17 +112,17 @@ Donor and receiver must have identical context-token prefixes and bridge-key pos
 
 \subsection{Readout and Content Diagnostics}
 
-\cref{tab:readouts} reports the full, attention-only, and metadata-only readouts both across all test sources and within native constituent-correct composition failures. Native and scoped readouts are fitted separately on features from their respective model states. The full readout improves from 80.3/83.9/91.9\% in the native state to 90.3/92.6/95.0\% in the adapted state. On native composition failures, accuracy rises from 72.2/74.6/86.0\% to 82.9/86.0/92.2\%. Attention-only readouts show the same improvement, reaching 89.6/91.2/94.3\% overall. Metadata accuracy stays at 43.5/43.5/44.1\%, so the improvement comes from the adapted attention features.
+\cref{tab:readouts} reports the full, attention-only, and metadata-only readouts both across all test sources and within native constituent-correct composition failures. Native and adapted-state readouts are fitted separately on features from their respective model states. The full readout improves from 80.3/83.9/91.9\% in the native state to 90.3/92.6/95.0\% in the adapted state. On native composition failures, accuracy rises from 72.2/74.6/86.0\% to 82.9/86.0/92.2\%. Attention-only readouts show the same improvement, reaching 89.6/91.2/94.3\% overall. Metadata accuracy stays at 43.5/43.5/44.1\%, so the improvement comes from the adapted attention features.
 
 \begin{table}[H]
   \centering
-  \caption{\textbf{Paragraph-address readout diagnostics.} Accuracy (\%) of training-fitted readouts. ``Failure subset'' is fixed by the native model: both constituents are correct and the composition is wrong. Native-state rows distinguish attention information from paragraph-length/title cues; scoped-state rows use the deployed model's own features. A common intercept would cancel in the paragraph softmax, so each readout has no bias parameter.}
+  \caption{\textbf{Paragraph-address readout diagnostics.} Accuracy (\%) of training-fitted readouts. ``Failure subset'' is fixed by the native model: both constituents are correct and the composition is wrong. Native-state rows distinguish attention information from paragraph-length/title cues; adapted-state rows use the deployed model's own features. A common intercept would cancel in the paragraph softmax, so each readout has no bias parameter.}
   \label{tab:readouts}
   \small\setlength{\tabcolsep}{6pt}
   \input{tables/readout_diagnostics}
 \end{table}
 
-\cref{tab:content} provides all content-exchange outcomes. Edited-value following and obsolete-answer persistence are measured against disjoint alias sets; joint accuracy additionally requires that the same source be answered correctly before the exchange. The joint measure captures correct answers in both versions of the same example. All displayed content metrics agree across the three recorded runs. Annotated bridge-mass calibration increases following by 9/2/20 points over Native. The complete repair increases following by 51/41/48 points and joint accuracy by 54/43/48 points. Relative to scoped adaptation, it reduces obsolete-answer persistence from 17/23/16\% to 9/7/4\%, linking evidence selection to more consistent updates.
+\cref{tab:content} provides all content-exchange outcomes. Edited-value following and obsolete-answer persistence are measured against disjoint alias sets; joint accuracy additionally requires that the same source be answered correctly before the exchange. The joint measure captures correct answers in both versions of the same example. All displayed content metrics agree across the three recorded runs. Annotated bridge-mass calibration increases following by 9/2/20 points over Native. The complete repair increases following by 51/41/48 points and joint accuracy by 54/43/48 points. Relative to adaptation with restoration, it reduces obsolete-answer persistence from 17/23/16\% to 9/7/4\%, linking evidence selection to more consistent updates.
 
 \begin{table}[H]
   \centering
@@ -141,62 +141,70 @@ Titles and question text are Unicode-normalized, case-folded, and split into wor
 
 On the 1,000 composed test questions, there are 75 inapplicable/no-candidate cases, 822 unique-candidate cases, and 103 ambiguous cases. The latter comprise 86 two-candidate, 16 three-candidate, and one four-candidate case. The annotated bridge appears among candidates for 918 questions; the unique candidate is correct in 817/822 cases. Unique candidates are selected without a readout pass. For ambiguity, the full-context composed prefill supplies attention features, and the maximum-scoring candidate is selected. The retained root and candidate paragraphs preserve their original order. Inapplicable inputs preserve their complete context.
 
-\cref{tab:ambiguity} isolates the 103 ambiguous cases. The graph-first policy chooses the first outgoing candidate, while the readout policies change only this choice under the same scoped model. Full-reader bridge selection succeeds on 95/96/98 cases, compared with 37 for graph-first. Attention-only selection succeeds on 94/97/97, and metadata-only on 57/57/59. Full and attention-only readouts yield the same composed EM on the full panel, with some differences in bridge choices and individual answers. Their shared aggregate gain shows that the attention features suffice for effective disambiguation. Relative to scoped adaptation on these ambiguous questions, the full repair adds 10.4/5.8/3.6 points of composed accuracy.
+\cref{tab:ambiguity} isolates the 103 ambiguous cases. The input-order control chooses the first outgoing candidate; the readout conditions change only this choice under the same adapted model. Full-reader bridge selection succeeds on 95/96/98 cases, compared with 37 for input-order selection. Attention-only selection succeeds on 94/97/97, and metadata-only on 57/57/59. Full and attention-only readouts yield the same composed EM on the full panel, with some differences in bridge choices and individual answers. Their shared aggregate gain shows that the attention features suffice for effective disambiguation. Relative to adaptation with restoration on these ambiguous questions, the full repair adds 10.4/5.8/3.6 points of composed accuracy.
 
 \begin{table}[H]
   \centering
-  \caption{\textbf{Where the attention readout changes evidence selection.} Results on the 103 composed questions whose input-derived graph has multiple candidates. Every policy uses the same scoped model and retains the root plus one candidate paragraph. Bridge accuracy is evaluated against annotations only after selection. Values are percentages, mean $\pm$ sample SD. The full repair and graph-first produce identical generated token sequences on all other 897 questions in every recorded run.}
+  \caption{\textbf{Where the attention readout changes evidence selection.} Results on the 103 composed questions whose input-derived graph has multiple candidates. Every ranking condition uses the same adapted model and retains the root plus one candidate paragraph. Bridge accuracy is evaluated against annotations only after selection. Values are percentages, mean $\pm$ sample SD. The full readout and input-order control produce identical generated token sequences on all other 897 questions in every recorded run.}
   \label{tab:ambiguity}
   \small\setlength{\tabcolsep}{8pt}
   \input{tables/ambiguous_selection}
 \end{table}
 
-\subsection{All Constituents and Component Ablations}
+\subsection{Complete Reasoning Triplets}
 
-\cref{tab:core_complete} reports all three query types and their joint accuracy for every variant. \cref{fig:ablations} compares the component variants on composed accuracy. The native-evidence-filtering variant uses a native-state reader and the native model; all variants built from selected-head adaptation share its checkpoint. The scoped variant changes the fixed restoration rule; graph-first, full-reader, attention-only, and metadata-only variants then use that same scoped model. This organization distinguishes gains from adapting answer computation, selecting paragraphs, and resolving candidate ambiguity.
-
-\paragraph{Constituent and joint improvements.} Evidence filtering alone improves composed accuracy by 20.3/18.9/17.0 points and all-three accuracy by 10.8/11.2/13.7 points over Native. Selected-head tuning improves second-hop accuracy by 14.2/15.7/9.9 points. Adding fixed restoration improves first-hop accuracy over head tuning by 5.0/2.4/27.3 points and all-three accuracy by 2.4/0.8/17.5 points. The complete repair reaches 41.3/45.4/42.3\% all-three accuracy, compared with 22.3/22.6/25.8\% natively. The highest all-three scores are 41.8\% for Qwen3-4B and 42.5\% for Llama under scoped adaptation, and 45.4\% for Qwen3-8B under the complete repair. Complete first-hop, second-hop, and composed scores appear together in \cref{tab:core_complete}.
+\cref{tab:core_complete} compares the native model, full fine-tuning, and \method\ on all three query types and their joint accuracy. \method\ raises composed accuracy by 39.9/38.0/33.3 points and second-hop accuracy by 14.7/15.7/11.6 points over Native. All-three accuracy reaches 41.3/45.4/42.3\%, compared with 22.3/22.6/25.8\% natively. First-hop accuracy is 69.8/73.4/66.0\%, against native 87.2/86.0/85.2\%.
 
 \begin{table}[H]
   \centering
-  \caption{\textbf{Complete contextual reasoning results.} Completed-answer EM (\%) on all 1,000 sources per query type. ``All three'' requires a source's composed, first-hop, and second-hop answers to be correct. Values are mean $\pm$ sample SD over three recorded runs; Native is measured once. The displayed dispersion follows the conventions in \cref{app:uncertainty}.}
+  \caption{\textbf{Complete contextual reasoning results.} Completed-answer EM (\%) on all 1,000 sources per query type. ``All three'' requires a source's composed, first-hop, and second-hop answers to be correct. Values are mean $\pm$ sample SD over three recorded runs; Native is measured once.}
   \label{tab:core_complete}
   \small\setlength{\tabcolsep}{4pt}
   \input{tables/complete_core}
 \end{table}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{figures/data_app_ablation.pdf}
-  \caption{\textbf{Component ablations on composed questions.} Completed-answer accuracy on 1,000 test sources. Points summarize recorded-run means and error bars show sample SD under the conventions of \cref{app:uncertainty}. Attention-only and full readouts coincide on composed accuracy, while metadata-only selection is weaker. Complete constituent and joint outcomes appear in \cref{tab:core_complete}.}
-  \label{fig:ablations}
-\end{figure}
+\subsection{Component Interventions}
+\label{app:components}
 
-\paragraph{Composition within each model's correct-constituent set.} \Cref{tab:conditional_composition} applies \cref{eq:cfr} to every model variant. \method\ reduces the conditional composition failure rate from 51.2/51.1/48.5\% to 11.6/10.8/8.6\%. Each row uses that variant's own set of correctly answered constituent pairs; the table reports both the population size and number of failed compositions. The fixed-native-population analysis below follows the original failures and successes across variants.
+\cref{tab:component_ablation} measures composed accuracy while enabling or disabling four operations: head adaptation, native-projection restoration, evidence selection, and candidate ranking. All adapted configurations share one checkpoint per model/run. Restoration changes only its fixed prefill rule; selection changes the supplied paragraphs; ranking changes the chosen candidate when the input graph is ambiguous. The selection-only configuration uses the native model and a native-state reader. These interventions test how each operation contributes to the complete procedure.
+
+\paragraph{Evidence selection and answer computation.} Selecting evidence for the native model raises composed accuracy by 20.3/18.9/17.0 points and all-three accuracy by 10.8/11.2/13.7 points. Head adaptation alone raises second-hop accuracy by 14.2/15.7/9.9 points. Combining adaptation with restoration gives composed accuracy of 60.4/60.9/66.3\%; adding the selector and full reader brings a further 6.4/6.3/3.4 points. Attention-only and full candidate ranking yield the same composed EM, while metadata ranking gives 64.0/64.6/66.7\%. The attention signal therefore accounts for the reader's composed-accuracy gain.
+
+\paragraph{Projection restoration.} Under the original full contexts, restoring native projection contributions raises first-hop accuracy by 5.0/2.4/27.3 points and all-three accuracy by 2.4/0.8/17.5 points over head adaptation alone (\cref{fig:ablations}). Its all-three scores are 41.8/42.4/42.5\%; the complete selector changes these to 41.3/45.4/42.3\%. On Llama GSM8K, where evidence selection is inapplicable, restoration raises numerical accuracy from 48.45\% to 80.36\% and valid final-answer formatting from 58.61\% to 96.36\%. Llama MMLU also rises from 64.45\% to 65.12\%. On HotpotQA, the complete procedure improves on head adaptation by 7.19 points in EM and raises F1 from 56.87\% to 64.31\%. Qwen3-4B's generated-letter MMLU accuracy is 42.24\% with head adaptation and 33.91\% with restoration, both above the native 7.92\%; the primary MMLU metric uses option probabilities.
 
 \begin{table}[H]
   \centering
-  \caption{\textbf{Conditional composition failure across model variants.} Every method answers all 1,000 triplets. The constituent-correct count is the number of sources with both constituent answers correct, and failed compositions are counted within that set. The conditional failure rate in \cref{eq:cfr} is computed within each run before averaging. Displayed counts are run means, and failure rates are mean $\pm$ sample SD across three recorded runs; Native is measured once.}
+  \caption{\textbf{Component interventions in CoReTrace.} Completed composed-answer EM (\%) on the same 1,000 sources, mean $\pm$ sample SD. Checkmarks indicate enabled operations; adapted configurations share one trained checkpoint. Candidate ranking uses paragraph order or the indicated training-fitted features; ``Full'' combines attention and metadata. Yellow marks the complete configuration. Constituent and joint effects are explained above and in \cref{fig:ablations}.}
+  \label{tab:component_ablation}
+  \small\setlength{\tabcolsep}{3pt}
+  \input{tables/component_ablation}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{figures/data_app_ablation.pdf}
+  \caption{\textbf{Fixed projection restoration recovers capabilities after head adaptation.} First-hop and all-three accuracy use the same original contexts on 1,000 test triplets, with evidence selection disabled in both conditions. GSM8K uses all 1,319 test questions and has no evidence selector. The two conditions share the trained head slices and differ only in the fixed native-projection restoration rule. Numbers above pairs are gains in percentage points; error bars show recorded-run sample SD.}
+  \label{fig:ablations}
+\end{figure}
+
+\subsection{Conditional Composition and Recovery}
+
+\Cref{tab:conditional_composition} connects two views of composition failure. Panel (a) conditions on the correctly answered constituent pairs of each model state: the failure rate falls from 51.2/51.1/48.5\% natively to 11.6/10.8/8.6\% under \method. Counts and failure rates are computed within each run before averaging.
+
+Panel (b) holds the native population fixed. Its 457/462/501 sources contain 234/236/243 failures and 223/226/258 successes. \method\ repairs 189/191/189 failures (80.8/80.9/77.8\%) and retains 94.6/92.9/95.1\% of native successes. Fixed-population accuracy rises from 48.8/48.9/51.5\% to 87.5/86.8/86.7\%. Under the input-order ranking control, failure recovery is lower by 6.4/6.4/4.9 points and success retention by 4.0/3.5/6.6 points. Thus, attention-based disambiguation improves recovery while preserving more original successes.
+
+\begin{table}[H]
+  \centering
+  \caption{\textbf{Conditional composition and recovery of native errors.} (a) Each model state's own constituent-correct set, with run-mean population and failure counts; conditional failure rates are computed per run before averaging. (b) Fixed native constituent-correct populations. Recovery counts corrected native failures; retention counts native successes that remain correct; fixed-population accuracy covers both groups. Percentages are mean $\pm$ sample SD; Native is measured once.}
   \label{tab:conditional_composition}
+  \label{tab:fixed_population}
   \small\setlength{\tabcolsep}{5pt}
   \input{tables/conditional_composition}
 \end{table}
 
-\subsection{Recovery on Fixed Native Populations}
-
-\Cref{tab:fixed_population} follows the same native constituent-correct sources through every intervention. The populations contain 457/462/501 sources, including 234/236/243 failed compositions and 223/226/258 successful compositions. \method\ repairs 189/191/189 failures, corresponding to 80.8/80.9/77.8\%, and retains 94.6/92.9/95.1\% of native successes. Accuracy within these fixed populations rises from 48.8/48.9/51.5\% to 87.5/86.8/86.7\%. The complete repair has the highest recovery rate across the compared variants, with gains of 6.4/6.4/4.9 points over graph-first selection. Its retention of native successes also exceeds graph-first by 4.0/3.5/6.6 points. These paired outcomes link the full-panel improvement to recovery of the original composition errors.
-
-\begin{table}[H]
-  \centering
-  \caption{\textbf{Repair and retention on fixed native populations.} All populations are selected once using the native model. Failure recovery is the percentage of native failed compositions corrected by each method; success retention is the percentage of native successful compositions remaining correct; fixed-set accuracy is composed accuracy among all sources with both native constituents correct. Percentages summarize three recorded runs with mean $\pm$ sample SD.}
-  \label{tab:fixed_population}
-  \small\setlength{\tabcolsep}{5pt}
-  \input{tables/fixed_population}
-\end{table}
-
 \subsection{General Capabilities}
 
-\cref{tab:capability_full,fig:capability_detail} provide complete-split results and recorded-run dispersion. For MMLU and GSM8K there are no titled evidence paragraphs, so evidence selection is inapplicable; differences between head tuning and the final procedure arise from the scoped model. HotpotQA contains titled evidence and exercises the complete selector/model combination. Fixed restoration raises Llama GSM8K from 48.45\% under head tuning to 80.36\%, recovering 31.92 points. MMLU also improves from 64.45\% to 65.12\%. The native references are 86.05\% and 66.56\%, respectively. On HotpotQA, the complete repair raises Llama head tuning from 43.37\% to 50.56\%, a 7.19-point gain. Qwen3-4B and Qwen3-8B improve over Native on HotpotQA by 3.52 and 3.90 points; Qwen3-8B also gains 0.83 points on GSM8K. Qwen MMLU differs from Native by 0.17 and 0.22 points.
+\cref{tab:capability_full,fig:capability_detail} provide complete-split results and recorded-run dispersion. MMLU and GSM8K use the adapted model with fixed restoration; HotpotQA additionally exercises evidence selection. Qwen3-4B and Qwen3-8B improve over Native on HotpotQA by 3.52 and 3.90 points; Qwen3-8B also gains 0.83 points on GSM8K. Qwen MMLU changes by $-0.17/-0.22$ points. Llama changes by $-2.56/-1.44/-5.69$ points on HotpotQA/MMLU/GSM8K. The restoration intervention in \cref{app:components} explains how the procedure recovers capabilities affected by head adaptation.
 
 Full-model fine-tuning uses the same 2,000 composed examples and the recipe in \cref{app:protocol}. \method\ exceeds it on composed accuracy by 9.67/12.03/34.50 points and on MMLU by 21.15/15.87/41.04 points. All nine full fine-tuning GSM8K runs produce 1,319 format failures and zero scored answers, with mostly very short responses lacking the required final-answer delimiter. \cref{tab:secondary_qa,tab:mmlu_generation} report completion and formatting alongside answer metrics.
 
@@ -211,15 +219,15 @@ Full-model fine-tuning uses the same 2,000 composed examples and the recipe in \
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{figures/data_app_capabilities.pdf}
-  \caption{\textbf{General capabilities across adaptation methods.} Columns show models and rows show the three complete benchmark splits. Bars report absolute accuracy, with recorded-run SD; annotations give \method's percentage-point change from Native. Fixed restoration recovers 31.92 points on Llama GSM8K over head tuning, and the complete repair improves Qwen HotpotQA over Native. Full fine-tuning's GSM8K score accompanies zero valid final-answer lines.}
+  \caption{\textbf{General capabilities across complete benchmark splits.} Panels show HotpotQA, MMLU, and GSM8K; each model group compares Native, full fine-tuning, and \method. Bars report absolute accuracy with recorded-run SD. The complete repair improves both Qwen models on HotpotQA over Native. Full fine-tuning's zero GSM8K accuracy accompanies zero valid final-answer lines.}
   \label{fig:capability_detail}
 \end{figure}
 
 \subsection{Answer Quality and Output-Format Adaptation}
 
-\paragraph{Evidence-based answer quality.} The text metrics in \cref{tab:secondary_qa} extend the exact-match results. Qwen3-4B and Qwen3-8B HotpotQA F1 rise from 60.16/63.29\% to 65.13/67.98\%. For Llama, the complete repair raises head-tuning F1 from 56.87\% to 64.31\%, alongside the 7.19-point exact-match recovery. HotpotQA completion reaches 99.93/99.93/99.97\% across the three final models.
+\paragraph{Evidence-based answer quality.} The text metrics in \cref{tab:secondary_qa} extend the exact-match results. Qwen3-4B and Qwen3-8B HotpotQA F1 rise from 60.16/63.29\% to 65.13/67.98\%. HotpotQA completion reaches 99.93/99.93/99.97\% across the three final models.
 
-\paragraph{Mathematical answer formatting.} Fixed restoration raises Llama's valid GSM8K final-answer rate from 58.61\% under head tuning to 96.36\%, accompanying the increase in numerical accuracy from 48.45\% to 80.36\%. Qwen3-8B improves valid answer formatting from native 95.98\% to 96.82\% and completion from 98.79\% to 99.39\%. The complete format and EOS metrics appear alongside the QA text metrics in \cref{tab:secondary_qa}.
+\paragraph{Mathematical answer formatting.} Llama produces a valid GSM8K final-answer line on 96.36\% of test questions. Qwen3-8B improves valid answer formatting from native 95.98\% to 96.82\% and completion from 98.79\% to 99.39\%. The complete format and EOS metrics appear alongside the QA text metrics in \cref{tab:secondary_qa}.
 
 \begin{table}[H]
   \centering
@@ -229,7 +237,7 @@ Full-model fine-tuning uses the same 2,000 composed examples and the recipe in \
   \input{tables/secondary_qa_metrics}
 \end{table}
 
-\paragraph{Multiple-choice generation.} \Cref{tab:mmlu_generation} reports generated-letter accuracy and formatting on MMLU in addition to the primary option-probability metric. Generated-letter accuracy increases from 7.92/67.06/54.54\% natively to 33.91/69.78/65.11\% under \method. The corresponding valid-format rates rise from 12.58/95.61/84.14\% to 51.27/99.44/99.99\%. These changes show improved adherence to the requested answer format. Subject-macro generated-letter accuracy rises from 9.04/69.55/55.20\% to 37.30/72.49/65.66\%; the complete table also reports macro option-probability accuracy. Head tuning achieves the highest Qwen3-4B generated-letter accuracy at 42.24\%, while the full repair leads the adapted variants for Qwen3-8B and Llama at 69.78\% and 65.11\%.
+\paragraph{Multiple-choice generation.} \Cref{tab:mmlu_generation} reports generated-letter accuracy and formatting on MMLU in addition to the primary option-probability metric. Generated-letter accuracy increases from 7.92/67.06/54.54\% natively to 33.91/69.78/65.11\% under \method. The corresponding valid-format rates rise from 12.58/95.61/84.14\% to 51.27/99.44/99.99\%. These changes show improved adherence to the requested answer format. Subject-macro generated-letter accuracy rises from 9.04/69.55/55.20\% to 37.30/72.49/65.66\%; the complete table also reports macro option-probability accuracy.
 
 \begin{table}[H]
   \centering

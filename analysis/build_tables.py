@@ -15,11 +15,11 @@ OUT = ROOT / 'paper' / 'tables'
 OUT.mkdir(parents=True, exist_ok=True)
 MODELS = ['qwen3_4b', 'qwen3_8b', 'llama3_8b']
 NAMES = {'qwen3_4b': 'Qwen3-4B', 'qwen3_8b': 'Qwen3-8B', 'llama3_8b': 'Llama-3.1-8B'}
-METHODS = {'native': 'Native', 'FullFT': 'Full fine-tuning', 'native_text': 'Evidence filtering',
-           'head_tuning': 'Head tuning', 'scoped_body': 'Scoped adaptation',
-           'graphfirst': 'Graph-first selection',
-           'final_attention': 'Attention-only reader',
-           'final_metadata': 'Metadata-only reader', 'final': r'\method\ (Ours)'}
+METHODS = {'native': 'Native', 'FullFT': 'Full fine-tuning',
+           'final': r'\method\ (Ours)'}
+BENCHMARK_METHODS = ['native', 'FullFT', 'final']
+ABLATION_METHODS = ['native', 'native_text', 'head_tuning', 'scoped_body',
+                    'graphfirst', 'final_metadata', 'final_attention', 'final']
 ROWS = list(csv.DictReader((ROOT/'outputs/tables/tables.csv').open()))
 INPUTS = {'outputs/tables/tables.csv'}
 
@@ -40,7 +40,7 @@ def cell(r, bold=False, sd=True, digits=1):
     if bold:
         val = r'\mathbf{'+val+'}'
     if sd and r.get('sample_std_accuracy'):
-        val += r'{\color{black!60}\,\pm\,'+f"{100*float(r['sample_std_accuracy']):.{digits}f}"+'}'
+        val += r'{\color{black!80}\,\pm\,'+f"{100*float(r['sample_std_accuracy']):.{digits}f}"+'}'
     return '$'+val+'$'
 
 def save(name, text):
@@ -63,7 +63,7 @@ def shaded(method):
 def metric(value, bold=False, digits=1, sd=None):
     s=f'{value:.{digits}f}'
     if bold:s=r'\mathbf{'+s+'}'
-    if sd is not None:s+=r'{\color{black!60}\,\pm\,'+f'{sd:.{digits}f}'+'}'
+    if sd is not None:s+=r'{\color{black!80}\,\pm\,'+f'{sd:.{digits}f}'+'}'
     return '$'+s+'$'
 
 def delta(value, digits=1):
@@ -75,13 +75,13 @@ def best(model, method, methods, benchmark='core', query='composed'):
     return abs(v-max(float(row(model,k,benchmark,query)['mean_accuracy']) for k in methods))<1e-10
 
 def main_results():
-    methods=['native','FullFT','native_text','head_tuning','scoped_body','graphfirst','final']
+    methods=BENCHMARK_METHODS
     s=[r'\begin{tabular}{lrrrrrr}',r'\toprule',
        line(['',r'\multicolumn{2}{c}{\textbf{Qwen3-4B}}',r'\multicolumn{2}{c}{\textbf{Qwen3-8B}}',r'\multicolumn{2}{c}{\textbf{Llama-3.1-8B}}']),
        r'\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}',
        header(['Method',r'Composed $\uparrow$',r'All three $\uparrow$',r'Composed $\uparrow$',r'All three $\uparrow$',r'Composed $\uparrow$',r'All three $\uparrow$']),r'\midrule']
     for method in methods:
-        if method=='head_tuning': s+=section('Mechanistically informed adaptation',7)
+        if method=='final': s+=section('Mechanistically informed adaptation',7)
         cells=[]
         for model in MODELS:
             for query in ['composed','all3']:
@@ -95,43 +95,71 @@ def main_results():
     save('main_results.tex','\n'.join(s))
 
 def retention():
-    methods=['native','FullFT','head_tuning','final']
-    s=[r'\begin{tabular}{lrrrrrrrrr}',r'\toprule',
-       line(['',r'\multicolumn{3}{c}{\textbf{Qwen3-4B}}',r'\multicolumn{3}{c}{\textbf{Qwen3-8B}}',r'\multicolumn{3}{c}{\textbf{Llama-3.1-8B}}']),
-       r'\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}',
-       header(['Method']+['Hotpot','MMLU','GSM8K']*3),r'\midrule']
-    for method in methods:
-        if method=='head_tuning':s+=section('Mechanistically informed adaptation',10)
-        cells=[]
-        for model in MODELS:
-            for b in ['hotpot','mmlu','gsm8k']:
-                r=row(model,method,b,b)
-                cells.append(cell(r,bold=best(model,method,methods,b,b),sd=False,digits=2))
-        label=r'\textbf{'+METHODS[method]+'}' if method=='final' else METHODS[method]
-        s.append(shaded(method)+line([label]+cells))
-    gains=[100*(float(row(m,'final',b,b)['mean_accuracy'])-float(row(m,'head_tuning',b,b)['mean_accuracy'])) for m in MODELS for b in ['hotpot','mmlu','gsm8k']]
-    s.append(line([r'\textit{Gain over head tuning (pp)}']+[delta(g,2) for g in gains]))
+    methods=['native','final']
+    benchmarks=['hotpot','mmlu','gsm8k']
+    s=[r'\begin{tabular}{@{}lrrr@{}}',r'\toprule',
+       header(['Model / intervention',r'HotpotQA $\uparrow$',r'MMLU $\uparrow$',r'GSM8K $\uparrow$']),r'\midrule']
+    for model in MODELS:
+        for method in methods:
+            label=NAMES[model] if method=='native' else r'+ \method\ (Ours)'
+            vals=[cell(row(model,method,b,b),bold=best(model,method,methods,b,b),sd=False,digits=2)
+                  for b in benchmarks]
+            s.append(shaded(method)+line([label]+vals))
+        gains=[100*(float(row(model,'final',b,b)['mean_accuracy'])-
+                    float(row(model,'native',b,b)['mean_accuracy'])) for b in benchmarks]
+        s.append(line([r'\textit{Change (pp)}']+[delta(g,2) for g in gains]))
+        if model!=MODELS[-1]:s.append(r'\midrule')
     s += [r'\bottomrule',r'\end{tabular}']
     save('main_retention.tex','\n'.join(s))
 
 def complete_core():
     s=[r'\begin{tabular}{llrrrr}',r'\toprule',header(['Model','Method','Composed','First hop','Second hop','All three']),r'\midrule']
     for model in MODELS:
-        for i,method in enumerate(METHODS):
+        for i,method in enumerate(BENCHMARK_METHODS):
             s.append(shaded(method)+line([NAMES[model] if i==0 else '',METHODS[method]]+
-                          [cell(row(model,method,query=q),bold=best(model,method,list(METHODS),query=q),digits=2) for q in ['composed','direct_first','direct_target','all3']]))
+                          [cell(row(model,method,query=q),bold=best(model,method,BENCHMARK_METHODS,query=q),digits=2) for q in ['composed','direct_first','direct_target','all3']]))
         if model!=MODELS[-1]:s.append(r'\midrule')
     s += [r'\bottomrule',r'\end{tabular}']
     save('complete_core.tex','\n'.join(s))
 
+def component_ablation():
+    """One controlled factor table contains all internal component settings."""
+    check=r'$\checkmark$';off=r'--'
+    factors={
+        'native':[off,off,off,'--'],
+        'native_text':[off,off,check,'Full'],
+        'head_tuning':[check,off,off,'--'],
+        'scoped_body':[check,check,off,'--'],
+        'graphfirst':[check,check,check,'Paragraph order'],
+        'final_metadata':[check,check,check,'Metadata'],
+        'final_attention':[check,check,check,'Attention'],
+        'final':[check,check,check,r'\textbf{Full (Ours)}'],
+    }
+    s=[r'\begin{tabular}{ccclrrr}',r'\toprule',
+       line([r'\multicolumn{4}{c}{\textbf{Components enabled}}',
+             r'\multicolumn{3}{c}{\textbf{Composed EM (\%) $\uparrow$}}']),
+       r'\cmidrule(lr){1-4}\cmidrule(lr){5-7}',
+       header([r'\shortstack{Head\\adaptation}',r'\shortstack{V/O\\restoration}',
+               r'\shortstack{Evidence\\selection}','Candidate ranking',
+               *[NAMES[model] for model in MODELS]]),r'\midrule']
+    for method in ABLATION_METHODS:
+        vals=[cell(row(model,method),bold=best(model,method,ABLATION_METHODS))
+              for model in MODELS]
+        s.append(shaded(method)+line(factors[method]+vals))
+    s += [r'\bottomrule',r'\end{tabular}']
+    save('component_ablation.tex','\n'.join(s))
+
 def ambiguity():
     data=read('analysis/internal/ambiguous_evidence.json')['rows']
-    s=[r'\begin{tabular}{llrr}',r'\toprule',header(['Model','Selection rule',r'Bridge address $\uparrow$',r'Composed EM $\uparrow$']),r'\midrule']
+    choices={'graphfirst':'Paragraph order', 'final_metadata':'Metadata features',
+             'final_attention':'Attention features', 'final':'Full features'}
+    s=[r'\begin{tabular}{llrr}',r'\toprule',header(['Model','Candidate ranking',r'Bridge address $\uparrow$',r'Composed EM $\uparrow$']),r'\midrule']
     for model in MODELS:
         for i,method in enumerate(['graphfirst','final_metadata','final_attention','final']):
             r=next(r for r in data if r['model']==model and r['method']==method)
             candidates=[x for x in data if x['model']==model and x['method'] in ['graphfirst','final_metadata','final_attention','final']]
-            s.append(shaded(method)+line([NAMES[model] if i==0 else '',METHODS[method],
+            shade=r'\rowcolor{tablebase}' if method=='graphfirst' else shaded(method)
+            s.append(shade+line([NAMES[model] if i==0 else '',choices[method],
                            metric(100*r['bridge_selection_accuracy'],r['bridge_selection_accuracy']==max(x['bridge_selection_accuracy'] for x in candidates)),
                            metric(100*r['answer_accuracy_mean'],r['answer_accuracy_mean']==max(x['answer_accuracy_mean'] for x in candidates),sd=100*r['answer_accuracy_sample_std'])]))
         if model!=MODELS[-1]:s.append(r'\midrule')
@@ -147,7 +175,7 @@ def readouts():
             r=next(r for r in data if r['directory']==f'outputs/{model}/{state}')
             allv=[100*r['recomputed'][f]['test']['correct']/r['recomputed'][f]['test']['n'] for f in ['full','attention','metadata']]
             sub=[100*r['native_composition_failure_readout'][f]['correct']/r['native_composition_failure_readout'][f]['n'] for f in ['full','attention','metadata']]
-            s.append((r'\rowcolor{tableours}' if i else r'\rowcolor{tablebase}')+line([NAMES[model] if not i else '', 'Native' if not i else 'Scoped adaptation']+[metric(x,bold=x==max(allv if j<3 else sub)) for j,x in enumerate(allv+sub)]))
+            s.append((r'\rowcolor{tableours}' if i else r'\rowcolor{tablebase}')+line([NAMES[model] if not i else '', 'Native' if not i else 'Adapted + restored']+[metric(x,bold=x==max(allv if j<3 else sub)) for j,x in enumerate(allv+sub)]))
         if model!=MODELS[-1]:s.append(r'\midrule')
     s += [r'\bottomrule',r'\end{tabular}']
     save('readout_diagnostics.tex','\n'.join(s))
@@ -169,9 +197,11 @@ def factorization():
     save('factorial_contrasts.tex','\n'.join(s))
 
 def content():
-    s=[r'\begin{tabular}{llrrrr}',r'\toprule',header(['Model','Method',r'Original EM $\uparrow$',r'Edited-value EM $\uparrow$',r'Old persistence $\downarrow$',r'Joint EM $\uparrow$']),r'\midrule']
-    names={'native':'Native','native_budget':'Mass calibration','body':'Scoped adaptation','final':METHODS['final']}
+    s=[r'\begin{tabular}{lrrrr}',r'\toprule',header(['Intervention',r'Original EM $\uparrow$',r'Edited-value EM $\uparrow$',r'Old persistence $\downarrow$',r'Joint EM $\uparrow$'])]
+    names={'native':'Native','native_budget':'Access calibration',
+           'body':'Adaptation + restoration','final':METHODS['final']}
     for model in MODELS:
+        s+=section(NAMES[model],5)
         ds=[read(f'outputs/{model}/seed{seed}/causal_content/summary.json')['summary'] for seed in [42,43,44]]
         for i,v in enumerate(names):
             ss=[next(r for r in d if r['variant']==v and r['pool']=='all_sources') for d in ds]
@@ -184,8 +214,7 @@ def content():
                     allmeans.append(stats.mean(100*r[key]/r['n'] for r in z))
                 optimum=min(allmeans) if key=='edited_old_persistence' else max(allmeans)
                 vals.append(metric(stats.mean(a),bold=abs(stats.mean(a)-optimum)<1e-10,sd=stats.stdev(a) if v in ['body','final'] else None))
-            s.append(shaded(v)+line([NAMES[model] if not i else '',names[v]]+vals))
-        if model!=MODELS[-1]:s.append(r'\midrule')
+            s.append(shaded(v)+line([names[v]]+vals))
     s += [r'\bottomrule',r'\end{tabular}']
     save('content_outcomes.tex','\n'.join(s))
 
@@ -202,7 +231,7 @@ def configurations():
 def per_run():
     s=[r'\begin{tabular}{llrrr}',r'\toprule',header(['Model','Method','Run 42','Run 43','Run 44']),r'\midrule']
     for m in MODELS:
-        for i,k in enumerate(['FullFT','head_tuning','scoped_body','graphfirst','final_metadata','final_attention','final']):
+        for i,k in enumerate(['FullFT','final']):
             a=[]
             for seed in [42,43,44]:
                 pipe='evaluation_fullft' if k=='FullFT' else 'evaluation'
@@ -216,7 +245,7 @@ def per_run():
 
 def capability_full():
     s=[r'\begin{tabular}{llrrr}',r'\toprule',header(['Model','Method','HotpotQA','MMLU','GSM8K']),r'\midrule']
-    methods=['native','FullFT','head_tuning','final']
+    methods=BENCHMARK_METHODS
     for m in MODELS:
         for i,k in enumerate(methods):
             s.append(shaded(k)+line([NAMES[m] if not i else '',METHODS[k]]+[cell(row(m,k,b,b),bold=best(m,k,methods,b,b),digits=2) for b in ['hotpot','mmlu','gsm8k']]))
@@ -226,7 +255,9 @@ def capability_full():
 def paired_effects():
     data=read('analysis/internal/clustered_contrasts.json')['models']
     s=[r'\begin{tabular}{lrrr}',r'\toprule',header(['Paired contrast']+[NAMES[m] for m in MODELS]),r'\midrule']
-    for key,label in [('repair_minus_native',r'\method\ $-$ Native'),('repair_minus_graphfirst',r'\method\ $-$ Graph-first'),('bridge_mass_minus_native','Bridge calibration $-$ Native')]:
+    for key,label in [('repair_minus_native',r'\method\ $-$ Native'),
+                      ('repair_minus_graphfirst','Full readout $-$ paragraph order'),
+                      ('bridge_mass_minus_native','Bridge calibration $-$ Native')]:
         vals=[]
         for m in MODELS:
             r=data[m][key];lo,hi=r['paired_cluster_CI95']
@@ -239,7 +270,7 @@ def efficiency():
     data=list(csv.DictReader((ROOT/rel).open()))
     s=[r'\begin{tabular}{llrrrrr}',r'\toprule',header(['Model','Method','Input tokens (M)','Output tokens (K)','Readout prefills','Batch sizes','Seconds']),r'\midrule']
     for m in MODELS:
-        for i,k in enumerate(['native','head_tuning','final','FullFT']):
+        for i,k in enumerate(BENCHMARK_METHODS):
             a=[r for r in data if r['model']==m and r['method']==k and r['benchmark']=='core']
             avg=lambda key:stats.mean(float(r[key]) for r in a)
             batches='/'.join(sorted({r['generation_batch_sizes'] for r in a}))
@@ -249,9 +280,10 @@ def efficiency():
     rel='outputs/tables/training_costs.csv';INPUTS.add(rel);data=list(csv.DictReader((ROOT/rel).open()))
     s=[r'\begin{tabular}{llrrrr}',r'\toprule',header(['Model','Training','Sources','Updates','Weights (M)','Seconds, mean (range)']),r'\midrule']
     for m in MODELS:
-        for i,k in enumerate(['head_tuning','FullFT']):
+        for i,k in enumerate(['FullFT','head_tuning']):
             a=[r for r in data if r['model']==m and r['method']==k];t=[float(r['seconds']) for r in a]
-            s.append((r'\rowcolor{tableours}' if k=='head_tuning' else '')+line([NAMES[m] if not i else '',METHODS[k],a[0]['sources'],a[0]['optimizer_steps'],f"{int(a[0]['trainable_parameters'])/1e6:.2f}",f'{stats.mean(t):.0f} ({min(t):.0f}--{max(t):.0f})']))
+            label=r'\method\ adaptation (Ours)' if k=='head_tuning' else METHODS[k]
+            s.append((r'\rowcolor{tableours}' if k=='head_tuning' else '')+line([NAMES[m] if not i else '',label,a[0]['sources'],a[0]['optimizer_steps'],f"{int(a[0]['trainable_parameters'])/1e6:.2f}",f'{stats.mean(t):.0f} ({min(t):.0f}--{max(t):.0f})']))
         if m!=MODELS[-1]:s.append(r'\midrule')
     s += [r'\bottomrule',r'\end{tabular}'];save('training_costs.tex','\n'.join(s))
 
@@ -259,40 +291,18 @@ def scoring_diagnostics():
     s=[r'\begin{tabular}{llrrrr}',r'\toprule',header(['Model','Method','Completed EM','Text EM','Text F1','EOS completion']),r'\midrule']
     for m in MODELS:
         results={}
-        for k in METHODS:
+        for k in BENCHMARK_METHODS:
             ds=[]
             for seed in ([42] if k=='native' else [42,43,44]):
                 pipe='evaluation_fullft' if k=='FullFT' else 'evaluation'
                 x=read(f'outputs/{m}/seed{seed}/{pipe}/core/summary.json')
                 ds.append(next(r for r in x['summary'] if r['method'].lower()==k.lower() and r['query']=='composed'))
             results[k]=[stats.mean(100*r['accuracy'] for r in ds),stats.mean(100*r['text_alias_correct']/r['n'] for r in ds),stats.mean(100*r['mean_text_f1'] for r in ds),stats.mean(100*r['eos_complete']/r['n'] for r in ds)]
-        for i,k in enumerate(METHODS):
+        for i,k in enumerate(BENCHMARK_METHODS):
             vals=results[k]
             s.append(shaded(k)+line([NAMES[m] if not i else '',METHODS[k]]+[metric(v,bold=abs(v-max(x[j] for x in results.values()))<1e-10,digits=2) for j,v in enumerate(vals)]))
         if m!=MODELS[-1]:s.append(r'\midrule')
     s += [r'\bottomrule',r'\end{tabular}'];save('scoring_diagnostics.tex','\n'.join(s))
-
-def fixed_population():
-    """Hold native constituent competence fixed for every compared intervention."""
-    data=read('analysis/internal/fixed_population_and_graph_analysis.json')
-    methods=['native','native_text','head_tuning','scoped_body','graphfirst','final_metadata','final_attention','final']
-    s=[r'\begin{tabular}{llrrr}',r'\toprule',
-       header(['Model','Method',r'\shortstack{Failures\\repaired $\uparrow$}',
-               r'\shortstack{Successes\\retained $\uparrow$}',r'\shortstack{Fixed-population\\accuracy $\uparrow$}']),r'\midrule']
-    for m in MODELS:
-        d=data[m];results={}
-        for method in methods:
-            runs=[v[method] for v in d['per_seed'].values() if method in v]
-            results[method]=[[100*r['rescued']/d['native_failures'],
-                             100*(d['native_known_solved']-r['lost'])/d['native_known_solved'],
-                             100*r['native_known_correct']/d['native_known']] for r in runs]
-        means={k:[stats.mean(r[j] for r in v) for j in range(3)] for k,v in results.items()}
-        for i,k in enumerate(methods):
-            vals=[metric(means[k][j],bold=abs(means[k][j]-max(v[j] for v in means.values()))<1e-10,
-                         sd=stats.stdev(r[j] for r in results[k]) if len(results[k])>1 else None) for j in range(3)]
-            s.append(shaded(k)+line([NAMES[m] if i==0 else '',METHODS[k]]+vals))
-        if m!=MODELS[-1]:s.append(r'\midrule')
-    s += [r'\bottomrule',r'\end{tabular}'];save('fixed_population.tex','\n'.join(s))
 
 def capability_runs(model, method, benchmark):
     rows=[]
@@ -303,14 +313,16 @@ def capability_runs(model, method, benchmark):
     return rows
 
 def conditional_composition():
-    """Report each method's complete conditional-composition population."""
+    """Pair conditional failure with recovery on the same native sources."""
+    methods=['native','final']
     s=[r'\begin{tabular}{llrrr}',r'\toprule',
+       r'\multicolumn{5}{l}{\textit{(a) Composition within the constituent-correct population of each model state}} \\',
        header(['Model','Method',r'\shortstack{Both constituents\\correct ($n$)}',
                r'\shortstack{Composition\\failures ($n$)}',
                r'\shortstack{Conditional failure\\rate (\%) $\downarrow$}']),r'\midrule']
     for m in MODELS:
         data={}
-        for k in METHODS:
+        for k in methods:
             ds=[]
             for seed in ([42] if k=='native' else [42,43,44]):
                 pipe='evaluation_fullft' if k=='FullFT' else 'evaluation'
@@ -318,7 +330,7 @@ def conditional_composition():
                 ds.append(next(r for r in x['conditional_composition'] if r['method'].lower()==k.lower()))
             data[k]=ds
         optimum=min(stats.mean(100*r['conditional_failure_rate'] for r in ds) for ds in data.values())
-        for i,k in enumerate(METHODS):
+        for i,k in enumerate(methods):
             ds=data[k]
             counts=[stats.mean(r[key] for r in ds) for key in ['both_constituents_correct','composition_failures']]
             rates=[100*r['conditional_failure_rate'] for r in ds]
@@ -326,10 +338,29 @@ def conditional_composition():
                        [f'{x:.1f}' for x in counts]+
                        [metric(stats.mean(rates),bold=abs(stats.mean(rates)-optimum)<1e-10,digits=2,sd=stats.stdev(rates) if len(rates)>1 else None)]))
         if m!=MODELS[-1]:s.append(r'\midrule')
+    s+=section('(b) Repair and retention on the fixed native constituent-correct population',5)
+    s += [header(['Model','Method',r'\shortstack{Failures\\repaired (\%) $\uparrow$}',
+                  r'\shortstack{Successes\\retained (\%) $\uparrow$}',
+                  r'\shortstack{Fixed-population\\accuracy (\%) $\uparrow$}']),r'\midrule']
+    data=read('analysis/internal/fixed_population_and_graph_analysis.json')
+    for m in MODELS:
+        d=data[m];results={}
+        for method in methods:
+            runs=[v[method] for v in d['per_seed'].values() if method in v]
+            if method=='native':runs=runs[:1]
+            results[method]=[[100*r['rescued']/d['native_failures'],
+                             100*(d['native_known_solved']-r['lost'])/d['native_known_solved'],
+                             100*r['native_known_correct']/d['native_known']] for r in runs]
+        means={k:[stats.mean(r[j] for r in v) for j in range(3)] for k,v in results.items()}
+        for i,k in enumerate(methods):
+            vals=[metric(means[k][j],bold=abs(means[k][j]-max(v[j] for v in means.values()))<1e-10,
+                         sd=stats.stdev(r[j] for r in results[k]) if len(results[k])>1 else None) for j in range(3)]
+            s.append(shaded(k)+line([NAMES[m] if i==0 else '',METHODS[k]]+vals))
+        if m!=MODELS[-1]:s.append(r'\midrule')
     s += [r'\bottomrule',r'\end{tabular}'];save('conditional_composition.tex','\n'.join(s))
 
 def secondary_capabilities():
-    methods=['native','FullFT','head_tuning','final']
+    methods=BENCHMARK_METHODS
     qa=[r'\begin{tabular}{llrrrrr}',r'\toprule',
         line(['','',r'\multicolumn{3}{c}{\textbf{HotpotQA}}',r'\multicolumn{2}{c}{\textbf{GSM8K}}']),
         r'\cmidrule(lr){3-5}\cmidrule(lr){6-7}',
@@ -341,7 +372,9 @@ def secondary_capabilities():
     report={}
     for m in MODELS:
         allqa={};allmm={}
-        for k in methods:
+        # Retain the component's complete metrics for the accompanying ablation
+        # discussion while displaying benchmark comparisons only in these tables.
+        for k in ['native','FullFT','head_tuning','final']:
             hot=capability_runs(m,k,'hotpot');gsm=capability_runs(m,k,'gsm8k');mmlu=capability_runs(m,k,'mmlu')
             allqa[k]=[stats.mean(100*r['text_alias_correct']/r['n'] for r in hot),
                       stats.mean(100*r['mean_text_f1'] for r in hot),
@@ -356,7 +389,7 @@ def secondary_capabilities():
         for i,k in enumerate(methods):
             for s,data in [(qa,allqa),(mm,allmm)]:
                 s.append(shaded(k)+line([NAMES[m] if i==0 else '',METHODS[k]]+
-                    [metric(v,bold=abs(v-max(a[j] for a in data.values()))<1e-10,digits=2) for j,v in enumerate(data[k])]))
+                    [metric(v,bold=abs(v-max(data[candidate][j] for candidate in methods))<1e-10,digits=2) for j,v in enumerate(data[k])]))
         if m!=MODELS[-1]:qa.append(r'\midrule');mm.append(r'\midrule')
         report[m]={'qa':allqa,'mmlu':allmm}
     for s,name in [(qa,'secondary_qa_metrics.tex'),(mm,'mmlu_generation_metrics.tex')]:
@@ -364,7 +397,9 @@ def secondary_capabilities():
     (ROOT/'analysis/figure_data/secondary_capabilities.json').write_text(json.dumps(report,indent=2)+'\n')
 
 def main():
-    for fn in [main_results,retention,complete_core,ambiguity,readouts,factorization,content,configurations,per_run,capability_full,paired_effects,efficiency,scoring_diagnostics,fixed_population,conditional_composition,secondary_capabilities]:fn()
+    for fn in [main_results,retention,complete_core,component_ablation,ambiguity,readouts,factorization,content,configurations,per_run,capability_full,paired_effects,efficiency,scoring_diagnostics,conditional_composition,secondary_capabilities]:fn()
+    # Its two reference populations are now shown together in one table.
+    (OUT/'fixed_population.tex').unlink(missing_ok=True)
     (ROOT/'analysis/figure_data').mkdir(exist_ok=True)
     (ROOT/'analysis/figure_data/table_inputs.json').write_text(json.dumps(sorted(INPUTS),indent=2)+'\n')
     print(f'Wrote {len(list(OUT.glob("*.tex")))} tables from {len(INPUTS)} source files to {OUT}')
