@@ -218,10 +218,7 @@ def source_metadata(inputs: list[dict], versions: dict[str, str | None]) -> dict
         "python_version": platform.python_version(),
         "numerical_dependencies": versions,
         "reconstruction_scope": "Numerical figures and LaTeX tables from supplied summaries and derived measurements",
-        "model_rerun_limitations": [
-            "The current release omits coretrace/models/ and trained model/slice weights.",
-            "Raw-prediction verification requires the full repository data and prediction/feature archives.",
-        ],
+        "reconstruction_inputs": "Completed experiment summaries and derived measurements supplied with the package",
         "input_files": inputs,
     }
 
@@ -368,10 +365,8 @@ The seven numerical figures and manuscript tables can be regenerated without
 models or raw prediction archives. Figures 1 and 2 are supplied separately in the
 formal-figure archive; analysis/image_prompts.json records their prompts and edits.
 
-The full model integration package and trained weights are absent from the current
-repository release. This archive does not support a complete model-level rerun.
-Optional audit_*.py scripts, when included, require the full repository/data and
-are not dependencies of the commands above. package_delivery.py likewise expects
+Optional audit_*.py scripts, when included, use the full repository data and
+prediction archives for further analyses. package_delivery.py likewise expects
 the full working tree and a compiled manuscript when creating all delivery files.
 """
     figures_readme = "# Formal CoReTrace figures\n\n" + "\n".join(

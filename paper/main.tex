@@ -4,7 +4,7 @@
 \usepackage{microtype}
 \usepackage{graphicx,subcaption,booktabs}
 \usepackage{amsmath,amssymb,mathtools}
-\usepackage{xcolor,multirow,array,enumitem}
+\usepackage{xcolor,colortbl,multirow,array,enumitem}
 \usepackage{xurl,hyperref}
 \usepackage{icml2027}
 \usepackage[capitalize,noabbrev]{cleveref}
@@ -14,6 +14,10 @@
 \definecolor{teal}{HTML}{087F8C}
 \definecolor{coral}{HTML}{D76B50}
 \definecolor{purple}{HTML}{6F5AA8}
+\definecolor{tableours}{HTML}{E5F2EF}
+\definecolor{tablebase}{HTML}{F0F1F2}
+\definecolor{gain}{HTML}{087F8C}
+\definecolor{loss}{HTML}{C75C4B}
 \icmltitlerunning{Evidence Access Shapes Local Reading}
 \begin{document}
 \lefthyphenmin=2
@@ -30,22 +34,29 @@
 ]
 \printAffiliationsAndNotice{}
 \begin{abstract}
-Language models can answer both constituent questions from the same evidence yet fail to compose their answers. Across three models, this happens on roughly half of the cases with correct constituent answers. We identify a gap between recoverable evidence location and effective evidence use: a training-fitted linear readout still identifies the bridge paragraph in 72.2--86.0\% of these failed compositions. Factorizing attention into paragraph access mass and a conditional distribution within the paragraph reveals that transferring a direct-hop reading pattern becomes more useful after calibrating access, with interaction estimates of 5--16 percentage points. After reciprocal fact exchanges preserving global word counts, repaired predictions follow changed local values in 76--80\% of cases, compared with 26--35\% natively. These findings motivate \method, which combines selected-head adaptation with input-derived evidence selection and fixed projection restoration. On 1,000 contextual reasoning triplets, composed accuracy increases from 26.9/29.2/36.4\% to 66.8/67.2/69.7\% for Qwen3-4B, Qwen3-8B, and Llama-3.1-8B, respectively, using 0.49--0.94\% trainable model parameters; the attention readout resolves ambiguous evidence with an extra input pass on only 10.3\% of composed questions. Complete constituent and capability evaluations expose the remaining tradeoffs, connecting a functional mechanism to a practical, inference-time annotation-free intervention.
+Language models can answer both constituent questions from the same evidence yet fail to compose their answers. Across three models, this happens on roughly half of the cases with correct constituent answers. We identify a gap between recoverable evidence location and effective evidence use: a training-fitted linear readout identifies the bridge paragraph in 72.2--86.0\% of these failed compositions. Factorizing attention into paragraph access mass and within-paragraph reading reveals that access calibration increases the benefit of direct-hop reading patterns, with interaction effects of 5--16 percentage points. After reciprocal fact exchanges preserving global word counts, repaired predictions follow changed local values in 76--80\% of cases, compared with 26--35\% natively. These findings motivate \method, which combines selected-head adaptation, input-derived evidence selection, and fixed projection restoration. On 1,000 contextual reasoning triplets, composed accuracy rises from 26.9/29.2/36.4\% to 66.8/67.2/69.7\% for Qwen3-4B, Qwen3-8B, and Llama-3.1-8B, using fewer than 1\% trainable model parameters. The attention readout resolves ambiguous evidence with an extra input pass on 10.3\% of composed questions. Together, these results connect a causal account of evidence use to an efficient repair of contextual reasoning.
 \end{abstract}
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/figure1_teaser.pdf}
+  \caption{\textbf{From failed composition to evidence-guided repair.} (a) A Llama-3.1-8B example with correct constituent answers and an incorrect composed answer under the same context. (b) Bridge addresses remain recoverable; paragraph access and local reading interact. (c) \method\ combines evidence selection and head adaptation to recover the correct answer.}
+  \label{fig:teaser}
+\end{figure}
 \input{sections/introduction}
 \input{related_work}
 \input{sections/method}
 \input{sections/experiments}
+\newpage
 \input{sections/conclusion}
-\clearpage
-\twocolumn
 \section*{Impact Statement}
-This work studies how language models use supplied evidence and how targeted interventions change their answers. Better evidence use can improve the reliability of question answering, but successful intervention on one task does not imply reliability on other tasks. Our evaluations explicitly measure constituent and general-capability changes. The study uses existing public question-answering datasets and does not introduce personal data collection. The proposed approach is intended as an interpretable research method, and its remaining errors and capability tradeoffs should inform any downstream use.
+This work studies how language models use supplied evidence and develops targeted interventions for more reliable contextual question answering. Its findings can inform systems that connect facts across documents. We evaluate reasoning and general capabilities to characterize the effects of adaptation. Experiments use public question-answering datasets. Downstream applications should assess evidence quality, answer accuracy, and task-specific reliability under their deployment conditions.
 \bibliography{references}
 \bibliographystyle{icml2027}
 \clearpage
 \appendix
 \onecolumn
+\raggedbottom
 \setcounter{figure}{0}
 \setcounter{table}{0}
 \renewcommand{\thefigure}{A\arabic{figure}}

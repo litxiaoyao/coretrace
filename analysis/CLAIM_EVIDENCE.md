@@ -42,6 +42,17 @@ positions or appendix numbering change.
 | **Restoration improves retention but is not lossless.** Llama GSM8K: **86.05% Native, 48.45% head tuning, 80.36% final**. Other native capability losses remain. | Complete HotpotQA validation 7,405; MMLU test 14,042; GSM8K test 1,319. | **CAPABILITY**; `coretrace/eval/{gsm8k,batched_mmlu}.py`, `scripts/evaluate.py`; scope in `configs/experiments.json`. | `tab:retention`, `tab:capability_full`, `fig:capability_detail`. MMLU uses option probabilities; GSM8K final-line numeric equality. FullFT's zero GSM8K accompanies 1,319/1,319 formatting failures per run, not proof of erased mathematical knowledge. |
 | **Answer wording does not account for most of the gap.** Crediting every failed response containing a complete normalized alias still leaves **48.1/49.1/47.3%** failure. | Original native constituent-correct sets; 14/9/6 alias-containing failures generously credited. | `analysis/internal/answer_form_diagnostics.json`; reproducible with `analysis/audit_answer_forms.py` from **CORE** and `data/CoRe-2Wiki-v1.0/aliases.jsonl.gz`. | Appendix scoring; `tab:scoring`. Sensitivity analysis only; alias mention is not a validated semantic-correctness metric. |
 
+## Additional results presented in the revised appendix
+
+The revision includes the complete method-conditioned composition failure table
+(`tab:conditional_composition`), fixed-native recovery and retention
+(`tab:fixed_population`), all nine composed text-scoring variants (`tab:scoring`),
+HotpotQA/GSM8K secondary metrics (`tab:secondary_qa`), and MMLU generated-letter,
+formatting, completion, and subject-macro results (`tab:mmlu_generation`).
+Their exact sources and full positive-result coverage are recorded in
+`analysis/internal/positive_results_revision.md`. These tables preserve every
+compared variant, including cases where a component has the best score.
+
 ## Scope and reproducibility boundaries
 
 - **Data:** `data/CoRe-2Wiki-v1.0/{dataset.json,splits/train.json,splits/discovery.json,splits/test.json}` define 100/2,000/1,000 sources, with ten original paragraphs each. Construction is in `coretrace/data/builders/{core2wiki.py,selection.json}`. Formal source IDs are disjoint, but preceding development could reuse the panel; 43 test sources share normalized root/bridge groups with training. Every within-test entity group is a singleton. See `analysis/internal/dataset_audit.json`.

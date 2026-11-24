@@ -54,20 +54,23 @@ CORAL = "#D76B50"
 PURPLE = "#6F5AA8"
 GRAY = "#849199"
 PALE = "#E9EDEF"
+PALE_TEAL = "#E5F2EF"
+PALE_CORAL = "#F8ECE7"
 INK = "#263239"
-GRID = "#E2E7E9"
+GRID = "#E3E6E7"
 
 plt.rcParams.update(
     {
-        "font.family": "DejaVu Serif",
-        "mathtext.fontset": "dejavuserif",
-        "font.size": 8.5,
-        "axes.labelsize": 8.5,
-        "axes.titlesize": 9,
+        "font.family": "serif",
+        "font.serif": ["STIXGeneral", "DejaVu Serif"],
+        "mathtext.fontset": "stix",
+        "font.size": 9,
+        "axes.labelsize": 9,
+        "axes.titlesize": 10,
         "axes.titleweight": "bold",
-        "xtick.labelsize": 8,
-        "ytick.labelsize": 8,
-        "legend.fontsize": 8,
+        "xtick.labelsize": 8.5,
+        "ytick.labelsize": 9,
+        "legend.fontsize": 9,
         "axes.edgecolor": GRAY,
         "axes.labelcolor": INK,
         "text.color": INK,
@@ -118,6 +121,21 @@ def export_csv(name: str, rows: list[dict[str, Any]]) -> None:
 
 def save_figure(fig: plt.Figure, name: str) -> None:
     FIGURES.mkdir(parents=True, exist_ok=True)
+    # Check full-canvas text bounds before exporting at the fixed manuscript width.
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    canvas = fig.bbox
+    for item in fig.findobj(matplotlib.text.Text):
+        if not item.get_visible() or not item.get_text():
+            continue
+        bounds = item.get_window_extent(renderer)
+        if not np.isfinite(bounds.extents).all():
+            continue
+        if bounds.width > 0 and bounds.height > 0 and (
+            bounds.x0 < canvas.x0 - 0.5 or bounds.x1 > canvas.x1 + 0.5
+            or bounds.y0 < canvas.y0 - 0.5 or bounds.y1 > canvas.y1 + 0.5
+        ):
+            raise ValueError(f"Figure text extends beyond canvas: {name}: {item.get_text()}")
     # Fixed figure size is retained so 8-pt labels remain 8 pt in the manuscript.
     fig.savefig(FIGURES / f"{name}.pdf", metadata={"Creator": "CoReTrace analysis/plot_results.py"})
     fig.savefig(FIGURES / f"{name}.png", dpi=300)
@@ -127,9 +145,14 @@ def save_figure(fig: plt.Figure, name: str) -> None:
 
 def clean_axis(ax: plt.Axes, grid_axis: str = "y") -> None:
     ax.spines[["top", "right"]].set_visible(False)
-    ax.grid(axis=grid_axis, color=GRID, linewidth=0.6)
+    ax.grid(axis=grid_axis, color=GRID, linewidth=0.55, linestyle=(0, (2, 2)))
     ax.set_axisbelow(True)
     ax.tick_params(length=2.5, width=0.6)
+
+
+def highlight_row(ax: plt.Axes, row: float, height: float = 0.82) -> None:
+    """A shared, understated background identifies our complete intervention."""
+    ax.axhspan(row - height / 2, row + height / 2, color=PALE_TEAL, lw=0, zorder=0)
 
 
 def mean_sd(values: list[float]) -> tuple[float, float]:
@@ -218,47 +241,53 @@ def make_diagnosis(seeds: list[int]) -> None:
     export_csv(f"{name}_address_readout", readouts)
     export_csv(f"{name}_address_readout_overall", overall_readouts)
 
-    fig, axes = plt.subplots(1, 2, figsize=(6.75, 2.48), gridspec_kw={"width_ratios": [1, 1.12]})
-    fig.subplots_adjust(left=0.075, right=0.99, bottom=0.22, top=0.72, wspace=0.34)
-    x = np.arange(len(MODELS))
+    fig, axes = plt.subplots(1, 2, figsize=(6.75, 2.38), gridspec_kw={"width_ratios": [1, 1.08]})
+    fig.subplots_adjust(left=0.15, right=0.975, bottom=0.21, top=0.72, wspace=0.26)
+    y = np.arange(len(MODELS))
     failures = np.array([row["conditional_failure_percent"] for row in composition])
     successes = 100 - failures
     ax = axes[0]
-    clean_axis(ax)
-    ax.bar(x, successes, width=0.56, color=TEAL, edgecolor="white", linewidth=0.5)
-    ax.bar(x, failures, bottom=successes, width=0.56, color=CORAL, edgecolor="white", linewidth=0.5)
+    clean_axis(ax, "x")
+    ax.barh(y, successes, height=0.56, color=TEAL, edgecolor="white", linewidth=0.5)
+    ax.barh(y, failures, left=successes, height=0.56, color=CORAL, edgecolor="white", linewidth=0.5)
     for i, (succ, fail) in enumerate(zip(successes, failures)):
-        ax.text(i, succ / 2, f"{succ:.1f}", ha="center", va="center", color="white", fontsize=8.5)
-        ax.text(i, succ + fail / 2, f"{fail:.1f}", ha="center", va="center", color="white", fontsize=8.5)
-    ax.set_xticks(x, [f"{MODEL_NAMES[m]}\n$n$={composition[i]['both_constituents_correct']}" for i, m in enumerate(MODELS)])
-    ax.set_ylim(0, 100)
-    ax.set_yticks([0, 25, 50, 75, 100])
-    ax.set_ylabel("Conditional composition (%)")
-    ax.set_title("(a) Both constituent answers are correct", loc="left", pad=31)
+        ax.text(succ / 2, i, f"{succ:.1f}", ha="center", va="center", color="white", fontsize=9)
+        ax.text(succ + fail / 2, i, f"{fail:.1f}", ha="center", va="center", color="white", fontsize=9, fontweight="bold")
+    ax.set_yticks(y, [f"{MODEL_NAMES[m]}\n$n$ = {composition[i]['both_constituents_correct']}" for i, m in enumerate(MODELS)])
+    ax.set_xlim(0, 100)
+    ax.set_xticks([0, 25, 50, 75, 100])
+    ax.set_ylim(2.6, -0.6)
+    ax.set_xlabel("Composition outcomes (%)")
+    ax.set_title("(a) Both constituent answers correct", loc="left", pad=30)
     ax.legend(handles=[Patch(color=TEAL, label="Composes"), Patch(color=CORAL, label="Fails")],
-              loc="lower center", bbox_to_anchor=(0.5, 1.025), ncol=2, frameon=False,
+              loc="lower center", bbox_to_anchor=(0.5, 1.02), ncol=2, frameon=False,
               handlelength=1.1, columnspacing=1.1, borderaxespad=0)
 
     ax = axes[1]
-    clean_axis(ax)
-    width = 0.27
-    features = [("full", "Full", TEAL), ("attention", "Attention", PURPLE), ("metadata", "Metadata", GRAY)]
-    for j, (feature_set, label, color) in enumerate(features):
-        ys = [unique_record(readouts, model=m, feature_set=feature_set)["accuracy_percent"] for m in MODELS]
-        positions = x + (j - 1) * width
-        ax.bar(positions, ys, width=width, color=color, edgecolor="white", linewidth=0.4, label=label)
-        for pos, value in zip(positions, ys):
-            # Stagger adjacent labels so nearly equal full/attention bars stay legible.
-            ax.text(pos, value - 9 if feature_set == "attention" else value + 2,
-                    f"{value:.1f}", ha="center", va="bottom", fontsize=8,
-                    color="white" if feature_set == "attention" else INK)
-    ax.set_xticks(x, [f"{MODEL_NAMES[m]}\n$n$={composition[i]['composition_failures']}" for i, m in enumerate(MODELS)])
-    ax.set_ylim(0, 106)
-    ax.set_yticks([0, 25, 50, 75, 100])
-    ax.set_ylabel("Bridge-address accuracy (%)")
-    ax.set_title("(b) Address in failed compositions", loc="left", pad=31)
-    ax.legend(loc="lower center", bbox_to_anchor=(0.5, 1.025), ncol=3, frameon=False,
-              handlelength=1.0, columnspacing=0.8, borderaxespad=0)
+    clean_axis(ax, "x")
+    features = [("metadata", "Metadata", GRAY, "s", 0.16),
+                ("attention", "Attention", PURPLE, "D", 0),
+                ("full", "Full", TEAL, "o", -0.16)]
+    for feature_set, label, color, marker, offset in features:
+        xs = [unique_record(readouts, model=m, feature_set=feature_set)["accuracy_percent"] for m in MODELS]
+        ax.scatter(xs, y + offset, color=color, marker=marker, s=25 if feature_set == "full" else 20,
+                   label=label, zorder=3, linewidths=0.5, edgecolors="white")
+        if feature_set != "attention":
+            for xpos, ypos in zip(xs, y + offset):
+                ax.text(xpos + 3, ypos, f"{xpos:.1f}", va="center", ha="left", color=color,
+                        fontsize=9, fontweight="bold" if feature_set == "full" else "normal")
+    for i, row in enumerate(composition):
+        ax.text(1.5, i, f"$n$ = {row['composition_failures']}", ha="left", va="center", color=GRAY, fontsize=8.5)
+    ax.set_yticks(y, [])
+    ax.tick_params(axis="y", length=0)
+    ax.set_xlim(0, 105)
+    ax.set_xticks([0, 25, 50, 75, 100])
+    ax.set_ylim(2.6, -0.6)
+    ax.set_xlabel("Bridge-address accuracy (%)")
+    ax.set_title("(b) Address in failed compositions", loc="left", pad=30)
+    handles, labels = ax.get_legend_handles_labels()
+    ax.legend(handles[::-1], labels[::-1], loc="lower center", bbox_to_anchor=(0.5, 1.02), ncol=3,
+              frameon=False, handletextpad=0.3, columnspacing=0.9, borderaxespad=0)
     save_figure(fig, name)
 
 
@@ -293,66 +322,71 @@ def make_causal() -> None:
     export_csv(f"{name}_factorial_contrasts", contrasts)
     export_csv(f"{name}_access_controls", access)
 
-    fig = plt.figure(figsize=(6.75, 4.22))
-    grid = fig.add_gridspec(2, 3, height_ratios=[1.13, 1], left=0.09, right=0.985,
-                           top=0.83, bottom=0.10, hspace=0.75, wspace=0.32)
+    fig = plt.figure(figsize=(6.75, 3.92))
+    grid = fig.add_gridspec(2, 3, height_ratios=[1.07, 1], left=0.085, right=0.97,
+                           top=0.85, bottom=0.12, hspace=0.98, wspace=0.35)
     line_handles = []
     for i, model in enumerate(MODELS):
         ax = fig.add_subplot(grid[0, i])
         clean_axis(ax)
         receiver = [unique_record(factors, model=model, method=m)["accuracy_percent"] for m in ("native", "mass_only")]
         donor = [unique_record(factors, model=model, method=m)["accuracy_percent"] for m in ("conditional_only", "both")]
-        line1, = ax.plot([0, 1], receiver, color=TEAL, marker="o", label="Receiver conditional pattern")
-        line2, = ax.plot([0, 1], donor, color=CORAL, marker="D", label="Direct-query conditional pattern")
+        line1, = ax.plot([0, 1], receiver, color=PURPLE, marker="o", label="Receiver reading pattern", markersize=4.5)
+        line2, = ax.plot([0, 1], donor, color=TEAL, marker="D", label="Direct-query reading pattern", markersize=4.5)
         if i == 0:
             line_handles = [line1, line2]
         for index, values in enumerate((receiver, donor)):
             other = donor if index == 0 else receiver
-            for x, value in enumerate(values):
-                is_upper = value >= other[x]
-                ax.annotate(f"{value:.0f}", (x, value), xytext=(0, 7 if is_upper else -6),
-                            textcoords="offset points", ha="center", va="center", fontsize=8.5)
+            for xpos, value in enumerate(values):
+                is_upper = value >= other[xpos]
+                ax.annotate(f"{value:.0f}", (xpos, value), xytext=(0, 8 if is_upper else -8),
+                            textcoords="offset points", ha="center", va="center", fontsize=9,
+                            color=PURPLE if index == 0 else TEAL)
         interaction = unique_record(contrasts, model=model, contrast="interaction")
         ax.set_title(f"({chr(97+i)}) {MODEL_NAMES[model]}", loc="left", pad=19)
         ax.text(0.5, 1.035,
                 f"Interaction {interaction['estimate_pp']:+.0f} [{interaction['CI95_low_pp']:.0f}, {interaction['CI95_high_pp']:.0f}] pp",
-                transform=ax.transAxes, ha="center", va="bottom", fontsize=8)
-        ax.set_xlim(-0.25, 1.30)
-        ax.set_xticks([0, 1], ["Native\nmass", "Calibrated\nmass"])
-        ax.set_ylim(20, 86)
+                transform=ax.transAxes, ha="center", va="bottom", fontsize=9, color=TEAL)
+        ax.set_xlim(-0.2, 1.2)
+        ax.set_xticks([0, 1], ["Native mass", "Calibrated"])
+        ax.set_ylim(15, 88)
         ax.set_yticks([20, 40, 60, 80])
         if i == 0:
             ax.set_ylabel("Composed accuracy (%)")
-    fig.legend(handles=line_handles, loc="upper center", bbox_to_anchor=(0.53, 0.997),
-               ncol=2, frameon=False, handlelength=2.0, columnspacing=1.7)
+    fig.legend(handles=line_handles, loc="upper center", bbox_to_anchor=(0.53, 1.005),
+               ncol=2, frameon=False, handlelength=2.0, columnspacing=1.8)
 
     ax = fig.add_subplot(grid[1, :])
-    clean_axis(ax)
-    ax.axhline(0, color=GRAY, lw=0.8)
-    groups = np.arange(3)
-    width = 0.22
-    methods = [("oracle_second_paragraph", "Bridge paragraph", TEAL),
-               ("oracle_first_paragraph", "First-hop paragraph", PURPLE),
-               ("lengthmatched_other_paragraph", "Length-matched other", GRAY)]
-    for j, (method, label, color) in enumerate(methods):
+    lower = ax.get_position()
+    ax.set_position([0.15, lower.y0, 0.82, lower.height])
+    clean_axis(ax, "x")
+    ax.axvline(0, color=GRAY, lw=0.8)
+    methods = [("oracle_second_paragraph", "Bridge paragraph", TEAL, "o", -0.3),
+               ("oracle_first_paragraph", "First-hop paragraph", PURPLE, "D", 0),
+               ("lengthmatched_other_paragraph", "Length-matched other", GRAY, "s", 0.3)]
+    for method, label, color, marker, offset in methods:
         rows = [unique_record(access, model=model, method=method) for model in MODELS]
-        ys = np.array([row["delta_pp"] for row in rows])
+        xs = np.array([row["delta_pp"] for row in rows])
         lo = np.array([row["CI95_low_pp"] for row in rows])
         hi = np.array([row["CI95_high_pp"] for row in rows])
-        positions = groups + (j - 1) * width
-        ax.bar(positions, ys, width=width, color=color, edgecolor="white", lw=0.5, label=label)
-        ax.errorbar(positions, ys, yerr=np.array([ys - lo, hi - ys]), fmt="none", ecolor=INK,
-                    capsize=2, elinewidth=0.8, capthick=0.8)
-        for pos, value, lower, upper in zip(positions, ys, lo, hi):
-            ax.text(pos, upper + 1.1 if value >= 0 else lower - 1.1, f"{value:+.1f}",
-                    ha="center", va="bottom" if value >= 0 else "top", fontsize=8)
-    ax.set_title("(d) Calibrating the addressed paragraph on the full test set", loc="left", pad=26)
+        positions = np.arange(3) + offset
+        ax.errorbar(xs, positions, xerr=np.array([xs - lo, hi - xs]), fmt=marker, color=color,
+                    markeredgecolor="white", markeredgewidth=0.4, markersize=4.5,
+                    capsize=2, elinewidth=1, capthick=0.8, label=label)
+        for value, ypos, lower, upper in zip(xs, positions, lo, hi):
+            xpos = upper + 0.8 if value >= 0 else lower - 0.8
+            ax.text(xpos, ypos, f"{value:+.1f}", ha="left" if value >= 0 else "right",
+                    va="center", fontsize=9, color=color,
+                    fontweight="bold" if method == "oracle_second_paragraph" else "normal")
+    ax.set_title("(d) Address-specific calibration on the complete test set", loc="left", pad=26)
     ax.legend(loc="lower center", bbox_to_anchor=(0.52, 1.025), ncol=3, frameon=False,
-              handlelength=1.2, columnspacing=1.8, borderaxespad=0)
-    ax.set_xticks(groups, [MODEL_NAMES[m] for m in MODELS])
-    ax.set_ylim(-29, 24)
-    ax.set_yticks([-20, 0, 20])
-    ax.set_ylabel("Accuracy change (pp)")
+              handlelength=1.4, columnspacing=1.8, borderaxespad=0)
+    ax.set_yticks(np.arange(3), [MODEL_NAMES[m] for m in MODELS])
+    ax.tick_params(axis="y", labelsize=9)
+    ax.set_ylim(2.6, -0.6)
+    ax.set_xlim(-30, 25)
+    ax.set_xticks([-20, -10, 0, 10, 20])
+    ax.set_xlabel("Composed-accuracy change (percentage points)")
     save_figure(fig, name)
 
 
@@ -387,34 +421,39 @@ def make_content(seeds: list[int]) -> None:
     export_csv(f"{name}_seed_values", raw)
     export_csv(f"{name}_aggregated", aggregated)
 
-    fig, axes = plt.subplots(1, 3, figsize=(6.75, 2.58), sharey=True)
-    fig.subplots_adjust(left=0.075, right=0.99, bottom=0.24, top=0.77, wspace=0.20)
-    # Leave room for the full method name while keeping the three model panels compact.
-    x = np.array([0.0, 1.0, 2.05, 3.65])
-    width = 0.34
+    fig, axes = plt.subplots(1, 3, figsize=(6.75, 2.6), sharey=True)
+    fig.subplots_adjust(left=0.165, right=0.98, bottom=0.22, top=0.76, wspace=0.21)
+    y = np.arange(len(methods))
+    method_labels = ["Native", "Mass calibration", "Scoped adaptation", "CoReTrace (Ours)"]
     for i, (model, ax) in enumerate(zip(MODELS, axes)):
-        clean_axis(ax)
-        for j, (metric, label, color) in enumerate([
-            ("edited_new_follow", "Follows edited value", TEAL),
-            ("edited_old_persistence", "Keeps obsolete answer", CORAL),
-        ]):
+        clean_axis(ax, "x")
+        highlight_row(ax, 3)
+        for metric, label, color, marker, offset in [
+            ("edited_new_follow", "Follows edited value", TEAL, "o", -0.13),
+            ("edited_old_persistence", "Keeps obsolete answer", CORAL, "s", 0.13),
+        ]:
             rows = [unique_record(aggregated, model=model, method=method, metric=metric) for method in methods]
-            ys = [row["mean_percent"] for row in rows]
+            xs = [row["mean_percent"] for row in rows]
             sds = [row["sample_sd_percent"] for row in rows]
-            positions = x + (j - 0.5) * width
-            ax.bar(positions, ys, width, color=color, edgecolor="white", linewidth=0.4, label=label)
-            ax.errorbar(positions, ys, yerr=sds, fmt="none", ecolor=INK, capsize=2, elinewidth=0.7)
-            for pos, value, sd in zip(positions, ys, sds):
-                ax.text(pos, value + sd + 1.8, f"{value:.0f}" if abs(value-round(value)) < 1e-8 else f"{value:.1f}",
-                        ha="center", va="bottom", fontsize=8)
-        ax.set_title(f"({chr(97+i)}) {MODEL_NAMES[model]}", loc="left", pad=7)
-        ax.set_xticks(x, ["Native", "Mass\ncalib.", "Scoped\nadapt.", "CoReTrace"])
-        ax.set_xlim(-0.55, 4.50)
-        ax.set_ylim(0, 100)
-        ax.set_yticks([0, 25, 50, 75, 100])
-    axes[0].set_ylabel("Share of original sources (%)")
-    fig.legend(handles=[Patch(color=TEAL, label="Follows edited value"), Patch(color=CORAL, label="Keeps obsolete answer")],
-               loc="upper center", bbox_to_anchor=(0.53, 0.99), ncol=2, frameon=False, columnspacing=2)
+            ax.errorbar(xs, y + offset, xerr=sds, fmt=marker, color=color, markersize=4.6,
+                        markeredgecolor="white", markeredgewidth=0.45,
+                        capsize=2, elinewidth=0.8, label=label, zorder=3)
+            for xpos, ypos, sd in zip(xs, y + offset, sds):
+                ax.text(xpos + sd + 3.3, ypos, f"{xpos:.0f}", ha="left", va="center", fontsize=9, color=color)
+        ax.set_title(f"({chr(97+i)}) {MODEL_NAMES[model]}", loc="left", pad=8)
+        ax.set_yticks(y, method_labels)
+        ax.set_xlim(0, 100)
+        ax.set_xticks([0, 25, 50, 75, 100])
+        ax.set_ylim(3.55, -0.55)
+        ax.set_xlabel("Diagnostic questions (%)")
+        for label in ax.get_yticklabels():
+            if label.get_text().startswith("CoReTrace"):
+                label.set_fontweight("bold")
+                label.set_color(TEAL)
+    fig.legend(handles=[Line2D([0], [0], color=TEAL, marker="o", ls="", label="Follows edited value"),
+                        Line2D([0], [0], color=CORAL, marker="s", ls="", label="Keeps obsolete answer")],
+               loc="upper center", bbox_to_anchor=(0.56, 1.0), ncol=2, frameon=False,
+               columnspacing=2, handletextpad=0.5)
     save_figure(fig, name)
 
 
@@ -441,10 +480,10 @@ def make_localization() -> None:
         selected.append(active)
     export_csv(name, rows)
     color_max = float(max(np.abs(matrix).max() for matrix in matrices))
-    cmap = LinearSegmentedColormap.from_list("paragraph_gap", [PURPLE, "#FAFAF7", TEAL])
+    cmap = LinearSegmentedColormap.from_list("paragraph_gap", [CORAL, "#FFFFFF", TEAL])
     norm = TwoSlopeNorm(vmin=-color_max, vcenter=0, vmax=color_max)
-    fig, axes = plt.subplots(1, 3, figsize=(6.75, 2.82))
-    fig.subplots_adjust(left=0.065, right=0.88, bottom=0.19, top=0.83, wspace=0.26)
+    fig, axes = plt.subplots(1, 3, figsize=(6.75, 3.18))
+    fig.subplots_adjust(left=0.065, right=0.985, bottom=0.32, top=0.84, wspace=0.23)
     for i, (model, matrix, active, ax) in enumerate(zip(MODELS, matrices, selected, axes)):
         im = ax.pcolormesh(np.arange(matrix.shape[1] + 1) - 0.5,
                            np.arange(matrix.shape[0] + 1) - 0.5, matrix,
@@ -452,63 +491,82 @@ def make_localization() -> None:
         ax.set_xlim(-0.5, matrix.shape[1] - 0.5)
         ax.set_ylim(matrix.shape[0] - 0.5, -0.5)
         for layer, head in active:
-            ax.add_patch(Rectangle((head - 0.5, layer - 0.5), 1, 1, fill=False, ec=INK, lw=0.55))
-        ax.set_title(f"({chr(97+i)}) {MODEL_NAMES[model]}\n{len(active)} selected heads", loc="left", pad=7)
-        ax.set_xticks([0, 8, 16, 24, matrix.shape[1] - 1])
+            ax.add_patch(Rectangle((head - 0.5, layer - 0.5), 1, 1, fill=False, ec=INK, lw=0.65))
+        ax.set_title(f"({chr(97+i)}) {MODEL_NAMES[model]}", loc="left", pad=22)
+        ax.text(0.5, 1.025, f"{len(active)} selected heads", transform=ax.transAxes,
+                ha="center", va="bottom", color=TEAL, fontsize=9)
+        ax.set_xticks(sorted(set([0, 8, 16, 24, matrix.shape[1] - 1])))
         ax.set_yticks(sorted(set([0, 8, 16, 24, matrix.shape[0] - 1])))
         ax.set_xlabel("Head index")
         ax.tick_params(length=2, width=0.6)
         if i == 0:
             ax.set_ylabel("Layer index")
-    cax = fig.add_axes([0.905, 0.19, 0.018, 0.64])
-    cb = fig.colorbar(im, cax=cax)
+    cax = fig.add_axes([0.29, 0.12, 0.46, 0.035])
+    cb = fig.colorbar(im, cax=cax, orientation="horizontal")
     cb.solids.set_rasterized(False)
-    cb.set_label("Direct − composed paragraph mass", fontsize=8)
-    cb.ax.tick_params(labelsize=8, length=2)
+    cb.outline.set_linewidth(0.5)
+    cb.set_label("Direct − composed bridge-paragraph attention", fontsize=9, labelpad=2)
+    cb.ax.tick_params(labelsize=8.5, length=2, pad=2)
     save_figure(fig, name)
 
 
 def make_necessity() -> None:
     name = "data_app_necessity"
     raw = []
-    fig, axes = plt.subplots(1, 3, figsize=(6.75, 2.97), sharey=True)
-    fig.subplots_adjust(left=0.075, right=0.99, bottom=0.18, top=0.70, wspace=0.22)
     query_specs = [("composed", "Composed", TEAL, "o"), ("direct_first", "First hop", CORAL, "^"),
-                   ("direct_target", "Target hop", PURPLE, "D")]
-    for i, (model, ax) in enumerate(zip(MODELS, axes)):
+                   ("direct_target", "Second hop", PURPLE, "D")]
+    measured_sizes = {}
+    for model in MODELS:
         filename = source(model, "causal_necessity/summary.json")
         data = read_json(filename)
-        sizes = sorted(int(k) for k in data["controls"])
-        clean_axis(ax)
-        for query, label, color, marker in query_specs:
+        measured_sizes[model] = sorted(int(k) for k in data["controls"])
+        for query, _, _, _ in query_specs:
             base = unique_record(data["summary"], method="native", query=query)
             raw.append({"model": model, "query": query, "selection": "native", "knocked_out": 0,
                         "n": base["n"], "correct": base["correct"], "accuracy_percent": base["accuracy"]*100,
                         "source": filename})
-            for selection, style in [("selected", "-"), ("random", "--")]:
-                ys = [base["accuracy"] * 100]
-                for size in sizes:
+            for selection in ["selected", "random"]:
+                for size in measured_sizes[model]:
                     row = unique_record(data["summary"], method=f"{selection}_{size}", query=query)
-                    ys.append(100 * row["accuracy"])
                     raw.append({"model": model, "query": query, "selection": selection, "knocked_out": size,
                                 "n": row["n"], "correct": row["correct"], "accuracy_percent": 100*row["accuracy"],
                                 "random_overlap_heads": data["controls"][str(size)]["overlap_heads"], "source": filename})
-                ax.plot([0] + sizes, ys, color=color, marker=marker, ls=style, lw=1.2,
-                        markersize=3.5, alpha=1 if selection == "selected" else 0.65)
-        ax.set_title(f"({chr(97+i)}) {MODEL_NAMES[model]}", loc="left", pad=7)
-        ax.set_xticks([0] + sizes)
-        ax.set_ylim(0, 100)
-        ax.set_yticks([0, 25, 50, 75, 100])
-        ax.set_xlabel("Knocked-out heads")
-    axes[0].set_ylabel("Answer accuracy (%)")
-    handles = [Line2D([0], [0], color=color, marker=marker, label=label) for _, label, color, marker in query_specs]
-    fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.53, 1.0), ncol=3,
-               frameon=False, handlelength=1.8, columnspacing=2)
-    fig.legend(handles=[Line2D([0], [0], color=INK, ls="-", label="Selected"),
-                        Line2D([0], [0], color=INK, ls="--", label="Layer-matched random")],
-               loc="upper center", bbox_to_anchor=(0.53, 0.90), ncol=2, frameon=False,
-               handlelength=1.8, columnspacing=2)
     export_csv(name, raw)
+    fig, axes = plt.subplots(3, 3, figsize=(6.75, 5.0), sharex=True, sharey=True)
+    fig.subplots_adjust(left=0.10, right=0.985, bottom=0.105, top=0.86, hspace=0.36, wspace=0.20)
+    for col, model in enumerate(MODELS):
+        selection_file = source(model, "discovery/SELECTION_FROZEN.json")
+        selected_count = sum(len(heads) for heads in read_json(selection_file)["head_map"].values())
+        sizes = measured_sizes[model]
+        for row_index, (query, label, color, marker) in enumerate(query_specs):
+            ax = axes[row_index, col]
+            clean_axis(ax)
+            ax.axvline(selected_count, color=GRID, lw=0.8, ls=":")
+            base = unique_record(raw, model=model, query=query, selection="native")["accuracy_percent"]
+            for selection, linestyle, linecolor in [("selected", "-", color), ("random", "--", GRAY)]:
+                ys = [base] + [unique_record(raw, model=model, query=query, selection=selection,
+                                            knocked_out=size)["accuracy_percent"] for size in sizes]
+                ax.plot([0] + sizes, ys, color=linecolor, marker=marker if selection == "selected" else "o",
+                        ls=linestyle, lw=1.35, markersize=3.8 if selection == "selected" else 3.2)
+            ax.set_ylim(0, 100)
+            ax.set_xlim(-4, 84)
+            ax.set_yticks([0, 50, 100])
+            ax.set_xticks([0] + sizes)
+            if row_index == 0:
+                ax.set_title(f"({chr(97+col)}) {MODEL_NAMES[model]}", loc="left", pad=8)
+                chosen = unique_record(raw, model=model, query=query, selection="selected", knocked_out=selected_count)
+                random = unique_record(raw, model=model, query=query, selection="random", knocked_out=selected_count)
+                ax.text(0.98, 0.92, f"Top {selected_count}: {chosen['accuracy_percent']:.1f}%\nRandom: {random['accuracy_percent']:.1f}%",
+                        ha="right", va="top", transform=ax.transAxes, fontsize=8.5,
+                        bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.85, "pad": 1})
+            if col == 0:
+                ax.set_ylabel(f"{label}\nAccuracy (%)")
+            if row_index == 2:
+                ax.set_xlabel("Knocked-out heads")
+    fig.legend(handles=[Line2D([0], [0], color=INK, marker="o", ls="-", label="Ranked-head knockout"),
+                        Line2D([0], [0], color=GRAY, marker="o", ls="--", label="Layer-matched random knockout")],
+               loc="upper center", bbox_to_anchor=(0.54, 0.995), ncol=2, frameon=False,
+               handlelength=2.3, columnspacing=2)
     save_figure(fig, name)
 
 
@@ -516,14 +574,14 @@ def make_ablation(seeds: list[int]) -> None:
     name = "data_app_ablation"
     methods = [
         ("native", "Native", GRAY),
+        ("fullft", "Full fine-tuning", CORAL),
         ("native_text", "Evidence filtering", GRAY),
         ("head_tuning", "Head tuning", PURPLE),
         ("scoped_body", "Scoped adaptation", PURPLE),
         ("graphfirst", "Graph-first selection", CORAL),
         ("final_metadata", "Metadata-only reader", GRAY),
         ("final_attention", "Attention-only reader", TEAL),
-        ("final", "CoReTrace", TEAL),
-        ("fullft", "Full fine-tuning", CORAL),
+        ("final", "CoReTrace (Ours)", TEAL),
     ]
     raw, aggregates = [], []
     for model in MODELS:
@@ -537,25 +595,39 @@ def make_ablation(seeds: list[int]) -> None:
     export_csv(f"{name}_seed_values", raw)
     export_csv(f"{name}_aggregated", aggregates)
 
-    fig, axes = plt.subplots(1, 3, figsize=(6.75, 3.6), sharey=True)
-    fig.subplots_adjust(left=0.22, right=0.985, bottom=0.16, top=0.90, wspace=0.20)
+    fig, axes = plt.subplots(1, 3, figsize=(6.75, 3.15), sharey=True)
+    fig.subplots_adjust(left=0.22, right=0.985, bottom=0.14, top=0.84, wspace=0.20)
     y = np.arange(len(methods))
     for i, (model, ax) in enumerate(zip(MODELS, axes)):
         clean_axis(ax, "x")
+        baseline = unique_record(aggregates, model=model, method="native")["mean_percent"]
+        final = unique_record(aggregates, model=model, method="final")["mean_percent"]
+        highlight_row(ax, len(methods) - 1)
+        ax.axvline(baseline, color=GRAY, ls=":", lw=0.9)
         for j, (method, label, color) in enumerate(methods):
             row = unique_record(aggregates, model=model, method=method)
             mean, sd = row["mean_percent"], row["sample_sd_percent"]
-            ax.errorbar(mean, j, xerr=sd, color=color, marker="o", markersize=5 if method == "final" else 4,
+            ax.errorbar(mean, j, xerr=sd, color=color, marker="D" if method == "final" else "o",
+                        markeredgecolor="white", markeredgewidth=0.4,
+                        markersize=6 if method == "final" else 4.5,
                         capsize=2, elinewidth=0.8, zorder=3)
-            ax.text(mean + sd + 2, j, f"{mean:.1f}", ha="left", va="center", fontsize=8)
-        ax.set_title(f"({chr(97+i)}) {MODEL_NAMES[model]}", loc="left", pad=8)
-        ax.set_xlim(0, 85)
+            ax.text(mean + sd + 3.5, j, f"{mean:.1f}", ha="left", va="center", fontsize=9,
+                    fontweight="bold" if method == "final" else "normal",
+                    color=TEAL if method == "final" else INK)
+        ax.set_title(f"({chr(97+i)}) {MODEL_NAMES[model]}", loc="left", pad=23)
+        ax.text(0.5, 1.02, f"Ours − Native: +{final - baseline:.1f} pp", transform=ax.transAxes,
+                ha="center", va="bottom", color=TEAL, fontsize=9)
+        ax.set_xlim(0, 90)
         ax.set_xticks([0, 20, 40, 60, 80])
         ax.set_xlabel("Composed accuracy (%)")
         ax.set_yticks(y, [label for _, label, _ in methods])
         ax.set_ylim(len(methods) - 0.4, -0.6)
-        ax.axhline(1.5, color=GRID, lw=0.7)
-        ax.axhline(7.5, color=GRID, lw=0.7)
+        ax.axhline(2.5, color=GRID, lw=0.8)
+        ax.axhline(5.5, color=GRID, lw=0.8)
+        for label in ax.get_yticklabels():
+            if label.get_text().startswith("CoReTrace"):
+                label.set_fontweight("bold")
+                label.set_color(TEAL)
     save_figure(fig, name)
 
 
@@ -583,34 +655,49 @@ def make_capabilities(seeds: list[int]) -> None:
     export_csv(f"{name}_seed_values", raw)
     export_csv(f"{name}_aggregated", aggregates)
 
-    fig, axes = plt.subplots(1, 3, figsize=(6.75, 3.06), sharey=True)
-    fig.subplots_adjust(left=0.095, right=0.99, bottom=0.25, top=0.72, wspace=0.25)
-    width = 0.22
-    x = np.arange(3)
-    low = min(row["delta_pp"] - row["sample_sd_percent"] for row in aggregates)
-    low = 10 * np.floor((low - 7) / 10)
-    for i, ((dataset, label, metric), ax) in enumerate(zip(datasets, axes)):
-        clean_axis(ax)
-        ax.axhline(0, color=INK, linewidth=0.8)
-        for j, (method, method_label, color) in enumerate(methods):
-            rows = [unique_record(aggregates, dataset=dataset, model=model, method=method) for model in MODELS]
-            ys = [row["delta_pp"] for row in rows]
-            sds = [row["sample_sd_percent"] for row in rows]
-            pos = x + (j - 1) * width
-            ax.bar(pos, ys, width=width, color=color, edgecolor="white", linewidth=0.4, label=method_label)
-            ax.errorbar(pos, ys, yerr=sds, fmt="none", ecolor=INK, capsize=2, elinewidth=0.7)
-            if method == "final":
-                for xpos, value, sd in zip(pos, ys, sds):
-                    ax.text(xpos, value - sd - 3.2, f"{value:+.1f}", ha="center", va="top", fontsize=8,
-                            color=TEAL, fontweight="bold")
-        ax.set_title(f"({chr(97+i)}) {label}\n{metric}", loc="left", pad=7)
-        ax.set_xticks(x, ["Qwen3\n4B", "Qwen3\n8B", "Llama3.1\n8B"])
-        ax.set_ylim(low, 15)
-        ax.set_yticks(np.arange(10 * np.ceil(low / 20) * 2, 1, 20))
-    axes[0].set_ylabel("Change from native (pp)")
-    fig.legend(handles=[Patch(color=color, label=label) for _, label, color in methods],
-               loc="upper center", bbox_to_anchor=(0.53, 1.0), ncol=3, frameon=False,
-               columnspacing=1.6, handlelength=1.2)
+    fig, axes = plt.subplots(3, 3, figsize=(6.75, 5.0), sharex=True)
+    fig.subplots_adjust(left=0.16, right=0.985, bottom=0.08, top=0.90, hspace=0.45, wspace=0.20)
+    method_order = [("native", "Native", GRAY), ("fullft", "Full fine-tuning", CORAL),
+                    ("head_tuning", "Head tuning", PURPLE), ("final", "CoReTrace (Ours)", TEAL)]
+    for row_index, (dataset, dataset_name, metric) in enumerate(datasets):
+        for col, model in enumerate(MODELS):
+            ax = axes[row_index, col]
+            clean_axis(ax, "x")
+            highlight_row(ax, 3)
+            baseline = unique_record(aggregates, dataset=dataset, model=model, method="final")["native_percent"]
+            for j, (method, method_label, color) in enumerate(method_order):
+                if method == "native":
+                    value, sd = baseline, 0.0
+                else:
+                    item = unique_record(aggregates, dataset=dataset, model=model, method=method)
+                    value, sd = item["mean_percent"], item["sample_sd_percent"]
+                ax.barh(j, value, height=0.50, color=color, alpha=0.95,
+                        edgecolor="white", linewidth=0.4, zorder=2)
+                ax.errorbar(value, j, xerr=sd, fmt="none", color=INK, elinewidth=0.7,
+                            capsize=1.8, capthick=0.7, zorder=3)
+                ax.text(value - 3 if value >= 24 else value + sd + 3, j, f"{value:.1f}",
+                        ha="right" if value >= 24 else "left", va="center", fontsize=9,
+                        color="white" if value >= 24 else color,
+                        fontweight="bold" if method == "final" else "normal")
+            delta = unique_record(aggregates, dataset=dataset, model=model, method="final")["delta_pp"]
+            ax.text(0.98, 1.025, f"Ours − Native: {delta:+.1f} pp", transform=ax.transAxes,
+                    ha="right", va="bottom", fontsize=8.5, color=TEAL if delta >= 0 else CORAL)
+            if row_index == 0:
+                ax.set_title(MODEL_NAMES[model], loc="center", pad=22)
+            ax.set_xlim(0, 100)
+            ax.set_xticks([0, 25, 50, 75, 100])
+            ax.set_ylim(3.65, -0.55)
+            ax.set_yticks(range(4), [label for _, label, _ in method_order] if col == 0 else [])
+            ax.tick_params(axis="y", length=0)
+            if col == 0:
+                fig.text(0.01, ax.get_position().y1 + 0.009, f"({chr(97+row_index)}) {dataset_name}",
+                         ha="left", va="bottom", fontsize=10, fontweight="bold")
+                for label in ax.get_yticklabels():
+                    if label.get_text().startswith("CoReTrace"):
+                        label.set_fontweight("bold")
+                        label.set_color(TEAL)
+            if row_index == 2:
+                ax.set_xlabel("Accuracy (%)")
     save_figure(fig, name)
 
 

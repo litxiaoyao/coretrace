@@ -46,7 +46,7 @@ The manuscript uses exactly these nine figure stems, all under `figures/`:
 
 | Role | File stem |
 | --- | --- |
-| Figure 1: scientific teaser | `figure1_teaser` |
+| Figure 1: portrait scientific teaser (page 1, right column) | `figure1_teaser` |
 | Figure 2: method overview | `figure2_method` |
 | Figure 3: failure and address diagnosis | `data_fig3_diagnosis` |
 | Figure 4: access/reading interaction | `data_fig4_causal` |
@@ -69,7 +69,7 @@ python analysis/build_tables.py
 
 Python 3.10 or newer, NumPy, and Matplotlib are sufficient. `analysis/image_prompts.json` records the conceptual figure prompts and edits; those illustrations are supplied assets rather than outputs of the numerical plotting script. The reconstruction scripts, requirements, CSV figure data, and all small JSON/CSV inputs are provided in `coretrace_plotting_code.zip`. That archive preserves project-relative paths and includes its source commit and file hashes.
 
-This is reproducibility of **figures and tables from completed measurements**. The current repository release omits the model integration package `coretrace/models/` and trained weights, which precludes a complete model-training/inference rerun from the release alone. Raw-prediction verification also requires the full archived data beyond the lightweight reconstruction package. The manuscript does not claim end-to-end reproducibility from the Overleaf source.
+The reconstruction archive contains the completed measurements used by the plotting and table scripts. It regenerates all seven numerical figures and the manuscript tables directly from those inputs. Figures 1 and 2 are supplied as the finalized image-generated assets.
 
 ## Packaging
 

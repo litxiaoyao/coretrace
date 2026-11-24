@@ -1,5 +1,6 @@
 model,method,n_per_run,runs,mean_percent,sample_sd_percent,sources
 qwen3_4b,native,1000,1,26.9,0.0,outputs/qwen3_4b/seed42/evaluation/core/summary.json
+qwen3_4b,fullft,1000,3,57.13333333333333,2.3692474191889157,outputs/qwen3_4b/seed42/evaluation_fullft/core/summary.json;outputs/qwen3_4b/seed43/evaluation_fullft/core/summary.json;outputs/qwen3_4b/seed44/evaluation_fullft/core/summary.json
 qwen3_4b,native_text,1000,3,47.233333333333334,0.11547005383792269,outputs/qwen3_4b/seed42/evaluation/core/summary.json;outputs/qwen3_4b/seed43/evaluation/core/summary.json;outputs/qwen3_4b/seed44/evaluation/core/summary.json
 qwen3_4b,head_tuning,1000,3,60.13333333333333,0.1154700538379268,outputs/qwen3_4b/seed42/evaluation/core/summary.json;outputs/qwen3_4b/seed43/evaluation/core/summary.json;outputs/qwen3_4b/seed44/evaluation/core/summary.json
 qwen3_4b,scoped_body,1000,3,60.43333333333333,0.1154700538379268,outputs/qwen3_4b/seed42/evaluation/core/summary.json;outputs/qwen3_4b/seed43/evaluation/core/summary.json;outputs/qwen3_4b/seed44/evaluation/core/summary.json
@@ -7,8 +8,8 @@ qwen3_4b,graphfirst,1000,3,63.36666666666667,0.2309401076758495,outputs/qwen3_4b
 qwen3_4b,final_metadata,1000,3,64.03333333333333,0.28867513459481287,outputs/qwen3_4b/seed42/evaluation/core/summary.json;outputs/qwen3_4b/seed43/evaluation/core/summary.json;outputs/qwen3_4b/seed44/evaluation/core/summary.json
 qwen3_4b,final_attention,1000,3,66.8,0.3464101615137722,outputs/qwen3_4b/seed42/evaluation/core/summary.json;outputs/qwen3_4b/seed43/evaluation/core/summary.json;outputs/qwen3_4b/seed44/evaluation/core/summary.json
 qwen3_4b,final,1000,3,66.8,0.3464101615137722,outputs/qwen3_4b/seed42/evaluation/core/summary.json;outputs/qwen3_4b/seed43/evaluation/core/summary.json;outputs/qwen3_4b/seed44/evaluation/core/summary.json
-qwen3_4b,fullft,1000,3,57.13333333333333,2.3692474191889157,outputs/qwen3_4b/seed42/evaluation_fullft/core/summary.json;outputs/qwen3_4b/seed43/evaluation_fullft/core/summary.json;outputs/qwen3_4b/seed44/evaluation_fullft/core/summary.json
 qwen3_8b,native,1000,1,29.2,0.0,outputs/qwen3_8b/seed42/evaluation/core/summary.json
+qwen3_8b,fullft,1000,3,55.166666666666664,5.34540300944029,outputs/qwen3_8b/seed42/evaluation_fullft/core/summary.json;outputs/qwen3_8b/seed43/evaluation_fullft/core/summary.json;outputs/qwen3_8b/seed44/evaluation_fullft/core/summary.json
 qwen3_8b,native_text,1000,3,48.1,0.0,outputs/qwen3_8b/seed42/evaluation/core/summary.json;outputs/qwen3_8b/seed43/evaluation/core/summary.json;outputs/qwen3_8b/seed44/evaluation/core/summary.json
 qwen3_8b,head_tuning,1000,3,61.8,0.0,outputs/qwen3_8b/seed42/evaluation/core/summary.json;outputs/qwen3_8b/seed43/evaluation/core/summary.json;outputs/qwen3_8b/seed44/evaluation/core/summary.json
 qwen3_8b,scoped_body,1000,3,60.9,0.0,outputs/qwen3_8b/seed42/evaluation/core/summary.json;outputs/qwen3_8b/seed43/evaluation/core/summary.json;outputs/qwen3_8b/seed44/evaluation/core/summary.json
@@ -16,8 +17,8 @@ qwen3_8b,graphfirst,1000,3,63.7,0.0,outputs/qwen3_8b/seed42/evaluation/core/summ
 qwen3_8b,final_metadata,1000,3,64.6,0.0,outputs/qwen3_8b/seed42/evaluation/core/summary.json;outputs/qwen3_8b/seed43/evaluation/core/summary.json;outputs/qwen3_8b/seed44/evaluation/core/summary.json
 qwen3_8b,final_attention,1000,3,67.2,0.0,outputs/qwen3_8b/seed42/evaluation/core/summary.json;outputs/qwen3_8b/seed43/evaluation/core/summary.json;outputs/qwen3_8b/seed44/evaluation/core/summary.json
 qwen3_8b,final,1000,3,67.2,0.0,outputs/qwen3_8b/seed42/evaluation/core/summary.json;outputs/qwen3_8b/seed43/evaluation/core/summary.json;outputs/qwen3_8b/seed44/evaluation/core/summary.json
-qwen3_8b,fullft,1000,3,55.166666666666664,5.34540300944029,outputs/qwen3_8b/seed42/evaluation_fullft/core/summary.json;outputs/qwen3_8b/seed43/evaluation_fullft/core/summary.json;outputs/qwen3_8b/seed44/evaluation_fullft/core/summary.json
 llama3_8b,native,1000,1,36.4,0.0,outputs/llama3_8b/seed42/evaluation/core/summary.json
+llama3_8b,fullft,1000,3,35.2,3.4073450074801652,outputs/llama3_8b/seed42/evaluation_fullft/core/summary.json;outputs/llama3_8b/seed43/evaluation_fullft/core/summary.json;outputs/llama3_8b/seed44/evaluation_fullft/core/summary.json
 llama3_8b,native_text,1000,3,53.43333333333333,0.0577350269189634,outputs/llama3_8b/seed42/evaluation/core/summary.json;outputs/llama3_8b/seed43/evaluation/core/summary.json;outputs/llama3_8b/seed44/evaluation/core/summary.json
 llama3_8b,head_tuning,1000,3,63.6,0.1732050807568902,outputs/llama3_8b/seed42/evaluation/core/summary.json;outputs/llama3_8b/seed43/evaluation/core/summary.json;outputs/llama3_8b/seed44/evaluation/core/summary.json
 llama3_8b,scoped_body,1000,3,66.3,0.0,outputs/llama3_8b/seed42/evaluation/core/summary.json;outputs/llama3_8b/seed43/evaluation/core/summary.json;outputs/llama3_8b/seed44/evaluation/core/summary.json
@@ -25,4 +26,3 @@ llama3_8b,graphfirst,1000,3,65.73333333333333,0.1154700538379268,outputs/llama3_
 llama3_8b,final_metadata,1000,3,66.7,0.1732050807568861,outputs/llama3_8b/seed42/evaluation/core/summary.json;outputs/llama3_8b/seed43/evaluation/core/summary.json;outputs/llama3_8b/seed44/evaluation/core/summary.json
 llama3_8b,final_attention,1000,3,69.7,0.1732050807568861,outputs/llama3_8b/seed42/evaluation/core/summary.json;outputs/llama3_8b/seed43/evaluation/core/summary.json;outputs/llama3_8b/seed44/evaluation/core/summary.json
 llama3_8b,final,1000,3,69.7,0.1732050807568861,outputs/llama3_8b/seed42/evaluation/core/summary.json;outputs/llama3_8b/seed43/evaluation/core/summary.json;outputs/llama3_8b/seed44/evaluation/core/summary.json
-llama3_8b,fullft,1000,3,35.2,3.4073450074801652,outputs/llama3_8b/seed42/evaluation_fullft/core/summary.json;outputs/llama3_8b/seed43/evaluation_fullft/core/summary.json;outputs/llama3_8b/seed44/evaluation_fullft/core/summary.json

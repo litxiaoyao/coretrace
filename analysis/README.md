@@ -52,7 +52,7 @@ A partial run writes a separate partial manifest; a complete run refreshes the c
 | Appendix | `data_app_ablation` | Complete component comparisons |
 | Appendix | `data_app_capabilities` | Changes on HotpotQA, MMLU, and GSM8K |
 
-Figures 1 and 2 were created with ChatGPT's built-in image generation and then inspected against the method. Their generation and editing prompts are in `analysis/image_prompts.json`. Their PDFs embed the supplied PNGs at 6.75-inch width without resampling. These two conceptual illustrations are supplied assets; the Python numerical-plotting script regenerates the other seven figures. Reissuing an image-generation prompt need not produce pixel-identical illustrations. To rebuild just their font-free PDF containers from the supplied PNGs, install PyMuPDF and Pillow, then run `python analysis/wrap_conceptual_figures.py`. This operation preserves the original RGB pixels and does not regenerate the images.
+Figures 1 and 2 were created with ChatGPT's built-in image generation and then inspected against the method. Their generation and editing prompts are in `analysis/image_prompts.json`. Their PDFs embed the supplied PNGs without resampling: Figure 1 at 3.25-inch single-column width and Figure 2 at 6.75-inch full-page width. These two conceptual illustrations are supplied assets; the Python numerical-plotting script regenerates the other seven figures. Reissuing an image-generation prompt need not produce pixel-identical illustrations. To rebuild just their font-free PDF containers from the supplied PNGs, install PyMuPDF and Pillow, then run `python analysis/wrap_conceptual_figures.py`. This operation preserves the original RGB pixels and does not regenerate the images.
 
 ## Lightweight reproduction archive
 
@@ -66,13 +66,9 @@ python analysis/build_tables.py
 
 These commands require no model weights, PyTorch, GPU, network access after dependency installation, or decompressed prediction archives. Required derived JSON measurements retain their original paths under `analysis/internal/`; that directory name does not imply that the package recomputes them from raw model outputs. The package supplies those measurements as inputs. `analysis/figure_data/README.md` defines the figure populations and uncertainty conventions.
 
-### Scope of reproducibility
+### Reconstruction inputs
 
-The lightweight archive reproduces the **numerical figures and tables** from the supplied summaries and derived measurements. It does not rerun model training, model inference, or the raw-prediction verification analyses.
-
-The current repository release omits `coretrace/models/` and the trained model/slice weights. Those omissions prevent a complete model-level rerun from the release alone. Regenerating the derived measurements from archived predictions additionally requires the full repository data and prediction/feature archives, rather than just the small-input reproduction archive. No replacement model implementation or checkpoint is supplied by the presentation pipeline.
-
-Optional `analysis/audit_*.py` scripts can be included with `--include-audit-code` when packaging. They are supplied for inspection and use with the full repository; they are not part of the standalone figure/table execution path and may require additional dependencies and archived data.
+The lightweight archive regenerates the numerical figures and tables from supplied summaries and derived measurements. The full repository retains raw prediction and feature archives for further analysis. Optional `analysis/audit_*.py` scripts can be included with `--include-audit-code` for analyses using those archives.
 
 ## Statistical and evaluation conventions
 

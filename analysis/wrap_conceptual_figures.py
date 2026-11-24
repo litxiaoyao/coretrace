@@ -14,7 +14,7 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[1]
-WIDTH_PT = 6.75 * 72
+WIDTHS_PT = {"figure1_teaser": 3.25 * 72, "figure2_method": 6.75 * 72}
 
 
 def wrap(stem: str) -> None:
@@ -24,7 +24,8 @@ def wrap(stem: str) -> None:
         width, height = im.size
         expected = im.convert("RGB").tobytes()
     doc = fitz.open()
-    page = doc.new_page(width=WIDTH_PT, height=WIDTH_PT * height / width)
+    width_pt = WIDTHS_PT[stem]
+    page = doc.new_page(width=width_pt, height=width_pt * height / width)
     page.insert_image(page.rect, filename=str(png))
     doc.save(pdf, garbage=4, deflate=True)
     doc.close()

@@ -1,0 +1,97 @@
+{
+  "csv_tables": [
+    {
+      "file": "analysis/figure_data/data_app_ablation_aggregated.csv",
+      "rows": 27,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_app_ablation_seed_values.csv",
+      "rows": 75,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_app_capabilities_aggregated.csv",
+      "rows": 27,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_app_capabilities_seed_values.csv",
+      "rows": 90,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_app_localization.csv",
+      "rows": 3328,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_app_necessity.csv",
+      "rows": 63,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_fig3_diagnosis_address_readout.csv",
+      "rows": 9,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_fig3_diagnosis_address_readout_overall.csv",
+      "rows": 9,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_fig3_diagnosis_composition.csv",
+      "rows": 3,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_fig4_causal_access_controls.csv",
+      "rows": 9,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_fig4_causal_factorial.csv",
+      "rows": 15,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_fig4_causal_factorial_contrasts.csv",
+      "rows": 15,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_fig5_content_aggregated.csv",
+      "rows": 48,
+      "values_unchanged": true
+    },
+    {
+      "file": "analysis/figure_data/data_fig5_content_seed_values.csv",
+      "rows": 144,
+      "values_unchanged": true
+    }
+  ],
+  "figure_count": 7,
+  "font_family": "STIXGeneral",
+  "font_embedding": "TrueType, fully embedded",
+  "palette": {
+    "teal": "#087F8C",
+    "coral": "#D76B50",
+    "purple": "#6F5AA8",
+    "gray": "#849199",
+    "ours_background": "#E5F2EF"
+  },
+  "text_canvas_bounds": "all pass",
+  "appendix_layout_revision": {
+    "ablation_inches": [
+      6.75,
+      3.15
+    ],
+    "capabilities_inches": [
+      6.75,
+      5.0
+    ],
+    "font_sizes_preserved": true,
+    "visual_review": "No text overlap after height reductions; all text-canvas bounds pass."
+  }
+}

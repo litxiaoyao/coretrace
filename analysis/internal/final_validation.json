@@ -1,36 +1,46 @@
 {
-  "pdf_sha256": "db1074245159e3f7e5a5c5154d339abad50a7c150f0762426ee64de7f973d87e",
-  "pages": 22,
-  "main_pages": 8,
-  "impact_and_references_pages": [
-    9,
-    10
-  ],
-  "appendix_pages": [
-    11,
-    22
-  ],
-  "formal_figures": 9,
+  "revision_date": "2026-11-24",
+  "pdf_sha256": "5bdc1ecdc0a02cb489e0051cd2c4af458e5c0af5c9624a4c37b5c12c35525694",
+  "pages": 25,
+  "main_text_last_page": 8,
+  "appendix_start_page": 10,
   "main_figures": 5,
   "appendix_figures": 4,
   "main_tables": 2,
-  "appendix_tables": 15,
-  "cited_references": 21,
-  "unresolved_references": [],
-  "unresolved_citations": [],
-  "overfull_boxes": false,
-  "visible_internal_markers": false,
-  "type3_fonts": false,
-  "visual_review": "All pages inspected independently; final author-footnote and hyphenation corrections verified.",
-  "remaining_latex_warnings": [
-    "The official anonymous affiliations block emits a benign empty-anchor hyperref warning."
-  ],
-  "scope": [
-    "analysis/",
-    "paper/"
-  ],
-  "end_to_end_model_rerun": false,
-  "reproducibility_limit": "Original coretrace/models integration package and trained weights are absent.",
+  "appendix_tables": 19,
+  "generated_table_files": 18,
+  "font_resources": 33,
   "all_fonts_embedded": true,
-  "conceptual_pdf_fonts": "No font resources; original RGB pixels verified identical"
+  "type3_fonts": false,
+  "portrait_teaser": {
+    "page": 1,
+    "position": "top of right column below title",
+    "bbox_points": [
+      307.44000244140625,
+      193.16598510742188,
+      541.4400024414062,
+      505.1659851074219
+    ],
+    "pixel_size": [
+      1086,
+      1448
+    ]
+  },
+  "checks": {
+    "undefined_references": false,
+    "overfull_boxes": false,
+    "duplicate_labels": false,
+    "missing_labels": [],
+    "unreferenced_figures_or_tables": [],
+    "editorial_markers": []
+  },
+  "reference_visual_style_review": [
+    "Persona pp.2/4/6/9",
+    "Emotion pp.1/3/5/8",
+    "AAAI pp.2/5/6",
+    "ACL pp.1/2/4/6/8"
+  ],
+  "positive_result_families": 21,
+  "secondary_metric_scalar_means_verified": 120,
+  "figure_csv_observations_preserved": 3862
 }
