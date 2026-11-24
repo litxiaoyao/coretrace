@@ -5,5 +5,5 @@
 *.fls
 *.log
 *.out
-main.pdf
 *.synctex.gz
+texsys.aux

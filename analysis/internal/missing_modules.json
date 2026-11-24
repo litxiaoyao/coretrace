@@ -1,0 +1,74 @@
+[
+  {
+    "importer": "coretrace/train/fullft.py",
+    "line": 61,
+    "module": "..models.cpu_adamw",
+    "absent_path": "coretrace/models/cpu_adamw"
+  },
+  {
+    "importer": "coretrace/train/selected_heads.py",
+    "line": 69,
+    "module": "..models.head_slices",
+    "absent_path": "coretrace/models/head_slices"
+  },
+  {
+    "importer": "scripts/readout.py",
+    "line": 33,
+    "module": "coretrace.models.native",
+    "absent_path": "coretrace/models/native"
+  },
+  {
+    "importer": "scripts/readout.py",
+    "line": 34,
+    "module": "coretrace.models.deployment",
+    "absent_path": "coretrace/models/deployment"
+  },
+  {
+    "importer": "scripts/content_causal.py",
+    "line": 50,
+    "module": "coretrace.models.deployment",
+    "absent_path": "coretrace/models/deployment"
+  },
+  {
+    "importer": "scripts/content_causal.py",
+    "line": 126,
+    "module": "coretrace.models.native",
+    "absent_path": "coretrace/models/native"
+  },
+  {
+    "importer": "scripts/evaluate.py",
+    "line": 88,
+    "module": "coretrace.models.deployment",
+    "absent_path": "coretrace/models/deployment"
+  },
+  {
+    "importer": "scripts/necessity.py",
+    "line": 49,
+    "module": "coretrace.models.native",
+    "absent_path": "coretrace/models/native"
+  },
+  {
+    "importer": "scripts/factorized_causal.py",
+    "line": 90,
+    "module": "coretrace.models.native",
+    "absent_path": "coretrace/models/native"
+  },
+  {
+    "importer": "scripts/runtime_refresh.py",
+    "line": 22,
+    "module": "coretrace.models.deployment",
+    "absent_path": "coretrace/models/deployment"
+  },
+  {
+    "importer": "scripts/resident_worker.py",
+    "line": 124,
+    "module": "coretrace.models.native",
+    "absent_path": "coretrace/models/native"
+  },
+  {
+    "importer": "scripts/resident_worker.py",
+    "line": 40,
+    "module": "coretrace.models.native",
+    "absent_path": "coretrace/models/native"
+  }
+]

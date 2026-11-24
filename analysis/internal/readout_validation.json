@@ -1,0 +1,986 @@
+[
+  {
+    "directory": "outputs/qwen3_4b/native_readout",
+    "recomputed": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1856
+        },
+        "test": {
+          "n": 1000,
+          "correct": 803
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1809
+        },
+        "test": {
+          "n": 1000,
+          "correct": 750
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "expected": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1856
+        },
+        "test": {
+          "n": 1000,
+          "correct": 803
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1809
+        },
+        "test": {
+          "n": 1000,
+          "correct": 750
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "equal": true,
+    "native_composition_failure_readout": {
+      "full": {
+        "n": 234,
+        "correct": 169
+      },
+      "attention": {
+        "n": 234,
+        "correct": 151
+      },
+      "metadata": {
+        "n": 234,
+        "correct": 93
+      }
+    }
+  },
+  {
+    "directory": "outputs/qwen3_4b/seed42/readout",
+    "recomputed": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1981
+        },
+        "test": {
+          "n": 1000,
+          "correct": 903
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1974
+        },
+        "test": {
+          "n": 1000,
+          "correct": 896
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "expected": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1981
+        },
+        "test": {
+          "n": 1000,
+          "correct": 903
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1974
+        },
+        "test": {
+          "n": 1000,
+          "correct": 896
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "equal": true,
+    "native_composition_failure_readout": {
+      "full": {
+        "n": 234,
+        "correct": 194
+      },
+      "attention": {
+        "n": 234,
+        "correct": 188
+      },
+      "metadata": {
+        "n": 234,
+        "correct": 93
+      }
+    }
+  },
+  {
+    "directory": "outputs/qwen3_4b/seed43/readout",
+    "recomputed": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1981
+        },
+        "test": {
+          "n": 1000,
+          "correct": 903
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1974
+        },
+        "test": {
+          "n": 1000,
+          "correct": 896
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "expected": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1981
+        },
+        "test": {
+          "n": 1000,
+          "correct": 903
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1974
+        },
+        "test": {
+          "n": 1000,
+          "correct": 896
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "equal": true,
+    "native_composition_failure_readout": {
+      "full": {
+        "n": 234,
+        "correct": 194
+      },
+      "attention": {
+        "n": 234,
+        "correct": 188
+      },
+      "metadata": {
+        "n": 234,
+        "correct": 93
+      }
+    }
+  },
+  {
+    "directory": "outputs/qwen3_4b/seed44/readout",
+    "recomputed": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1981
+        },
+        "test": {
+          "n": 1000,
+          "correct": 903
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1974
+        },
+        "test": {
+          "n": 1000,
+          "correct": 896
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "expected": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1981
+        },
+        "test": {
+          "n": 1000,
+          "correct": 903
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1974
+        },
+        "test": {
+          "n": 1000,
+          "correct": 896
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "equal": true,
+    "native_composition_failure_readout": {
+      "full": {
+        "n": 234,
+        "correct": 194
+      },
+      "attention": {
+        "n": 234,
+        "correct": 188
+      },
+      "metadata": {
+        "n": 234,
+        "correct": 93
+      }
+    }
+  },
+  {
+    "directory": "outputs/qwen3_8b/native_readout",
+    "recomputed": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1903
+        },
+        "test": {
+          "n": 1000,
+          "correct": 839
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1849
+        },
+        "test": {
+          "n": 1000,
+          "correct": 793
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "expected": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1903
+        },
+        "test": {
+          "n": 1000,
+          "correct": 839
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1849
+        },
+        "test": {
+          "n": 1000,
+          "correct": 793
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "equal": true,
+    "native_composition_failure_readout": {
+      "full": {
+        "n": 236,
+        "correct": 176
+      },
+      "attention": {
+        "n": 236,
+        "correct": 166
+      },
+      "metadata": {
+        "n": 236,
+        "correct": 100
+      }
+    }
+  },
+  {
+    "directory": "outputs/qwen3_8b/seed42/readout",
+    "recomputed": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1973
+        },
+        "test": {
+          "n": 1000,
+          "correct": 926
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1972
+        },
+        "test": {
+          "n": 1000,
+          "correct": 912
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "expected": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1973
+        },
+        "test": {
+          "n": 1000,
+          "correct": 926
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1972
+        },
+        "test": {
+          "n": 1000,
+          "correct": 912
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "equal": true,
+    "native_composition_failure_readout": {
+      "full": {
+        "n": 236,
+        "correct": 203
+      },
+      "attention": {
+        "n": 236,
+        "correct": 194
+      },
+      "metadata": {
+        "n": 236,
+        "correct": 100
+      }
+    }
+  },
+  {
+    "directory": "outputs/qwen3_8b/seed43/readout",
+    "recomputed": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1973
+        },
+        "test": {
+          "n": 1000,
+          "correct": 926
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1972
+        },
+        "test": {
+          "n": 1000,
+          "correct": 912
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "expected": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1973
+        },
+        "test": {
+          "n": 1000,
+          "correct": 926
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1972
+        },
+        "test": {
+          "n": 1000,
+          "correct": 912
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "equal": true,
+    "native_composition_failure_readout": {
+      "full": {
+        "n": 236,
+        "correct": 203
+      },
+      "attention": {
+        "n": 236,
+        "correct": 194
+      },
+      "metadata": {
+        "n": 236,
+        "correct": 100
+      }
+    }
+  },
+  {
+    "directory": "outputs/qwen3_8b/seed44/readout",
+    "recomputed": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1973
+        },
+        "test": {
+          "n": 1000,
+          "correct": 926
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1972
+        },
+        "test": {
+          "n": 1000,
+          "correct": 912
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "expected": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1973
+        },
+        "test": {
+          "n": 1000,
+          "correct": 926
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1972
+        },
+        "test": {
+          "n": 1000,
+          "correct": 912
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 873
+        },
+        "test": {
+          "n": 1000,
+          "correct": 435
+        }
+      }
+    },
+    "equal": true,
+    "native_composition_failure_readout": {
+      "full": {
+        "n": 236,
+        "correct": 203
+      },
+      "attention": {
+        "n": 236,
+        "correct": 194
+      },
+      "metadata": {
+        "n": 236,
+        "correct": 100
+      }
+    }
+  },
+  {
+    "directory": "outputs/llama3_8b/native_readout",
+    "recomputed": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1939
+        },
+        "test": {
+          "n": 1000,
+          "correct": 919
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1908
+        },
+        "test": {
+          "n": 1000,
+          "correct": 909
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 870
+        },
+        "test": {
+          "n": 1000,
+          "correct": 441
+        }
+      }
+    },
+    "expected": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1939
+        },
+        "test": {
+          "n": 1000,
+          "correct": 919
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1908
+        },
+        "test": {
+          "n": 1000,
+          "correct": 909
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 870
+        },
+        "test": {
+          "n": 1000,
+          "correct": 441
+        }
+      }
+    },
+    "equal": true,
+    "native_composition_failure_readout": {
+      "full": {
+        "n": 243,
+        "correct": 209
+      },
+      "attention": {
+        "n": 243,
+        "correct": 205
+      },
+      "metadata": {
+        "n": 243,
+        "correct": 104
+      }
+    }
+  },
+  {
+    "directory": "outputs/llama3_8b/seed42/readout",
+    "recomputed": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1988
+        },
+        "test": {
+          "n": 1000,
+          "correct": 950
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1987
+        },
+        "test": {
+          "n": 1000,
+          "correct": 943
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 870
+        },
+        "test": {
+          "n": 1000,
+          "correct": 441
+        }
+      }
+    },
+    "expected": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1988
+        },
+        "test": {
+          "n": 1000,
+          "correct": 950
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1987
+        },
+        "test": {
+          "n": 1000,
+          "correct": 943
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 870
+        },
+        "test": {
+          "n": 1000,
+          "correct": 441
+        }
+      }
+    },
+    "equal": true,
+    "native_composition_failure_readout": {
+      "full": {
+        "n": 243,
+        "correct": 224
+      },
+      "attention": {
+        "n": 243,
+        "correct": 221
+      },
+      "metadata": {
+        "n": 243,
+        "correct": 104
+      }
+    }
+  },
+  {
+    "directory": "outputs/llama3_8b/seed43/readout",
+    "recomputed": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1988
+        },
+        "test": {
+          "n": 1000,
+          "correct": 950
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1987
+        },
+        "test": {
+          "n": 1000,
+          "correct": 943
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 870
+        },
+        "test": {
+          "n": 1000,
+          "correct": 441
+        }
+      }
+    },
+    "expected": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1988
+        },
+        "test": {
+          "n": 1000,
+          "correct": 950
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1987
+        },
+        "test": {
+          "n": 1000,
+          "correct": 943
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 870
+        },
+        "test": {
+          "n": 1000,
+          "correct": 441
+        }
+      }
+    },
+    "equal": true,
+    "native_composition_failure_readout": {
+      "full": {
+        "n": 243,
+        "correct": 224
+      },
+      "attention": {
+        "n": 243,
+        "correct": 221
+      },
+      "metadata": {
+        "n": 243,
+        "correct": 104
+      }
+    }
+  },
+  {
+    "directory": "outputs/llama3_8b/seed44/readout",
+    "recomputed": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1988
+        },
+        "test": {
+          "n": 1000,
+          "correct": 950
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1987
+        },
+        "test": {
+          "n": 1000,
+          "correct": 943
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 870
+        },
+        "test": {
+          "n": 1000,
+          "correct": 441
+        }
+      }
+    },
+    "expected": {
+      "full": {
+        "train": {
+          "n": 2000,
+          "correct": 1988
+        },
+        "test": {
+          "n": 1000,
+          "correct": 950
+        }
+      },
+      "attention": {
+        "train": {
+          "n": 2000,
+          "correct": 1987
+        },
+        "test": {
+          "n": 1000,
+          "correct": 943
+        }
+      },
+      "metadata": {
+        "train": {
+          "n": 2000,
+          "correct": 870
+        },
+        "test": {
+          "n": 1000,
+          "correct": 441
+        }
+      }
+    },
+    "equal": true,
+    "native_composition_failure_readout": {
+      "full": {
+        "n": 243,
+        "correct": 224
+      },
+      "attention": {
+        "n": 243,
+        "correct": 221
+      },
+      "metadata": {
+        "n": 243,
+        "correct": 104
+      }
+    }
+  }
+]

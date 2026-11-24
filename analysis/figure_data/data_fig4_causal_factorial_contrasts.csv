@@ -1,0 +1,16 @@
+model,contrast,estimate_pp,CI95_low_pp,CI95_high_pp,n,clusters,source
+qwen3_4b,mass_effect_receiver_conditional,7.000000000000001,1.0,14.000000000000002,100,25,outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_4b,mass_effect_donor_conditional,15.0,9.0,22.0,100,25,outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_4b,conditional_effect_native_mass,-6.0,-10.0,-2.0,100,25,outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_4b,conditional_effect_fixed_mass,2.0,-3.0,7.000000000000001,100,25,outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_4b,interaction,8.0,1.0,14.000000000000002,100,25,outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_8b,mass_effect_receiver_conditional,4.0,-1.0,10.0,100,25,outputs/qwen3_8b/causal_factorization/summary.json
+qwen3_8b,mass_effect_donor_conditional,9.0,4.0,14.000000000000002,100,25,outputs/qwen3_8b/causal_factorization/summary.json
+qwen3_8b,conditional_effect_native_mass,2.0,-3.0,7.000000000000001,100,25,outputs/qwen3_8b/causal_factorization/summary.json
+qwen3_8b,conditional_effect_fixed_mass,7.000000000000001,3.0,11.0,100,25,outputs/qwen3_8b/causal_factorization/summary.json
+qwen3_8b,interaction,5.0,0.0,10.0,100,25,outputs/qwen3_8b/causal_factorization/summary.json
+llama3_8b,mass_effect_receiver_conditional,13.0,6.0,20.0,100,25,outputs/llama3_8b/causal_factorization/summary.json
+llama3_8b,mass_effect_donor_conditional,28.999999999999996,20.0,38.0,100,25,outputs/llama3_8b/causal_factorization/summary.json
+llama3_8b,conditional_effect_native_mass,-4.0,-9.0,1.0,100,25,outputs/llama3_8b/causal_factorization/summary.json
+llama3_8b,conditional_effect_fixed_mass,12.0,3.0,21.0,100,25,outputs/llama3_8b/causal_factorization/summary.json
+llama3_8b,interaction,16.0,8.0,25.0,100,25,outputs/llama3_8b/causal_factorization/summary.json

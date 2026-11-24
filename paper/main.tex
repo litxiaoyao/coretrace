@@ -2,25 +2,53 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
-\usepackage{xurl}
-\usepackage{hyperref}
-% Temporary preview in the unmodified 2026 style. Replace with the official
-% 2027 package when it is released; do not rename the 2026 style to 2027.
-\usepackage{icml2026}
-\icmltitlerunning{CoReTrace: Contextual Multi-Hop Composition}
+\usepackage{graphicx,subcaption,booktabs}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor,multirow,array,enumitem}
+\usepackage{xurl,hyperref}
+\usepackage{icml2027}
+\usepackage[capitalize,noabbrev]{cleveref}
+\newcommand{\method}{\textsc{CoReTrace}}
+\newcommand{\dataset}{\textsc{CoRe-2Wiki}}
+\newcommand{\E}{\mathbb{E}}
+\definecolor{teal}{HTML}{087F8C}
+\definecolor{coral}{HTML}{D76B50}
+\definecolor{purple}{HTML}{6F5AA8}
+\icmltitlerunning{Evidence Access Shapes Local Reading}
 \begin{document}
+\lefthyphenmin=2
+\righthyphenmin=3
+\hyphenation{Llama Qwen CoReTrace}
 \twocolumn[
-\icmltitle{CoReTrace: Understanding Contextual Multi-Hop Composition}
+\icmltitle{\texorpdfstring{When Correct Hops Fail to Compose:\\Evidence Access Shapes Local Reading}{When Correct Hops Fail to Compose: Evidence Access Shapes Local Reading}}
 \begin{icmlauthorlist}
 \icmlauthor{Anonymous Authors}{anonymous}
 \end{icmlauthorlist}
 \icmlaffiliation{anonymous}{Anonymous Institution}
+\icmlcorrespondingauthor{Anonymous Authors}{anonymous@example.com}
 \vskip 0.3in
 ]
 \printAffiliationsAndNotice{}
-% This document currently contains the requested Related Work only.
-% No abstract, results, or empirical claims are fabricated before formal runs.
+\begin{abstract}
+Language models can answer both constituent questions from the same evidence yet fail to compose their answers. Across three models, this happens on roughly half of the cases with correct constituent answers. We identify a gap between recoverable evidence location and effective evidence use: a training-fitted linear readout still identifies the bridge paragraph in 72.2--86.0\% of these failed compositions. Factorizing attention into paragraph access mass and a conditional distribution within the paragraph reveals that transferring a direct-hop reading pattern becomes more useful after calibrating access, with interaction estimates of 5--16 percentage points. After reciprocal fact exchanges preserving global word counts, repaired predictions follow changed local values in 76--80\% of cases, compared with 26--35\% natively. These findings motivate \method, which combines selected-head adaptation with input-derived evidence selection and fixed projection restoration. On 1,000 contextual reasoning triplets, composed accuracy increases from 26.9/29.2/36.4\% to 66.8/67.2/69.7\% for Qwen3-4B, Qwen3-8B, and Llama-3.1-8B, respectively, using 0.49--0.94\% trainable model parameters; the attention readout resolves ambiguous evidence with an extra input pass on only 10.3\% of composed questions. Complete constituent and capability evaluations expose the remaining tradeoffs, connecting a functional mechanism to a practical, inference-time annotation-free intervention.
+\end{abstract}
+\input{sections/introduction}
 \input{related_work}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/conclusion}
+\clearpage
+\twocolumn
+\section*{Impact Statement}
+This work studies how language models use supplied evidence and how targeted interventions change their answers. Better evidence use can improve the reliability of question answering, but successful intervention on one task does not imply reliability on other tasks. Our evaluations explicitly measure constituent and general-capability changes. The study uses existing public question-answering datasets and does not introduce personal data collection. The proposed approach is intended as an interpretable research method, and its remaining errors and capability tradeoffs should inform any downstream use.
 \bibliography{references}
-\bibliographystyle{icml2026}
+\bibliographystyle{icml2027}
+\clearpage
+\appendix
+\onecolumn
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\thetable}{A\arabic{table}}
+\input{sections/appendix}
 \end{document}

@@ -1,0 +1,36 @@
+{
+  "pdf_sha256": "db1074245159e3f7e5a5c5154d339abad50a7c150f0762426ee64de7f973d87e",
+  "pages": 22,
+  "main_pages": 8,
+  "impact_and_references_pages": [
+    9,
+    10
+  ],
+  "appendix_pages": [
+    11,
+    22
+  ],
+  "formal_figures": 9,
+  "main_figures": 5,
+  "appendix_figures": 4,
+  "main_tables": 2,
+  "appendix_tables": 15,
+  "cited_references": 21,
+  "unresolved_references": [],
+  "unresolved_citations": [],
+  "overfull_boxes": false,
+  "visible_internal_markers": false,
+  "type3_fonts": false,
+  "visual_review": "All pages inspected independently; final author-footnote and hyphenation corrections verified.",
+  "remaining_latex_warnings": [
+    "The official anonymous affiliations block emits a benign empty-anchor hyperref warning."
+  ],
+  "scope": [
+    "analysis/",
+    "paper/"
+  ],
+  "end_to_end_model_rerun": false,
+  "reproducibility_limit": "Original coretrace/models integration package and trained weights are absent.",
+  "all_fonts_embedded": true,
+  "conceptual_pdf_fonts": "No font resources; original RGB pixels verified identical"
+}

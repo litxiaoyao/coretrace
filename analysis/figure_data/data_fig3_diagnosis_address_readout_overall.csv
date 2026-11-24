@@ -1,0 +1,10 @@
+model,feature_set,n,correct,accuracy_percent,subpopulation,source
+qwen3_4b,full,1000,803,80.3,all_test_sources,outputs/qwen3_4b/native_readout/complete.json
+qwen3_4b,attention,1000,750,75.0,all_test_sources,outputs/qwen3_4b/native_readout/complete.json
+qwen3_4b,metadata,1000,435,43.5,all_test_sources,outputs/qwen3_4b/native_readout/complete.json
+qwen3_8b,full,1000,839,83.9,all_test_sources,outputs/qwen3_8b/native_readout/complete.json
+qwen3_8b,attention,1000,793,79.3,all_test_sources,outputs/qwen3_8b/native_readout/complete.json
+qwen3_8b,metadata,1000,435,43.5,all_test_sources,outputs/qwen3_8b/native_readout/complete.json
+llama3_8b,full,1000,919,91.9,all_test_sources,outputs/llama3_8b/native_readout/complete.json
+llama3_8b,attention,1000,909,90.9,all_test_sources,outputs/llama3_8b/native_readout/complete.json
+llama3_8b,metadata,1000,441,44.1,all_test_sources,outputs/llama3_8b/native_readout/complete.json

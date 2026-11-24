@@ -1,0 +1,79 @@
+{
+  "status": "VALID_DATASET",
+  "dataset": "CoRe-2Wiki-v1.0",
+  "source_count": 3100,
+  "query_count": 9300,
+  "splits": {
+    "discovery": {
+      "sources": 100,
+      "queries": 300
+    },
+    "train": {
+      "sources": 2000,
+      "queries": 6000
+    },
+    "test": {
+      "sources": 1000,
+      "queries": 3000
+    }
+  },
+  "shared_context_views": 250,
+  "composed_receivers": 100,
+  "reciprocal_swaps": 100,
+  "actual_swaps": 100,
+  "character_bag_identical": true,
+  "word_bag_identical": true,
+  "old_new_normalized_alias_overlap": [],
+  "old_new_answer_alias_count_differences": [
+    {
+      "id": "natural_crossed_9805777a8f891ab8502f__C11",
+      "alias": "American",
+      "before": 1,
+      "after": 2
+    },
+    {
+      "id": "natural_crossed_9805777a8f891ab8502f__C11",
+      "alias": "Swiss",
+      "before": 2,
+      "after": 1
+    },
+    {
+      "id": "natural_crossed_9805777a8f891ab8502f__C21",
+      "alias": "American",
+      "before": 1,
+      "after": 2
+    },
+    {
+      "id": "natural_crossed_9805777a8f891ab8502f__C21",
+      "alias": "Swiss",
+      "before": 2,
+      "after": 1
+    },
+    {
+      "id": "natural_crossed_c98ee3fe1e6c68fa0ac9__C11",
+      "alias": "Raj Kapoor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "id": "natural_crossed_c98ee3fe1e6c68fa0ac9__C11",
+      "alias": "Sashadhar Mukherjee",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "id": "natural_crossed_c98ee3fe1e6c68fa0ac9__C21",
+      "alias": "Raj Kapoor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "id": "natural_crossed_c98ee3fe1e6c68fa0ac9__C21",
+      "alias": "Sashadhar Mukherjee",
+      "before": 1,
+      "after": 0
+    }
+  ],
+  "literal_whole_word_alias_count_differences": [],
+  "normalized_alias_count_note": "Punctuation-deleting answer normalization changes four inputs' apparent phrase counts (slash/possessive adjacency). Literal whole-word alias counts are checked separately; the exact guaranteed construction invariant is raw word and character bags."
+}

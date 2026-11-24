@@ -1,0 +1,16 @@
+model,method,n,correct,accuracy_percent,clusters,source
+qwen3_4b,native,100,34,34.0,25,outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_4b,identity,100,34,34.0,25,outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_4b,mass_only,100,41,41.0,25,outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_4b,conditional_only,100,28,28.000000000000004,25,outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_4b,both,100,43,43.0,25,outputs/qwen3_4b/causal_factorization/summary.json
+qwen3_8b,native,100,48,48.0,25,outputs/qwen3_8b/causal_factorization/summary.json
+qwen3_8b,identity,100,48,48.0,25,outputs/qwen3_8b/causal_factorization/summary.json
+qwen3_8b,mass_only,100,52,52.0,25,outputs/qwen3_8b/causal_factorization/summary.json
+qwen3_8b,conditional_only,100,50,50.0,25,outputs/qwen3_8b/causal_factorization/summary.json
+qwen3_8b,both,100,59,59.0,25,outputs/qwen3_8b/causal_factorization/summary.json
+llama3_8b,native,100,51,51.0,25,outputs/llama3_8b/causal_factorization/summary.json
+llama3_8b,identity,100,51,51.0,25,outputs/llama3_8b/causal_factorization/summary.json
+llama3_8b,mass_only,100,64,64.0,25,outputs/llama3_8b/causal_factorization/summary.json
+llama3_8b,conditional_only,100,47,47.0,25,outputs/llama3_8b/causal_factorization/summary.json
+llama3_8b,both,100,76,76.0,25,outputs/llama3_8b/causal_factorization/summary.json

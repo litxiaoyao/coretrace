@@ -1,0 +1,216 @@
+\section{Data Construction and Evaluation Population}
+\label{app:data}
+
+\subsection{Natural Sources and Paired Questions}
+
+\dataset\ version 1.0 is a contextual composition protocol derived from the original 2WikiMultiHopQA release with entity identifiers and aliases \citep{ho2020constructing}. A source must support a unique two-edge chain whose endpoint matches the original answer. Chain eligibility requires three distinct entities, two distinct official supporting facts, and a literal object mention in the corresponding support sentence. The root and bridge subjects are matched to paragraph titles after Unicode, case, whitespace, and parenthetical-title normalization. The composed question, all ten paragraphs, and their order remain as released. The protocol adds explicit first-hop and second-hop questions; it does not rewrite the composed task into a synthetic question.
+
+For seven frequent relations, constituent probes use natural templates: ``Who directed/composed $x$?'', ``Who is the father/mother/spouse of $x$?'', ``Where was $x$ born?'', and ``Where did $x$ die?'' Other relations use ``According to the evidence, for $x$, what is the value of the relation `$r$'?'' Gold aliases and demonyms are joined through the official answer entity identifier. The first-hop answer is the bridge entity; the direct second-hop and composed questions share the same endpoint aliases. These probes are diagnostic queries, so constituent correctness refers to this explicit formulation rather than every possible paraphrase.
+
+\cref{tab:data} describes the population. The training sources all originate in the official training split; test sources all originate in the official development split. Discovery includes 77 official training and 23 official development sources. Source identifiers are disjoint across our three splits. Entity disjointness is not imposed: 43 test sources share a transitive root/bridge entity group with training sources. Within the test panel, all 1,000 sources have distinct roots, distinct bridges, and distinct transitive groups. Training is more concentrated in director relations (1,154/2,000 first edges) than test (280/1,000); father relations occur in 199 training and 333 test first edges. The panel is therefore a particular natural two-hop population, rather than a representative sample of every 2Wiki question type.
+
+\begin{table}[htbp]
+  \centering
+  \caption{\textbf{Source and query populations.} Every canonical source retains ten original paragraphs. A root/bridge group connects sources transitively through shared root or bridge entities. The shared-context diagnostic reuses discovery sources with a common context within each quadruplet.}
+  \label{tab:data}
+  \small
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Split & Sources & Queries & Unique roots & Unique bridges & Entity groups \\
+    \midrule
+    Discovery & 100 & 300 & 50 & 50 & 50 \\
+    Training & 2,000 & 6,000 & 1,949 & 1,558 & 1,543 \\
+    Test & 1,000 & 3,000 & 1,000 & 1,000 & 1,000 \\
+    \midrule
+    Shared-context diagnostic & 100 & 250 & \multicolumn{3}{c}{25 crossed quadruplets} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Fixed Selection and Its Scope}
+
+The test panel was selected from an existing source-only pool of 1,001 examples by sorting source identifiers using a fixed SHA-256 ordering and retaining 1,000. Discovery started from 32 naturally crossed quadruplets; whole quadruplets intersecting test sources were removed, and 25 complete quadruplets were retained in a separate fixed hash ordering. Training retained 868 existing source-only examples and added 1,132 eligible official training examples, excluding selected source identifiers. Added candidates were hash-ordered and required all three prompts to fit 4,096 tokens under the original shared Qwen3 tokenizer and template. These rules use input lengths and source annotations, not model predictions. The saved selection fixes their outcome; changing tokenizers does not resample the panel.
+
+Eleven discovery sources require explicit support-index resolution: ten have subject/title surface mismatches, and one uses a demonym rather than the literal object surface. Their original official support title and sentence indices are retained explicitly; no new sentence or fact is generated. Training and test have no such exceptions. Discovery and the formal test panel may reuse sources from preceding development. Consequently, our formal split separates training source identifiers but does not establish an untouched test set. The model-specific restoration scopes also come from preceding development. The reported effects support comparisons on this fixed panel; a new, independently assembled panel would be needed to quantify generalization after all design decisions.
+
+\subsection{Shared Contexts and Reciprocal Fact Exchanges}
+
+Each discovery quadruplet crosses two bridges with two second-hop relations, producing four original composed questions with four distinct answer entities. We form one ten-paragraph context from complete original supporting paragraphs, padded with original non-support paragraphs from those same sources. This exact context is shared across all four composed questions and their direct probes. A quadruplet contributes four composed queries, four direct second-hop queries, and two distinct direct first-hop queries: 250 prompts and 100 three-query links in total. The construction aligns donor and receiver evidence-token positions without replacing evidence with abbreviated triples. It changes the canonical context, so its native accuracy need not equal the canonical discovery accuracy.
+
+For the content intervention, we exchange the literal object spans in two official bridge facts with the same second-hop relation. The support sentence and its object span must be uniquely identifiable; the original and replacement normalized answer sets are disjoint. Exchanges preserve the question, titles, paragraph order, complete-context character multiset, and complete-context word multiset. All 100 constructed exchanges satisfy these checks and change the input. Preservation is assessed before evidence selection: rerunning a selector can subsequently produce a different retained context. This design holds the complete-context bag of words constant while changing which value is attached to the queried bridge relation. The control excludes explanations based solely on unordered word counts while allowing more structured extraction strategies.
+
+\section{Experimental Protocol}
+\label{app:protocol}
+\input{sections/appendix_protocol}
+
+\section{Localization and Factorized Interventions}
+\label{app:interventions}
+
+\subsection{Head Ranking and Count Selection}
+
+The ranking in \cref{eq:ranking} uses discovery-only paired direct-target and composed queries under their original contexts. \cref{fig:localization} plots the complete layer/head score maps and marks selected heads. The ranking measures a query-dependent attention difference, not a unique anatomical assignment of reasoning stages. For each candidate count, the calibration intervention sets bridge mass using discovery-derived, head-specific targets; \cref{tab:head_selection} reports the composed accuracies used to choose 20, 20, and 40 heads. A tie favors the smaller set. The shared-context factorial experiment uses these frozen choices without retuning them. Its contexts differ from those in the count-selection table.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/data_app_localization.pdf}
+  \caption{\textbf{Complete head-localization maps.} Color denotes the discovery mean difference in bridge-paragraph attention between the direct second-hop and composed questions, averaged over question-token rows. Marked cells identify the selected head set for each model. Layer and head indices are zero-based. The maps locate query-dependent access contributions; they do not assert that unmarked heads are irrelevant.}
+  \label{fig:localization}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \caption{\textbf{Discovery-only head-count selection.} Composed accuracy (\%) on 100 canonical discovery sources under annotated bridge-mass calibration. Bold marks the selected count; ties favor fewer heads. These native scores differ from the shared-context diagnostic because the supplied contexts differ.}
+  \label{tab:head_selection}
+  \small
+  \begin{tabular}{lrrrr}
+    \toprule
+    Model & Native & Top 20 & Top 40 & Top 80 \\
+    \midrule
+    Qwen3-4B & 35 & \textbf{36} & 36 & 33 \\
+    Qwen3-8B & 45 & \textbf{47} & 47 & 45 \\
+    Llama-3.1-8B & 45 & 64 & \textbf{66} & 58 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Head Necessity and Address Controls}
+
+For head knockout, selected head outputs are set to zero before their output projection at all question-prefill positions. Prefix computation and cached decoding are not directly knocked out. We compare the top 20, 40, and 80 heads to one layer-matched random set at each count, sampled with seeds 62, 82, and 122, respectively. Random sets preserve the number of selected heads in each layer and may overlap the ranked set. The overlap counts at these three doses are 3/7/13 for Qwen3-4B, 0/4/15 for Qwen3-8B, and 3/8/21 for Llama. A single random set per dose supports a matched control, not an estimate of random-set variability.
+
+\cref{fig:necessity} reports all three query types and all doses on the 1,000-source test panel. At the chosen counts, selected knockout reduces composed accuracy to 7.4/5.5/6.4\%, compared with 24.4/27.3/29.4\% for matched random knockout. The substantial constituent effects show that these heads contribute causally across query types. For paragraph-address controls, the same frozen targets are applied either to the annotated bridge, the root, or the other paragraph with nearest token length (ties are broken by title and then original index). The paired differences in \cref{fig:causal} use each intervention pipeline's own native baseline.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/data_app_necessity.pdf}
+  \caption{\textbf{Necessity across query types and knockout doses.} Completed-answer EM on 1,000 test sources for composed, direct first-hop, and direct second-hop questions. Ranked-head knockout is compared with layer-matched random-head knockout at counts 20, 40, and 80. Zero denotes the native model in this pipeline. Each random point uses one matched set; lines connect measured doses and do not represent a fitted response curve.}
+  \label{fig:necessity}
+\end{figure}
+
+\subsection{Exact Attention Transformations}
+
+Consider a selected head and a question-token row $a_k$, with bridge key positions $B$, total mass $T=\sum_k a_k$, and bridge mass $m=\sum_{k\in B}a_k$. Let $\tau\in[0,1]$ be its frozen target fraction. In exact arithmetic $T=1$; retaining the measured $T$ avoids attributing floating-point row-sum differences to the intervention. Mass calibration is
+\begin{equation}
+ a'_k=\begin{cases}
+ \tau T\,a_k/m, & k\in B,\\
+ (1-\tau)T\,a_k/(T-m), & k\notin B.
+ \end{cases}
+ \label{eq:mass_appendix}
+\end{equation}
+The donor conditional $\rho_k^{\mathrm{dir}}$ is obtained by normalizing bridge attention at the final token of the paired direct second-hop question. Pattern-only transfer sets $a'_k=m\rho_k^{\mathrm{dir}}$ inside $B$ and retains the outside allocation; the combined intervention sets $a'_k=\tau T\rho_k^{\mathrm{dir}}$ inside $B$ and uses the second line of \cref{eq:mass_appendix} outside. The same donor conditional is applied to every receiver question-token row. Operations are evaluated in FP32 and cast once to the native attention dtype. Nonfinite, negative, zero-source-mass, zero-outside-mass, or invalid-donor cases retain the original row rather than inventing a conditional distribution.
+
+Donor and receiver must have identical context-token prefixes and bridge-key positions. We transfer only normalized attention distributions; the receiving run computes its own value vectors and output projections. As with activation interventions more broadly \citep{meng2022locating,zhang2024patching}, downstream activations can change as a causal consequence. Thus, preserving receiver V/O locally does not mean freezing all later activations. The identity condition bypasses replacement and reproduces native generated token identifiers exactly for all 300 model/source combinations. No cache tensor is directly edited.
+
+\cref{tab:factorial} gives all paired factorial contrasts. The pattern effect changes from $-6/+2/-4$ points at native mass to $+2/+7/+12$ points at calibrated mass. The interaction is positive in all three models, but Qwen3-8B's interval touches zero. This is evidence for a functional interaction at the measured operating points, not a proof that access is an absolute gate or that one universal layer sequence implements composition.
+
+\begin{table}[htbp]
+  \centering
+  \caption{\textbf{Factorial effects on shared-context composition.} Accuracy differences in percentage points with 95\% paired percentile intervals from 2,000 resamples of the 25 quadruplets. All 100 composed receivers remain in every condition. The interaction is defined in \cref{eq:interaction}; Qwen3-8B's interval includes zero at its boundary.}
+  \label{tab:factorial}
+  \small\setlength{\tabcolsep}{4pt}
+  \input{tables/factorial_contrasts}
+\end{table}
+
+\subsection{Readout and Content Diagnostics}
+
+\cref{tab:readouts} reports the full, attention-only, and metadata-only readouts both across all test sources and within native constituent-correct composition failures. Native and scoped readouts are fitted separately on features from their respective model states. Consequently, the adapted reader's improvement is measured under its intended input distribution, rather than reusing a native-state decoder after changing the model. Attention contributes beyond the two simple metadata features in both states. The full native readout identifies 169, 176, and 209 bridge addresses among the 234, 236, and 243 failures, respectively; it is not fitted on these subsets.
+
+\begin{table}[htbp]
+  \centering
+  \caption{\textbf{Paragraph-address readout diagnostics.} Accuracy (\%) of training-fitted readouts. ``Failure subset'' is fixed by the native model: both constituents are correct and the composition is wrong. Native-state rows distinguish attention information from paragraph-length/title cues; scoped-state rows use the deployed model's own features. A common intercept would cancel in the paragraph softmax, so each readout has no bias parameter.}
+  \label{tab:readouts}
+  \small\setlength{\tabcolsep}{6pt}
+  \input{tables/readout_diagnostics}
+\end{table}
+
+\cref{tab:content} provides all content-exchange outcomes. Edited-value following and obsolete-answer persistence are measured against disjoint alias sets; joint accuracy additionally requires that the same source be answered correctly before the exchange. The joint measure avoids interpreting a newly correct edited response as successful updating when the original response was already wrong. All displayed content metrics agree across the three recorded runs. The annotated-mass arm remains a privileged diagnostic, whereas scoped adaptation and \method\ are evaluated as deployed procedures.
+
+\begin{table}[htbp]
+  \centering
+  \caption{\textbf{Complete reciprocal content-exchange outcomes.} Accuracy (\%) on 100 composed queries from 25 shared-context quadruplets. Original accuracy uses the original answer, following uses the exchanged value, persistence uses the now-obsolete answer, and joint accuracy requires correctness before and after exchange. Values are mean $\pm$ sample SD across recorded runs; all SDs here are zero. Every example undergoes a valid reciprocal exchange.}
+  \label{tab:content}
+  \small\setlength{\tabcolsep}{5pt}
+  \input{tables/content_outcomes}
+\end{table}
+
+\section{Evidence Selection and Complete Application Results}
+\label{app:application}
+
+\subsection{Input-Derived Candidates and Ambiguous Cases}
+
+Titles and question text are Unicode-normalized, case-folded, and split into word sequences. A title is matched as a whole normalized word sequence. Nested title matches are removed, but a second independently mentioned entity is not discarded merely because another title is longer. The graph applies only when the question has exactly one distinct maximally matched title. Its outgoing candidates are other paragraph titles appearing in that root paragraph's body, in original paragraph order. No relation label, answer alias, or support annotation enters this construction.
+
+On the 1,000 composed test questions, there are 75 inapplicable/no-candidate cases, 822 unique-candidate cases, and 103 ambiguous cases. The latter comprise 86 two-candidate, 16 three-candidate, and one four-candidate case. The annotated bridge appears among candidates for 918 questions; the unique candidate is correct in 817/822 cases. Unique candidates are selected without a readout pass. For ambiguity, the full-context composed prefill supplies attention features, and the maximum-scoring candidate is selected. The retained root and candidate paragraphs preserve their original order. Inapplicable inputs preserve their complete context.
+
+\cref{tab:ambiguity} isolates the 103 ambiguous cases. The graph-first policy chooses the first outgoing candidate, while the readout policies change only this choice under the same scoped model. Full-reader bridge selection succeeds on 95/96/98 cases, compared with 37 for graph-first. Attention-only selection succeeds on 94/97/97, and metadata-only on 57/57/59. The full and attention-only variants have equal composed EM on the full panel, despite differing bridge choices and individual answers. Their agreement in aggregate supports the sufficiency of attention features for the reported composition gains; it does not establish identical behavior.
+
+\begin{table}[htbp]
+  \centering
+  \caption{\textbf{Where the attention readout changes evidence selection.} Results on the 103 composed questions whose input-derived graph has multiple candidates. Every policy uses the same scoped model and retains the root plus one candidate paragraph. Bridge accuracy is evaluated against annotations only after selection. Values are percentages, mean $\pm$ sample SD. The full repair and graph-first produce identical generated token sequences on all other 897 questions in every recorded run.}
+  \label{tab:ambiguity}
+  \small\setlength{\tabcolsep}{8pt}
+  \input{tables/ambiguous_selection}
+\end{table}
+
+\subsection{All Constituents and Component Ablations}
+
+\cref{tab:core_complete} reports all three query types and their joint accuracy for every variant. \cref{fig:ablations} compares the component variants on composed accuracy. The native-evidence-filtering variant uses a native-state reader and the native model; all variants built from selected-head adaptation share its checkpoint. The scoped variant changes the fixed restoration rule; graph-first, full-reader, attention-only, and metadata-only variants then use that same scoped model. This organization distinguishes gains from adapting answer computation, selecting paragraphs, and resolving candidate ambiguity.
+
+The full repair's composed gains coexist with first-hop losses. Moreover, Qwen3-4B and Llama achieve slightly higher all-three accuracy under scoped adaptation alone than under the final selector. These are material consequences of evaluating a composition-targeted procedure on explicit constituent questions. They preclude interpreting a higher composed score as preservation of every underlying operation. On the fixed native failure sets, run 42 repairs 189/234, 191/236, and 189/243 cases; it also loses 12/223, 16/226, and 14/258 previously correct compositions within the native constituent-correct population. The improvement therefore combines substantial recovery with a smaller number of regressions.
+
+\begin{table}[htbp]
+  \centering
+  \caption{\textbf{Complete contextual reasoning results.} Completed-answer EM (\%) on all 1,000 sources per query type. ``All three'' requires a source's composed, first-hop, and second-hop answers to be correct. Values are mean $\pm$ sample SD over three recorded runs; Native is measured once. The displayed dispersion follows the conventions in \cref{app:uncertainty}.}
+  \label{tab:core_complete}
+  \small\setlength{\tabcolsep}{4pt}
+  \input{tables/complete_core}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/data_app_ablation.pdf}
+  \caption{\textbf{Component ablations on composed questions.} Completed-answer accuracy on 1,000 test sources. Points summarize recorded-run means and error bars show sample SD under the conventions of \cref{app:uncertainty}. Attention-only and full readouts coincide on composed accuracy, while metadata-only selection is weaker. Complete constituent and joint outcomes appear in \cref{tab:core_complete}.}
+  \label{fig:ablations}
+\end{figure}
+
+\subsection{General Capabilities}
+
+\cref{tab:capability_full,fig:capability_detail} provide complete-split results and recorded-run dispersion. For MMLU and GSM8K there are no titled evidence paragraphs, so evidence selection is inapplicable; differences between head tuning and the final procedure arise from the scoped model. HotpotQA contains titled evidence and exercises the complete selector/model combination. The large Llama GSM8K recovery, from 48.45\% under head tuning to 80.36\% under the final procedure, therefore supports a practical role for fixed restoration. It still falls short of the 86.05\% native score.
+
+Full-model fine-tuning is trained on the same 2,000 composed examples with the fixed recipe in \cref{app:protocol}; it is not a tuned best-case competitor. All nine FullFT GSM8K runs yield 1,319/1,319 format failures and zero scored answers, with mostly very short responses lacking the required final-answer delimiter. The score describes failure under this generation and extraction protocol, not the disappearance of mathematical knowledge. Our mechanism claims rely on paired interventions and within-body evidence controls, rather than this particular comparator's failure.
+
+\begin{table}[htbp]
+  \centering
+  \caption{\textbf{Complete capability evaluation with dispersion.} Accuracy (\%), mean $\pm$ sample SD over recorded runs; Native is measured once. HotpotQA uses its complete 7,405-example distractor validation split, MMLU its 14,042-example test split, and GSM8K its 1,319-example test split. Metrics and prompt conditions are defined in \cref{app:protocol}.}
+  \label{tab:capability_full}
+  \small\setlength{\tabcolsep}{5pt}
+  \input{tables/capability_full}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/data_app_capabilities.pdf}
+  \caption{\textbf{Capability changes relative to each native model.} Percentage-point differences on the three complete benchmark splits. Restoration mitigates several large tuning losses, especially for Llama GSM8K, but final scores are not uniformly above Native. Error bars show recorded-run SD, not independent training-initialization uncertainty. The FullFT GSM8K collapse includes final-answer-format failure.}
+  \label{fig:capability_detail}
+\end{figure}
+
+\subsection{Worked Evidence Chains}
+
+The teaser uses a Llama example whose evidence states that Walter II of Avesnes is the son of James of Avesnes and that James was killed at the Battle of Arsuf. Native constituent answers identify James and Arsuf, whereas the native composed answer is ``Avesnes.'' The final procedure answers ``Arsuf.'' This example illustrates composed repair; it does not assert that every constituent remains correct after adaptation.
+
+A second example asks who John Corvinus's paternal grandfather was. The supplied chain is John Corvinus $\rightarrow$ Matthias Corvinus $\rightarrow$ John Hunyadi. All three native models answer the two constituent questions correctly but answer the composed question ``Matthias Corvinus.'' All three final models instead answer ``John Hunyadi.'' The input-derived graph has two outgoing candidates, so this example exercises attention-based disambiguation. These examples illustrate measured behaviors; the full-panel statistics establish their frequency.
+
+\clearpage
+\section{Token Use and Observed Execution Cost}
+\label{app:efficiency}
+
+\cref{tab:inference_cost} covers all 3,000 triplet queries. Input-token totals exclude separate readout prefills: 190 across all query types, including 103 composed, 85 first-hop, and two second-hop queries. In run 42, composed answer-generation input tokens are 42.5\%, 42.4\%, and 43.7\% of Native. This reduction concerns the final-generation context; total computation also includes the extra readout passes.
+
+\begin{table}[!htbp]
+  \centering
+  \caption{\textbf{Observed inference workload on all 3,000 triplet queries.} Input tokens are final-generation prompt tokens only; output tokens count generated tokens. Readout prefills are additional full-context passes and are not included in the input column. Entries summarize recorded runs. Batch-size changes and shared-device scheduling make wall time descriptive rather than a controlled latency comparison.}
+  \label{tab:inference_cost}
+  \small\setlength{\tabcolsep}{4pt}
+  \input{tables/inference_costs}
+\end{table}
+
+Training times (\cref{tab:training_cost}) also reflect shared scheduling. These records describe workload rather than controlled speedup. The selector's prefill rule is exact: unique candidates require no readout pass; ambiguous candidates require one.

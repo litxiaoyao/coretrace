@@ -1,0 +1,35 @@
+[
+  {
+    "model": "qwen3_4b",
+    "trace_rows": [
+      2000,
+      2000,
+      2000
+    ],
+    "source_order_equal": true,
+    "loss_sequence_equal": true,
+    "gradient_norm_sequence_equal": true
+  },
+  {
+    "model": "qwen3_8b",
+    "trace_rows": [
+      2000,
+      2000,
+      2000
+    ],
+    "source_order_equal": true,
+    "loss_sequence_equal": true,
+    "gradient_norm_sequence_equal": true
+  },
+  {
+    "model": "llama3_8b",
+    "trace_rows": [
+      2000,
+      2000,
+      2000
+    ],
+    "source_order_equal": true,
+    "loss_sequence_equal": true,
+    "gradient_norm_sequence_equal": true
+  }
+]

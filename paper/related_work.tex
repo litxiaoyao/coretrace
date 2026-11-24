@@ -1,17 +1,11 @@
 \section{Related Work}
-\label{sec:related-work}
+\label{sec:related}
 
-\paragraph{Multi-hop reasoning in language models.}
-Multi-hop question answering requires combining facts across successive relations.
-\citet{press2023compositionality} measure the gap between answering constituent questions and solving their composition, and improve performance through explicit decomposition.
-2WikiMultiHopQA connects document-grounded questions to annotated evidence paths, supporting evaluation of individual reasoning steps \citep{ho2020constructing}.
-Studies of contextual QA further show that models' use of available evidence depends on its position in the input \citep{liu2024lost}.
-Recent mechanistic work examines how multi-hop answers emerge across layers: \citet{liu2026layerorder} find that final answers can become decodable before intermediate entities, challenging a sequential account of latent reasoning.
-We study composition failures under correct constituent answers, tracing how the model accesses and reads the relevant evidence paragraphs.
+\paragraph{Latent multi-hop composition.}
+Correct constituent facts need not yield a correct composed answer \citep{press2023compositionality}. \citet{biran2024hopping} identify delayed bridge resolution; their rescue rate counts whether any tested back-patching layer pair succeeds for each example, without an inference-time rule for choosing that pair. \citet{yu2025back} diagnose competing relation-conditioned logits and add trainable cross-layer attention to feed deeper representations into earlier computation. \citet{liu2026layerorder} replace strict hop ordering with probabilistic recall and selective extraction, but do not evaluate a mechanism-derived repair. These parametric-retrieval studies do not distinguish reaching a supplied evidence paragraph from reading the relation-relevant content within it.
 
-\paragraph{Mechanisms of factual information processing.}
-Causal tracing localizes factual associations and enables targeted model editing \citep{meng2022locating}.
-\citet{geva2023dissecting} analyze factual recall through subject enrichment, relation propagation, and attribute extraction, revealing distinct roles for feed-forward and attention modules.
-For contextual information, \citet{wu2025retrieval} identify retrieval heads that causally support extraction from long inputs, while \citet{yuksekgonul2024attention} relate factual errors to attention constraints.
-In multilingual multi-hop reasoning, \citet{sun2026bridging} trace shared knowledge circuits and use the identified attention pathways to guide head tuning.
-We investigate how paragraph-level access and relation-specific content reading support contextual composition, and derive a targeted evidence-selection repair from these operations.
+\paragraph{Contextual evidence use.}
+\citet{guo2025twohop} reconstruct a sequential-query circuit in a three-layer synthetic Transformer; that circuit is not causally established in the pretrained LLMs used for their behavioral experiments. \citet{zhang2026failure} identify a position-dependent recognition bottleneck through instructions naming gold documents. Their intervention supplies oracle evidence locations and reduces the search space, so it does not independently isolate recognition from synthesis. Its attention visualizations do not manipulate the underlying neural operations. Our shared-context interventions factor attention into paragraph mass and a normalized distribution within that paragraph while retaining receiver value/output computations. Reciprocal object exchanges preserve global word and character counts and test whether predictions follow the selected paragraph's content.
+
+\paragraph{Circuit-guided repair.}
+\citet{sun2026bridging} trace multilingual failures to misaligned attention pathways over shared semantic neurons and fine-tune critical heads. \citet{kim2026bridge} identify multilingual bridge-routing heads and recover parametric failures by amplifying their outputs. \citet{sun2025mappings} localize heads that match new queries to demonstration labels and improve in-context classification through targeted head tuning. These interventions do not separate evidence-paragraph access from conditional reading within that paragraph. We test this separation in contextual composition, where an address can remain linearly decodable despite answer failure. Access calibration changes the effect of transferring a relation-conditioned reading pattern. \method\ uses the recoverable address signal for evidence selection and combines it with scoped head adaptation.

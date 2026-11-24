@@ -1,0 +1,345 @@
+{
+  "population": "All test composed queries whose input title graph has more than one outgoing candidate from its unique explicitly named root; no correctness filtering",
+  "n": 103,
+  "all_test_n": 1000,
+  "answer_metric": "EOS-gated official-alias exact match",
+  "bridge_metric": "Selected paragraph equals the official second-hop subject paragraph; diagnostic labels used only after selection",
+  "seed_policy": "Native reference measured once; other scores are mean and sample SD of recorded runs 42/43/44. This deterministic recipe does not provide independent random-initialization uncertainty.",
+  "rows": [
+    {
+      "model": "qwen3_4b",
+      "method": "native",
+      "n": 103,
+      "seed_count": 1,
+      "answer_accuracy_mean": 0.2621359223300971,
+      "answer_accuracy_sample_std": null,
+      "bridge_selection_correct": null,
+      "bridge_selection_accuracy": null,
+      "source": "outputs/qwen3_4b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_4b",
+      "method": "native_text",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.5339805825242718,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": 91,
+      "bridge_selection_accuracy": 0.883495145631068,
+      "source": "outputs/qwen3_4b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_4b",
+      "method": "head_tuning",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.605177993527508,
+      "answer_accuracy_sample_std": 0.011210684838633505,
+      "bridge_selection_correct": null,
+      "bridge_selection_accuracy": null,
+      "source": "outputs/qwen3_4b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_4b",
+      "method": "scoped_body",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.598705501618123,
+      "answer_accuracy_sample_std": 0.011210684838633505,
+      "bridge_selection_correct": null,
+      "bridge_selection_accuracy": null,
+      "source": "outputs/qwen3_4b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_4b",
+      "method": "graphfirst",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.36893203883495146,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": 37,
+      "bridge_selection_accuracy": 0.3592233009708738,
+      "source": "outputs/qwen3_4b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_4b",
+      "method": "final_metadata",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.43365695792880254,
+      "answer_accuracy_sample_std": 0.0056053424193167525,
+      "bridge_selection_correct": 57,
+      "bridge_selection_accuracy": 0.5533980582524272,
+      "source": "outputs/qwen3_4b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_4b",
+      "method": "final_attention",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.7022653721682848,
+      "answer_accuracy_sample_std": 0.011210684838633505,
+      "bridge_selection_correct": 94,
+      "bridge_selection_accuracy": 0.912621359223301,
+      "source": "outputs/qwen3_4b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_4b",
+      "method": "final",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.7022653721682848,
+      "answer_accuracy_sample_std": 0.011210684838633505,
+      "bridge_selection_correct": 95,
+      "bridge_selection_accuracy": 0.9223300970873787,
+      "source": "outputs/qwen3_4b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_8b",
+      "method": "native",
+      "n": 103,
+      "seed_count": 1,
+      "answer_accuracy_mean": 0.33980582524271846,
+      "answer_accuracy_sample_std": null,
+      "bridge_selection_correct": null,
+      "bridge_selection_accuracy": null,
+      "source": "outputs/qwen3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_8b",
+      "method": "native_text",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.5436893203883495,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": 92,
+      "bridge_selection_accuracy": 0.8932038834951457,
+      "source": "outputs/qwen3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_8b",
+      "method": "head_tuning",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.6699029126213593,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": null,
+      "bridge_selection_accuracy": null,
+      "source": "outputs/qwen3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_8b",
+      "method": "scoped_body",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.6504854368932039,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": null,
+      "bridge_selection_accuracy": null,
+      "source": "outputs/qwen3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_8b",
+      "method": "graphfirst",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.36893203883495146,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": 37,
+      "bridge_selection_accuracy": 0.3592233009708738,
+      "source": "outputs/qwen3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_8b",
+      "method": "final_metadata",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.4563106796116505,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": 57,
+      "bridge_selection_accuracy": 0.5533980582524272,
+      "source": "outputs/qwen3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_8b",
+      "method": "final_attention",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.7087378640776699,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": 97,
+      "bridge_selection_accuracy": 0.941747572815534,
+      "source": "outputs/qwen3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "qwen3_8b",
+      "method": "final",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.7087378640776699,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": 96,
+      "bridge_selection_accuracy": 0.9320388349514563,
+      "source": "outputs/qwen3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "llama3_8b",
+      "method": "native",
+      "n": 103,
+      "seed_count": 1,
+      "answer_accuracy_mean": 0.4563106796116505,
+      "answer_accuracy_sample_std": null,
+      "bridge_selection_correct": null,
+      "bridge_selection_accuracy": null,
+      "source": "outputs/llama3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "llama3_8b",
+      "method": "native_text",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.6310679611650486,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": 98,
+      "bridge_selection_accuracy": 0.9514563106796117,
+      "source": "outputs/llama3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "llama3_8b",
+      "method": "head_tuning",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.6796116504854369,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": null,
+      "bridge_selection_accuracy": null,
+      "source": "outputs/llama3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "llama3_8b",
+      "method": "scoped_body",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.7313915857605178,
+      "answer_accuracy_sample_std": 0.0056053424193167525,
+      "bridge_selection_correct": null,
+      "bridge_selection_accuracy": null,
+      "source": "outputs/llama3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "llama3_8b",
+      "method": "graphfirst",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.38187702265372164,
+      "answer_accuracy_sample_std": 0.0056053424193167525,
+      "bridge_selection_correct": 37,
+      "bridge_selection_accuracy": 0.3592233009708738,
+      "source": "outputs/llama3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "llama3_8b",
+      "method": "final_metadata",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.47572815533980584,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": 59,
+      "bridge_selection_accuracy": 0.5728155339805825,
+      "source": "outputs/llama3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "llama3_8b",
+      "method": "final_attention",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.7669902912621359,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": 97,
+      "bridge_selection_accuracy": 0.941747572815534,
+      "source": "outputs/llama3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    },
+    {
+      "model": "llama3_8b",
+      "method": "final",
+      "n": 103,
+      "seed_count": 3,
+      "answer_accuracy_mean": 0.7669902912621359,
+      "answer_accuracy_sample_std": 0.0,
+      "bridge_selection_correct": 98,
+      "bridge_selection_accuracy": 0.9514563106796117,
+      "source": "outputs/llama3_8b/seed{42,43,44}/evaluation/core/predictions.jsonl.gz; data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part*; queries.jsonl.gz.part*"
+    }
+  ],
+  "outside_subgroup": {
+    "qwen3_4b": {
+      "42": {
+        "n": 897,
+        "correctness_changed": 0,
+        "generated_ids_changed": 0,
+        "final_gains": 0,
+        "final_losses": 0
+      },
+      "43": {
+        "n": 897,
+        "correctness_changed": 0,
+        "generated_ids_changed": 0,
+        "final_gains": 0,
+        "final_losses": 0
+      },
+      "44": {
+        "n": 897,
+        "correctness_changed": 0,
+        "generated_ids_changed": 0,
+        "final_gains": 0,
+        "final_losses": 0
+      }
+    },
+    "qwen3_8b": {
+      "42": {
+        "n": 897,
+        "correctness_changed": 0,
+        "generated_ids_changed": 0,
+        "final_gains": 0,
+        "final_losses": 0
+      },
+      "43": {
+        "n": 897,
+        "correctness_changed": 0,
+        "generated_ids_changed": 0,
+        "final_gains": 0,
+        "final_losses": 0
+      },
+      "44": {
+        "n": 897,
+        "correctness_changed": 0,
+        "generated_ids_changed": 0,
+        "final_gains": 0,
+        "final_losses": 0
+      }
+    },
+    "llama3_8b": {
+      "42": {
+        "n": 897,
+        "correctness_changed": 0,
+        "generated_ids_changed": 0,
+        "final_gains": 0,
+        "final_losses": 0
+      },
+      "43": {
+        "n": 897,
+        "correctness_changed": 0,
+        "generated_ids_changed": 0,
+        "final_gains": 0,
+        "final_losses": 0
+      },
+      "44": {
+        "n": 897,
+        "correctness_changed": 0,
+        "generated_ids_changed": 0,
+        "final_gains": 0,
+        "final_losses": 0
+      }
+    }
+  }
+}

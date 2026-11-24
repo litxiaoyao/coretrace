@@ -1,0 +1,422 @@
+[
+  {
+    "n_models": 3,
+    "question": "Who is John Corvinus's paternal grandfather?",
+    "id": "d56342fa0baf11ebab90acde48001122",
+    "root": "John Corvinus",
+    "bridge": "Matthias Corvinus",
+    "gold": "John Hunyadi",
+    "n_candidates": 2,
+    "fact1": "John Corvinus (Hungarian: \"Corvin János\", Croatian: \"Ivaniš Korvin\"; 2 April 1473 – 12 October 1504) was the illegitimate son of Matthias Corvinus, King of Hungary, and his mistress, Barbara Edelpöck.",
+    "fact2": "He was the son of John Hunyadi, Regent of Hungary, who died in 1456.",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Matthias Corvinus",
+        "direct_first": "Matthias Corvinus",
+        "direct_target": "John Hunyadi"
+      },
+      "qwen3_8b": {
+        "composed": "Matthias Corvinus",
+        "direct_first": "Matthias Corvinus",
+        "direct_target": "John Hunyadi"
+      },
+      "llama3_8b": {
+        "composed": "Matthias Corvinus",
+        "direct_first": "Matthias Corvinus",
+        "direct_target": "John Hunyadi"
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Who is the father-in-law of Empress Xiao'Aizhe?",
+    "id": "91e41ba80baf11ebab90acde48001122",
+    "root": "Empress Xiao'aizhe",
+    "bridge": "Tianqi Emperor",
+    "gold": "Taichang",
+    "n_candidates": 2,
+    "fact1": "Empress Zhang (1606–1644), posthumously known as Empress Xiao'aizhe, also called Empress Yi'an, was the empress consort of the Tianqi Emperor of the Chinese Ming dynasty.",
+    "fact2": "He was the eldest son of the Taichang Emperor and a elder brother of the Chongzhen Emperor, who succeeded him. \"",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Tianqi Emperor",
+        "direct_first": "Tianqi Emperor",
+        "direct_target": "Taichang Emperor"
+      },
+      "qwen3_8b": {
+        "composed": "Tianqi Emperor",
+        "direct_first": "Tianqi Emperor",
+        "direct_target": "Taichang Emperor"
+      },
+      "llama3_8b": {
+        "composed": "The Tianqi Emperor.",
+        "direct_first": "The Tianqi Emperor.",
+        "direct_target": "Taichang Emperor"
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Who is the paternal grandfather of Shamash-Shum-Ukin?",
+    "id": "c4f100380baf11ebab90acde48001122",
+    "root": "Shamash-shum-ukin",
+    "bridge": "Esarhaddon",
+    "gold": "Sennacherib",
+    "n_candidates": 2,
+    "fact1": "Shamash-shum-ukin or Shamashshumukin (Akkadian: \"Šamaš-šuma-ukin or \"Šamaš-šumu-ukīn, meaning \"Shamash has established an heir\"), also known as Saulmugina and Sarmuge, was the son of the Neo-Assyrian king Esarhaddon and his appointed successor as King of Babylon, ruling Babylonia from 668 BC to his death in 648 BC.",
+    "fact2": "meaning \"Ashur has given me a brother\"'), was the king of the Neo-Assyrian Empire from the death of his father Sennacherib in 681 BC to his own death in 669 BC.",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Esarhaddon",
+        "direct_first": "Esarhaddon",
+        "direct_target": "Sennacherib"
+      },
+      "qwen3_8b": {
+        "composed": "Shamash-shum-ukin",
+        "direct_first": "Esarhaddon",
+        "direct_target": "Sennacherib"
+      },
+      "llama3_8b": {
+        "composed": "Esarhaddon",
+        "direct_first": "Esarhaddon",
+        "direct_target": "Sennacherib"
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Who is the paternal grandfather of King Kuang Of Zhou?",
+    "id": "0e6d9f8c0bb011ebab90acde48001122",
+    "root": "King Kuang of Zhou",
+    "bridge": "King Qing of Zhou",
+    "gold": "king Xiang of Zhou",
+    "n_candidates": 2,
+    "fact1": "King Kuang's father was King Qing of Zhou.",
+    "fact2": "He was fathered by King Xiang of Zhou as Prince Rénchén.",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "King An of Zhou",
+        "direct_first": "King Qing of Zhou",
+        "direct_target": "King Xiang of Zhou"
+      },
+      "qwen3_8b": {
+        "composed": "King An of Zhou",
+        "direct_first": "King Qing of Zhou",
+        "direct_target": "King Xiang of Zhou"
+      },
+      "llama3_8b": {
+        "composed": "King An of Zhou.",
+        "direct_first": "King Qing of Zhou.",
+        "direct_target": "King Xiang of Zhou."
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Who is Cao Li's paternal grandfather?",
+    "id": "61729eb80baf11ebab90acde48001122",
+    "root": "Cao Li",
+    "bridge": "Cao Pi",
+    "gold": "Cao Cao",
+    "n_candidates": 1,
+    "fact1": "He was a son of Cao Pi, the first emperor of Wei.",
+    "fact2": "He was the second son of Cao Cao, a warlord who lived in the late Eastern Han dynasty, but the eldest son among all the children born to Cao Cao by his concubine (later wife), Lady Bian.",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Cao Pi",
+        "direct_first": "Cao Pi",
+        "direct_target": "Cao Cao"
+      },
+      "qwen3_8b": {
+        "composed": "Cao Pi",
+        "direct_first": "Cao Pi",
+        "direct_target": "Cao Cao"
+      },
+      "llama3_8b": {
+        "composed": "Cao Pi",
+        "direct_first": "Cao Pi",
+        "direct_target": "Cao Cao."
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Who is Prince Archil Of Imereti's child?",
+    "id": "812e7fdc0bb011ebab90acde48001122",
+    "root": "Prince Archil of Imereti",
+    "bridge": "Princess Elene of Georgia",
+    "gold": "Solomon II of Imereti",
+    "n_candidates": 1,
+    "fact1": "In 1772 Archil married Princess Elene of Georgia, a daughter of King Heraclius II of Georgia.",
+    "fact2": "She was the mother of Solomon II of Imereti, the last king to have reigned in the Georgian polities.",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Princess Elene of Georgia",
+        "direct_first": "Princess Elene of Georgia",
+        "direct_target": "Solomon II of Imereti"
+      },
+      "qwen3_8b": {
+        "composed": "Prince Archil of Imereti's child is Prince Bagrat of Imereti.",
+        "direct_first": "Princess Elene of Georgia",
+        "direct_target": "Solomon II of Imereti"
+      },
+      "llama3_8b": {
+        "composed": "Prince Archil of Imereti's child is not mentioned in the provided evidence.",
+        "direct_first": "Princess Elene of Georgia.",
+        "direct_target": "Solomon II of Imereti"
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Where was the wife of Camille Paule born?",
+    "id": "c34451720bdc11eba7f7acde48001122",
+    "root": "Camille Paule",
+    "bridge": "Salima Machamba",
+    "gold": "Fomboni",
+    "n_candidates": 1,
+    "fact1": "Camille Paule (1 March 1867 in Pesmes – 22 September 1946 in Champagney) was the husband of Salima Machamba, sultan (queen) of Mohéli (Mwali) (1901–1909).",
+    "fact2": "Salima Machamba (Fomboni, 1 November 1874 – Pesmes, Haute-Saône, France, 7 August 1964) was sultan of Mohéli (Mwali) (1888–1909).",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Pesmes",
+        "direct_first": "Salima Machamba",
+        "direct_target": "Fomboni."
+      },
+      "qwen3_8b": {
+        "composed": "Pesmes",
+        "direct_first": "Salima Machamba",
+        "direct_target": "Fomboni"
+      },
+      "llama3_8b": {
+        "composed": "Pesmes.",
+        "direct_first": "Salima Machamba.",
+        "direct_target": "Fomboni."
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Who is Christina Of Salm's father-in-law?",
+    "id": "4294897e0bb011ebab90acde48001122",
+    "root": "Christina of Salm",
+    "bridge": "Francis II, Duke of Lorraine",
+    "gold": "Charles III",
+    "n_candidates": 1,
+    "fact1": "Countess Christina of Salm (1575–1627), was a duchess consort of Lorraine; married in 1597 to Francis II, Duke of Lorraine.",
+    "fact2": "Francis II (François de Lorraine; 27 February 1572 – 14 October 1632) was the son of Charles III, Duke of Lorraine and Claude of Valois.",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Francis II, Duke of Lorraine",
+        "direct_first": "Francis II, Duke of Lorraine",
+        "direct_target": "Charles III, Duke of Lorraine"
+      },
+      "qwen3_8b": {
+        "composed": "Francis II, Duke of Lorraine",
+        "direct_first": "Francis II, Duke of Lorraine",
+        "direct_target": "Charles III, Duke of Lorraine"
+      },
+      "llama3_8b": {
+        "composed": "Francis II, Duke of Lorraine.",
+        "direct_first": "Francis II, Duke of Lorraine.",
+        "direct_target": "Charles III, Duke of Lorraine."
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "When did Isabel De La Cerda's father die?",
+    "id": "326202060bde11eba7f7acde48001122",
+    "root": "Isabel de la Cerda",
+    "bridge": "Luis de la Cerda",
+    "gold": "July 5, 1348",
+    "n_candidates": 1,
+    "fact1": "Seville c.1329 - after 1383) was the only surviving daughter of Luis de la Cerda and his first wife Leonor de Guzmán; she was Lady of Puerto de Santa María and titular Princess of Fortuna.",
+    "fact2": "Luis de La Cerda, also called Louis of Spain (France, 1291 - Lamotte-du-Rhône, July 5, 1348) was an expatriate royal prince of the Crown of Castile, who lived and served in the Kingdom of France.",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Isabel de la Cerda's father, Luis de la Cerda, died in 1383.",
+        "direct_first": "Luis de la Cerda",
+        "direct_target": "July 5, 1348"
+      },
+      "qwen3_8b": {
+        "composed": "1327",
+        "direct_first": "Luis de la Cerda",
+        "direct_target": "July 5, 1348"
+      },
+      "llama3_8b": {
+        "composed": "1327",
+        "direct_first": "Luis de la Cerda.",
+        "direct_target": "July 5, 1348"
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Where was the wife of Robert Wrigley born?",
+    "id": "c2d94e500bdb11eba7f7acde48001122",
+    "root": "Robert Wrigley",
+    "bridge": "Kim Barnes",
+    "gold": "Lewiston",
+    "n_candidates": 1,
+    "fact1": "Wrigley retired from teaching (in 2016) at the M.F.A. program in creative writing at the University of Idaho, where his wife, Kim Barnes, a memoirist and writer, also teaches.",
+    "fact2": "Kim Barnes (born 1958 Lewiston, Idaho) is a contemporary American author of fiction, memoir, and personal essays.",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "East St. Louis, Illinois",
+        "direct_first": "Kim Barnes",
+        "direct_target": "Lewiston, Idaho."
+      },
+      "qwen3_8b": {
+        "composed": "Kim Barnes",
+        "direct_first": "Kim Barnes",
+        "direct_target": "Lewiston, Idaho"
+      },
+      "llama3_8b": {
+        "composed": "East St. Louis, Illinois.",
+        "direct_first": "Kim Barnes",
+        "direct_target": "Lewiston, Idaho"
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Who is the paternal grandfather of Dui Finn?",
+    "id": "5c7842780baf11ebab90acde48001122",
+    "root": "Dui Finn",
+    "bridge": "Sétna Innarraid",
+    "gold": "Bres Rí",
+    "n_candidates": 1,
+    "fact1": "Dui Finn, son of Sétna Innarraid, was, according to medieval Irish legend and historical tradition, a High King of Ireland.",
+    "fact2": "Sétna Innarraid (\"of wages, stipend, reward\"), son of Bres Rí, was, according to medieval Irish legend and historical tradition, a High King of Ireland.",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Sétna Innarraid",
+        "direct_first": "Sétna Innarraid",
+        "direct_target": "Bres Rí"
+      },
+      "qwen3_8b": {
+        "composed": "Sétna Innarraid",
+        "direct_first": "Sétna Innarraid",
+        "direct_target": "Bres Rí"
+      },
+      "llama3_8b": {
+        "composed": "Sétna Innarraid",
+        "direct_first": "Sétna Innarraid",
+        "direct_target": "Bres Rí."
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Where was the father of Teodor Pejačević born?",
+    "id": "fd704fe00bdc11eba7f7acde48001122",
+    "root": "Teodor Pejačević",
+    "bridge": "Ladislav Pejačević",
+    "gold": "Sopron",
+    "n_candidates": 1,
+    "fact1": "He was born in Našice as the eldest son of Ladislav Pejačević, a Ban of Croatia (1880–1883).",
+    "fact2": "(Sopron, 5 April 1824 – Našice, 7 April 1901) was a Croatian aristocrat and statesman, a member of the Pejačević noble family, remarkable and influential in the Kingdom of Croatia-Slavonia within the Austro-Hungarian Empire.",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Našice",
+        "direct_first": "Ladislav Pejačević",
+        "direct_target": "Sopron"
+      },
+      "qwen3_8b": {
+        "composed": "Našice",
+        "direct_first": "Ladislav Pejačević",
+        "direct_target": "Sopron"
+      },
+      "llama3_8b": {
+        "composed": "Našice.",
+        "direct_first": "Ladislav Pejačević.",
+        "direct_target": "Sopron."
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Who is Konrad V Kantner's paternal grandfather?",
+    "id": "c5118f1a0baf11ebab90acde48001122",
+    "root": "Konrad V Kantner",
+    "bridge": "Konrad III the Old",
+    "gold": "Konrad II the Gray",
+    "n_candidates": 1,
+    "fact1": "He was the second son of Konrad III the Old, Duke of Oleśnica, by his wife Judith.",
+    "fact2": "He was the only son of Konrad II the Gray, Duke of Oleśnica, by his wife Agnes, daughter of Casimir I, Duke of Cieszyn.",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Konrad III the Old",
+        "direct_first": "Konrad III the Old",
+        "direct_target": "Konrad II the Gray"
+      },
+      "qwen3_8b": {
+        "composed": "Konrad III the Old",
+        "direct_first": "Konrad III the Old",
+        "direct_target": "Konrad II the Gray"
+      },
+      "llama3_8b": {
+        "composed": "Konrad III the Old",
+        "direct_first": "Konrad III the Old",
+        "direct_target": "Konrad II the Gray"
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Who is the paternal grandmother of Jacob Zorzi?",
+    "id": "7bd922e00baf11ebab90acde48001122",
+    "root": "Jacob Zorzi",
+    "bridge": "Francis Zorzi",
+    "gold": "Guglielma Pallavicini",
+    "n_candidates": 1,
+    "fact1": "Jacob was the eldest son of Francis Zorzi, of Venetian origin, and Euphrosyne Sommaripa, of the Cyclades.",
+    "fact2": "Francis was the son of Guglielma Pallavicini and her husband Nicholas, the first Zorzi lord of Bodonitsa.",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Euphrosyne Sommaripa",
+        "direct_first": "Francis Zorzi",
+        "direct_target": "Guglielma Pallavicini"
+      },
+      "qwen3_8b": {
+        "composed": "Euphrosyne Sommaripa of the Cyclades",
+        "direct_first": "Francis Zorzi",
+        "direct_target": "Guglielma Pallavicini"
+      },
+      "llama3_8b": {
+        "composed": "Euphrosyne Sommaripa",
+        "direct_first": "Francis Zorzi",
+        "direct_target": "Guglielma Pallavicini"
+      }
+    }
+  },
+  {
+    "n_models": 3,
+    "question": "Who is the maternal grandmother of Anna Kostka?",
+    "id": "844783260bb011ebab90acde48001122",
+    "root": "Anna Kostka",
+    "bridge": "Zofia Odrowąż",
+    "gold": "Anna of Masovia",
+    "n_candidates": 1,
+    "fact1": "Anna was the daughter of Jan Kostka and Zofia Odrowąż, and related to Saint Stanislas Kostka.",
+    "fact2": "She was the daughter of castellan and voivode Stanisław Odrowąż and only daughter of Anna of Masovia,",
+    "predictions": {
+      "qwen3_4b": {
+        "composed": "Zofia Odrowąż",
+        "direct_first": "Zofia Odrowąż",
+        "direct_target": "Anna of Masovia"
+      },
+      "qwen3_8b": {
+        "composed": "Zofia Odrowąż",
+        "direct_first": "Zofia Odrowąż",
+        "direct_target": "Anna of Masovia"
+      },
+      "llama3_8b": {
+        "composed": "Zofia Odrowąż.",
+        "direct_first": "Zofia Odrowąż.",
+        "direct_target": "Anna of Masovia."
+      }
+    }
+  }
+]

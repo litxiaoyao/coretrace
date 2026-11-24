@@ -1,0 +1,1010 @@
+[
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "native",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "native",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "native",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "native",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "native_text",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "native_text",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "native_text",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "native_text",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "head_tuning",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "head_tuning",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "head_tuning",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "head_tuning",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "scoped_body",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "scoped_body",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "scoped_body",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "scoped_body",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "graphfirst",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "graphfirst",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "graphfirst",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "graphfirst",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "final",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "final",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "final",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "final",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "final_attention",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "final_attention",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "final_attention",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "final_attention",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "final_metadata",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "final_metadata",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "final_metadata",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "final_metadata",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "hotpot",
+    "method": "native",
+    "query": "hotpot",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "hotpot",
+    "method": "head_tuning",
+    "query": "hotpot",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "hotpot",
+    "method": "final",
+    "query": "hotpot",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "mmlu",
+    "method": "native",
+    "query": "mmlu",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "mmlu",
+    "method": "head_tuning",
+    "query": "mmlu",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "mmlu",
+    "method": "final",
+    "query": "mmlu",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "gsm8k",
+    "method": "native",
+    "query": "gsm8k",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "gsm8k",
+    "method": "head_tuning",
+    "query": "gsm8k",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "gsm8k",
+    "method": "final",
+    "query": "gsm8k",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "FullFT",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "FullFT",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "FullFT",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "core",
+    "method": "FullFT",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "hotpot",
+    "method": "FullFT",
+    "query": "hotpot",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "mmlu",
+    "method": "FullFT",
+    "query": "mmlu",
+    "errors": []
+  },
+  {
+    "model": "qwen3_4b",
+    "benchmark": "gsm8k",
+    "method": "FullFT",
+    "query": "gsm8k",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "native",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "native",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "native",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "native",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "native_text",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "native_text",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "native_text",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "native_text",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "head_tuning",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "head_tuning",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "head_tuning",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "head_tuning",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "scoped_body",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "scoped_body",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "scoped_body",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "scoped_body",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "graphfirst",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "graphfirst",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "graphfirst",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "graphfirst",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "final",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "final",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "final",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "final",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "final_attention",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "final_attention",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "final_attention",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "final_attention",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "final_metadata",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "final_metadata",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "final_metadata",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "final_metadata",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "hotpot",
+    "method": "native",
+    "query": "hotpot",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "hotpot",
+    "method": "head_tuning",
+    "query": "hotpot",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "hotpot",
+    "method": "final",
+    "query": "hotpot",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "mmlu",
+    "method": "native",
+    "query": "mmlu",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "mmlu",
+    "method": "head_tuning",
+    "query": "mmlu",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "mmlu",
+    "method": "final",
+    "query": "mmlu",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "gsm8k",
+    "method": "native",
+    "query": "gsm8k",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "gsm8k",
+    "method": "head_tuning",
+    "query": "gsm8k",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "gsm8k",
+    "method": "final",
+    "query": "gsm8k",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "FullFT",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "FullFT",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "FullFT",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "core",
+    "method": "FullFT",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "hotpot",
+    "method": "FullFT",
+    "query": "hotpot",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "mmlu",
+    "method": "FullFT",
+    "query": "mmlu",
+    "errors": []
+  },
+  {
+    "model": "qwen3_8b",
+    "benchmark": "gsm8k",
+    "method": "FullFT",
+    "query": "gsm8k",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "native",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "native",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "native",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "native",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "native_text",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "native_text",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "native_text",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "native_text",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "head_tuning",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "head_tuning",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "head_tuning",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "head_tuning",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "scoped_body",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "scoped_body",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "scoped_body",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "scoped_body",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "graphfirst",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "graphfirst",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "graphfirst",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "graphfirst",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "final",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "final",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "final",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "final",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "final_attention",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "final_attention",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "final_attention",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "final_attention",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "final_metadata",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "final_metadata",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "final_metadata",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "final_metadata",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "hotpot",
+    "method": "native",
+    "query": "hotpot",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "hotpot",
+    "method": "head_tuning",
+    "query": "hotpot",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "hotpot",
+    "method": "final",
+    "query": "hotpot",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "mmlu",
+    "method": "native",
+    "query": "mmlu",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "mmlu",
+    "method": "head_tuning",
+    "query": "mmlu",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "mmlu",
+    "method": "final",
+    "query": "mmlu",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "gsm8k",
+    "method": "native",
+    "query": "gsm8k",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "gsm8k",
+    "method": "head_tuning",
+    "query": "gsm8k",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "gsm8k",
+    "method": "final",
+    "query": "gsm8k",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "FullFT",
+    "query": "composed",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "FullFT",
+    "query": "direct_first",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "FullFT",
+    "query": "direct_target",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "core",
+    "method": "FullFT",
+    "query": "all3",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "hotpot",
+    "method": "FullFT",
+    "query": "hotpot",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "mmlu",
+    "method": "FullFT",
+    "query": "mmlu",
+    "errors": []
+  },
+  {
+    "model": "llama3_8b",
+    "benchmark": "gsm8k",
+    "method": "FullFT",
+    "query": "gsm8k",
+    "errors": []
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "template_year": 2027,
+  "source_url": "https://media.icml.cc/Conferences/ICML2027/styles/icml2027.zip",
+  "verified_official_instructions": "https://icml.cc/Conferences/2027/AuthorInstructions",
+  "source_commit": "a00e62230ab83d4e050e3da29a9e9cfd5e239dd6",
+  "scope": [
+    "analysis/",
+    "paper/"
+  ]
+}

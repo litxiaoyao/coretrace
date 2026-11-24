@@ -1,0 +1,368 @@
+{
+  "qwen3_4b": {
+    "native_constituent_correct_n": 457,
+    "n": 234,
+    "contains_any_alias": 14,
+    "contains_canonical_gold": 13,
+    "eos_failed": 10,
+    "f1_one": 0,
+    "remaining_failure_rate_if_all_alias_containing_responses_credited": 0.4814004376367615,
+    "source": "outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl",
+    "examples": [
+      {
+        "source_id": "0881249a0bb011ebab90acde48001122",
+        "question": "Who is the mother-in-law of Princess Calixta Of Lippe?",
+        "answer": "Princess Calixta of Lippe's mother-in-law is Princess Irene of Hesse and by Rhine.",
+        "gold": "Princess Irene of Hesse and by Rhine",
+        "matched_aliases": [
+          "Princess Irene of Hesse and by Rhine"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.7000000000000001
+      },
+      {
+        "source_id": "13e659380bdb11eba7f7acde48001122",
+        "question": "Where did the director of film Heart Of Dixie (Film) study?",
+        "answer": "Martin Davidson studied at the American Academy of Dramatic Arts.",
+        "gold": "American Academy of Dramatic Arts",
+        "matched_aliases": [
+          "American Academy of Dramatic Arts"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.7142857142857143
+      },
+      {
+        "source_id": "1eb321e00bde11eba7f7acde48001122",
+        "question": "Where did the director of film Cheerleader Camp die?",
+        "answer": "John Quinn died in Fostoria, Ohio.",
+        "gold": "Fostoria",
+        "matched_aliases": [
+          "Fostoria",
+          "Fostoria, Ohio"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.5
+      },
+      {
+        "source_id": "249f782e0bde11eba7f7acde48001122",
+        "question": "Where does the founder of St James Holdings work at?",
+        "answer": "St James Holdings is a company set up by Mike Ashley. Mike Ashley is the chief executive of Sports Direct. Therefore, the founder of St James Holdings works at",
+        "gold": "Sports Direct",
+        "matched_aliases": [
+          "Sports Direct"
+        ],
+        "eos_complete": false,
+        "text_f1": 0.14285714285714288
+      },
+      {
+        "source_id": "4a053eb00bb011ebab90acde48001122",
+        "question": "Who is Charles Gordon, 2Nd Earl Of Aboyne's paternal grandmother?",
+        "answer": "Charles Gordon, 2nd Earl of Aboyne's paternal grandmother is Lady Anne Campbell.",
+        "gold": "Lady Anne Campbell",
+        "matched_aliases": [
+          "Lady Anne Campbell"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.4
+      },
+      {
+        "source_id": "6ddf631e0bde11eba7f7acde48001122",
+        "question": "When was Joseph-Édouard Perrault's father born?",
+        "answer": "Joseph-Stanislas Perrault was born on May 13, 1846.",
+        "gold": "May 13, 1846",
+        "matched_aliases": [
+          "May 13, 1846"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.5454545454545454
+      },
+      {
+        "source_id": "7b2925800bdb11eba7f7acde48001122",
+        "question": "Where was the director of film Men Of War (Film) born?",
+        "answer": "December 24, 1959, Palo Alto, California.",
+        "gold": "Palo Alto",
+        "matched_aliases": [
+          "Palo Alto",
+          "Palo Alto, California"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.6666666666666666
+      },
+      {
+        "source_id": "83bf3b5a0bd911eba7f7acde48001122",
+        "question": "When did Lothair Ii's mother die?",
+        "answer": "Ermengarde of Tours died on 20 March 851.",
+        "gold": "20 March 851",
+        "matched_aliases": [
+          "20 March 851"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.5454545454545454
+      },
+      {
+        "source_id": "8958c2580bb011ebab90acde48001122",
+        "question": "Who is Ariq Böke's paternal grandmother?",
+        "answer": "Tolui's wife Börte.",
+        "gold": "Börte",
+        "matched_aliases": [
+          "Börte"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.5
+      },
+      {
+        "source_id": "902000320bd911eba7f7acde48001122",
+        "question": "Where did the director of film La Parisienne (Film) die?",
+        "answer": "Michel Boisrond died in La Celle-Saint-Cloud.",
+        "gold": "La Celle-Saint-Cloud",
+        "matched_aliases": [
+          "La Celle-Saint-Cloud"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.5
+      },
+      {
+        "source_id": "a3b95abe0bdc11eba7f7acde48001122",
+        "question": "Where was the director of film The Foursome born?",
+        "answer": "The Foursome is a 2006 American/Canadian comedy film. The film was directed by William Dear. William Dear was born in Toronto,",
+        "gold": "Toronto, Ontario",
+        "matched_aliases": [
+          "Toronto"
+        ],
+        "eos_complete": false,
+        "text_f1": 0.10526315789473684
+      },
+      {
+        "source_id": "d10610cc0bda11eba7f7acde48001122",
+        "question": "What is the award that the director of film Just A Kiss (Film) received?",
+        "answer": "The award that the director of film Just A Kiss (Film) received is the Academy Award for Best Documentary Feature.",
+        "gold": "Academy Award for Best Documentary Feature",
+        "matched_aliases": [
+          "Academy Award for Best Documentary Feature"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.5454545454545454
+      },
+      {
+        "source_id": "e6bdda040bd911eba7f7acde48001122",
+        "question": "Where was the director of film Life Of An Actress born?",
+        "answer": "Jack Nelson (actor) was born in Memphis, Tennessee.",
+        "gold": "Memphis, Tennessee",
+        "matched_aliases": [
+          "Memphis",
+          "Memphis, Tennessee"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.4
+      },
+      {
+        "source_id": "fada11b40bda11eba7f7acde48001122",
+        "question": "Where was the performer of song Come Over To My Place born?",
+        "answer": "Davina (R&B singer) was born in Detroit, Michigan.",
+        "gold": "Detroit",
+        "matched_aliases": [
+          "Detroit",
+          "Detroit, Michigan"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.4
+      }
+    ]
+  },
+  "qwen3_8b": {
+    "native_constituent_correct_n": 462,
+    "n": 236,
+    "contains_any_alias": 9,
+    "contains_canonical_gold": 9,
+    "eos_failed": 4,
+    "f1_one": 1,
+    "remaining_failure_rate_if_all_alias_containing_responses_credited": 0.49134199134199136,
+    "source": "outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl",
+    "examples": [
+      {
+        "source_id": "174d30440bde11eba7f7acde48001122",
+        "question": "Where did Elisabeth Zu Fürstenberg's husband die?",
+        "answer": "At the Battle of Stockach.",
+        "gold": "Stockach",
+        "matched_aliases": [
+          "Stockach"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.4
+      },
+      {
+        "source_id": "1900f7600baf11ebab90acde48001122",
+        "question": "Who is Thomas Stafford, 3Rd Earl Of Stafford's father?",
+        "answer": "Thomas Stafford, 3rd Earl of Stafford's father is Hugh de Stafford, 2nd Earl of Stafford.",
+        "gold": "Hugh de Stafford, 2nd Earl of Stafford",
+        "matched_aliases": [
+          "Hugh de Stafford, 2nd Earl of Stafford"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.6363636363636364
+      },
+      {
+        "source_id": "1a0c2a800bdc11eba7f7acde48001122",
+        "question": "What is the date of death of Carlo I Cybo-Malaspina's father?",
+        "answer": "Alderano Cybo-Malaspina (9 December 1552 in Massa – 16 November 1606 in Ferr",
+        "gold": "16 November 1606",
+        "matched_aliases": [
+          "16 November 1606"
+        ],
+        "eos_complete": false,
+        "text_f1": 0.375
+      },
+      {
+        "source_id": "26c35f920bdb11eba7f7acde48001122",
+        "question": "Who is the spouse of the editor of magazine Camera Notes?",
+        "answer": "Alfred Stieglitz\nGeorgia O'Keeffe",
+        "gold": "Georgia O'Keeffe",
+        "matched_aliases": [
+          "Georgia O'Keeffe",
+          "O'Keeffe"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.8571428571428571
+      },
+      {
+        "source_id": "2dba81d80bde11eba7f7acde48001122",
+        "question": "What is the cause of death of Eleanor De Clare's husband?",
+        "answer": "High treason, leading to being hanged, drawn and quartered.",
+        "gold": "hanged, drawn and quartered",
+        "matched_aliases": [
+          "Hanged, drawn and quartered",
+          "drawn and quartered",
+          "hanged, drawn and quartered",
+          "hanged, drawn, and quartered"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.6153846153846153
+      },
+      {
+        "source_id": "2e9cc8d60bde11eba7f7acde48001122",
+        "question": "Where was the performer of song Hard Time Loving You born?",
+        "answer": "August 24, 1963 in Sussex, New Brunswick",
+        "gold": "Sussex",
+        "matched_aliases": [
+          "Sussex",
+          "Sussex, New Brunswick"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.6
+      },
+      {
+        "source_id": "7b2925800bdb11eba7f7acde48001122",
+        "question": "Where was the director of film Men Of War (Film) born?",
+        "answer": "December 24, 1959, Palo Alto, California",
+        "gold": "Palo Alto",
+        "matched_aliases": [
+          "Palo Alto",
+          "Palo Alto, California"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.6666666666666666
+      },
+      {
+        "source_id": "7f3724780baf11ebab90acde48001122",
+        "question": "Who is the father of Louis X Of France?",
+        "answer": "Louis X of France's father was Philip IV of France.",
+        "gold": "Philip IV of France",
+        "matched_aliases": [
+          "Philip IV of France"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.5714285714285715
+      },
+      {
+        "source_id": "d400bea80bda11eba7f7acde48001122",
+        "question": "Where was the director of film Top Of The Form (Film) born?",
+        "answer": "John Paddy Carstairs was born in London.",
+        "gold": "London",
+        "matched_aliases": [
+          "London"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.25
+      }
+    ]
+  },
+  "llama3_8b": {
+    "native_constituent_correct_n": 501,
+    "n": 243,
+    "contains_any_alias": 6,
+    "contains_canonical_gold": 6,
+    "eos_failed": 0,
+    "f1_one": 0,
+    "remaining_failure_rate_if_all_alias_containing_responses_credited": 0.47305389221556887,
+    "source": "outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl",
+    "examples": [
+      {
+        "source_id": "00df5d8c0bde11eba7f7acde48001122",
+        "question": "When did Christine Juliane Of Baden-Durlach's father die?",
+        "answer": "Her father, Prince Charles Gustav of Baden-Durlach, died on 24 October 1703.",
+        "gold": "24 October 1703",
+        "matched_aliases": [
+          "24 October 1703"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.4
+      },
+      {
+        "source_id": "372d95020bde11eba7f7acde48001122",
+        "question": "Where was the performer of song Evolution (Ayumi Hamasaki Song) born?",
+        "answer": "Fukuoka, Fukuoka Prefecture.",
+        "gold": "Fukuoka",
+        "matched_aliases": [
+          "Fukuoka"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.5
+      },
+      {
+        "source_id": "82e0e3020bdc11eba7f7acde48001122",
+        "question": "When did Robert, Count Of Burgundy's mother die?",
+        "answer": "Mahaut of Artois died 27 November 1329.",
+        "gold": "27 November 1329",
+        "matched_aliases": [
+          "27 November 1329"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.6
+      },
+      {
+        "source_id": "9640a3fa0bdd11eba7f7acde48001122",
+        "question": "Why did the director of film The Obsessed Of Catule die?",
+        "answer": "A bladder cancer was detected which led to a severe blood hemorrhage, precipitating a heart stroke.",
+        "gold": "stroke",
+        "matched_aliases": [
+          "Stroke",
+          "stroke"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.14285714285714288
+      },
+      {
+        "source_id": "97cee43a0baf11ebab90acde48001122",
+        "question": "Who is Magnus Julius De La Gardie's paternal grandmother?",
+        "answer": "Axel Julius De la Gardie's mother, Ebba Brahe.",
+        "gold": "Ebba Brahe",
+        "matched_aliases": [
+          "Ebba Brahe"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.4
+      },
+      {
+        "source_id": "9cd955000baf11ebab90acde48001122",
+        "question": "Who is Marcus Antonius Creticus's father-in-law?",
+        "answer": "Marcus Antonius Creticus's father-in-law is Lucius Julius Caesar.",
+        "gold": "Lucius Julius Caesar",
+        "matched_aliases": [
+          "Lucius Julius Caesar"
+        ],
+        "eos_complete": true,
+        "text_f1": 0.5454545454545454
+      }
+    ]
+  }
+}
