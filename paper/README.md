@@ -4,6 +4,8 @@
 
 `main.tex` contains the complete anonymous ICML submission and appendix. The argument connects a contextual composition failure, a recoverable bridge-paragraph address, a controlled interaction between paragraph access and local reading, and a repair evaluated on the existing experiment records. The main text presents the central evidence, component comparison, ambiguous-candidate analysis, and local-fact validation. The appendix carries the complete protocol, controls, per-run results, capability evaluations, implementation details, and reproducibility scope.
 
+The current compiled submission has an eight-page main body, with the impact/AI statements and references starting on page 9 and the appendix on page 11. Its section expansion follows the supplied reference papers’ emphasis on method design and experimental interpretation; the comparison is documented in `analysis/REVISION_NOTES.md`.
+
 ## Compile and inspect
 
 From the repository root:

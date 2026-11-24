@@ -18,6 +18,8 @@ Within these failures, full readouts recover the bridge in 169/234, 176/236, and
 
 The selected heads also affect behavior. At the chosen counts of \scores{20}{20}{40}, knockout reduces composed accuracy to \scores{7.4}{5.5}{6.4}\%, compared with \scores{24.4}{27.3}{29.4}\% for layer-matched random heads. Constituent answering also depends on these heads: Qwen3-4B's direct second-hop score falls from 52.9\% to 1.1\%. Together, these results identify shared evidence-use components and motivate interventions on their access to the bridge (\cref{fig:localization,fig:necessity}).
 
+The controls preserve different aspects of the comparison. Layer-matched random knockout keeps the selected set's distribution across depth, allowing the ranked heads' behavioral effect to be compared with random sets with the same layer-wise head counts. The paragraph-address experiment then keeps the selected heads and their calibrated targets fixed while changing the evidence location that receives those targets. Together, these comparisons connect the query-dependent attention signal to specific interventions on the model's evidence use. They motivate the next test: whether the local reading pattern becomes more useful when access reaches the relevant paragraph.
+
 \subsection{Diagnosis: Access Changes the Utility of Local Reading}
 \label{sec:causal_results}
 
@@ -35,6 +37,8 @@ On all 1,000 test compositions, calibrating mass on the annotated bridge improve
 
 \paragraph{The benefit of a reading pattern depends on access.}
 On the shared-context diagnostic, Native/Mass/Pattern/Both accuracies are \scores{34}{41}{28}/43\% for Qwen3-4B, \scores{48}{52}{50}/59\% for Qwen3-8B, and \scores{51}{64}{47}/76\% for Llama (\cref{fig:causal}a--c). For Llama, pattern transfer changes accuracy by $-4$ points under native mass and $+12$ points after calibration. Its interaction is $+16$ points with a 95\% interval of $[8,25]$. Qwen3-4B and Qwen3-8B have interactions of $+8$ $[1,14]$ and $+5$ $[0,10]$ points, respectively.
+
+An additive calculation makes the effect concrete. For Llama, the separate mass and pattern effects would yield $64+47-51=60\%$ accuracy; their combination reaches $76\%$. The 16-point excess measures how the effect of transferring the pattern changes when access is calibrated. Accuracy is measured after the receiver's full forward pass and decoding, so each arm includes the downstream consequences of the attention intervention. The diagnostic contrast connects the two parts of our finding: the bridge address remains recoverable during failure, and a direct-query pattern becomes more useful when access to that paragraph is calibrated.
 
 The complementary contrast leads to the same diagnosis: mass calibration gains \scores{7}{4}{13} points with the receiver pattern and \scores{15}{9}{29} points with the direct-query pattern. Access and reading jointly determine the contribution of the selected paragraph. The identity arm reproduces all 300 native model/source token sequences exactly; complete contrasts are in \cref{tab:factorial}.
 
@@ -58,8 +62,12 @@ Selecting evidence for the native model already adds \scores{20.3}{18.9}{17.0} p
   \input{tables/main_components}
 \end{table}
 
+The components intervene at different points in evidence use. Filtering changes which original paragraphs enter answer generation; adaptation changes their processing through selected projections; restoration applies a fixed prefill rule to the adapted checkpoint. The input-order row provides a controlled comparison for attention-based selection: it uses the evidence graph and ties candidate choice to the original paragraph order. Comparing this row with the full reader measures the added value at the decision where the address signal is consumed, with the learned model weights held fixed.
+
 \paragraph{The address readout resolves ambiguity.}
 The input graph yields one candidate on 822 test questions, multiple candidates on 103, and an inapplicable graph on 75. On the 103 ambiguous cases, replacing input-order selection with the full reader raises bridge accuracy from 35.9\% to \scores{92.2}{93.2}{95.1}\% and composed EM from \scores{36.9}{36.9}{38.2}\% to \scores{70.2}{70.9}{76.7}\% (\cref{tab:main_ambiguity}). Generated token sequences agree exactly on the other 897 questions. Consequently, the reader's full-panel gains of \scores{3.4}{3.5}{4.0} points arise entirely where its address decision changes the retained evidence.
+
+This subset is defined by the input graph before evaluating model answers. Both ranking policies retain the root and one candidate paragraph and use the same adapted checkpoint, so their comparison tests how the chosen evidence affects generation. Reporting bridge accuracy alongside answer EM links the intermediate selection decision to its downstream consequence. The unique-candidate branch supplies a complementary check on the graph: its candidate matches the annotated bridge in 817 of 822 cases. The attention readout is therefore applied at the branch where the input structure leaves an actual choice to resolve.
 
 \begin{table}[!htbp]
   \centering
@@ -84,6 +92,8 @@ Attention-only ranking recovers the full reader's aggregate composed EM in every
 We test the complete procedure's dependence on the supplied facts by reciprocally exchanging object spans between two bridge paragraphs that express the same relation. The question, titles, paragraph order, and full-context word and character multisets stay fixed; the correct answer changes. The 100 valid exchanges use the 25 shared-context discovery quadruplets. Evidence selection is rerun on each edited input, so this assay evaluates the complete procedure's response to the changed fact binding.
 
 
+
+We evaluate both edited-value following and joint correctness on the original and exchanged contexts. Following asks whether generation adopts the newly attached value. Joint correctness additionally requires a correct answer before the exchange, making the pair a test of successful evidence use in both versions of the same question. The two measures connect answer accuracy with appropriate answer revision under a localized input change. Evaluating the complete selection-and-answering procedure also allows its evidence choice to respond to the exchanged facts, matching the procedure used for ordinary inference.
 
 \method\ follows the edited value in \scores{77}{76}{80}\% of cases, compared with Native \scores{26}{35}{32}\% (\cref{fig:content}). Joint correctness on original and edited contexts rises from \scores{21}{29}{29}\% to \scores{75}{72}{77}\%. Since the complete lexical inventory is preserved, these changes demonstrate sensitivity to the local attachment of values to relations. The result complements the native-model attention diagnosis with a direct behavioral validation of the repaired system.
 

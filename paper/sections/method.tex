@@ -6,6 +6,8 @@
 
 For a fact chain $e_0\xrightarrow{r_1}b\xrightarrow{r_2}a$, each source pairs the original composed question $q_{12}$ with two constituent questions: $q_1$ asks for bridge $b$, and $q_2$ explicitly names $b$ and asks for answer $a$. The paragraph about $e_0$ is the \emph{root paragraph}; the paragraph supporting $(b,r_2,a)$ is the \emph{bridge paragraph}. All three queries share the original evidence.
 
+The paired queries make the availability of constituent answers observable under the same evidence. The first probe asks for the bridge specified by the root fact; the second makes that bridge explicit and asks for the requested relation value. Their shared context preserves the supporting sentences, distractors, and paragraph positions. Conditioning on successful constituent answers therefore identifies examples on which the individual facts are behaviorally accessible. This population motivates the diagnosis: we examine how the composed query changes evidence use when both ingredients already support correct direct answers.
+
 Let $c_i(q)\in\{0,1\}$ denote correctness for source $i$. The native constituent-correct set is $\mathcal U=\{i:c_i(q_1)c_i(q_2)=1\}$. Following the conditional compositionality gap \citep{press2023compositionality}, its composition failure rate is
 \begin{equation}
   \mathrm{CFR}=1-\frac{1}{|\mathcal U|}\sum_{i\in\mathcal U}c_i(q_{12}).
@@ -24,7 +26,9 @@ For head $h$ at layer $\ell$, let $A^{\ell h}_{t,k}$ be attention from question 
 \end{equation}
 where $j_i^*$ is the annotated bridge and $\bar m$ averages question-token rows. Discovery-only mass calibration selects 20, 20, and 40 heads from candidate counts \scores{20}{40}{80}, maximizing composed accuracy and favoring fewer heads on ties. Question-prefill knockout against layer-matched random heads tests their contribution to answering.
 
-For each paragraph, each selected head supplies the log mean question-token mass and the log last-question-token mass. A linear score $s_j=w^\top f_j$ is fitted using standardized features, paragraph-index cross-entropy, and $\ell_2$ regularization on training sources. The full readout adds log paragraph-length fraction and a question/title-mention indicator. Attention-only and metadata-only variants separate their information contributions. Native and adapted models receive separately fitted, state-aligned readers (\cref{app:readout_protocol}).
+For each paragraph, each selected head supplies the log mean question-token mass and the log last-question-token mass. A linear score $s_j=w^\top f_j$ is fitted using standardized features, paragraph-index cross-entropy, and $\ell_2$ regularization on training sources. The full readout adds log paragraph-to-prompt token ratio and a question/title-mention indicator. Attention-only and metadata-only variants separate their information contributions.
+
+For each model state, feature standardization is fitted once on the paragraphs of the 2,000 composed training examples and reused at evaluation. The same linear weights score every paragraph; cross-entropy learns to place the annotated bridge above its alternatives. The supervision specifies the evidence address associated with the training question, while the fitted reader supplies a relative ranking on a new context. The native-state reader tests whether the failing model retains address information. A separately fitted reader uses the adapted/restored model's features during deployment. At inference, its ranking is restricted to candidates supplied by the input graph, giving the internal measurement an explicit decision to resolve (\cref{app:readout_protocol}).
 
 \subsection{Crossing Paragraph Access and Local Reading}
 \label{sec:factorization}
@@ -47,7 +51,9 @@ The four intervention arms cross native or calibrated mass with receiver or dire
 \end{equation}
 Each head's target $\tau$ is its discovery mean last-token bridge mass under direct queries. The donor supplies the normalized bridge pattern at the paired direct query's final question token. We apply this pattern to every selected receiver question row; outside-bridge attention is rescaled as needed to preserve the row total. The receiving forward pass supplies the value vectors and uses the original output-projection weights. Downstream activations and caches evolve with the intervened computation. Exact transformations and validity checks appear in \cref{app:interventions}.
 
-Twenty-five discovery quadruplets cross two bridges with two second-hop relations, yielding 100 composed receivers with exactly aligned context tokens. They provide the controlled diagnostic population. We measure
+Each arm answers a distinct question about the paragraph contribution in \cref{eq:contribution}. At each intervention site, mass calibration preserves the receiver's relative allocation within the bridge and tests the effect of giving that evidence a different share of the row. Pattern transfer preserves the bridge mass and changes the mixture of local value vectors. Their combination tests the transferred pattern at the calibrated access level. Because the same receiver questions enter every arm, the interaction compares the pattern's usefulness at two access settings on an identical population. This makes the dependence between the two factors directly measurable.
+
+Twenty-five discovery quadruplets cross two bridges with two second-hop relations, yielding 100 composed receivers with exactly aligned context tokens. They provide the controlled diagnostic population. Crossing the two bridges and two relations places competing facts in a common context: the queried bridge--relation pair determines the answer while all candidate facts remain present. The direct query and its composed receiver therefore share the evidence-token positions on which the pattern is transferred. Quadruplets also serve as the units for uncertainty estimates, preserving these dependencies during resampling. We measure
 \begin{equation}
  I=\mathrm{Acc}_{\mathrm{both}}-\mathrm{Acc}_{\mathrm{mass}}
  -\mathrm{Acc}_{\mathrm{pattern}}+\mathrm{Acc}_{\mathrm{native}}.
