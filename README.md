@@ -15,7 +15,7 @@ The formal suite finished on November 13, 2026. Results cover Qwen3-4B, Qwen3-8B
 - [Experiment protocol](docs/experiments.md): prompts, metrics, controls and figure/table definitions.
 - [Paper materials](paper): manuscript source, compiled preview and editable Figures 1–3.
 
-Dataset JSONL files and per-example experiment records are stored as lossless `.jsonl.gz` files. After cloning, restore them with the standard-library-only command:
+Dataset JSONL files and per-example experiment records are stored as lossless `.jsonl.gz` files. Large archives are split into `.part0000`, `.part0001`, etc. After cloning, join the parts and restore the original files with the standard-library-only command:
 
 ```bash
 python scripts/restore_results.py
