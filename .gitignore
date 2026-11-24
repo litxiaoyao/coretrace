@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.env
+configs/models.local.json
+models/
+data/raw/
+outputs/runtime/
+*.safetensors
