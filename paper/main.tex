@@ -34,26 +34,29 @@
 ]
 \printAffiliationsAndNotice{}
 \begin{abstract}
-Language models can answer two constituent questions from the same evidence yet fail to compose their answers. What breaks between accessing the facts and using them together? On 1,000 contextual reasoning triplets, three models fail on roughly half of the compositions whose constituents they answer correctly. A training-fitted linear readout nevertheless recovers the bridge paragraph in 72.2--86.0\% of these failures. We diagnose this gap by factorizing attention into paragraph access mass and a conditional reading pattern within the paragraph. Crossed interventions on 25 shared-context quadruplets show that calibrating access increases the utility of direct-query reading patterns, with interaction estimates of 5--16 percentage points. The diagnosis motivates \method: input-derived evidence selection coupled with selected-head adaptation and fixed projection restoration. Using fewer than 1\% trainable model parameters, it raises composed accuracy from \scores{26.9}{29.2}{36.4}\% to \scores{66.8}{67.2}{69.7}\% on Qwen3-4B, Qwen3-8B, and Llama-3.1-8B. On ambiguous inputs, the recovered address directly improves both evidence selection and answers. Reciprocal fact exchanges further show that repaired predictions follow changed local values in 76--80\% of cases. Together, these results establish a functional interaction between evidence access and local reading, and demonstrate how recoverable address information can improve contextual composition.
+Language models can answer two constituent questions from the same evidence yet fail to compose their answers. Across three models, composition fails on roughly half of the sources with correct constituent answers. A training-fitted readout nevertheless recovers the bridge paragraph in 72.2--86.0\% of these failures. To understand this discrepancy, we factorize attention into paragraph access mass and the conditional reading pattern within the paragraph. Crossed interventions reveal that calibrating access increases the utility of direct-query reading patterns, with interaction estimates of 5--16 percentage points. Guided by this diagnosis, we propose \method, which uses attention-derived address information to select evidence and adapts the selected heads with fixed projection restoration. With fewer than 1\% trainable model parameters, \method\ raises composed accuracy from \scores{26.9}{29.2}{36.4}\% to \scores{66.8}{67.2}{69.7}\% on Qwen3-4B, Qwen3-8B, and Llama-3.1-8B. Ambiguous-candidate comparisons connect the recovered address to better answers, and reciprocal fact exchanges show that repaired predictions follow changed local values in 76--80\% of cases. These results establish a functional interaction between evidence access and local reading and demonstrate its utility for improving contextual composition.
 \end{abstract}
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\columnwidth]{figures/story_overview.pdf}
-  \caption{\textbf{Correct facts, failed composition.} A Llama-3.1-8B example under the same ten-paragraph context motivates the diagnosis. We distinguish a recoverable bridge address from the joint effect of paragraph access mass and the local attention pattern. The lower panel is a schematic factorization of a head's evidence contribution.}
+  \includegraphics[width=\columnwidth]{figures/figure1_teaser.pdf}
+  \caption{\textbf{From failed composition to evidence-guided repair.} (a) A Llama-3.1-8B example with correct constituent answers and an incorrect composed answer under the same context. (b) Bridge addresses remain recoverable; paragraph access and local reading interact. (c) \method\ combines evidence selection and head adaptation to recover the correct answer.}
   \label{fig:teaser}
 \end{figure}
 \input{sections/introduction}
 \input{related_work}
 \input{sections/method}
 \input{sections/experiments}
+\FloatBarrier
+\balance
 \input{sections/conclusion}
 \FloatBarrier
 \clearpage
+\nobalance
 \section*{Impact Statement}
 This work studies how language models use supplied evidence and develops targeted interventions for more reliable contextual question answering. Its findings can inform systems that connect facts across documents. We evaluate reasoning and general capabilities to characterize the effects of adaptation. Experiments use public question-answering datasets. Downstream applications should assess evidence quality, answer accuracy, and task-specific reliability under their deployment conditions.
 \section*{AI Disclosure Statement}
-Generative AI assisted with narrative development, literature review, artifact verification, and manuscript revision. Verification used recorded experiments, primary publications, and compiled PDF renders.
+Generative AI assisted with literature review, manuscript revision, and artifact verification. Verification used recorded experiments, primary publications, and compiled PDF renders.
 \balance
 \bibliography{references}
 \bibliographystyle{icml2027}

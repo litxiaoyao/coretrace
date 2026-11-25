@@ -1,0 +1,17 @@
+model,k,ranked,direct,composed,intersection_count,source,selection_source
+qwen3_4b,20,1,1,0,14,outputs/qwen3_4b/discovery/ranking.json,outputs/qwen3_4b/discovery/SELECTION_FROZEN.json
+qwen3_4b,20,0,1,1,1,outputs/qwen3_4b/discovery/ranking.json,outputs/qwen3_4b/discovery/SELECTION_FROZEN.json
+qwen3_4b,20,1,0,0,6,outputs/qwen3_4b/discovery/ranking.json,outputs/qwen3_4b/discovery/SELECTION_FROZEN.json
+qwen3_4b,20,0,1,0,5,outputs/qwen3_4b/discovery/ranking.json,outputs/qwen3_4b/discovery/SELECTION_FROZEN.json
+qwen3_4b,20,0,0,1,19,outputs/qwen3_4b/discovery/ranking.json,outputs/qwen3_4b/discovery/SELECTION_FROZEN.json
+qwen3_8b,20,1,1,1,1,outputs/qwen3_8b/discovery/ranking.json,outputs/qwen3_8b/discovery/SELECTION_FROZEN.json
+qwen3_8b,20,1,1,0,13,outputs/qwen3_8b/discovery/ranking.json,outputs/qwen3_8b/discovery/SELECTION_FROZEN.json
+qwen3_8b,20,1,0,0,6,outputs/qwen3_8b/discovery/ranking.json,outputs/qwen3_8b/discovery/SELECTION_FROZEN.json
+qwen3_8b,20,0,1,0,6,outputs/qwen3_8b/discovery/ranking.json,outputs/qwen3_8b/discovery/SELECTION_FROZEN.json
+qwen3_8b,20,0,0,1,19,outputs/qwen3_8b/discovery/ranking.json,outputs/qwen3_8b/discovery/SELECTION_FROZEN.json
+llama3_8b,40,1,1,1,10,outputs/llama3_8b/discovery/ranking.json,outputs/llama3_8b/discovery/SELECTION_FROZEN.json
+llama3_8b,40,1,1,0,21,outputs/llama3_8b/discovery/ranking.json,outputs/llama3_8b/discovery/SELECTION_FROZEN.json
+llama3_8b,40,0,1,1,5,outputs/llama3_8b/discovery/ranking.json,outputs/llama3_8b/discovery/SELECTION_FROZEN.json
+llama3_8b,40,1,0,0,9,outputs/llama3_8b/discovery/ranking.json,outputs/llama3_8b/discovery/SELECTION_FROZEN.json
+llama3_8b,40,0,1,0,4,outputs/llama3_8b/discovery/ranking.json,outputs/llama3_8b/discovery/SELECTION_FROZEN.json
+llama3_8b,40,0,0,1,25,outputs/llama3_8b/discovery/ranking.json,outputs/llama3_8b/discovery/SELECTION_FROZEN.json

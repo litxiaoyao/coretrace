@@ -76,19 +76,20 @@ def best(model, method, methods, benchmark='core', query='composed'):
     return abs(v-max(float(row(model,k,benchmark,query)['mean_accuracy']) for k in methods))<1e-10
 
 def main_results():
-    methods=['native','native_text','FullFT','final']
+    """Compare baseline methods and the mechanistically informed method family."""
+    methods=['native','native_text','FullFT','head_tuning','final']
+    labels={**METHODS,'head_tuning':'Head adaptation','final':r'\textbf{\method}'}
     s=[r'\begin{tabular}{lrrrrrr}',r'\toprule',
        line(['',r'\multicolumn{2}{c}{\textbf{Qwen3-4B}}',r'\multicolumn{2}{c}{\textbf{Qwen3-8B}}',r'\multicolumn{2}{c}{\textbf{Llama-3.1-8B}}']),
        r'\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}',
-       header(['Method',r'Composed $\uparrow$',r'All three $\uparrow$',r'Composed $\uparrow$',r'All three $\uparrow$',r'Composed $\uparrow$',r'All three $\uparrow$']),r'\midrule']
+       header(['Method',r'Composed $\uparrow$',r'All three $\uparrow$',r'Composed $\uparrow$',r'All three $\uparrow$',r'Composed $\uparrow$',r'All three $\uparrow$']),r'\midrule',
+       r'\multicolumn{7}{l}{\textit{Baselines}} \\']
     for method in methods:
-        cells=[]
-        for model in MODELS:
-            for query in ['composed','all3']:
-                val=row(model,method,query=query)
-                cells.append(cell(val,bold=best(model,method,methods,query=query)))
-        label=r'\textbf{'+METHODS[method]+'}' if method=='final' else METHODS[method]
-        s.append(shaded(method)+line([label]+cells))
+        if method=='head_tuning':
+            s+=section('Mechanistically-Informed Head-Tuning (Ours)',7)
+        cells=[cell(row(model,method,query=query),bold=best(model,method,methods,query=query))
+               for model in MODELS for query in ['composed','all3']]
+        s.append(line([labels[method]]+cells))
     gains=[100*(float(row(m,'final',query=q)['mean_accuracy'])-float(row(m,'native',query=q)['mean_accuracy'])) for m in MODELS for q in ['composed','all3']]
     s.append(line([r'\textit{Gain over Native (pp)}']+[delta(g) for g in gains]))
     s += [r'\bottomrule',r'\end{tabular}']
@@ -133,20 +134,22 @@ def main_ambiguity():
     save('main_ambiguity.tex','\n'.join(s))
 
 def retention():
-    methods=['native','final']
+    """General capabilities of baselines and both head-tuning configurations."""
+    methods=['native','FullFT','head_tuning','final']
     benchmarks=['hotpot','mmlu','gsm8k']
-    s=[r'\begin{tabular}{@{}lrrr@{}}',r'\toprule',
-       header(['Model / intervention',r'HotpotQA $\uparrow$',r'MMLU $\uparrow$',r'GSM8K $\uparrow$']),r'\midrule']
-    for model in MODELS:
-        for method in methods:
-            label=NAMES[model] if method=='native' else r'+ \method\ (Ours)'
-            vals=[cell(row(model,method,b,b),bold=best(model,method,methods,b,b),sd=False,digits=2)
-                  for b in benchmarks]
-            s.append(shaded(method)+line([label]+vals))
-        gains=[100*(float(row(model,'final',b,b)['mean_accuracy'])-
-                    float(row(model,'native',b,b)['mean_accuracy'])) for b in benchmarks]
-        s.append(line([r'\textit{Change (pp)}']+[delta(g,2) for g in gains]))
-        if model!=MODELS[-1]:s.append(r'\midrule')
+    labels={**METHODS,'head_tuning':'Head adaptation','final':r'\textbf{\method}'}
+    groups=[r'\multicolumn{3}{c}{\textbf{'+NAMES[m]+'}}' for m in MODELS]
+    s=[r'\begin{tabular}{@{}lrrrrrrrrr@{}}',r'\toprule',
+       line(['']+groups),
+       r'\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}',
+       header(['Method']+['HotpotQA','MMLU','GSM8K']*3),r'\midrule',
+       r'\multicolumn{10}{l}{\textit{Baselines}} \\']
+    for method in methods:
+        if method=='head_tuning':
+            s+=section('Mechanistically-Informed Head-Tuning (Ours)',10)
+        vals=[cell(row(m,method,b,b),bold=best(m,method,methods,b,b),sd=False,digits=2)
+              for m in MODELS for b in benchmarks]
+        s.append(line([labels[method]]+vals))
     s += [r'\bottomrule',r'\end{tabular}']
     save('main_retention.tex','\n'.join(s))
 
@@ -171,7 +174,7 @@ def component_ablation():
         'graphfirst':[check,check,check,'Paragraph order'],
         'final_metadata':[check,check,check,'Metadata'],
         'final_attention':[check,check,check,'Attention'],
-        'final':[check,check,check,r'\textbf{Full (Ours)}'],
+        'final':[check,check,check,'Full'],
     }
     s=[r'\begin{tabular}{ccclrrr}',r'\toprule',
        line([r'\multicolumn{4}{c}{\textbf{Components enabled}}',
@@ -179,11 +182,14 @@ def component_ablation():
        r'\cmidrule(lr){1-4}\cmidrule(lr){5-7}',
        header([r'\shortstack{Head\\adaptation}',r'\shortstack{V/O\\restoration}',
                r'\shortstack{Evidence\\selection}','Candidate ranking',
-               *[NAMES[model] for model in MODELS]]),r'\midrule']
+               *[NAMES[model] for model in MODELS]]),r'\midrule',
+       r'\multicolumn{7}{l}{\textit{Baselines}} \\']
     for method in ABLATION_METHODS:
+        if method=='head_tuning':
+            s+=section('Mechanistically-Informed Head-Tuning (Ours)',7)
         vals=[cell(row(model,method),bold=best(model,method,ABLATION_METHODS))
               for model in MODELS]
-        s.append(shaded(method)+line(factors[method]+vals))
+        s.append(line(factors[method]+vals))
     s += [r'\bottomrule',r'\end{tabular}']
     save('component_ablation.tex','\n'.join(s))
 
