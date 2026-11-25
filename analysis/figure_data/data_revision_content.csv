@@ -1,0 +1,4 @@
+model,native_edited_accuracy,final_edited_accuracy,native_joint_accuracy,final_joint_accuracy,stable_addresses,pairs,source
+qwen3_4b,26,77,21,75,100,100,analysis/internal/v3_causal_evidence.md
+qwen3_8b,35,76,29,72,100,100,analysis/internal/v3_causal_evidence.md
+llama3_8b,32,80,29,77,100,100,analysis/internal/v3_causal_evidence.md

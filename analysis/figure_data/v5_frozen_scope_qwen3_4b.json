@@ -1,0 +1,14 @@
+{
+  "winner": {
+    "components": "vo",
+    "role": "prefix_before_question",
+    "layers": [
+      16,
+      17,
+      18,
+      19
+    ]
+  },
+  "source": "outputs/configs/qwen3_4b_42_core.json",
+  "method": "final"
+}

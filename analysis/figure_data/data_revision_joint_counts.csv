@@ -1,0 +1,4 @@
+model,native_errors,both_repairs,joint_only,source
+qwen3_4b,66,11,4,analysis/figure_data/data_main_joint_rescue.csv
+qwen3_8b,52,13,5,analysis/figure_data/data_main_joint_rescue.csv
+llama3_8b,49,29,13,analysis/figure_data/data_main_joint_rescue.csv

@@ -1,0 +1,16 @@
+{
+  "inputs": {
+    "analysis/figure_data/data_revision_relation_reading_qwen3_4b.json.gz": "6a2b937fd08f0f1b07f403894e8491993662e39871fb33cd9388b7f4ea17d11f",
+    "analysis/figure_data/data_revision_relation_reading_qwen3_8b.json.gz": "e06a5ddcb5bce135d3d9f4a26f7ed47121a32e987cbecb2ae1f4306e073153ee",
+    "analysis/figure_data/data_revision_relation_reading_llama3_8b.json.gz": "6ab7f87b99fbcc67239f29d38fdb18102127834fcb9319655af9122f62bb7450"
+  },
+  "decoded_json_sha256": {
+    "analysis/figure_data/data_revision_relation_reading_qwen3_4b.json.gz": "db7132eb29400dcb3ea219d7461aeb23dff0153f03ecf968cc692ce4385451e2",
+    "analysis/figure_data/data_revision_relation_reading_qwen3_8b.json.gz": "ff71df07e51fd715bc878616e5b7e86c83a65722b61948c6ac42b59e27c021e1",
+    "analysis/figure_data/data_revision_relation_reading_llama3_8b.json.gz": "92b032c8278e66e67b73a366cdde058dd9623d4a2fdbcae89e0b3e3871ededf8"
+  },
+  "bootstrap_reps": 10000,
+  "bootstrap_seed": 20261125,
+  "unit": "percentage points; receiver means with quadruplet bootstrap",
+  "population": "fixed discovery, not independent held-out"
+}

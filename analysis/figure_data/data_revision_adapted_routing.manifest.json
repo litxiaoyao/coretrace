@@ -1,0 +1,15 @@
+{
+  "data/CoRe-2Wiki-v1.0/corpus.jsonl": "73d778c84163399188e95f45c840ccc2aa96b27f3441dcd6b1ac7d32e32465bd",
+  "outputs/qwen3_4b/discovery/SELECTION_FROZEN.json": "d198a79c13764148aac26aca1aeb1c860a737a711deab5a9e6b4c82903fba2da",
+  "outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl": "008c5209f1e32eb1c263dd01537f07e0712c1674da7390c48d1ece29eb984667",
+  "outputs/qwen3_4b/native_readout/features.jsonl": "8ae938f44255038d25b7e2385fc570e01ac550467b96d838b2e184cce601b9c4",
+  "outputs/qwen3_4b/seed42/readout/features.jsonl": "650e60b3518d46888e4e26d5878ebc2f3078e4e1a204acd6de54fdd6107cd574",
+  "outputs/qwen3_8b/discovery/SELECTION_FROZEN.json": "add0e99b405c40a673187f5558460f0c0462146ee8a097a6eb654a9b54e1f295",
+  "outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl": "98d706487526fcb05fa6ae804d5c1c7a32e2a4980f76396a0d21a1c945aeadca",
+  "outputs/qwen3_8b/native_readout/features.jsonl": "ecf46978cb4a2225ba8ba11853a8f7293d2d4e395a1dbc1128361de93f812cbc",
+  "outputs/qwen3_8b/seed42/readout/features.jsonl": "4615742b631f7a99aa84cde24747d87925f7de58d9c4f99ef45df42c5b0670f4",
+  "outputs/llama3_8b/discovery/SELECTION_FROZEN.json": "110276a8ddf110eb3b2f23280f0d3c8bfa63d43300a939f9d5e20e362e04f2a7",
+  "outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl": "54a45548c9528ff9cf317ba2d4e9fc3f190f6b9e994eaa23b786e9e1901ecd87",
+  "outputs/llama3_8b/native_readout/features.jsonl": "18dcb679cf1cfbcc58417a070fde0504f956eba712e34f5ba723dd776978c600",
+  "outputs/llama3_8b/seed42/readout/features.jsonl": "b02ac66d5d7b5b76a9c069746a2d29e5dfa85ec366c8c408a32aa910a76d59a4"
+}

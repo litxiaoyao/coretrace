@@ -285,7 +285,7 @@ Full-model fine-tuning uses the same 2,000 composed examples and the recipe in A
 \subsection{Worked Evidence Chains}
 \label{app:cases}
 
-The teaser uses a Llama example whose evidence states that Walter II of Avesnes is the son of James of Avesnes and that James was killed at the Battle of Arsuf. Native constituent answers identify James and Arsuf, whereas the native composed answer is ``Avesnes.'' The final procedure answers ``Arsuf.''
+The teaser uses the John Corvinus test case. All three models correctly identify Matthias Corvinus and John Hunyadi in the two constituent queries, but return Matthias Corvinus on the composed question. The complete procedure selects the bridge paragraph and answers John Hunyadi. The case illustrates composition repair, while the Angela case below isolates the joint-intervention behavior.
 
 \begin{figure}[!ht]
   \centering

@@ -1,0 +1,4 @@
+model,native_full_failure_address,adapted_full_failure_address,native_attention_failure_address,adapted_attention_failure_address,ambiguous_input_order_em,ambiguous_full_reader_em,ambiguous_input_order_address,ambiguous_full_reader_address,source
+qwen3_4b,72.2,82.9,64.5,80.3,36.9,70.2,35.9,92.2,paper/tables/readout_diagnostics.tex;paper/tables/main_ambiguity.tex
+qwen3_8b,74.6,86.0,70.3,82.2,36.9,70.9,35.9,93.2,paper/tables/readout_diagnostics.tex;paper/tables/main_ambiguity.tex
+llama3_8b,86.0,92.2,84.4,90.9,38.2,76.7,35.9,95.1,paper/tables/readout_diagnostics.tex;paper/tables/main_ambiguity.tex

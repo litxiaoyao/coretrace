@@ -1,0 +1,4 @@
+model,native_second_hop,head_adaptation_second_hop_gain,final_second_hop,source
+qwen3_4b,52.90,14.2,67.57,paper/tables/complete_core.tex;paper/sections/appendix.tex
+qwen3_8b,54.40,15.7,70.10,paper/tables/complete_core.tex;paper/sections/appendix.tex
+llama3_8b,58.60,9.9,70.20,paper/tables/complete_core.tex;paper/sections/appendix.tex

@@ -1,0 +1,33 @@
+{
+  "source_commit": "5ff9f52179a72f911db319c52270121d78de92b0",
+  "source_path": "analysis/internal/mechanism_case_records_20261125_v2.json",
+  "corvinus": {
+    "source_id": "d56342fa0baf11ebab90acde48001122",
+    "population": "canonical test source; original ten-paragraph context",
+    "recorded_run": 42,
+    "question": "Who is John Corvinus's paternal grandfather?",
+    "root_index": 0, "bridge_index": 1,
+    "chain": ["John Corvinus", "Matthias Corvinus", "John Hunyadi"],
+    "direct_first": "Matthias Corvinus", "direct_target": "John Hunyadi",
+    "native_composed": "Matthias Corvinus", "final_composed": "John Hunyadi",
+    "models": ["qwen3_4b", "qwen3_8b", "llama3_8b"]
+  },
+  "angela": {
+    "source_id": "29c2b50c0bdc11eba7f7acde48001122",
+    "receiver_id": "natural_crossed_3e05970d5c8422f2710d__C12",
+    "population": "shared-context discovery diagnostic",
+    "model": "llama3_8b",
+    "question": "Who is the mother of the director of film Angela (1995 Film)?",
+    "root_index": 7, "bridge_index": 5,
+    "root_title": "Angela (1995 film)", "bridge_title": "Rebecca Miller",
+    "root_evidence": "Angela is a 1995 drama film directed by Rebecca Miller and starring Miranda Stuart Rhyne, Charlotte Eve Blythe, and Anna Levine.",
+    "bridge_evidence": "Miller is the daughter of Arthur Miller, a Pulitzer Prize-winning playwright, and his third wife Inge Morath, Magnum photographer.",
+    "arms": [
+      {"method":"native","answer":"Arthur Miller","correct":false},
+      {"method":"mass_only","answer":"Arthur Miller.","correct":false},
+      {"method":"conditional_only","answer":"Arthur Miller","correct":false},
+      {"method":"both","answer":"Inge Morath","correct":true}
+    ],
+    "reciprocal_exchange": {"recorded_run":42,"original_value":"Inge Morath","edited_value":"Gisela Elsner","original_answer":"Inge Morath","edited_answer":"Gisela Elsner","original_selected_paragraph":5,"edited_selected_paragraph":5,"word_bag_identical":true,"character_bag_identical":true,"partner_bridge":"Oskar Roehler","partner_index":9}
+  }
+}

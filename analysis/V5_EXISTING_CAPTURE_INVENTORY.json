@@ -1,0 +1,21 @@
+{
+  "roots": [
+    "/data/xiaoyao/projects/coretrace/outputs",
+    "/data/xiaoyao/projects/coretrace/analysis",
+    "/data/xiaoyao/projects/coretrace_internal",
+    "/data/xiaoyao/projects/test"
+  ],
+  "candidates": [
+    {
+      "path": "/data/xiaoyao/projects/coretrace/analysis/figure_data/data_revision_relation_reading_llama3_8b_pilot.json",
+      "bytes": 381196,
+      "classification": "current_v5"
+    }
+  ],
+  "archived_token_fields_check": "rg -l donor_bank/source_prefix_ids/bridge_token_ids in outputs/*.json yielded no matching files before this V5 capture",
+  "existing_data_reused": [
+    "outputs/{model}/native_readout/features.jsonl",
+    "outputs/{model}/seed42/readout/features.jsonl"
+  ],
+  "conclusion": "No pre-existing equivalent same-input native/adapted four-state relation-reading capture identified; paragraph-level archives exist and are reused offline."
+}

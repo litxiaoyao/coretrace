@@ -1,0 +1,13 @@
+model,seed,population,n,target,native_mass_percent,adapted_mass_percent,delta_pp,ci95_low_pp,ci95_high_pp,source
+qwen3_4b,42,all_test,1000,root,30.634962709676476,29.544376642331482,-1.0905860673449934,-1.2762377643142828,-0.9028492989698427,native_readout and adapted-state readout feature archives
+qwen3_4b,42,all_test,1000,bridge,8.14039424992574,14.175640619114892,6.035246369189154,5.79686893715766,6.277479981106732,native_readout and adapted-state readout feature archives
+qwen3_4b,42,fixed_native_failures,234,root,31.023763506633475,29.96874998896741,-1.055013517666067,-1.4250986057076935,-0.6683299661480672,native_readout and adapted-state readout feature archives
+qwen3_4b,42,fixed_native_failures,234,bridge,7.627360486269928,12.9891321953622,5.361771709092273,4.868598374887626,5.871214652981724,native_readout and adapted-state readout feature archives
+qwen3_8b,42,all_test,1000,root,31.560402315747925,31.126305723348633,-0.4340965923992917,-0.5482522585684201,-0.3180846426471836,native_readout and adapted-state readout feature archives
+qwen3_8b,42,all_test,1000,bridge,8.955674259596126,13.290494486068164,4.334820226472038,4.167050583505,4.502701070477547,native_readout and adapted-state readout feature archives
+qwen3_8b,42,fixed_native_failures,236,root,32.57654382484191,32.18947585644516,-0.38706796839675395,-0.6297685193545106,-0.14332693063563237,native_readout and adapted-state readout feature archives
+qwen3_8b,42,fixed_native_failures,236,bridge,8.175061006654301,11.883945805906386,3.7088847992520844,3.403520632308485,4.016344638178892,native_readout and adapted-state readout feature archives
+llama3_8b,42,all_test,1000,root,25.327268633239438,23.032448784231676,-2.294819849007763,-2.484285250978544,-2.109223435651511,native_readout and adapted-state readout feature archives
+llama3_8b,42,all_test,1000,bridge,8.840848268421578,15.80729798361699,6.966449715195413,6.7173949429302935,7.216910411802895,native_readout and adapted-state readout feature archives
+llama3_8b,42,fixed_native_failures,243,root,26.316215773649635,24.322696191933268,-1.9935195817163698,-2.3698840618642323,-1.6115640000882847,native_readout and adapted-state readout feature archives
+llama3_8b,42,fixed_native_failures,243,bridge,7.380012291307041,13.83997485334034,6.459962562033298,5.930421967459768,7.002154392805208,native_readout and adapted-state readout feature archives

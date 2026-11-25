@@ -16,12 +16,24 @@ if [[ ! -f "$source_dir/main.tex" ]]; then
   exit 1
 fi
 
+# Prefer the normal pdfLaTeX toolchain. Tectonic is a supported fallback and
+# uses the same unmodified ICML sources, figures, and bibliography.
+compiler=latexmk
+if ! command -v latexmk >/dev/null 2>&1 || ! command -v pdflatex >/dev/null 2>&1; then
+  compiler=tectonic
+  tectonic_bin="${CORETRACE_TECTONIC:-tectonic}"
+  if ! command -v "$tectonic_bin" >/dev/null 2>&1; then
+    printf 'Need latexmk + pdfLaTeX, or Tectonic (set CORETRACE_TECTONIC).\n' >&2
+    exit 1
+  fi
+fi
+
 # A complete TeX installation uses its own normal format and font maps.
 # The workspace image has read-only package sources but missing generated caches.
 # Rebuild only those caches locally; never change the template or system tree.
-if [[ "${CORETRACE_LOCAL_TEX:-0}" == 1 ]] || \
+if [[ "$compiler" == latexmk ]] && { [[ "${CORETRACE_LOCAL_TEX:-0}" == 1 ]] || \
    [[ ! -f "$(kpsewhich -format=fmt pdflatex.fmt 2>/dev/null || true)" ]] || \
-   [[ ! -f "$(kpsewhich pdftex.map 2>/dev/null || true)" ]]; then
+   [[ ! -f "$(kpsewhich pdftex.map 2>/dev/null || true)" ]]; }; then
   tex_runtime="$script_dir/tex_runtime"
   texmf_dist="${CORETRACE_TEX_DIST:-$(kpsewhich --var-value=TEXMFDIST)}"
   if [[ ! -f "$texmf_dist/tex/latex/base/latex.ltx" ]]; then
@@ -95,8 +107,13 @@ PY
 status=0
 (
   cd -- "$stage_dir"
-  latexmk -norc -pdf -interaction=nonstopmode -halt-on-error \
-    -file-line-error main.tex > compile_stdout.txt 2>&1
+  if [[ "$compiler" == latexmk ]]; then
+    latexmk -norc -pdf -interaction=nonstopmode -halt-on-error \
+      -file-line-error main.tex > compile_stdout.txt 2>&1
+  else
+    "$tectonic_bin" --keep-logs --keep-intermediates main.tex \
+      > compile_stdout.txt 2>&1
+  fi
 ) || status=$?
 for artifact in main.pdf main.log main.aux main.bbl main.blg main.fls compile_stdout.txt; do
   if [[ -f "$stage_dir/$artifact" ]]; then
