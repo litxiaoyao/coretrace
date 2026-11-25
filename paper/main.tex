@@ -16,8 +16,9 @@
 \definecolor{tablebase}{HTML}{EEEEEE}
 \definecolor{gain}{HTML}{1F77B4}
 \definecolor{loss}{HTML}{D62728}
-\icmltitlerunning{Coordinating Evidence Routing and Reading}
+\icmltitlerunning{How Evidence Routing Shapes Local Reading}
 \newcommand{\widefig}[4]{\begin{minipage}{\textwidth}\centering\includegraphics[width=#1\textwidth]{figures/#2.pdf}\captionof{figure}{#3}#4\end{minipage}}
+\newcommand{\widefigshort}[4]{\begin{minipage}{\textwidth}\centering\includegraphics[width=\textwidth,height=#1,keepaspectratio]{figures/#2.pdf}\captionof{figure}{#3}#4\end{minipage}}
 \newcommand{\colfig}[3]{\begin{minipage}{\columnwidth}\centering\includegraphics[width=\columnwidth]{figures/#1.pdf}\captionof{figure}{#2}#3\end{minipage}\par}
 \newcommand{\newspread}[1]{\twocolumn[{\centering #1\par\vspace{7pt}}]}
 \captionsetup{hypcap=false}
@@ -26,7 +27,7 @@
 \lefthyphenmin=2\righthyphenmin=3
 \hyphenation{Llama Qwen CoReTrace}
 \twocolumn[
-\icmltitle{\texorpdfstring{When Correct Hops Fail to Compose:\\Coordinating Evidence Routing and Reading}{When Correct Hops Fail to Compose: Coordinating Evidence Routing and Reading}}
+\icmltitle{\texorpdfstring{When Correct Hops Fail to Compose:\\How Evidence Routing Shapes Local Reading}{When Correct Hops Fail to Compose: How Evidence Routing Shapes Local Reading}}
 \begin{icmlauthorlist}\icmlauthor{Anonymous Authors}{anonymous}\end{icmlauthorlist}
 \icmlaffiliation{anonymous}{Anonymous Institution}
 \icmlcorrespondingauthor{Anonymous Authors}{anonymous@example.com}
@@ -34,11 +35,11 @@
 ]
 \printAffiliationsAndNotice{}
 \begin{abstract}
-Language models can answer both hops of a factual chain from the same evidence yet fail to compose them. We investigate this gap through three functions: locating the bridge, routing attention to it, and reading its requested relation. Across three models, nearly half of sources with correct constituents fail to compose, although bridge addresses remain recoverable in 72.2--86.0\% of these failures. Paired queries localize evidence-access heads whose preference shifts from root to bridge when the intermediate entity is explicit. Factoring paragraph attention into access mass and conditional token weights reveals that routing changes the utility of local reading: joint interventions yield interactions of 5--16 percentage points and recover errors that neither resolves alone. Guided by this mechanism, \method\ adapts the localized heads, restores native prefill projections, and selects evidence using their address signals. With fewer than 1\% trainable parameters, it improves composed accuracy by 33.3--39.9 points. Paired internal measurements reveal increased bridge access and stronger target-relation preference after adaptation and restoration; repaired answers follow exchanged values at stable addresses. These findings connect evidence access, relation-specific reading, and contextual composition.
+Language models can answer both hops of a factual chain from the same context yet fail to compose them. What prevents independently accessible facts from supporting multi-hop reasoning? We investigate three functions of evidence use: locating the bridge, routing attention to it, and reading its requested relation. Across three models, nearly half of sources with correct constituent answers fail to compose, although bridge addresses remain recoverable in 72.2--86.0\% of these failures. We identify evidence-access heads that shift from root to bridge when the intermediate entity is explicit. Crucially, factorized causal interventions reveal that routing shapes the effectiveness of local reading: coordinating paragraph access and within-paragraph weights yields interaction estimates of 5--16 percentage points, correcting errors that neither intervention resolves alone. Guided by this discovery, we introduce \method, which adapts the localized heads and exploits their address signals to focus evidence. With fewer than 1\% trainable parameters, it improves composed accuracy by 33.3--39.9 points. Internal measurements reveal stronger bridge access and relation preference, while repaired answers follow exchanged facts at stable addresses. These findings show why locating evidence is not enough for successful composition.
 \end{abstract}
 \begin{figure}[!t]
 \centering\includegraphics[width=\columnwidth]{figures/figure1_teaser_revision.pdf}
-\caption{\textbf{Correct hops do not guarantee correct composition.} (a) All three models answer both constituent queries but return the intermediate entity on the composed question. (b) Our functional account and the recorded repair. Paragraph indices are zero-based; the example uses run 42.}\label{fig:teaser}
+\caption{\textbf{Locating evidence is not enough.} (a) Recorded test case (run 42). (b) Schematic of shared-head functions; address recovery spans three models, and pattern-transfer effects are from the separate Llama-3.1-8B factorial experiment. (c) \method\ improves composed EM across all three models.}\label{fig:teaser}
 \end{figure}
 \input{sections/introduction}
 \input{sections/related_work}
@@ -47,11 +48,12 @@ Language models can answer both hops of a factual chain from the same evidence y
 \input{sections/conclusion}
 \clearpage
 \section*{Impact Statement}
-This work studies how language models use supplied evidence and develops targeted interventions for more reliable contextual question answering. Its findings can inform systems that connect facts across documents. We evaluate reasoning and general capabilities to characterize the effects of adaptation. Experiments use public question-answering datasets. Downstream applications should assess evidence quality, answer accuracy, and task-specific reliability under their deployment conditions.
+This work investigates how language models use supplied evidence and develops targeted interventions for contextual question answering. The findings can inform systems that connect facts across documents. Evaluations use public datasets and include reasoning and general capabilities. Downstream applications should assess evidence quality, answer accuracy, and task-specific reliability under their deployment conditions.
 \section*{AI Disclosure Statement}
 Generative AI assisted with literature review, manuscript revision, and artifact verification. Verification used recorded experiments, primary publications, and compiled PDF renders.
 \balance\bibliography{references}\bibliographystyle{icml2027}
-\clearpage\nobalance\appendix\onecolumn\raggedbottom
+\clearpage
+\nobalance\appendix\onecolumn\raggedbottom
 \setcounter{figure}{0}\setcounter{table}{0}\renewcommand{\thefigure}{A\arabic{figure}}\renewcommand{\thetable}{A\arabic{table}}
 \renewcommand{\theHfigure}{A.\arabic{figure}}
 \renewcommand{\theHtable}{A.\arabic{table}}
