@@ -46,7 +46,7 @@ python analysis/derive_structure_evidence.py
 python analysis/derive_causal_evidence.py
 ```
 
-Both default to source commit `5586f3816903e64334de80e06b74c6d7b1499b18` and validate frozen identities, predictions, and recorded measurements. These commands require the corresponding Git history. The derivations perform no model training or inference; their provenance is documented in `internal/v3_structure_evidence.md` and `internal/v3_causal_evidence.md`.
+Both default to source commit `5586f3816903e64334de80e06b74c6d7b1499b18` and validate frozen identities, predictions, and recorded measurements. These commands require the corresponding Git history. The derivations perform no model training or inference; their source identities and measurements are retained in the two JSON files.
 
 To recompute the routing and paired-relation summaries from the recorded experiment artifacts:
 
@@ -58,13 +58,13 @@ python analysis/derive_story_relation_reading.py \
   analysis/figure_data/data_revision_relation_reading_llama3_8b.json.gz
 ```
 
-The full raw relation-reading captures, pilot, frozen scopes, per-receiver measurements, summaries, and source manifests are retained. `capture_paired_relation_reading.py` and `capture_story_attention.py` are the original read-only capture tools; only use them with the recorded model/checkpoint and frozen inputs when new capture is actually required. See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the experimental protocol, execution record and audit trail.
+The full raw relation-reading captures, pilot, frozen scopes, per-receiver measurements, summaries, and source manifests are retained. `capture_paired_relation_reading.py` and `capture_story_attention.py` are the original read-only capture tools; only use them with the recorded model/checkpoint and frozen inputs when new capture is actually required. See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for experimental protocols and data provenance.
 
 `audit_experiments.py`, `audit_answer_forms.py` and `audit_clustered_contrasts.py` preserve experiment verification and the derivation of audit-based table/figure inputs. The `internal/` directory retains these scientific records, source snapshots and measured evidence. Historical manuscript editing notes and superseded installation/packaging tools are not part of this workflow.
 
 ## Evidence and scope
 
-The recorded audit at source revision `cf00035eb9b71bebf3ae88f76caf30ee9b58065c` checked 90 experiment manifests, 991,680 prediction records, 12 released paragraph readers, and 144 aggregate result entries. The coverage and implementation boundary are specified in `analysis/REPRODUCIBILITY.md`; detailed evidence is in `analysis/internal/current_evidence_audit.md` and the retained machine-readable records under `analysis/internal/` and `analysis/internal/current_audit/`.
+See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the retained machine-readable audit evidence.
 
 Principal composition uses 1,000 test sources. Address-readout failure subsets condition on the native model's constituent and composition outcomes. The factorial diagnostic uses 100 receivers in 25 discovery quadruplets; its bootstrap preserves these clusters. Reciprocal exchanges use 100 diagnostic sources and preserve full-input word and character multisets before the selector is recomputed.
 
@@ -85,4 +85,4 @@ cp analysis/build_final/main.pdf paper/main.pdf
 cp analysis/build_final/main.bbl paper/main.bbl
 ```
 
-See `paper/README.md` and `analysis/tex_build_notes.md` for normal TeX/Overleaf alternatives and environment details.
+See `paper/README.md` for TeX/Overleaf alternatives. For an isolated build, use `bash analysis/compile_paper.sh paper analysis/build_review`. Nonstandard TeX trees can be selected via `CORETRACE_TEX_DIST`; `CORETRACE_LOCAL_TEX=1` enables local cache recovery.

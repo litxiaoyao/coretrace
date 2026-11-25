@@ -14,5 +14,5 @@
     "audit_source_commit": "Repository revision independently checked for this manuscript revision.",
     "packaged_git_head": "Exact repository HEAD is populated separately when delivery archives are created."
   },
-  "audit_record": "analysis/internal/current_evidence_audit.md"
+  "audit_record": "analysis/internal/current_audit/result.json"
 }
