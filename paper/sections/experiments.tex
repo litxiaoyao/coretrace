@@ -34,7 +34,7 @@ We trace \emph{Locate--Route--Read} from the composition gap to head function, a
 \begin{figure*}[!t]
   \centering
   \includegraphics[width=\textwidth]{figures/data_main_head_causality.pdf}
-  \caption{\textbf{The localized heads carry direct and composed evidence use.} Selected and layer-matched random knockout across all three models, for composed questions (top) and direct second-hop questions (bottom). Dashed baselines show native accuracy. Lines connect the measured doses $0/20/40/80$; all evaluations use 1,000 test sources.}
+  \caption{\textbf{The localized heads carry direct and composed evidence use.} Ranked (orange) and layer-matched random (gray) head knockout for (a) composed and (b) direct second-hop questions. Marker shapes and line styles identify models; dose $0$ gives native accuracy. Lines connect the measured doses $0/20/40/80$; all evaluations use 1,000 test sources.}
   \label{fig:head_causality}
   \label{fig:head_pair}
 \end{figure*}
@@ -48,7 +48,7 @@ We trace \emph{Locate--Route--Read} from the composition gap to head function, a
 \begin{figure*}[!t]
   \centering
   \includegraphics[width=\textwidth]{figures/data_main_causal_pair.pdf}
-  \caption{\textbf{Route to Read: access changes the utility of local token weighting.} Upper: composed accuracy (\%) for native/calibrated bridge mass and receiver/direct-query patterns. Lower: the pattern-transfer effect at each mass; their difference is the interaction. Error bars and interaction intervals are paired 95\% quadruplet-bootstrap intervals over 100 receivers in 25 discovery quadruplets.}
+  \caption{\textbf{Route to Read: access changes the utility of local token weighting.} (a) Composed accuracy (\%) for native/calibrated bridge mass and receiver/direct-query patterns. (b) Direct-query pattern-transfer effects at each mass and their difference (interaction). Points and horizontal bars give estimates and paired 95\% quadruplet-bootstrap intervals over 100 receivers in 25 discovery quadruplets.}
   \label{fig:causal}
 \end{figure*}
 
@@ -83,7 +83,7 @@ Across models, the interaction estimates are \scores{8}{5}{16} points, with 95\%
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=\columnwidth]{figures/data_main_joint_rescue.pdf}
-  \caption{\textbf{Route and Read jointly correct individual failures.} Native errors corrected by Both, partitioned by whether either single intervention also succeeds. Joint-only denotes wrong answers under Native, Mass, and Pattern but a correct answer under Both. Counts retain the four paired outcomes for every receiver.}
+  \caption{\textbf{Route and Read jointly correct individual failures.} Native errors corrected by Both, partitioned by whether either single intervention also succeeds. Joint-only denotes wrong answers under Native, Mass, and Pattern but a correct answer under Both. Counts retain the four paired outcomes for every receiver; $n$ is the number of native failures.}
   \label{fig:joint_rescue}
 \end{figure}
 

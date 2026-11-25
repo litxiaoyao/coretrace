@@ -179,81 +179,160 @@ def render_diagnosis(readouts):
     inset_legend(ax,"upper center",ncol=3)
     save_figure(fig,"data_fig3_diagnosis")
 
-def render_causal(factors,contrasts,access):
-    """Show the crossed conditions and their measured interaction together.
+REF_ORANGE = "#FF7410"  # Figure 7: targeted intervention
+REF_GRAY = "#65686A"    # Figure 7: matched random control
+REF_BLUE = "#1F77B4"    # Layer-wise analysis: semantic blue
+REF_MODELS = ("#4682B4", "#229453", "#CD5C5C")  # A2: blue, green, and red sampled from reference Fig. 4
+REF_LIGHT = "#C5C8CA"
+PAPER_STYLE = {"font.size": 7.0, "axes.labelsize": 7.0,
+               "axes.titlesize": 7.4, "xtick.labelsize": 6.5,
+               "ytick.labelsize": 6.5, "legend.fontsize": 6.6,
+               "axes.titleweight": "normal", "axes.linewidth": .6,
+               "lines.linewidth": 1.15}
 
-    Cell values and paired contrasts use the same 100 receivers. Intervals are
-    the recorded quadruplet-bootstrap intervals for contrasts, not invented
-    cell-level uncertainty. Address specificity uses a separate test population
-    and is rendered separately below.
-    """
-    fig=plt.figure(figsize=(WIDE,2.45))
-    condition_rows=(("native","conditional_only"),("mass_only","both"))
-    contrast_keys=("conditional_effect_native_mass","conditional_effect_fixed_mass")
-    for i,model in enumerate(MODELS):
-        color=MODEL_COLORS[i]
-        left=.025+i*.327
-        values=np.array([[unique_record(factors,model=model,method=key)["accuracy_percent"]
-                          for key in row] for row in condition_rows])
-        effects=[unique_record(contrasts,model=model,contrast=key) for key in contrast_keys]
-        estimate=np.array([row["estimate_pp"] for row in effects])
-        low=np.array([row["CI95_low_pp"] for row in effects])
-        high=np.array([row["CI95_high_pp"] for row in effects])
-        interaction=unique_record(contrasts,model=model,contrast="interaction")
-        if not np.allclose(values[:,1]-values[:,0],estimate):
-            raise ValueError(f"Crossed cells and pattern contrasts disagree for {model}")
-        if not np.isclose(estimate[1]-estimate[0],interaction["estimate_pp"]):
-            raise ValueError(f"Pattern contrasts and interaction disagree for {model}")
 
-        fig.text(left+.155,.967,f"({chr(97+i)}) {MODEL_NAMES[model]}",
-                 ha="center",va="top",fontsize=7.2,fontweight="bold",color=INK)
+def knockout_panels(rows, queries, *, delta, name):
+    """Use treatment colors from the supplied reference; model identity uses shape/dash."""
+    styles = ("-", (0,(5,2)), (0,(1,1.6)))
+    markers = ("o", "s", "^")
+    with plt.rc_context(PAPER_STYLE):
+        fig, axs = plt.subplots(1, len(queries), figsize=(WIDE,2.22), squeeze=False)
+        axes=axs[0]
+        fig.subplots_adjust(left=.085,right=.983,bottom=.25,top=.83,
+                            wspace=.34 if len(queries)==3 else .22)
+        for i,(ax,(query,title)) in enumerate(zip(axes,queries)):
+            ax.set_axisbelow(True)
+            ax.grid(axis="y",color="#C7C7C7",linestyle=":",lw=.5)
+            ax.tick_params(length=2.3,width=.6,pad=2.4)
+            if delta: ax.axhline(0,color=REF_GRAY,lw=.65,ls=":",zorder=1)
+            all_x=[]; all_y=[]
+            # All curves retain the actual measured dose positions. No jitter.
+            for selection,color in (("random",REF_GRAY),("selected",REF_ORANGE)):
+                for j in (0,2,1):
+                    model=MODELS[j]
+                    baseline=unique_record(rows,model=model,query=query,selection="native")["accuracy_percent"]
+                    measured=sorted((r for r in rows if r["model"]==model and r["query"]==query and r["selection"]==selection),key=lambda r:r["knocked_out"])
+                    x=[0]+[r["knocked_out"] for r in measured]
+                    y=np.array([baseline]+[r["accuracy_percent"] for r in measured]); y=y-baseline if delta else y
+                    all_x.extend(x); all_y.extend(y)
+                    ax.plot(x,y,color=color,marker=markers[j],linestyle=styles[j],
+                            lw=1.0 if selection=="selected" else .85,
+                            markersize=3.7 if j!=1 else 4.1,
+                            markerfacecolor=color if j!=1 else "white",
+                            markeredgecolor=color,markeredgewidth=.7,
+                            zorder=4 if selection=="selected" else 3)
+            ax.set(xticks=sorted(set(all_x)),xlim=(-3,max(all_x)+3),xlabel="Heads removed")
+            if delta:
+                ax.set_ylim(10*np.floor(min(all_y)/10)-2,max(4,10*np.ceil(max(all_y)/10))+1)
+            else:
+                ax.set_ylim(-2 if max(all_y)<45 else -3,10*np.ceil((max(all_y)+2)/10))
+            if delta:
+                ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(4,integer=True))
+            else:
+                tick_step=10 if max(all_y)<45 else 20
+                ax.set_yticks(np.arange(0,ax.get_ylim()[1]+.1,tick_step))
+            ax.set_ylabel("EM change (pp)" if delta else "Exact match (%)")
+            # Subfigure captions below axes, as in the reference paper.
+            ax.text(.5,-.34,f"({chr(97+i)}) {title}",transform=ax.transAxes,
+                    ha="center",va="top",fontsize=7.4)
+        treatment=[Line2D([],[],color=c,marker="o",lw=1,markersize=3.8) for c in (REF_ORANGE,REF_GRAY)]
+        model_handles=[Line2D([],[],color=INK,marker=m,ls=ls,lw=.9,markersize=3.8,
+                             markerfacecolor="white" if i==1 else INK)
+                       for i,(m,ls) in enumerate(zip(markers,styles))]
+        fig.legend(treatment+model_handles,["Ranked heads","Layer-matched random"]+[MODEL_NAMES[m] for m in MODELS],
+                   loc="upper center",bbox_to_anchor=(.52,.99),ncol=5,frameon=False,
+                   fontsize=6.5,handlelength=2.0,columnspacing=1.05,handletextpad=.4)
+        save_figure(fig,name)
 
-        # Equal-area cells expose the actual 2-by-2 design. Color identifies
-        # the combined condition; it does not encode a simulated attention map.
-        matrix=fig.add_axes([left,.555,.31,.325])
-        matrix.set(xlim=(0,1),ylim=(0,1));matrix.axis("off")
-        matrix.text(.66,.98,"Composed accuracy (%)",ha="center",va="top",fontsize=6.1)
-        matrix.text(.01,.72,"Access mass",ha="left",va="center",fontsize=5.9)
-        for j,label in enumerate(("Receiver","Direct-query")):
-            matrix.text(.55+j*.30,.72,label,ha="center",va="center",fontsize=6.0)
-        for row,label in enumerate(("Native","Calibrated")):
-            y=.365-row*.335
-            matrix.text(.01,y+.14,label,ha="left",va="center",fontsize=6.1)
-            for col in range(2):
-                x=.405+col*.30
-                combined=row==1 and col==1
-                face=matplotlib.colors.to_rgba(color,.16) if combined else "#F2F3F5"
-                matrix.add_patch(Rectangle((x,y),.29,.28,facecolor=face,
-                                           edgecolor=color if combined else "#CFD3D7",
-                                           linewidth=.65 if combined else .45))
-                matrix.text(x+.145,y+.14,f"{values[row,col]:.0f}",ha="center",va="center",
-                            fontsize=8.4,fontweight="bold" if combined else "normal",color=INK)
 
-        ax=fig.add_axes([left+.065,.19,.225,.285])
-        clean_axis(ax)
-        ax.axhline(0,color=GRAY,linestyle=":",lw=.8,zorder=2)
-        ax.errorbar([0,1],estimate,yerr=[estimate-low,high-estimate],
-                    fmt=MODEL_MARKERS[i]+"-",color=color,markeredgecolor="white",
-                    markeredgewidth=.45,markersize=4.0,capsize=2.4,capthick=.8,
-                    elinewidth=.9,linewidth=1.25,zorder=4)
-        for x,value in enumerate(estimate):
-            ax.text(x+.12,value+(2.2 if x==0 else 0),f"{value:+.0f}",ha="left",
-                    va="bottom" if x==0 else "center",fontsize=6.5,
-                    fontweight="bold",color=INK,zorder=5,
-                    bbox={"facecolor":"white","edgecolor":"none","pad":.35})
-        ax.set(title="Direct-query pattern effect",xlim=(-.24,1.42),
-               xticks=[0,1],xticklabels=["Native","Calibrated"],
-               ylim=(-12,24),yticks=[-10,0,10,20],xlabel="Access mass")
-        ax.set_title("Direct-query pattern effect",fontsize=6.3,pad=3)
-        ax.tick_params(labelsize=5.8)
-        ax.xaxis.label.set_size(5.8)
-        if i==0:
-            ax.set_ylabel("Effect on accuracy (pp)",fontsize=6.0,labelpad=3)
-        interval=f"[{interaction['CI95_low_pp']:.0f}, {interaction['CI95_high_pp']:.0f}]"
-        fig.text(left+.155,.035,
-                 f"Interaction: {interaction['estimate_pp']:+.0f} pp  {interval}",
-                 ha="center",va="center",fontsize=6.6,fontweight="bold",color=INK)
-    save_figure(fig,"data_main_causal_pair")
+def grouped_accuracy_panels(aggregates, metrics, methods, *, metric_field, method_field,
+                            name, width=WIDE, ylabel="Accuracy (%)", short=False):
+    """Shared legend and axes for related benchmark panels; preserve recorded SD."""
+    with plt.rc_context(PAPER_STYLE):
+        n=len(metrics); fig,axes=plt.subplots(1,n,figsize=(width,1.90 if width==WIDE else 1.78),
+                                            sharey=True,squeeze=False)
+        axes=axes[0]; fig.subplots_adjust(left=.09 if width==WIDE else .14,right=.985,
+                                         bottom=.20,top=.73,wspace=.20 if width==WIDE else .25)
+        x=np.arange(len(MODELS)); bw=.72/len(methods)
+        for i,(ax,(key,title)) in enumerate(zip(axes,metrics)):
+            clean_axis(ax)
+            for j,(method,label,color) in enumerate(methods):
+                data=[unique_record(aggregates,model=m,**{metric_field:key,method_field:method}) for m in MODELS]
+                vals=[r["mean_percent"] for r in data]; err=[r["sample_sd_percent"] for r in data]
+                pos=x+(j-(len(methods)-1)/2)*bw
+                ax.bar(pos,vals,bw*.92,color=color,label=label,zorder=3)
+                ax.errorbar(pos,vals,yerr=err,fmt="none",ecolor=INK,elinewidth=.7,capsize=1.8,zorder=4)
+                for xx,v in zip(pos,vals):
+                    if v==0: ax.text(xx,1.8,"0",ha="center",va="bottom",fontsize=6.0,color=INK)
+            ax.set(xticks=x,
+                   xticklabels=["4B","8B","L8B"] if short else ["Qwen3-4B","Qwen3-8B","Llama-8B"],
+                   ylim=(0,105),yticks=[0,25,50,75,100])
+            ax.set_title(f"({chr(97+i)}) {title}",loc="left",pad=4,fontsize=7.0)
+            ax.tick_params(axis="x",labelsize=6.1 if width==WIDE else 6.2)
+        axes[0].set_ylabel(ylabel)
+        fig.legend(*axes[0].get_legend_handles_labels(),loc="upper center",bbox_to_anchor=(.53,.99),
+                   ncol=len(methods),frameon=False,handlelength=1.2,handletextpad=.4,columnspacing=.9)
+        save_figure(fig,name)
+
+
+def render_causal(factors, contrasts, access):
+    """One crossed-condition matrix and one aligned forest plot; all original CIs."""
+    with plt.rc_context(PAPER_STYLE):
+        fig = plt.figure(figsize=(WIDE,2.48))
+        matrix = fig.add_axes([.155,.23,.36,.53])
+        forest = fig.add_axes([.565,.23,.255,.53],sharey=matrix)
+        fig.text(.025,.975,"(a) Composed accuracy (%)",ha="left",va="top",fontsize=7.5,fontweight="bold")
+        fig.text(.55,.975,"(b) Pattern effects and interaction",ha="left",va="top",fontsize=7.5,fontweight="bold")
+        keys = ("native","conditional_only","mass_only","both")
+        contrast_keys = ("conditional_effect_native_mass","conditional_effect_fixed_mass","interaction")
+        for i,model in enumerate(MODELS):
+            y = 2-i; color = REF_ORANGE
+            vals = np.array([unique_record(factors,model=model,method=k)["accuracy_percent"] for k in keys])
+            effects = [unique_record(contrasts,model=model,contrast=k) for k in contrast_keys]
+            est = np.array([r["estimate_pp"] for r in effects])
+            if not np.allclose([vals[1]-vals[0],vals[3]-vals[2],
+                                (vals[3]-vals[2])-(vals[1]-vals[0])],est):
+                raise ValueError(f"Crossed cells and contrasts disagree for {model}")
+            for j,v in enumerate(vals):
+                combined = j==3
+                matrix.add_patch(Rectangle((j-.455,y-.35),.91,.70,
+                    facecolor=matplotlib.colors.to_rgba(color,.12) if combined else "#F6F6F6",
+                    edgecolor=color if combined else "#D4D7DA",lw=.8 if combined else .4))
+                matrix.text(j,y,f"{v:.0f}",ha="center",va="center",fontsize=8.6,
+                            fontweight="bold" if combined else "normal")
+            for j,(r,offset,marker) in enumerate(zip(effects,(.25,0,-.25),("o","o","D"))):
+                yy = y+offset; v = r["estimate_pp"]
+                lo,hi = r["CI95_low_pp"],r["CI95_high_pp"]
+                contrast_color=(REF_GRAY,REF_BLUE,REF_ORANGE)[j]
+                forest.errorbar(v,yy,xerr=[[v-lo],[hi-v]],fmt=marker,color=contrast_color,
+                    markerfacecolor="white" if j==0 else contrast_color,markeredgewidth=.8,
+                    markersize=3.6,capsize=1.6,elinewidth=.9,capthick=.7,zorder=4)
+                forest.text(1.055,yy,f"{v:+.0f} [{lo:.0f}, {hi:.0f}]",
+                    transform=forest.get_yaxis_transform(),ha="left",va="center",fontsize=6.4,
+                    fontweight="bold" if j==2 else "normal",color=contrast_color if j==2 else INK)
+        matrix.set(xlim=(-.5,3.5),ylim=(-.5,2.5),xticks=range(4),
+                   xticklabels=["Receiver","Direct","Receiver","Direct"],
+                   yticks=[2,1,0],yticklabels=[MODEL_NAMES[m] for m in MODELS])
+        matrix.tick_params(axis="x",top=True,labeltop=True,bottom=False,labelbottom=False,length=0,pad=2)
+        matrix.tick_params(axis="y",length=0,pad=4)
+        for spine in matrix.spines.values(): spine.set_visible(False)
+        for x,label in ((.25,"Native mass"),(.75,"Calibrated mass")):
+            matrix.text(x,1.15,label,transform=matrix.transAxes,ha="center",va="bottom",fontsize=6.8)
+        matrix.axvline(1.5,color="#D0D4D7",lw=.6)
+        clean_axis(forest,"x")
+        forest.axvline(0,color=GRAY,lw=.8,zorder=2)
+        for y in (.5,1.5): forest.axhline(y,color=GRID,lw=.45,zorder=1)
+        forest.set(xlim=(-12,27),xticks=[-10,0,10,20],xlabel="Effect on accuracy (pp)")
+        forest.tick_params(axis="y",left=False,labelleft=False)
+        forest.spines["left"].set_visible(False)
+        forest.text(1.055,1.075,"Estimate [95% CI]",transform=forest.transAxes,
+                    ha="left",va="bottom",fontsize=6.2)
+        handles = [Line2D([],[],color=c,marker=m,markerfacecolor=f,linestyle="none",markersize=4)
+                   for c,m,f in ((REF_GRAY,"o","white"),(REF_BLUE,"o",REF_BLUE),(REF_ORANGE,"D",REF_ORANGE))]
+        fig.legend(handles,["Native mass","Calibrated mass","Interaction"],
+                   loc="lower right",bbox_to_anchor=(.985,.005),ncol=3,frameon=False,
+                   handlelength=1.0,columnspacing=1.0,handletextpad=.3,fontsize=6.3)
+        save_figure(fig,"data_main_causal_pair")
     render_access_controls(access)
 
 
@@ -350,9 +429,46 @@ def render_localization_main(bins,selected,nb,step=.02):
 
 
 def render_localization_overlap_all(sets_by_model):
-    fig=plt.figure(figsize=(WIDE,2.05));gs=fig.add_gridspec(1,3,left=.12,right=.985,top=.88,bottom=.12,wspace=.82)
-    for i,m in enumerate(MODELS):draw_upset(fig,gs[i],sets_by_model[m],MODEL_NAMES[m]+f" (K={len(sets_by_model[m][0])})")
-    save_figure(fig,"data_app_head_overlap")
+    """Compare exact intersections on one common membership grid."""
+    with plt.rc_context(PAPER_STYLE):
+        counts = {m:dict(intersection_rows(sets_by_model[m])) for m in MODELS}
+        patterns = sorted(set().union(*(c.keys() for c in counts.values())),
+                          key=lambda p:(sum(p),p),reverse=True)
+        fig = plt.figure(figsize=(WIDE,2.30))
+        gs = fig.add_gridspec(2,1,left=.16,right=.985,top=.78,bottom=.085,
+                              height_ratios=[2.1,1],hspace=.06)
+        top = fig.add_subplot(gs[0]); bot = fig.add_subplot(gs[1],sharex=top)
+        x=np.arange(len(patterns)); width=.24
+        max_n=max(v for c in counts.values() for v in c.values())
+        clean_axis(top)
+        for i,(m,c) in enumerate(zip(MODELS,REF_MODELS)):
+            n=[counts[m].get(p,0) for p in patterns]; pos=x+(i-1)*width
+            top.bar(pos,n,width=width*.9,color=c,edgecolor="none",zorder=3,
+                    label=f"{MODEL_NAMES[m]} ($k={len(sets_by_model[m][0])}$)")
+            for xx,v in zip(pos,n):
+                top.text(xx,v+.5,str(v),ha="center",va="bottom",fontsize=6.5,
+                         color=c if v else GRAY)
+        top.set(xlim=(-.55,len(patterns)-.45),ylim=(0,max_n*1.23),ylabel="Heads")
+        top.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(4,integer=True))
+        top.tick_params(axis="x",bottom=False,labelbottom=False)
+        top.spines["bottom"].set_visible(False)
+        bot.axhspan(-.5,.5,color="#FFF0E4",zorder=0)
+        bot.axhspan(1.5,2.5,color="#F4F4F4",zorder=0)
+        for i,p in enumerate(patterns):
+            active=[j for j,v in enumerate(p) if v]
+            bot.scatter([i]*3,range(3),s=12,color="#D4D7DA",zorder=1,edgecolors="none")
+            if len(active)>1: bot.plot([i,i],[min(active),max(active)],color=INK,lw=.9,zorder=2)
+            bot.scatter([i]*len(active),active,s=18,
+                        color=[REF_ORANGE if j==0 else INK for j in active],
+                        zorder=3,edgecolors="none")
+        bot.set(yticks=[0,1,2],yticklabels=["Ranked","Direct","Composed"],ylim=(2.5,-.5),xticks=[])
+        bot.tick_params(axis="y",length=0,pad=3)
+        bot.get_yticklabels()[0].set_color(REF_ORANGE)
+        bot.get_yticklabels()[0].set_fontweight("medium")
+        for spine in bot.spines.values(): spine.set_visible(False)
+        fig.legend(*top.get_legend_handles_labels(),loc="upper center",bbox_to_anchor=(.53,.98),
+                   ncol=3,frameon=False,handlelength=1.3,columnspacing=1.5)
+        save_figure(fig,"data_app_head_overlap")
 
 
 def draw_profile(ax,profiles):
@@ -381,45 +497,24 @@ def render_head_pair(profiles,raw,measured_sizes):
     save_figure(fig,"data_main_head_pair")
 
 
-def render_necessity(raw,measured_sizes):
-    # Identical y scales within each query row permit direct model comparison.
-    # All measured doses and controls are retained; no interpolation of new data.
-    fig,axes=plt.subplots(3,3,figsize=(WIDE,3.10),sharex=True,sharey="row")
-    fig.subplots_adjust(left=.105,right=.98,bottom=.12,top=.92,wspace=.19,hspace=.25)
-    queries=[("composed","Composed"),("direct_first","First hop"),("direct_target","Second hop")]
-    for i,(q,label) in enumerate(queries):
-        all_delta=[]
-        for j,m in enumerate(MODELS):
-            ax=axes[i,j];clean_axis(ax,"both",box=True)
-            sizes=measured_sizes[m];base=unique_record(raw,model=m,query=q,selection="native")["accuracy_percent"]
-            for sel,legend,c,mark in [("selected","Ranked",ORANGE,"o"),("random","Random",BLUE,"s")]:
-                vals=[0]+[unique_record(raw,model=m,query=q,selection=sel,knocked_out=k)["accuracy_percent"]-base for k in sizes]
-                all_delta.extend(vals)
-                ax.plot([0]+sizes,vals,marker=mark,color=c,label=legend,markersize=2.7,
-                        markeredgecolor="white",markeredgewidth=.28,zorder=3)
-            ax.axhline(0,color=GRAY,lw=.55,linestyle=":")
-            ax.set_xticks([0]+sizes);ax.set_xlim(-4,max(sizes)+4)
-            if i==0:ax.set_title(MODEL_NAMES[m],pad=4)
-            if j==0:ax.set_ylabel(label+"\nEM change (pp)",labelpad=3)
-            if i==2:ax.set_xlabel("Heads removed",labelpad=2)
-        lower=10*np.floor(min(all_delta)/10);upper=max(7,10*np.ceil(max(all_delta)/10))
-        axes[i,0].set_ylim(lower-2,upper+1)
-        axes[i,0].yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(4,integer=True))
-    inset_legend(axes[0,0],"lower left",fontsize=5.0,ncol=1,labelspacing=.20)
-    save_figure(fig,"data_app_necessity")
+def render_necessity(raw, measured_sizes):
+    # Verify that the compact panels still contain every measured dose.
+    for model in MODELS:
+        for query in ("composed","direct_first","direct_target"):
+            for selection in ("selected","random"):
+                actual = sorted(r["knocked_out"] for r in raw if r["model"]==model
+                                and r["query"]==query and r["selection"]==selection)
+                if actual != sorted(measured_sizes[model]):
+                    raise ValueError(f"Incomplete knockout series: {model}/{query}/{selection}")
+    knockout_panels(raw, (("composed","Composed"),("direct_first","First hop"),
+                          ("direct_target","Second hop")),
+                    delta=True,name="data_app_necessity")
 
 
 def render_content(aggregated):
-    fig,axes=plt.subplots(1,2,figsize=(COL,1.67),sharey=True);fig.subplots_adjust(left=.13,right=.99,bottom=.19,top=.87,wspace=.26)
-    specs=[("edited_new_follow","(a) Edited value"),("original_correct_then_new","(b) Joint EM")];x=np.arange(3);width=.32
-    for ax,(key,title) in zip(axes,specs):
-        clean_axis(ax,"y",box=True)
-        for j,(method,label,c) in enumerate([("native","Native",BLUE),("final","CoReTrace",ORANGE)]):
-            r=[unique_record(aggregated,model=m,method=method,metric=key) for m in MODELS]
-            bars(ax,x+(j-.5)*width,[v["mean_percent"] for v in r],width,c,errors=[v["sample_sd_percent"] for v in r],label=label)
-        ax.set(title=title,xticks=x,xticklabels=["4B","8B","L8B"],ylim=(0,125),yticks=[0,25,50,75,100])
-    axes[0].set_ylabel("Queries (%)");inset_legend(axes[0],"upper left",fontsize=4.8,labelspacing=.15)
-    save_figure(fig,"data_fig5_content")
+    grouped_accuracy_panels(aggregated,(("edited_new_follow","Edited value"),("original_correct_then_new","Joint EM")),
+                            (("native","Native",REF_GRAY),("final","CoReTrace",REF_ORANGE)),metric_field="metric",
+                            method_field="method",name="data_fig5_content",width=COL,ylabel="Queries (%)",short=True)
 
 
 def render_ambiguity(rows):
@@ -447,28 +542,14 @@ def render_ablation(aggregates):
     ax.set(xticks=x,xticklabels=[v for _,v in metrics],ylim=(0,119),yticks=[0,25,50,75,100],ylabel="Accuracy (%)")
     inset_legend(ax,"upper center",ncol=2)
     save_figure(fig,"data_main_restoration")
-    fig,axes=plt.subplots(1,3,figsize=(WIDE,1.55),sharey=True);fig.subplots_adjust(left=.08,right=.985,bottom=.19,top=.84,wspace=.20)
-    for ax,(key,title) in zip(axes,metrics):
-        clean_axis(ax,"y",box=True)
-        for j,(restored,label,c) in enumerate([(False,"Adaptation",BLUE),(True,"+ Restoration",ORANGE)]):
-            data=[unique_record(aggregates,model=m,query=key,projection_restoration=restored) for m in MODELS]
-            bars(ax,x+(j-.5)*width,[r["mean_percent"] for r in data],width,c,errors=[r["sample_sd_percent"] for r in data],label=label)
-        ax.set(title=title,xticks=x,xticklabels=["Qwen3-4B","Qwen3-8B","Llama-8B"],ylim=(0,125),yticks=[0,25,50,75,100])
-    axes[0].set_ylabel("Accuracy (%)");inset_legend(axes[0],"upper center",ncol=2,fontsize=4.8,labelspacing=.15)
-    save_figure(fig,"data_app_ablation")
+    grouped_accuracy_panels(aggregates,metrics,((False,"Adaptation",REF_GRAY),(True,"+ Restoration",REF_ORANGE)),
+                            metric_field="query",method_field="projection_restoration",name="data_app_ablation")
 
 
 def render_capabilities(aggregates):
-    fig,axes=plt.subplots(1,3,figsize=(WIDE,1.63),sharey=True);fig.subplots_adjust(left=.08,right=.985,bottom=.19,top=.84,wspace=.20)
-    x=np.arange(3);width=.23
-    for ax,(dataset,title) in zip(axes,[("hotpot","HotpotQA"),("mmlu","MMLU"),("gsm8k","GSM8K")]):
-        clean_axis(ax,"y",box=True)
-        for j,(method,label,c) in enumerate([("native","Native",BLUE),("fullft","Full fine-tuning",LIGHT_GRAY),("final","CoReTrace",ORANGE)]):
-            data=[unique_record(aggregates,model=m,dataset=dataset,method=method) for m in MODELS]
-            bars(ax,x+(j-1)*width,[r["mean_percent"] for r in data],width,c,errors=[r["sample_sd_percent"] for r in data],label=label)
-        ax.set(title=title,xticks=x,xticklabels=["Qwen3-4B","Qwen3-8B","Llama-8B"],ylim=(0,125),yticks=[0,25,50,75,100])
-    axes[0].set_ylabel("Accuracy (%)");inset_legend(axes[0],"upper center",ncol=3,fontsize=4.6,labelspacing=.13,handlelength=1.0,columnspacing=.4)
-    save_figure(fig,"data_app_capabilities")
+    grouped_accuracy_panels(aggregates,(("hotpot","HotpotQA"),("mmlu","MMLU"),("gsm8k","GSM8K")),
+                            (("native","Native",REF_GRAY),("fullft","Full fine-tuning",REF_LIGHT),("final","CoReTrace",REF_ORANGE)),
+                            metric_field="dataset",method_field="method",name="data_app_capabilities")
 
 # Original per-source collectors. New main panels reuse their records directly.
 def collect_composition(seeds: list[int]):
@@ -863,48 +944,8 @@ def make_mechanism_causality() -> None:
 
 
 def render_mechanism_causality(rows) -> None:
-    """Show the measured necessity curves for paired endpoint questions."""
-    with plt.rc_context(V3_STYLE):
-        fig,axes=plt.subplots(2,3,figsize=(WIDE,2.85),sharex=True,sharey="row")
-        fig.subplots_adjust(left=.075,right=.985,bottom=.155,top=.825,
-                            wspace=.20,hspace=.28)
-        for col,model in enumerate(MODELS):
-            for row_index,query in enumerate(("composed","direct_target")):
-                ax=axes[row_index,col]
-                clean_axis(ax)
-                base=unique_record(rows,model=model,query=query,selection="native")
-                baseline=base["accuracy_percent"]
-                ax.axhline(baseline,color=INK,linestyle=(0,(3,2)),linewidth=.7,
-                           label="Native baseline",zorder=1)
-                for selection,label,color,marker in (
-                        ("selected","Ranked heads",MODEL_COLORS[col],"o"),
-                        ("random","Layer-matched random",GRAY,"s")):
-                    selected=sorted([r for r in rows if r["model"]==model and
-                                     r["query"]==query and r["selection"]==selection],
-                                    key=lambda r:r["knocked_out"])
-                    x=[0]+[r["knocked_out"] for r in selected]
-                    y=[baseline]+[r["accuracy_percent"] for r in selected]
-                    ax.plot(x,y,color=color,marker=marker,markersize=3.4,
-                            markeredgecolor="white",markeredgewidth=.35,
-                            linewidth=1.2,label=label,zorder=4 if selection=="selected" else 3)
-                ax.set(xticks=[0,20,40,80],xlim=(-3,83))
-                if row_index==0:
-                    ax.set_title(MODEL_NAMES[model],fontsize=6.7,pad=5)
-                    ax.set(ylim=(0,41),yticks=[0,20,40])
-                else:
-                    ax.set(ylim=(0,65),yticks=[0,20,40,60],xlabel="Heads removed")
-                if col==0:
-                    ax.set_ylabel("Composed EM (%)" if row_index==0 else "Direct-target EM (%)",
-                                  fontsize=6.3,labelpad=4)
-                ax.tick_params(labelsize=6.0)
-                ax.text(.00,1.015,f"({chr(97+row_index*3+col)})",transform=ax.transAxes,
-                        ha="left",va="bottom",fontsize=6.2,color=INK)
-        handles,labels=axes[0,0].get_legend_handles_labels()
-        order=[1,2,0]
-        fig.legend([handles[i] for i in order],[labels[i] for i in order],
-                   loc="upper center",bbox_to_anchor=(.54,.985),ncol=3,frameon=False,
-                   fontsize=6.2,handlelength=2.1,columnspacing=1.7,handletextpad=.55)
-        save_figure(fig,"data_main_head_causality")
+    knockout_panels(rows, (("composed","Composed"),("direct_target","Direct second hop")),
+                    delta=False,name="data_main_head_causality")
 
 
 def make_joint_rescue() -> None:
@@ -949,41 +990,36 @@ def make_joint_rescue() -> None:
 
 
 def render_joint_rescue(rows) -> None:
-    with plt.rc_context(V3_STYLE):
-        fig,ax=plt.subplots(figsize=(COL,1.90))
-        fig.subplots_adjust(left=.30,right=.94,bottom=.25,top=.72)
+    with plt.rc_context(PAPER_STYLE):
+        fig,ax = plt.subplots(figsize=(COL,1.68))
+        fig.subplots_adjust(left=.32,right=.94,bottom=.25,top=.77)
         clean_axis(ax,"x")
-        ys=np.arange(len(MODELS))[::-1]
-        largest=max(row["both_repairs"] for row in rows)
+        ys = np.arange(len(MODELS))[::-1]
+        largest = max(r["both_repairs"] for r in rows)
+        labels = []
         for i,(y,model) in enumerate(zip(ys,MODELS)):
-            joint=unique_record(rows,model=model,group="both_required")
-            other=unique_record(rows,model=model,group="at_least_one_single_succeeds")
-            ax.barh(y,joint["count"],height=.57,color=MODEL_COLORS[i],
-                    edgecolor="white",linewidth=.7,zorder=3,
-                    label="Both required" if i==0 else None)
-            ax.barh(y,other["count"],left=joint["count"],height=.57,
-                    color=LIGHT_GRAY,edgecolor="white",linewidth=.7,zorder=3,
-                    label="A single arm also succeeds" if i==0 else None)
-            for count,left,color in ((joint["count"],0,"white"),
-                                     (other["count"],joint["count"],INK)):
+            joint = unique_record(rows,model=model,group="both_required")
+            other = unique_record(rows,model=model,group="at_least_one_single_succeeds")
+            if joint["count"]+other["count"] != joint["both_repairs"]:
+                raise ValueError(f"Inconsistent rescue count: {model}")
+            labels.append(f"{MODEL_NAMES[model]}\n($n={joint['native_failures']}$)")
+            for j,(count,left,color) in enumerate(((joint["count"],0,REF_ORANGE),
+                                                   (other["count"],joint["count"],REF_LIGHT))):
+                ax.barh(y,count,left=left,height=.60,color=color,edgecolor="white",lw=.6,zorder=3,
+                        label=("Joint-only","Single arm also correct")[j] if i==0 else None)
                 if count:
-                    ax.text(left+count/2,y,str(count),ha="center",va="center",
-                            color=color,fontsize=6.5,fontweight="bold")
-            ax.text(joint["both_repairs"]+.55,y,str(joint["both_repairs"]),
-                    ha="left",va="center",fontsize=6.2,color=INK)
-        ax.set(yticks=ys,yticklabels=[f"{MODEL_NAMES[m]}\n$n={unique_record(rows,model=m,group='both_required')['native_failures']}$ failures"
-                                     for m in MODELS],
-               ylim=(-.6,len(MODELS)-.4),xlim=(0,largest+3.2),
-               xticks=list(range(0,int(largest)+2,10)),
-               xlabel="Native failures corrected by Both (count)")
+                    ax.text(left+count/2,y,str(count),ha="center",va="center",fontsize=7.0,
+                            fontweight="bold",color=INK)
+            ax.text(joint["both_repairs"]+.55,y,str(joint["both_repairs"]),ha="left",va="center",fontsize=6.8)
+        ax.set(yticks=ys,yticklabels=labels,ylim=(-.6,len(MODELS)-.4),
+               xlim=(0,largest+3.6),xticks=list(range(0,int(largest)+2,10)),
+               xlabel="Native failures repaired (count)")
         ax.spines[["top","right","left"]].set_visible(False)
-        ax.tick_params(axis="y",length=0,pad=4,labelsize=6.0)
-        ax.tick_params(axis="x",labelsize=6.0)
-        ax.xaxis.label.set_size(6.0)
-        handles,labels=ax.get_legend_handles_labels()
-        fig.legend(handles,labels,loc="upper center",bbox_to_anchor=(.57,.985),
-                   ncol=1,frameon=False,fontsize=6.0,handlelength=1.3,
-                   handletextpad=.45,labelspacing=.45)
+        ax.tick_params(axis="y",length=0,pad=3,labelsize=6.4)
+        handles,labels = ax.get_legend_handles_labels()
+        fig.legend(handles,labels,loc="upper center",bbox_to_anchor=(.52,.99),
+                   ncol=2,frameon=False,fontsize=6.4,handlelength=1.2,
+                   handletextpad=.4,columnspacing=.9)
         save_figure(fig,"data_main_joint_rescue")
 
 
@@ -1187,112 +1223,89 @@ def make_mechanism_structure() -> None:
 
 
 def render_mechanism_structure(data,overlaps,profiles,examples) -> None:
-    with plt.rc_context(V3_STYLE):
-        fig=plt.figure(figsize=(WIDE,3.00))
-        fig.text(.025,.985,"(a) Head-set structure",ha="left",va="top",fontsize=7.0,fontweight="bold")
-        model=MODELS[0]
-        k=data["models"][model]["k"]
-        fig.text(.025,.915,f"{MODEL_NAMES[model]} · $k={k}$",ha="left",va="top",fontsize=6.2)
+    """Preserve exact intersections, model comparisons and both full head portraits."""
+    with plt.rc_context(PAPER_STYLE):
+        fig=plt.figure(figsize=(WIDE,3.30))
+        fig.text(.025,.982,"(a) Head-set intersections",ha="left",va="top",fontsize=7.5,fontweight="bold")
+        model=MODELS[0]; k=data["models"][model]["k"]
+        fig.text(.025,.923,f"{MODEL_NAMES[model]} ($k={k}$)",ha="left",va="top",fontsize=6.7)
         intersections=sorted([r for r in overlaps if r["model"]==model and r["count"]>0],
                              key=lambda r:(-r["count"],-r["selected"],-r["direct"],-r["composed"]))
-        counts=[r["count"] for r in intersections]
-        x=np.arange(len(counts))
-        top=fig.add_axes([.151,.715,.185,.165])
-        clean_axis(top)
-        top.bar(x,counts,width=.68,color=INK,zorder=3)
-        for xpos,count in zip(x,counts):
-            top.text(xpos,count+.35,str(count),ha="center",va="bottom",fontsize=6.0)
+        counts=[r["count"] for r in intersections]; x=np.arange(len(counts))
+        top=fig.add_axes([.145,.735,.235,.145]); clean_axis(top)
+        top.bar(x,counts,width=.65,color=INK,zorder=3)
+        for xx,v in zip(x,counts): top.text(xx,v+.45,str(v),ha="center",va="bottom",fontsize=6.6)
         top.set(xlim=(-.55,len(counts)-.45),ylim=(0,max(counts)+5),yticks=[0,10,20],ylabel="Heads")
         top.tick_params(axis="x",bottom=False,labelbottom=False)
-        top.tick_params(axis="y",labelsize=6.0)
-        top.yaxis.label.set_size(6.0)
-        membership=fig.add_axes([.151,.555,.185,.115])
+        top.spines["bottom"].set_visible(False)
+        membership=fig.add_axes([.145,.592,.235,.112])
         membership.set(xlim=top.get_xlim(),ylim=(2.5,-.5),xticks=[],yticks=[0,1,2],
                        yticklabels=["Selected","Direct top-k","Composed top-k"])
+        for y in (0,2): membership.axhspan(y-.5,y+.5,color="#F2F3F4",zorder=0)
         for j,row in enumerate(intersections):
-            active=[]
-            for y,key in enumerate(("selected","direct","composed")):
-                membership.plot(j,y,"o",color=INK if row[key] else "#D6D9DD",markersize=3.9)
-                if row[key]:active.append(y)
-            if len(active)>1:
-                membership.plot([j,j],[min(active),max(active)],color=INK,linewidth=.8,zorder=0)
-        membership.tick_params(length=0,pad=3,labelsize=6.0)
-        for spine in membership.spines.values():spine.set_visible(False)
-
-        fig.text(.410,.985,"(b) Root-to-bridge preference",ha="left",va="top",fontsize=7.0,fontweight="bold")
-        preference=fig.add_axes([.492,.605,.470,.270])
-        clean_axis(preference,"x")
-        all_values=[]
+            active=[y for y,key in enumerate(("selected","direct","composed")) if row[key]]
+            membership.scatter([j]*3,range(3),s=12,color="#D4D7DA",zorder=1,edgecolors="none")
+            if len(active)>1: membership.plot([j,j],[min(active),max(active)],color=INK,lw=.85,zorder=2)
+            membership.scatter([j]*len(active),active,s=17,color=INK,zorder=3,edgecolors="none")
+        membership.tick_params(length=0,pad=3,labelsize=6.3)
+        for spine in membership.spines.values(): spine.set_visible(False)
+        fig.text(.418,.982,"(b) Root-to-bridge preference",ha="left",va="top",fontsize=7.5,fontweight="bold")
+        ax=fig.add_axes([.543,.641,.427,.205]); clean_axis(ax,"x")
+        vals=[]
         for i,model in enumerate(MODELS):
-            y=len(MODELS)-1-i
-            for group,offset,color,style in (("selected",.12,MODEL_COLORS[i],"-"),
-                                           ("random_layer_matched",-.12,GRAY,"--")):
+            y=2-i
+            for group,offset,color,style in (("selected",.13,REF_ORANGE,"-"),
+                                             ("random_layer_matched",-.13,REF_GRAY,"-")):
                 points=[unique_record(profiles,model=model,head_set=group,query=q)["bridge_minus_root_pp"]
-                        for q in ("composed","direct_target")]
-                all_values.extend(points)
-                preference.plot(points,[y+offset]*2,linestyle=style,color=color,linewidth=1.1,zorder=3)
-                preference.plot(points[0],y+offset,marker="o",markersize=3.8,
-                                markerfacecolor="white",markeredgecolor=color,markeredgewidth=1,zorder=4)
-                preference.plot(points[1],y+offset,marker="o",markersize=3.8,
-                                markerfacecolor=color,markeredgecolor=color,markeredgewidth=.7,zorder=4)
-        preference.axvline(0,color=GRAY,linewidth=.6,zorder=1)
-        limit_low=5*np.floor((min(all_values)-3)/5)
-        limit_high=5*np.ceil((max(all_values)+3)/5)
-        preference.set(yticks=[2,1,0],yticklabels=[MODEL_NAMES[m] for m in MODELS],
-                       ylim=(-.5,2.5),xlim=(limit_low,limit_high),xlabel="Bridge − root mass (pp)")
-        preference.set_xticks(np.arange(np.ceil(limit_low/10)*10,limit_high+1,10))
-        preference.tick_params(axis="y",length=0,pad=4,labelsize=6.0)
-        preference.tick_params(axis="x",labelsize=6.0)
-        preference.xaxis.label.set_size(6.1)
-        preference.spines["left"].set_visible(False)
-        handles=[Line2D([],[],marker="o",linestyle="none",color=INK,markerfacecolor="white",markersize=3.7),
-                 Line2D([],[],marker="o",linestyle="none",color=INK,markersize=3.7),
-                 Line2D([],[],color=INK,linewidth=1.1),
-                 Line2D([],[],color=GRAY,linestyle="--",linewidth=1.1)]
-        fig.legend(handles,["Composed","Direct","Selected","Matched random"],
-                   loc="upper center",bbox_to_anchor=(.710,.945),ncol=4,frameon=False,
-                   fontsize=6.0,handlelength=1.3,handletextpad=.35,columnspacing=.8)
-
-        matrices=[]
-        for example in examples:
-            matrices.append(100*np.array([example["head"]["paragraph_mass"][q]["all_question_mean"]
-                                          for q in ("composed","direct_target")]))
-        maximum=10*np.ceil(max(float(matrix.max()) for matrix in matrices)/10)
+                        for q in ("composed","direct_target")]; vals.extend(points)
+                ax.plot(points,[y+offset]*2,linestyle=style,color=color,lw=1.2,zorder=3)
+                ax.plot(points[0],y+offset,"o",markersize=4,markerfacecolor="white",markeredgecolor=color,markeredgewidth=.9,zorder=4)
+                ax.plot(points[1],y+offset,"o",markersize=4,markerfacecolor=color,markeredgecolor=color,zorder=4)
+        ax.axvline(0,color=GRAY,lw=.7,zorder=2)
+        lo=5*np.floor((min(vals)-3)/5); hi=5*np.ceil((max(vals)+3)/5)
+        ax.set(yticks=[2,1,0],yticklabels=[MODEL_NAMES[m] for m in MODELS],ylim=(-.5,2.5),
+               xlim=(lo,hi),xticks=np.arange(np.ceil(lo/10)*10,hi+1,10),xlabel="Bridge - root mass (pp)")
+        ax.tick_params(axis="y",length=0,pad=3); ax.spines["left"].set_visible(False)
+        handles=[Line2D([],[],marker="o",linestyle="none",color=INK,markerfacecolor="white",markersize=4),
+                 Line2D([],[],marker="o",linestyle="none",color=INK,markersize=4),
+                 Line2D([],[],color=REF_ORANGE,lw=1.05),Line2D([],[],color=REF_GRAY,lw=.9)]
+        fig.legend(handles,["Composed","Direct","Selected","Matched random"],loc="upper center",
+                   bbox_to_anchor=(.706,.925),ncol=4,frameon=False,fontsize=6.3,
+                   handlelength=1.2,handletextpad=.3,columnspacing=.7)
+        matrices=[100*np.array([e["head"]["paragraph_mass"][q]["all_question_mean"]
+                                for q in ("composed","direct_target")]) for e in examples]
+        maximum=10*np.ceil(max(float(m.max()) for m in matrices)/10)
         norm=matplotlib.colors.Normalize(vmin=0,vmax=maximum)
-        for index,(example,matrix,left) in enumerate(zip(examples,matrices,(.035,.545))):
-            model=example["model"];record=example["record"];head=example["head"]
-            fig.text(left,.443,
-                     f"({chr(99+index)}) {MODEL_NAMES[model]} · L{head['layer']}H{head['head']} · mass (%)",
-                     ha="left",va="top",fontsize=6.7,fontweight="bold")
-            questions=[]
-            for prefix,query in (("q12","composed"),("q2","direct_target")):
-                questions.append(textwrap.fill(prefix+": "+record["questions"][query]["question"],
-                                                width=75,subsequent_indent="    ",
-                                                break_long_words=False,break_on_hyphens=False))
-            fig.text(left,.397,"\n".join(questions),ha="left",va="top",fontsize=6.0,
-                     linespacing=1.08,color=INK)
-            ax=fig.add_axes([left+.045,.180,.400,.100])
-            ax.imshow(matrix,cmap="Blues",norm=norm,aspect="auto",interpolation="nearest")
+        for i,(example,matrix,left) in enumerate(zip(examples,matrices,(.025,.525))):
+            model=example["model"]; record=example["record"]; head=example["head"]
+            fig.text(left,.505,f"({chr(99+i)}) {MODEL_NAMES[model]} | L{head['layer']}H{head['head']}",
+                     ha="left",va="top",fontsize=7.3,fontweight="bold")
+            questions=[textwrap.fill(prefix+": "+record["questions"][query]["question"],
+                        width=67,subsequent_indent="    ",break_long_words=False,break_on_hyphens=False)
+                        for prefix,query in (("q12","composed"),("q2","direct_target"))]
+            fig.text(left,.457,"\n".join(questions),ha="left",va="top",fontsize=6.4,linespacing=1.10)
+            hm=fig.add_axes([left+.046,.250,.423,.105])
+            im=hm.imshow(matrix,cmap="Blues",norm=norm,aspect="auto",interpolation="nearest")
             for row in range(matrix.shape[0]):
                 for col in range(matrix.shape[1]):
-                    value=matrix[row,col]
-                    ax.text(col,row,f"{value:.1f}",ha="center",va="center",fontsize=6.0,
-                            color="white" if value>maximum*.55 else INK)
-            for key,color in (("root_index",ORANGE),("bridge_index",BLUE)):
-                ax.add_patch(Rectangle((record[key]-.5,-.5),1,2,fill=False,
-                                       edgecolor=color,linewidth=1.35))
-            ax.set(xticks=np.arange(matrix.shape[1]),xticklabels=[f"P{i}" for i in range(matrix.shape[1])],
+                    v=matrix[row,col]
+                    hm.text(col,row,f"{v:.1f}",ha="center",va="center",fontsize=6.3,
+                            color="white" if v>maximum*.55 else INK)
+            for key,color in (("root_index",REF_ORANGE),("bridge_index",REF_BLUE)):
+                hm.add_patch(Rectangle((record[key]-.5,-.5),1,2,fill=False,edgecolor=color,lw=1.2))
+            hm.set(xticks=np.arange(matrix.shape[1]),xticklabels=[f"P{j}" for j in range(matrix.shape[1])],
                    yticks=[0,1],yticklabels=["q12","q2"])
-            ax.tick_params(axis="both",length=0,pad=2,labelsize=6.0)
-            for spine in ax.spines.values():spine.set_visible(False)
-            role_text=(f"Root P{record['root_index']}: {record['root']}; "
-                       f"bridge P{record['bridge_index']}: {record['bridge']}")
-            fig.text(left,.096,role_text,ha="left",va="top",fontsize=6.0,color=INK)
-            calibration=record["canonical_mass_calibration"]
-            fig.text(left,.038,
-                     f"{calibration['selected_head_count']}-head mass calibration: "
-                     f"{calibration['native']['answer']} → {calibration['calibrated']['answer']}",
-                     ha="left",va="bottom",fontsize=6.0,color=INK)
+            hm.tick_params(axis="both",length=0,pad=2,labelsize=6.2)
+            for spine in hm.spines.values(): spine.set_visible(False)
+            fig.text(left,.173,f"Root P{record['root_index']}: {record['root']}; bridge P{record['bridge_index']}: {record['bridge']}",
+                     ha="left",va="top",fontsize=6.3)
+            cal=record["canonical_mass_calibration"]
+            fig.text(left,.126,f"{cal['selected_head_count']}-head mass calibration: {cal['native']['answer']} $\\to$ {cal['calibrated']['answer']}",
+                     ha="left",va="top",fontsize=6.3)
+        cb=fig.colorbar(im,cax=fig.add_axes([.43,.032,.29,.018]),orientation="horizontal",ticks=[0,maximum/2,maximum])
+        cb.ax.xaxis.set_ticks_position("top"); cb.ax.tick_params(length=1.8,pad=1,labelsize=6.1)
+        cb.outline.set_visible(False)
+        fig.text(.412,.041,"Attention mass (%)",ha="right",va="center",fontsize=6.4)
         save_figure(fig,"data_main_structure_function")
 
 

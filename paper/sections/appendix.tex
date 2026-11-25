@@ -84,7 +84,7 @@ The within-model intersection analysis in \cref{fig:head_overlap_all} uses the f
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.93\textwidth]{figures/data_app_head_overlap.pdf}
-  \caption{\textbf{Complete within-model head-set overlap.} Exact intersections for Qwen3-4B, Qwen3-8B, and Llama-3.1-8B. Ranked: frozen difference-ranked set; Direct/Composed: highest mean bridge attention for the corresponding query type. Each set contains $K=20/20/40$ heads, respectively.}
+  \caption{\textbf{Complete within-model head-set overlap.} Exact intersection sizes for Qwen3-4B, Qwen3-8B, and Llama-3.1-8B aligned to a common membership matrix. Orange dots identify intersections containing ranked heads. Ranked: frozen difference-ranked set; Direct/Composed: highest mean bridge attention for the corresponding query type. Each set contains $K=20/20/40$ heads, respectively.}
   \label{fig:head_overlap_all}
 \end{figure}
 
@@ -100,7 +100,7 @@ For head knockout, selected head outputs are set to zero before their output pro
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{figures/data_app_necessity.pdf}
-  \caption{\textbf{Necessity across query types and knockout doses.} Change in completed-answer EM (percentage points) relative to the native model on 1,000 test sources. Rows share a vertical scale across models for the same query type. Ranked and layer-matched random heads are removed at counts 20, 40, and 80. Each random point uses one matched set; lines connect measured doses. The selected head counts are 20/20/40.}
+  \caption{\textbf{Necessity across query types and knockout doses.} Change in completed-answer EM (percentage points) relative to the native model on 1,000 test sources. Each panel shares a vertical scale across models for one query type; scales differ across panels. Orange and gray denote ranked and layer-matched random heads, respectively; marker shapes and line styles identify models. Ranked and layer-matched random heads are removed at counts 20, 40, and 80. Each random point uses one matched set; lines connect measured doses. The selected head counts are 20/20/40.}
   \label{fig:necessity}
 \end{figure}
 
