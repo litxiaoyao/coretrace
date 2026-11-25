@@ -1,0 +1,870 @@
+{
+  "created_utc": "2026-11-25T03:09:27.178546+00:00",
+  "status": "PASS",
+  "base_commit": "766aaa073672d09aeb9e93a1cf6b60a3110d921e",
+  "title": "When Correct Hops Fail to Compose: Locating, Routing, and Reading Evidence",
+  "narrative": "Locate–Route–Read: three coupled functional operations",
+  "scope": "Manuscript, existing numerical plotting entry point, and derived provenance only. No new model experiments.",
+  "build_command": "bash analysis/compile_paper.sh paper analysis/build_lrr",
+  "pdf": {
+    "path": "paper/main.pdf",
+    "sha256": "cc9e79344d97fbe860dfdeadd6692d7251a6f9c40d2be923a9cb8d34f2283237",
+    "pages_total": 25,
+    "pages_main": 8,
+    "main_figures": 11,
+    "main_figure_types": {
+      "unchanged_conceptual": 3,
+      "quantitative": 7,
+      "two_case_panel": 1
+    },
+    "main_tables": 1,
+    "appendix_figures": 7
+  },
+  "checks": {
+    "main_text_has_eight_pages": true,
+    "pdf_has_25_pages": true,
+    "main_has_11_figures": true,
+    "appendix_has_seven_figures": true,
+    "case_figure_and_prose_share_page_eight": true,
+    "figure_1_to_3_assets_unchanged": true,
+    "figure_1_to_3_tex_blocks_unchanged": true,
+    "all_20_table_files_unchanged": true,
+    "all_existing_result_csv_and_json_files_unchanged": true,
+    "figure_and_case_validation_pass": true,
+    "compiled_source_matches_current_manuscript": true,
+    "no_overfull_boxes": true,
+    "no_undefined_references_or_citations": true,
+    "no_missing_reference_markers": true,
+    "changes_confined_to_paper_and_analysis": true
+  },
+  "main_figure_files": [
+    "figures/figure1_teaser.pdf",
+    "figures/figure2_diagnosis.pdf",
+    "figures/figure3_method.pdf",
+    "figures/data_main_composition.pdf",
+    "figures/data_main_localization.pdf",
+    "figures/data_main_head_pair.pdf",
+    "figures/data_fig3_diagnosis.pdf",
+    "figures/data_app_access_controls.pdf",
+    "figures/data_main_causal_pair.pdf",
+    "figures/data_fig5_content.pdf",
+    "figures/data_main_mechanism_cases.pdf"
+  ],
+  "appendix_figure_files": [
+    "figures/data_app_localization.pdf",
+    "figures/data_app_head_overlap.pdf",
+    "figures/data_app_necessity.pdf",
+    "figures/data_main_ambiguity.pdf",
+    "figures/data_main_case.pdf",
+    "figures/data_app_ablation.pdf",
+    "figures/data_app_capabilities.pdf"
+  ],
+  "protected_asset_checks": [
+    {
+      "path": "paper/figures/figure1.pdf",
+      "sha256": "8b9d04d9ce353d34afc72db29896468ade511e6ac0e7034b7b72210288e758fe",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure3.pdf",
+      "sha256": "8411f2dd27f3f7082fc7eeeccddbb25a415d334c93aaac8ce5efe2f870151adc",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure1_teaser.png",
+      "sha256": "c7626cbce7c0c53efce91290e736012ad6f7ef0a0984fe761fb582f20d41c3ac",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure3.pptx",
+      "sha256": "23d19cc917120b533eb0ab4c9b88964802d880c6b2886ea89ac544f220ac57d2",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figures1-3.pptx",
+      "sha256": "e8a1dc3a3057132d0a845c792a49185c2e9ec14b8b2cd2acb04cb7951c26341f",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure1.png",
+      "sha256": "923cf46d247573dbd777c7775966585203c12b8ffba04758a3bda57f9beac3eb",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure2.pdf",
+      "sha256": "5d6d1b551e15e85a26d8fb8745d3632d232a0eb4c66fe7b77d6a4b9445e166cd",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure3_method.pdf",
+      "sha256": "2faa31d9b137c1889ac861a9841cd14bd46f891e9c42aa61775ab1dd3b928349",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure2_diagnosis.pdf",
+      "sha256": "f97507be3892ef4138a757ec033473a7ea89b37d7660406e06f2bbaa03479377",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure3.png",
+      "sha256": "d1c45420fa9cb81e035eaea2f2c0da506d294cb8320743f8589367d4368a3fa5",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure3_method.png",
+      "sha256": "167879a106a855220b7c5c93023dc9cdf0cdd8346960c090fb4afd1410ee8f52",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure2_diagnosis.png",
+      "sha256": "b136aa30746682013d04a6a19173cfc32c32e6539abb60a83dc6d252cd4f2bf5",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure2.pptx",
+      "sha256": "4cffd84886fe1af841b3fad33397d63ba0d3e09bfc4d5af76c07b9479cb22062",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure2.png",
+      "sha256": "c8203f4f49c1c96b509e580c76ee452f68a07590a5a1886ba1fd7bc4e2a0a2a3",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure1.pptx",
+      "sha256": "514e25cce6c066ea6df25101918363b861c1118f11148a4f4ffa3d4561619383",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figure1_teaser.pdf",
+      "sha256": "f36d31322d1207e2e856acb9848483871ac6efa79a6d327b2a50c9cfacdc9955",
+      "unchanged": true
+    },
+    {
+      "path": "paper/figures/figures1-3.pdf",
+      "sha256": "6b2b4c6c2ee6e722b14e2c353af2029a500018d5ba8faa8573693bd60475ffdf",
+      "unchanged": true
+    },
+    {
+      "path": "paper/draw_figures.py",
+      "sha256": "bafe621ddec215714f9f51336d1570496a51801e378fbd3d27f33e63440e4c74",
+      "unchanged": true
+    }
+  ],
+  "protected_tex_block_checks": [
+    {
+      "path": "paper/main.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/sections/introduction.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/sections/method.tex",
+      "unchanged": true
+    }
+  ],
+  "table_checks": [
+    {
+      "path": "paper/tables/ambiguous_selection.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/capability_full.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/complete_core.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/component_ablation.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/conditional_composition.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/content_outcomes.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/factorial_contrasts.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/inference_costs.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/main_ambiguity.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/main_components.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/main_results.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/main_retention.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/mmlu_generation_metrics.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/paired_effects.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/parameters.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/per_run_core.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/readout_diagnostics.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/scoring_diagnostics.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/secondary_qa_metrics.tex",
+      "unchanged": true
+    },
+    {
+      "path": "paper/tables/training_costs.tex",
+      "unchanged": true
+    }
+  ],
+  "existing_result_file_checks": [
+    {
+      "path": "analysis/figure_data/data_app_ablation_aggregated.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_app_ablation_seed_values.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_app_capabilities_aggregated.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_app_capabilities_seed_values.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_app_head_intersections.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_app_head_membership.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_app_localization.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_app_localization_layer_profiles.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_app_necessity.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_fig3_diagnosis_address_readout.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_fig3_diagnosis_address_readout_overall.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_fig3_diagnosis_composition.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_fig4_causal_access_controls.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_fig4_causal_factorial.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_fig4_causal_factorial_contrasts.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_fig5_content_aggregated.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_fig5_content_plotted.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/data_fig5_content_seed_values.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/input_manifest.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/input_manifest_causal.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/input_manifest_causal_content.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/secondary_capabilities.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/figure_data/table_inputs.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/ambiguous_evidence.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/ambiguous_evidence.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/answer_form_diagnostics.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/audit_result.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/candidate_worked_examples.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/clustered_contrasts.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/current_audit/additional_checks.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/current_audit/dataset_audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/current_audit/discovery_annotation_exceptions.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/current_audit/fixed_population_and_graph_analysis.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/current_audit/head_metadata_checks.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/current_audit/prediction_metrics.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/current_audit/prediction_validation.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/current_audit/readout_validation.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/current_audit/result.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/current_audit/table_validation.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/current_audit/test_graph.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/current_pdf_qa.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/data_and_derived_views_validation.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/dataset_audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/discovery_annotation_exceptions.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/eight_page_section_allocation.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/eight_page_section_counts.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/figure_revision_validation.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/figure_revision_validation_20261125.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/final_validation.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/fixed_population_and_graph_analysis.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/icml2027_template_verification.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/legacy_figure_metadata.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/missing_modules.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/prediction_metrics.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/prediction_validation.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/r3_history_method_audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/readout_validation.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/repository_inventory.csv",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/revision_baseline_20261125.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/revision_validation_20261125.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/source_snapshot.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/table_revision3_numeric_check.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/table_validation.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/test_graph.json",
+      "unchanged": true
+    },
+    {
+      "path": "analysis/internal/training_seed_validation.json",
+      "unchanged": true
+    }
+  ],
+  "compiled_source_checks": [
+    {
+      "path": "paper/references.bib",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/icml2026.sty",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/main.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/algorithmic.sty",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/icml2026.bst",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/related_work.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/icml2027.sty",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/icml2027.bst",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/algorithm.sty",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/fancyhdr.sty",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/per_run_core.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/complete_core.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/scoring_diagnostics.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/paired_effects.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/secondary_qa_metrics.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/readout_diagnostics.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/factorial_contrasts.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/content_outcomes.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/capability_full.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/conditional_composition.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/main_components.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/training_costs.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/mmlu_generation_metrics.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/ambiguous_selection.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/main_ambiguity.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/component_ablation.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/main_retention.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/inference_costs.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/parameters.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/tables/main_results.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/sections/introduction.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/sections/appendix_protocol.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/sections/experiments.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/sections/conclusion.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/sections/appendix.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/sections/method.tex",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_ambiguity.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figure1.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_causal_pair.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_app_head_overlap.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figure3.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_mechanism_cases.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_case.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_app_capabilities.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figure1_teaser.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_composition.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_localization.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_mechanism_cases.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_fig5_content.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_app_ablation.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_causal_pair.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_fig4_causal.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_fig5_content.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_ambiguity.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_app_localization.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figure1.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_fig3_diagnosis.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_app_capabilities.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_localization.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_app_ablation.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/story_overview.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figure2.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figure3_method.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_app_access_controls.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figure2_diagnosis.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figure3.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_fig4_causal.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_app_necessity.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_restoration.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_app_necessity.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figure3_method.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/story_overview.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_head_pair.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_app_localization.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_app_access_controls.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_app_head_overlap.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_head_pair.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_restoration.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figure2_diagnosis.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figure2.png",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_composition.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figure1_teaser.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/figures1-3.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_fig3_diagnosis.pdf",
+      "matches_compiled_snapshot": true
+    },
+    {
+      "path": "paper/figures/data_main_case.png",
+      "matches_compiled_snapshot": true
+    }
+  ],
+  "numerical_and_case_validation": "analysis/internal/figure_revision_validation_20261125_v2.json",
+  "case_provenance": "analysis/internal/case_provenance_review_20261125_v2.md",
+  "visual_review": {
+    "main_pages_1_to_8": "PASS; reviewed final rendered pages. Case figure, explanation, and conclusion appear together on page 8.",
+    "references_pages_9_to_10": "PASS",
+    "appendix_pages_11_to_17": "PASS; independent read-only review",
+    "appendix_pages_18_to_25": "PASS; independent read-only review"
+  },
+  "nonblocking_template_warnings": [
+    "hyperref: Ignoring empty anchor on input line 35.",
+    "LaTeX: Text page 5 contains only floats. Final page was visually inspected and contains figure panels with surrounding prose."
+  ],
+  "modified_directories": [
+    "paper/",
+    "analysis/"
+  ]
+}

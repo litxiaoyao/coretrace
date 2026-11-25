@@ -1,0 +1,1218 @@
+{
+  "schema_version": 1,
+  "source_commit": "766aaa073672d09aeb9e93a1cf6b60a3110d921e",
+  "model_order": [
+    "qwen3_4b",
+    "qwen3_8b",
+    "llama3_8b"
+  ],
+  "description": "Verified existing-record case studies for manuscript figure design. No model inference or new experiment. Distinct populations and intervention procedures are recorded separately.",
+  "cases": {
+    "corvinus": {
+      "source_id": "d56342fa0baf11ebab90acde48001122",
+      "population": "canonical test source; original ten-paragraph context",
+      "question": "Who is John Corvinus's paternal grandfather?",
+      "gold": "John Hunyadi",
+      "chain": [
+        "John Corvinus",
+        "Matthias Corvinus",
+        "John Hunyadi"
+      ],
+      "context": {
+        "kind": "canonical_original_context",
+        "paragraphs": [
+          [
+            "John Corvinus",
+            [
+              "John Corvinus (Hungarian: \"Corvin János\", Croatian: \"Ivaniš Korvin\"; 2 April 1473 – 12 October 1504) was the illegitimate son of Matthias Corvinus, King of Hungary, and his mistress, Barbara Edelpöck."
+            ]
+          ],
+          [
+            "Matthias Corvinus",
+            [
+              "Matthias Corvinus, also called Matthias I , was King of Hungary and Croatia from 1458 to 1490.",
+              "After conducting several military campaigns, he was elected King of Bohemia in 1469 and adopted the title Duke of Austria in 1487.",
+              "He was the son of John Hunyadi, Regent of Hungary, who died in 1456.",
+              "In 1457, Matthias was imprisoned along with his older brother, Ladislaus Hunyadi, on the orders of King Ladislaus the Posthumous.",
+              "Ladislaus Hunyadi was executed, causing a rebellion that forced King Ladislaus to flee Hungary.",
+              "After the King died unexpectedly, Matthias's uncle Michael Szilágyi persuaded the Estates to unanimously proclaim Matthias king on 24 January 1458.",
+              "He began his rule under his uncle's guardianship, but he took effective control of government within two weeks.",
+              "As king, Matthias waged wars against the Czech mercenaries who dominated Upper Hungary (today parts of Slovakia and Northern Hungary) and against Frederick III, Holy Roman Emperor, who claimed Hungary for himself.",
+              "In this period, the Ottoman Empire conquered Serbia and Bosnia, terminating the zone of buffer states along the southern frontiers of the Kingdom of Hungary.",
+              "Matthias signed a peace treaty with Frederick III in 1463, acknowledging the Emperor's right to style himself King of Hungary.",
+              "The Emperor returned the Holy Crown of Hungary with which Matthias was crowned on 29 April 1464.",
+              "In this year, Matthias invaded the territories that had recently been occupied by the Ottomans and seized fortresses in Bosnia.",
+              "He soon realized he could expect no substantial aid from the Christian powers and gave up his anti-Ottoman policy.",
+              "Matthias introduced new taxes and regularly collected extraordinary taxes.",
+              "These measures caused a rebellion in Transylvania in 1467, but he subdued the rebels.",
+              "The next year, Matthias declared war on George of Poděbrady, the Hussite King of Bohemia, and conquered Moravia, Silesia, and Lausitz, but he could not occupy Bohemia proper.",
+              "The Catholic Estates proclaimed him King of Bohemia on 3 May 1469, but the Hussite lords refused to yield to him even after the death of their leader George of Poděbrady in 1471.",
+              "Instead, they elected Vladislaus Jagiellon, the eldest son of Casimir IV of Poland.",
+              "A group of Hungarian prelates and lords offered the throne to Vladislaus's younger brother Casimir, but Matthias overcame their rebellion.",
+              "Having routed the united troops of Casimir IV and Vladislaus at Breslau in Silesia (now Wrocław in Poland) in late 1474, Matthias turned against the Ottomans, who had devastated the eastern parts of Hungary.",
+              "He sent reinforcements to Stephen the Great, Prince of Moldavia, enabling Stephen to repel a series of Ottoman invasions in the late 1470s.",
+              "In 1476, Matthias besieged and seized Šabac, an important Ottoman border fort.",
+              "He concluded a peace treaty with Vladislaus Jagiellon in 1478, confirming the division of the Lands of the Bohemian Crown between them.",
+              "Matthias waged a war against Emperor Frederick and occupied Lower Austria between 1482 and 1487.",
+              "Matthias established one of the earliest professional standing armies of medieval Europe (the Black Army of Hungary), reformed the administration of justice, reduced the power of the barons, and promoted the careers of talented individuals chosen for their abilities rather than their social statuses.",
+              "Matthias patronized art and science; his royal library, the \"Bibliotheca Corviniana\", was one of the largest collections of books in Europe.",
+              "With his patronage, Hungary became the first country to embrace the Renaissance from Italy.",
+              "As Matthias the Just, the monarch who wandered among his subjects in disguise, he remains a popular hero of Hungarian folk tales."
+            ]
+          ],
+          [
+            "Archibald Hope, Lord Rankeillor",
+            [
+              "Sir Archibald Hope, Lord Rankeillor (1639 – 10 October 1706) was a Scottish advocate and judge, the second son of John Hope, Lord Craighall, the grandfather of the botanist John Hope and the great-grandfather of the chemist Thomas Charles Hope, FRSE."
+            ]
+          ],
+          [
+            "Barbara Edelpöck",
+            [
+              "Barbara Edelpöck( died 1495) was the mistress of Matthias Corvinus, King of Hungary.",
+              "She gave birth to the King's only, although illegitimate, child, John Corvinus."
+            ]
+          ],
+          [
+            "John Westley",
+            [
+              "Rev. John Westley( 1636 – 78) was an English nonconformist minister.",
+              "He was the grandfather of John Wesley( founder of Methodism)."
+            ]
+          ],
+          [
+            "Lyon Cohen",
+            [
+              "Lyon Cohen( 1868–1937) was a Polish- born Canadian businessman and a philanthropist.",
+              "He was the grandfather of singer/ poet Leonard Cohen."
+            ]
+          ],
+          [
+            "Abd al-Muttalib",
+            [
+              "Abd al- Muttalib Shaybah ibn Hashim( c. 497 – 578) was the grandfather of Islamic prophet Muhammad."
+            ]
+          ],
+          [
+            "Gilbert Talbot, 3rd Baron Talbot",
+            [
+              "Gilbert Talbot, 3rd Baron Talbot( c. 1332–1387) was an English nobleman and soldier.",
+              "He was the grandfather of John Talbot, 1st Earl of Shrewsbury."
+            ]
+          ],
+          [
+            "John Christian Kunkel",
+            [
+              "John Christian Kunkel (September 18, 1816 – October 14, 1870) was a Whig and Republican member of the U.S. House of Representatives from Pennsylvania.",
+              "He was the grandfather of John Crain Kunkel."
+            ]
+          ],
+          [
+            "Kaya Alp",
+            [
+              "Kaya Alp was, according to Ottoman tradition, the son of Kızıl Buğa and the father of Suleyman Shah, who was, in turn, the grandfather of Ertuğrul, and the great grandfather of the Ottoman Empire founder, Osman I."
+            ]
+          ]
+        ],
+        "n_paragraphs": 10,
+        "composed_prompt_sha256": "1f9b2c6e2e69f3bab1d08398b8c0da10778cc6996f892d53eeb65212249867e6"
+      },
+      "evidence": [
+        {
+          "role": "first_target",
+          "title": "John Corvinus",
+          "paragraph_index": 0,
+          "sentence_index": 0,
+          "text": "John Corvinus (Hungarian: \"Corvin János\", Croatian: \"Ivaniš Korvin\"; 2 April 1473 – 12 October 1504) was the illegitimate son of Matthias Corvinus, King of Hungary, and his mistress, Barbara Edelpöck.",
+          "subject": "John Corvinus",
+          "relation": "father",
+          "object": "Matthias Corvinus"
+        },
+        {
+          "role": "second_target",
+          "title": "Matthias Corvinus",
+          "paragraph_index": 1,
+          "sentence_index": 2,
+          "text": "He was the son of John Hunyadi, Regent of Hungary, who died in 1456.",
+          "subject": "Matthias Corvinus",
+          "relation": "father",
+          "object": "John Hunyadi"
+        }
+      ],
+      "queries": {
+        "composed": {
+          "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+          "source_id": "d56342fa0baf11ebab90acde48001122",
+          "query": "composed",
+          "question": "Who is John Corvinus's paternal grandfather?",
+          "gold": "John Hunyadi"
+        },
+        "direct_first": {
+          "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__direct_first",
+          "source_id": "d56342fa0baf11ebab90acde48001122",
+          "query": "direct_first",
+          "question": "Who is the father of John Corvinus?",
+          "gold": "Matthias Corvinus"
+        },
+        "direct_target": {
+          "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__direct_target",
+          "source_id": "d56342fa0baf11ebab90acde48001122",
+          "query": "direct_target",
+          "question": "Who is the father of Matthias Corvinus?",
+          "gold": "John Hunyadi"
+        }
+      },
+      "model_results": [
+        {
+          "model": "qwen3_4b",
+          "recorded_run": 42,
+          "native_answers": {
+            "composed": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "composed",
+              "method": "native",
+              "answer": "Matthias Corvinus",
+              "correct": false,
+              "eos_complete": true,
+              "input_tokens": 1455,
+              "generated_token_ids": [
+                11575,
+                339,
+                3473,
+                4463,
+                9603,
+                355,
+                151645
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl.gz"
+            },
+            "direct_first": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__direct_first",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "direct_first",
+              "method": "native",
+              "answer": "Matthias Corvinus",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 1455,
+              "generated_token_ids": [
+                11575,
+                339,
+                3473,
+                4463,
+                9603,
+                355,
+                151645
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl.gz"
+            },
+            "direct_target": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__direct_target",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "direct_target",
+              "method": "native",
+              "answer": "John Hunyadi",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 1455,
+              "generated_token_ids": [
+                13079,
+                14494,
+                88,
+                2767,
+                151645
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl.gz"
+            }
+          },
+          "coretrace_composed": {
+            "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+            "source_id": "d56342fa0baf11ebab90acde48001122",
+            "cluster_id": "bba4671c909b42bebb72686d",
+            "query": "composed",
+            "method": "final",
+            "answer": "John Hunyadi",
+            "correct": true,
+            "eos_complete": true,
+            "input_tokens": 988,
+            "generated_token_ids": [
+              13079,
+              14494,
+              88,
+              2767,
+              151645
+            ],
+            "selection": {
+              "graph": {
+                "root": 0,
+                "neighbors": [
+                  1,
+                  3
+                ],
+                "reason": "explicit_root_title_links",
+                "maximal_roots": [
+                  0
+                ]
+              },
+              "chosen": 1,
+              "address_prefills": 1
+            },
+            "source_path": "outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl.gz",
+            "selected_paragraph_title": "Matthias Corvinus"
+          },
+          "other_recorded_composed_variants": {
+            "head_tuning": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "composed",
+              "method": "head_tuning",
+              "answer": "John Hunyadi",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 1455,
+              "generated_token_ids": [
+                13079,
+                14494,
+                88,
+                2767,
+                151645
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl.gz"
+            },
+            "scoped_body": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "composed",
+              "method": "scoped_body",
+              "answer": "John Hunyadi",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 1455,
+              "generated_token_ids": [
+                13079,
+                14494,
+                88,
+                2767,
+                151645
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl.gz"
+            },
+            "graphfirst": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "composed",
+              "method": "graphfirst",
+              "answer": "John Hunyadi",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 988,
+              "generated_token_ids": [
+                13079,
+                14494,
+                88,
+                2767,
+                151645
+              ],
+              "selection": {
+                "graph": {
+                  "root": 0,
+                  "neighbors": [
+                    1,
+                    3
+                  ],
+                  "reason": "explicit_root_title_links",
+                  "maximal_roots": [
+                    0
+                  ]
+                },
+                "chosen": 1,
+                "address_prefills": 0
+              },
+              "source_path": "outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl.gz"
+            }
+          }
+        },
+        {
+          "model": "qwen3_8b",
+          "recorded_run": 42,
+          "native_answers": {
+            "composed": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "composed",
+              "method": "native",
+              "answer": "Matthias Corvinus",
+              "correct": false,
+              "eos_complete": true,
+              "input_tokens": 1455,
+              "generated_token_ids": [
+                11575,
+                339,
+                3473,
+                4463,
+                9603,
+                355,
+                151645
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl.gz"
+            },
+            "direct_first": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__direct_first",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "direct_first",
+              "method": "native",
+              "answer": "Matthias Corvinus",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 1455,
+              "generated_token_ids": [
+                11575,
+                339,
+                3473,
+                4463,
+                9603,
+                355,
+                151645
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl.gz"
+            },
+            "direct_target": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__direct_target",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "direct_target",
+              "method": "native",
+              "answer": "John Hunyadi",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 1455,
+              "generated_token_ids": [
+                13079,
+                14494,
+                88,
+                2767,
+                151645
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl.gz"
+            }
+          },
+          "coretrace_composed": {
+            "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+            "source_id": "d56342fa0baf11ebab90acde48001122",
+            "cluster_id": "bba4671c909b42bebb72686d",
+            "query": "composed",
+            "method": "final",
+            "answer": "John Hunyadi",
+            "correct": true,
+            "eos_complete": true,
+            "input_tokens": 988,
+            "generated_token_ids": [
+              13079,
+              14494,
+              88,
+              2767,
+              151645
+            ],
+            "selection": {
+              "graph": {
+                "root": 0,
+                "neighbors": [
+                  1,
+                  3
+                ],
+                "reason": "explicit_root_title_links",
+                "maximal_roots": [
+                  0
+                ]
+              },
+              "chosen": 1,
+              "address_prefills": 1
+            },
+            "source_path": "outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl.gz",
+            "selected_paragraph_title": "Matthias Corvinus"
+          },
+          "other_recorded_composed_variants": {
+            "head_tuning": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "composed",
+              "method": "head_tuning",
+              "answer": "John Hunyadi",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 1455,
+              "generated_token_ids": [
+                13079,
+                14494,
+                88,
+                2767,
+                151645
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl.gz"
+            },
+            "scoped_body": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "composed",
+              "method": "scoped_body",
+              "answer": "John Hunyadi",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 1455,
+              "generated_token_ids": [
+                13079,
+                14494,
+                88,
+                2767,
+                151645
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl.gz"
+            },
+            "graphfirst": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "composed",
+              "method": "graphfirst",
+              "answer": "John Hunyadi",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 988,
+              "generated_token_ids": [
+                13079,
+                14494,
+                88,
+                2767,
+                151645
+              ],
+              "selection": {
+                "graph": {
+                  "root": 0,
+                  "neighbors": [
+                    1,
+                    3
+                  ],
+                  "reason": "explicit_root_title_links",
+                  "maximal_roots": [
+                    0
+                  ]
+                },
+                "chosen": 1,
+                "address_prefills": 0
+              },
+              "source_path": "outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl.gz"
+            }
+          }
+        },
+        {
+          "model": "llama3_8b",
+          "recorded_run": 42,
+          "native_answers": {
+            "composed": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "composed",
+              "method": "native",
+              "answer": "Matthias Corvinus",
+              "correct": false,
+              "eos_complete": true,
+              "input_tokens": 1407,
+              "generated_token_ids": [
+                11836,
+                339,
+                3557,
+                4563,
+                9799,
+                355,
+                128009
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl.gz"
+            },
+            "direct_first": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__direct_first",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "direct_first",
+              "method": "native",
+              "answer": "Matthias Corvinus",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 1407,
+              "generated_token_ids": [
+                11836,
+                339,
+                3557,
+                4563,
+                9799,
+                355,
+                128009
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl.gz"
+            },
+            "direct_target": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__direct_target",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "direct_target",
+              "method": "native",
+              "answer": "John Hunyadi",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 1407,
+              "generated_token_ids": [
+                13379,
+                14834,
+                88,
+                2836,
+                128009
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl.gz"
+            }
+          },
+          "coretrace_composed": {
+            "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+            "source_id": "d56342fa0baf11ebab90acde48001122",
+            "cluster_id": "bba4671c909b42bebb72686d",
+            "query": "composed",
+            "method": "final",
+            "answer": "John Hunyadi",
+            "correct": true,
+            "eos_complete": true,
+            "input_tokens": 969,
+            "generated_token_ids": [
+              13379,
+              14834,
+              88,
+              2836,
+              128009
+            ],
+            "selection": {
+              "graph": {
+                "root": 0,
+                "neighbors": [
+                  1,
+                  3
+                ],
+                "reason": "explicit_root_title_links",
+                "maximal_roots": [
+                  0
+                ]
+              },
+              "chosen": 1,
+              "address_prefills": 1
+            },
+            "source_path": "outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl.gz",
+            "selected_paragraph_title": "Matthias Corvinus"
+          },
+          "other_recorded_composed_variants": {
+            "head_tuning": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "composed",
+              "method": "head_tuning",
+              "answer": "John Hunyadi",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 1407,
+              "generated_token_ids": [
+                13379,
+                14834,
+                88,
+                2836,
+                128009
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl.gz"
+            },
+            "scoped_body": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "composed",
+              "method": "scoped_body",
+              "answer": "John Hunyadi",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 1407,
+              "generated_token_ids": [
+                13379,
+                14834,
+                88,
+                2836,
+                128009
+              ],
+              "selection": {
+                "chosen": null,
+                "address_prefills": 0,
+                "graph": null
+              },
+              "source_path": "outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl.gz"
+            },
+            "graphfirst": {
+              "id": "d56342fa0baf11ebab90acde48001122__core2wiki_v1__composed",
+              "source_id": "d56342fa0baf11ebab90acde48001122",
+              "cluster_id": "bba4671c909b42bebb72686d",
+              "query": "composed",
+              "method": "graphfirst",
+              "answer": "John Hunyadi",
+              "correct": true,
+              "eos_complete": true,
+              "input_tokens": 969,
+              "generated_token_ids": [
+                13379,
+                14834,
+                88,
+                2836,
+                128009
+              ],
+              "selection": {
+                "graph": {
+                  "root": 0,
+                  "neighbors": [
+                    1,
+                    3
+                  ],
+                  "reason": "explicit_root_title_links",
+                  "maximal_roots": [
+                    0
+                  ]
+                },
+                "chosen": 1,
+                "address_prefills": 0
+              },
+              "source_path": "outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl.gz"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "corpus_paths": [
+          "data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part0000",
+          "data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part0001"
+        ],
+        "query_paths": [
+          "data/CoRe-2Wiki-v1.0/queries.jsonl.gz.part0000",
+          "data/CoRe-2Wiki-v1.0/queries.jsonl.gz.part0001"
+        ],
+        "snapshot": "HEAD",
+        "recorded_run": 42
+      },
+      "display_notes": [
+        "This case compares native answers with the complete CoReTrace procedure.",
+        "All three native models produce the same incorrect composed answer, Matthias Corvinus, and all three CoReTrace models answer John Hunyadi.",
+        "The recorded head-adaptation, restored-body, and input-order variants also answer this case correctly; this is a composition-repair example, not an isolated readout-contribution example.",
+        "Colors may identify facts or answer outcomes; no attention or activation magnitudes are supplied by this case record."
+      ]
+    },
+    "angela": {
+      "source_id": "29c2b50c0bdc11eba7f7acde48001122",
+      "population": "shared-context discovery diagnostic; not the canonical test panel",
+      "question": "Who is the mother of the director of film Angela (1995 Film)?",
+      "gold": "Inge Morath",
+      "chain": [
+        "Angela",
+        "Rebecca Miller",
+        "Inge Morath"
+      ],
+      "context": {
+        "kind": "shared_context",
+        "quadruplet_id": "natural_crossed_3e05970d5c8422f2710d",
+        "receiver_id": "natural_crossed_3e05970d5c8422f2710d__C12",
+        "cell": "C12",
+        "paragraphs": [
+          [
+            "Michael Govan",
+            [
+              "Michael Govan( born 1963) is the director of the Los Angeles County Museum of Art since 2006.",
+              "Prior to this, Govan worked as the director of the Dia Art Foundation in New York City."
+            ]
+          ],
+          [
+            "Brian Kennedy (gallery director)",
+            [
+              "Brian Patrick Kennedy( born 5 November 1961) is an Irish- born art museum director who has worked in Ireland and Australia, and now lives and works in the United States.",
+              "He is currently the director of the Peabody Essex Museum.",
+              "He was the director of the Toledo Museum of Art in Ohio from 2010 to 2019.",
+              "He was the director of the Hood Museum of Art from 2005 to 2010, and the National Gallery of Australia( Canberra) from 1997- 2004."
+            ]
+          ],
+          [
+            "Susan B. Nelson",
+            [
+              "Susan B. Nelson( April 13, 1927 – May 4, 2003) was an American environmental activist who is best known as the mother of the Santa Monica Mountains National Recreation Area."
+            ]
+          ],
+          [
+            "Agnes and His Brothers",
+            [
+              "Agnes and His Brothers  is a 2004 film directed by Oskar Roehler."
+            ]
+          ],
+          [
+            "Kekuʻiapoiwa II",
+            [
+              "Kekuʻiapoiwa II was a Hawaiian chiefess and the mother of the king Kamehameha I."
+            ]
+          ],
+          [
+            "Rebecca Miller",
+            [
+              "Rebecca Augusta Miller, Lady Day-Lewis (born September 15, 1962) is an American independent filmmaker and novelist, known for her films \"AngelaThe Ballad of Jack and RoseThe Private Lives of Pippa Lee\", and \"Maggie's Plan\", all of which she wrote and directed.",
+              "Miller is the daughter of Arthur Miller, a Pulitzer Prize-winning playwright, and his third wife Inge Morath, Magnum photographer."
+            ]
+          ],
+          [
+            "Per Källberg",
+            [
+              "Per Källberg( 14 March 1947 – 17 February 2014) was a Swedish cinematographer.",
+              "At the 27th Guldbagge Awards he won the award for Best Cinematography for the film\" Agnes Cecilia – en sällsam historia\".",
+              "He worked on more than 45 films and television shows between 1973 and 2011."
+            ]
+          ],
+          [
+            "Angela (1995 film)",
+            [
+              "Angela is a 1995 drama film directed by Rebecca Miller and starring Miranda Stuart Rhyne, Charlotte Eve Blythe, and Anna Levine.",
+              "Miller's directorial debut, it won awards at the Sundance Film Festival, the Brussels International Festival of Fantasy Film and the Gotham Awards."
+            ]
+          ],
+          [
+            "Fatima bint Mubarak Al Ketbi",
+            [
+              "Fatima bint Mubarak Al Ketbi is the third wife of Sheikh Zayed bin Sultan Al Nahyan, the founder and inaugural president of United Arab Emirates, and late emir( ruler) of Abu Dhabi.",
+              "She is referred to as the mother of sheikhs and as the Mother of the UAE."
+            ]
+          ],
+          [
+            "Oskar Roehler",
+            [
+              "Oskar Roehler (born 21 January 1959) is a German film director, screenwriter and journalist.",
+              "He was born in Starnberg as the son of writer Gisela Elsner and the writer Klaus Roehler.",
+              "Since the mid-1980s he has been working as a screenwriter, for, among others, Niklaus Schilling, Christoph Schlingensief and Mark Schlichter.",
+              "Since the early 1990s he has also been working as a film director.",
+              "For his film No Place to Go he won the Deutscher Filmpreis.",
+              "His 2010 film  was nominated for the Golden Bear at the 60th Berlin International Film Festival."
+            ]
+          ]
+        ],
+        "n_paragraphs": 10,
+        "original_prompt_sha256": "058fdf35bd45380ad56229e68e789b22416380ef18ddc76b0c6dfbbed8686dc1",
+        "edited_prompt_sha256": "3fa2e09d801f9b2b89d07af00cfc1ce544cd329cf570d54f5cd61df64adaaa66",
+        "original_prompt": "Use only the evidence below. Each title, when present, identifies its paragraph. Return only the answer using the original entity spelling, without explanation.\n\nEvidence:\nTitle: Michael Govan\nMichael Govan( born 1963) is the director of the Los Angeles County Museum of Art since 2006.\nPrior to this, Govan worked as the director of the Dia Art Foundation in New York City.\n\nTitle: Brian Kennedy (gallery director)\nBrian Patrick Kennedy( born 5 November 1961) is an Irish- born art museum director who has worked in Ireland and Australia, and now lives and works in the United States.\nHe is currently the director of the Peabody Essex Museum.\nHe was the director of the Toledo Museum of Art in Ohio from 2010 to 2019.\nHe was the director of the Hood Museum of Art from 2005 to 2010, and the National Gallery of Australia( Canberra) from 1997- 2004.\n\nTitle: Susan B. Nelson\nSusan B. Nelson( April 13, 1927 – May 4, 2003) was an American environmental activist who is best known as the mother of the Santa Monica Mountains National Recreation Area.\n\nTitle: Agnes and His Brothers\nAgnes and His Brothers  is a 2004 film directed by Oskar Roehler.\n\nTitle: Kekuʻiapoiwa II\nKekuʻiapoiwa II was a Hawaiian chiefess and the mother of the king Kamehameha I.\n\nTitle: Rebecca Miller\nRebecca Augusta Miller, Lady Day-Lewis (born September 15, 1962) is an American independent filmmaker and novelist, known for her films \"AngelaThe Ballad of Jack and RoseThe Private Lives of Pippa Lee\", and \"Maggie's Plan\", all of which she wrote and directed.\nMiller is the daughter of Arthur Miller, a Pulitzer Prize-winning playwright, and his third wife Inge Morath, Magnum photographer.\n\nTitle: Per Källberg\nPer Källberg( 14 March 1947 – 17 February 2014) was a Swedish cinematographer.\nAt the 27th Guldbagge Awards he won the award for Best Cinematography for the film\" Agnes Cecilia – en sällsam historia\".\nHe worked on more than 45 films and television shows between 1973 and 2011.\n\nTitle: Angela (1995 film)\nAngela is a 1995 drama film directed by Rebecca Miller and starring Miranda Stuart Rhyne, Charlotte Eve Blythe, and Anna Levine.\nMiller's directorial debut, it won awards at the Sundance Film Festival, the Brussels International Festival of Fantasy Film and the Gotham Awards.\n\nTitle: Fatima bint Mubarak Al Ketbi\nFatima bint Mubarak Al Ketbi is the third wife of Sheikh Zayed bin Sultan Al Nahyan, the founder and inaugural president of United Arab Emirates, and late emir( ruler) of Abu Dhabi.\nShe is referred to as the mother of sheikhs and as the Mother of the UAE.\n\nTitle: Oskar Roehler\nOskar Roehler (born 21 January 1959) is a German film director, screenwriter and journalist.\nHe was born in Starnberg as the son of writer Gisela Elsner and the writer Klaus Roehler.\nSince the mid-1980s he has been working as a screenwriter, for, among others, Niklaus Schilling, Christoph Schlingensief and Mark Schlichter.\nSince the early 1990s he has also been working as a film director.\nFor his film No Place to Go he won the Deutscher Filmpreis.\nHis 2010 film  was nominated for the Golden Bear at the 60th Berlin International Film Festival.\n\nFinal question: Who is the mother of the director of film Angela (1995 Film)?",
+        "edited_prompt": "Use only the evidence below. Each title, when present, identifies its paragraph. Return only the answer using the original entity spelling, without explanation.\n\nEvidence:\nTitle: Michael Govan\nMichael Govan( born 1963) is the director of the Los Angeles County Museum of Art since 2006.\nPrior to this, Govan worked as the director of the Dia Art Foundation in New York City.\n\nTitle: Brian Kennedy (gallery director)\nBrian Patrick Kennedy( born 5 November 1961) is an Irish- born art museum director who has worked in Ireland and Australia, and now lives and works in the United States.\nHe is currently the director of the Peabody Essex Museum.\nHe was the director of the Toledo Museum of Art in Ohio from 2010 to 2019.\nHe was the director of the Hood Museum of Art from 2005 to 2010, and the National Gallery of Australia( Canberra) from 1997- 2004.\n\nTitle: Susan B. Nelson\nSusan B. Nelson( April 13, 1927 – May 4, 2003) was an American environmental activist who is best known as the mother of the Santa Monica Mountains National Recreation Area.\n\nTitle: Agnes and His Brothers\nAgnes and His Brothers  is a 2004 film directed by Oskar Roehler.\n\nTitle: Kekuʻiapoiwa II\nKekuʻiapoiwa II was a Hawaiian chiefess and the mother of the king Kamehameha I.\n\nTitle: Rebecca Miller\nRebecca Augusta Miller, Lady Day-Lewis (born September 15, 1962) is an American independent filmmaker and novelist, known for her films \"AngelaThe Ballad of Jack and RoseThe Private Lives of Pippa Lee\", and \"Maggie's Plan\", all of which she wrote and directed.\nMiller is the daughter of Arthur Miller, a Pulitzer Prize-winning playwright, and his third wife Gisela Elsner, Magnum photographer.\n\nTitle: Per Källberg\nPer Källberg( 14 March 1947 – 17 February 2014) was a Swedish cinematographer.\nAt the 27th Guldbagge Awards he won the award for Best Cinematography for the film\" Agnes Cecilia – en sällsam historia\".\nHe worked on more than 45 films and television shows between 1973 and 2011.\n\nTitle: Angela (1995 film)\nAngela is a 1995 drama film directed by Rebecca Miller and starring Miranda Stuart Rhyne, Charlotte Eve Blythe, and Anna Levine.\nMiller's directorial debut, it won awards at the Sundance Film Festival, the Brussels International Festival of Fantasy Film and the Gotham Awards.\n\nTitle: Fatima bint Mubarak Al Ketbi\nFatima bint Mubarak Al Ketbi is the third wife of Sheikh Zayed bin Sultan Al Nahyan, the founder and inaugural president of United Arab Emirates, and late emir( ruler) of Abu Dhabi.\nShe is referred to as the mother of sheikhs and as the Mother of the UAE.\n\nTitle: Oskar Roehler\nOskar Roehler (born 21 January 1959) is a German film director, screenwriter and journalist.\nHe was born in Starnberg as the son of writer Inge Morath and the writer Klaus Roehler.\nSince the mid-1980s he has been working as a screenwriter, for, among others, Niklaus Schilling, Christoph Schlingensief and Mark Schlichter.\nSince the early 1990s he has also been working as a film director.\nFor his film No Place to Go he won the Deutscher Filmpreis.\nHis 2010 film  was nominated for the Golden Bear at the 60th Berlin International Film Festival.\n\nFinal question: Who is the mother of the director of film Angela (1995 Film)?"
+      },
+      "evidence": [
+        {
+          "role": "first_target",
+          "title": "Angela (1995 film)",
+          "paragraph_index": 7,
+          "sentence_index": 0,
+          "text": "Angela is a 1995 drama film directed by Rebecca Miller and starring Miranda Stuart Rhyne, Charlotte Eve Blythe, and Anna Levine."
+        },
+        {
+          "role": "second_target",
+          "title": "Rebecca Miller",
+          "paragraph_index": 5,
+          "sentence_index": 1,
+          "text": "Miller is the daughter of Arthur Miller, a Pulitzer Prize-winning playwright, and his third wife Inge Morath, Magnum photographer."
+        }
+      ],
+      "diagnostic": {
+        "model": "llama3_8b",
+        "procedure": "Four-arm attention intervention in the native model on the original shared context",
+        "arms": [
+          {
+            "id": "natural_crossed_3e05970d5c8422f2710d__C12",
+            "source_id": "29c2b50c0bdc11eba7f7acde48001122",
+            "cluster_id": "natural_crossed_3e05970d5c8422f2710d",
+            "query": "composed",
+            "method": "native",
+            "answer": "Arthur Miller",
+            "correct": false,
+            "eos_complete": true,
+            "input_tokens": 847,
+            "generated_token_ids": [
+              60762,
+              17472,
+              128009
+            ],
+            "cell": "C12",
+            "source_alignment_verified": true,
+            "donor_query_id": "natural_crossed_3e05970d5c8422f2710d__T12",
+            "donor_kind": "Native direct-target last-question-row source attention conditional only",
+            "donor_invalid_heads": 0,
+            "privileged_diagnostic": true,
+            "source_path": [
+              "outputs/llama3_8b/causal_factorization/predictions.jsonl.gz.part0000",
+              "outputs/llama3_8b/causal_factorization/predictions.jsonl.gz.part0001"
+            ]
+          },
+          {
+            "id": "natural_crossed_3e05970d5c8422f2710d__C12",
+            "source_id": "29c2b50c0bdc11eba7f7acde48001122",
+            "cluster_id": "natural_crossed_3e05970d5c8422f2710d",
+            "query": "composed",
+            "method": "mass_only",
+            "answer": "Arthur Miller.",
+            "correct": false,
+            "eos_complete": true,
+            "input_tokens": 847,
+            "generated_token_ids": [
+              60762,
+              17472,
+              13,
+              128009
+            ],
+            "cell": "C12",
+            "source_alignment_verified": true,
+            "donor_query_id": "natural_crossed_3e05970d5c8422f2710d__T12",
+            "donor_kind": "Native direct-target last-question-row source attention conditional only",
+            "donor_invalid_heads": 0,
+            "privileged_diagnostic": true,
+            "source_path": [
+              "outputs/llama3_8b/causal_factorization/predictions.jsonl.gz.part0000",
+              "outputs/llama3_8b/causal_factorization/predictions.jsonl.gz.part0001"
+            ]
+          },
+          {
+            "id": "natural_crossed_3e05970d5c8422f2710d__C12",
+            "source_id": "29c2b50c0bdc11eba7f7acde48001122",
+            "cluster_id": "natural_crossed_3e05970d5c8422f2710d",
+            "query": "composed",
+            "method": "conditional_only",
+            "answer": "Arthur Miller",
+            "correct": false,
+            "eos_complete": true,
+            "input_tokens": 847,
+            "generated_token_ids": [
+              60762,
+              17472,
+              128009
+            ],
+            "cell": "C12",
+            "source_alignment_verified": true,
+            "donor_query_id": "natural_crossed_3e05970d5c8422f2710d__T12",
+            "donor_kind": "Native direct-target last-question-row source attention conditional only",
+            "donor_invalid_heads": 0,
+            "privileged_diagnostic": true,
+            "source_path": [
+              "outputs/llama3_8b/causal_factorization/predictions.jsonl.gz.part0000",
+              "outputs/llama3_8b/causal_factorization/predictions.jsonl.gz.part0001"
+            ]
+          },
+          {
+            "id": "natural_crossed_3e05970d5c8422f2710d__C12",
+            "source_id": "29c2b50c0bdc11eba7f7acde48001122",
+            "cluster_id": "natural_crossed_3e05970d5c8422f2710d",
+            "query": "composed",
+            "method": "both",
+            "answer": "Inge Morath",
+            "correct": true,
+            "eos_complete": true,
+            "input_tokens": 847,
+            "generated_token_ids": [
+              644,
+              713,
+              8613,
+              589,
+              128009
+            ],
+            "cell": "C12",
+            "source_alignment_verified": true,
+            "donor_query_id": "natural_crossed_3e05970d5c8422f2710d__T12",
+            "donor_kind": "Native direct-target last-question-row source attention conditional only",
+            "donor_invalid_heads": 0,
+            "privileged_diagnostic": true,
+            "source_path": [
+              "outputs/llama3_8b/causal_factorization/predictions.jsonl.gz.part0000",
+              "outputs/llama3_8b/causal_factorization/predictions.jsonl.gz.part0001"
+            ]
+          }
+        ],
+        "donor_question": "Who is the mother of Rebecca Miller?",
+        "checks": {
+          "same_receiver_id_and_source_across_arms": true,
+          "same_original_context_definition": true,
+          "identity_generated_tokens_match_native": true,
+          "all_four_inputs_have_same_token_count": true
+        }
+      },
+      "fact_exchange": {
+        "model": "llama3_8b",
+        "recorded_run": 42,
+        "procedure": "Complete CoReTrace applied separately to original and reciprocally edited shared contexts",
+        "source_pair": [
+          "29c2b50c0bdc11eba7f7acde48001122",
+          "3a16d77e0bd911eba7f7acde48001122"
+        ],
+        "original_gold": "Inge Morath",
+        "edited_gold": "Gisela Elsner",
+        "exchanged_facts": [
+          {
+            "source_id": "29c2b50c0bdc11eba7f7acde48001122",
+            "bridge": "Rebecca Miller",
+            "relation": "mother",
+            "paragraph_index": 5,
+            "title": "Rebecca Miller",
+            "sentence_index": 1,
+            "original_object": "Inge Morath",
+            "edited_object": "Gisela Elsner",
+            "support_sentence_original": "Miller is the daughter of Arthur Miller, a Pulitzer Prize-winning playwright, and his third wife Inge Morath, Magnum photographer.",
+            "support_sentence_edited": "Miller is the daughter of Arthur Miller, a Pulitzer Prize-winning playwright, and his third wife Gisela Elsner, Magnum photographer."
+          },
+          {
+            "source_id": "3a16d77e0bd911eba7f7acde48001122",
+            "bridge": "Oskar Roehler",
+            "relation": "mother",
+            "paragraph_index": 9,
+            "title": "Oskar Roehler",
+            "sentence_index": 1,
+            "original_object": "Gisela Elsner",
+            "edited_object": "Inge Morath",
+            "support_sentence_original": "He was born in Starnberg as the son of writer Gisela Elsner and the writer Klaus Roehler.",
+            "support_sentence_edited": "He was born in Starnberg as the son of writer Inge Morath and the writer Klaus Roehler."
+          }
+        ],
+        "original": {
+          "id": "natural_crossed_3e05970d5c8422f2710d__C12",
+          "source_id": "29c2b50c0bdc11eba7f7acde48001122",
+          "cluster_id": "natural_crossed_3e05970d5c8422f2710d",
+          "query": "composed",
+          "method": "final_original",
+          "variant": "final",
+          "view": "original",
+          "answer": "Inge Morath",
+          "correct": true,
+          "old_alias_em": true,
+          "new_alias_em": false,
+          "counterfactual_applied": true,
+          "word_bag_identical": true,
+          "character_bag_identical": true,
+          "address_prefills": 0,
+          "selected_paragraph": 5,
+          "eos_complete": true,
+          "input_tokens": 248,
+          "generated_token_ids": [
+            644,
+            713,
+            8613,
+            589,
+            128009
+          ],
+          "source_path": "outputs/llama3_8b/seed42/causal_content/predictions.jsonl.gz"
+        },
+        "edited": {
+          "id": "natural_crossed_3e05970d5c8422f2710d__C12",
+          "source_id": "29c2b50c0bdc11eba7f7acde48001122",
+          "cluster_id": "natural_crossed_3e05970d5c8422f2710d",
+          "query": "composed",
+          "method": "final_edited",
+          "variant": "final",
+          "view": "edited",
+          "answer": "Gisela Elsner",
+          "correct": true,
+          "old_alias_em": false,
+          "new_alias_em": true,
+          "counterfactual_applied": true,
+          "word_bag_identical": true,
+          "character_bag_identical": true,
+          "address_prefills": 0,
+          "selected_paragraph": 5,
+          "eos_complete": true,
+          "input_tokens": 250,
+          "generated_token_ids": [
+            38,
+            285,
+            8458,
+            4072,
+            82,
+            1215,
+            128009
+          ],
+          "source_path": "outputs/llama3_8b/seed42/causal_content/predictions.jsonl.gz"
+        },
+        "checks": {
+          "original_prompt_identical_to_factorial_receiver": true,
+          "factorial_and_content_native_input_token_counts_match": true,
+          "factorial_and_content_native_generated_tokens_match": true,
+          "word_bag_identical": true,
+          "character_bag_identical": true,
+          "counterfactual_applied": true,
+          "same_selected_paragraph_original_and_edited": true
+        }
+      },
+      "provenance": {
+        "quadruplet_path": "data/CoRe-2Wiki-v1.0/mechanism_views/discovery25_quadruplets.jsonl.gz",
+        "derived_view_code": "coretrace/data/derived_views.py",
+        "factorial_entrypoint": "scripts/factorized_causal.py",
+        "content_entrypoint": "scripts/content_causal.py",
+        "factorial_prediction_paths": [
+          "outputs/llama3_8b/causal_factorization/predictions.jsonl.gz.part0000",
+          "outputs/llama3_8b/causal_factorization/predictions.jsonl.gz.part0001"
+        ],
+        "content_prediction_path": "outputs/llama3_8b/seed42/causal_content/predictions.jsonl.gz",
+        "query_paths": [
+          "data/CoRe-2Wiki-v1.0/queries.jsonl.gz.part0000",
+          "data/CoRe-2Wiki-v1.0/queries.jsonl.gz.part0001"
+        ],
+        "alias_path": "data/CoRe-2Wiki-v1.0/aliases.jsonl.gz"
+      },
+      "display_notes": [
+        "Show the four-arm native-model intervention and the complete CoReTrace fact-exchange behavior as two separately labeled procedures.",
+        "Both denotes the mass-plus-pattern diagnostic intervention; it is not a synonym for CoReTrace.",
+        "Both procedures begin with the identical reconstructed shared-context question. The edited input swaps the two mother-name spans reciprocally.",
+        "Use exact answer strings or a consistently disclosed removal of terminal punctuation.",
+        "No attention mass, activation, or per-layer expression magnitude is supplied by this case record."
+      ]
+    }
+  },
+  "input_files": [
+    {
+      "path": "coretrace/data/derived_views.py",
+      "bytes": 7168,
+      "sha256": "7027c8ee87119504a910232b3f62c17d5b06aafa55f9c665e454acec9f3f1d54"
+    },
+    {
+      "path": "data/CoRe-2Wiki-v1.0/aliases.jsonl.gz",
+      "bytes": 437407,
+      "sha256": "c8cdba07654b7e5f68996b6cdba4385af3e6779995ceaa09497caf4f1acc97bf"
+    },
+    {
+      "path": "data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part0000",
+      "bytes": 4000000,
+      "sha256": "db6f7ad9d107d7768b350e0fe325cd8be0dbf08280892fb20c5b37a692eb8fd1"
+    },
+    {
+      "path": "data/CoRe-2Wiki-v1.0/corpus.jsonl.gz.part0001",
+      "bytes": 478407,
+      "sha256": "66a505a7a42a63b70edb6307c7dd4ac17c5eba300245a80dbf118f77950cf448"
+    },
+    {
+      "path": "data/CoRe-2Wiki-v1.0/mechanism_views/discovery25_quadruplets.jsonl.gz",
+      "bytes": 80209,
+      "sha256": "d0d0434dd6e728d3b59e9b2d27c9ec5779fb159ae1b8b96af0846f0b8a15e7a6"
+    },
+    {
+      "path": "data/CoRe-2Wiki-v1.0/queries.jsonl.gz.part0000",
+      "bytes": 4000000,
+      "sha256": "ef74ed2d77fa3f78a69b947b1d7b62c65a9df5c7734ab354ca7f6ade76398b95"
+    },
+    {
+      "path": "data/CoRe-2Wiki-v1.0/queries.jsonl.gz.part0001",
+      "bytes": 863417,
+      "sha256": "4f83086e7e3316b2204ff695de628e78fdb4141f39eb6e93145baa4434d3bc02"
+    },
+    {
+      "path": "outputs/llama3_8b/causal_factorization/predictions.jsonl.gz.part0000",
+      "bytes": 4000000,
+      "sha256": "b1aaa859987742dc8572430883cb5ad6da1d8dcb107015c391cceb77017e344b"
+    },
+    {
+      "path": "outputs/llama3_8b/causal_factorization/predictions.jsonl.gz.part0001",
+      "bytes": 1231596,
+      "sha256": "ae635b005f01a1d5626637d24b9bf6aad4b1c27fcd7457d1525526695a838fcb"
+    },
+    {
+      "path": "outputs/llama3_8b/seed42/causal_content/predictions.jsonl.gz",
+      "bytes": 38108,
+      "sha256": "762da52a45c986c9f2721d3fddb012209a7842f32ed18f210540812f80073723"
+    },
+    {
+      "path": "outputs/llama3_8b/seed42/evaluation/core/predictions.jsonl.gz",
+      "bytes": 1897433,
+      "sha256": "431bfa3e18a977507e4944ff8f4676f87c0230ebee6bcda1fe0d1778118e6085"
+    },
+    {
+      "path": "outputs/qwen3_4b/seed42/evaluation/core/predictions.jsonl.gz",
+      "bytes": 1941113,
+      "sha256": "ae5e868b0d2b755734435cf198bae9fb980d7af015ff87fc8823360923099c05"
+    },
+    {
+      "path": "outputs/qwen3_8b/seed42/evaluation/core/predictions.jsonl.gz",
+      "bytes": 1656843,
+      "sha256": "6ed737ce483503b61106109a9cc701762e05ba8e6cbfcf8db1680d4e5aa55c96"
+    }
+  ]
+}

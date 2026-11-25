@@ -1,0 +1,5 @@
+path,bytes,sha256
+configs/experiments.json,677,2c7e68426cad18398265c86ff1dbb9bd7a2ae4ea1154f3e85de270eaf0ab25c5
+outputs/llama3_8b/seed42/evaluation/core/summary.json,51711,e8baa0d46dc0fe09c476ad3066c8307f6d6440371a936d3aec38ce667e075721
+outputs/qwen3_4b/seed42/evaluation/core/summary.json,51518,8feff53715f72d97a5a65861f16644f0f9ff8f28e91ac0cfe5f6d14c375dabe4
+outputs/qwen3_8b/seed42/evaluation/core/summary.json,51564,1a629388752f1eb3ea559ffbf0f2b9343e642738310714b4e3c633347690a03e

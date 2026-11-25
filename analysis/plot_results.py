@@ -136,6 +136,38 @@ def seed_values(model: str,dataset: str,method: str,seeds: list[int],query: str 
     return values
 
 # Compact rendering layer. Each helper accepts records from the collectors below.
+def render_composition(composition):
+    """Expose composition success and failure within the fixed native population."""
+    fig,ax=plt.subplots(figsize=(COL,1.45))
+    fig.subplots_adjust(left=.285,right=.955,bottom=.25,top=.78)
+    y=np.arange(len(MODELS))[::-1]
+    rows=[unique_record(composition,model=m) for m in MODELS]
+    success=np.array([100*r["composition_successes"]/r["both_constituents_correct"] for r in rows])
+    failure=np.array([r["conditional_failure_percent"] for r in rows])
+    if not np.allclose(success+failure,100):
+        raise ValueError("Composition outcomes do not partition the native constituent-correct population")
+    ax.barh(y,success,height=.60,color=BLUE,edgecolor="white",linewidth=.6,label="Composed correct",zorder=3)
+    ax.barh(y,failure,left=success,height=.60,color=ORANGE,edgecolor="white",linewidth=.6,label="Composed incorrect",zorder=3)
+    for yi,row,ok,bad in zip(y,rows,success,failure):
+        ax.text(ok/2,yi,f"{row['composition_successes']} ({ok:.1f}%)",
+                ha="center",va="center",fontsize=6.0,color="white",fontweight="bold")
+        ax.text(ok+bad/2,yi,f"{row['composition_failures']} ({bad:.1f}%)",
+                ha="center",va="center",fontsize=6.0,color=INK,fontweight="bold")
+    ax.set(yticks=y,yticklabels=[f"{MODEL_NAMES[m]}\n$n={r['both_constituents_correct']}$"
+                              for m,r in zip(MODELS,rows)],
+           xlim=(0,100),ylim=(-.55,len(MODELS)-.45),xticks=[0,50,100],
+           xlabel="Share of constituent-correct sources (%)")
+    ax.tick_params(axis="y",length=0,pad=4,labelsize=6.0)
+    ax.tick_params(axis="x",length=2.4,pad=2,labelsize=6.0)
+    ax.xaxis.label.set_size(6.0)
+    ax.spines[["top","right","left"]].set_visible(False)
+    handles,labels=ax.get_legend_handles_labels()
+    fig.legend(handles,labels,loc="upper center",bbox_to_anchor=(.54,.995),
+               ncol=2,frameon=False,fontsize=6.0,handlelength=1.25,
+               handletextpad=.35,columnspacing=.9)
+    save_figure(fig,"data_main_composition")
+
+
 def render_diagnosis(readouts):
     fig,ax=plt.subplots(figsize=(COL,1.65)); fig.subplots_adjust(left=.14,right=.985,bottom=.23,top=.97)
     clean_axis(ax); x=np.arange(len(MODELS)); width=.23
@@ -439,21 +471,35 @@ def render_capabilities(aggregates):
     save_figure(fig,"data_app_capabilities")
 
 # Original per-source collectors. New main panels reuse their records directly.
-def make_diagnosis(seeds: list[int]) -> None:
-    name="data_fig3_diagnosis"
-    composition,readouts,overall_readouts=[],[],[]
-    subpopulation_file="analysis/internal/readout_validation.json"
-    subpopulation_data=read_json(subpopulation_file)
+def collect_composition(seeds: list[int]):
+    composition=[]
     for model in MODELS:
         filename=source(model,f"seed{seeds[0]}/evaluation/core/summary.json")
         row=unique_record(read_json(filename)["conditional_composition"],method="native")
         denominator=row["both_constituents_correct"]
         composition.append({"model":model,"total_test_sources":row["n_sources"],"both_constituents_correct":denominator,"composition_failures":row["composition_failures"],"composition_successes":denominator-row["composition_failures"],"conditional_failure_percent":100*row["composition_failures"]/denominator,"source":filename})
+    return composition
+
+
+def make_composition(seeds: list[int]) -> None:
+    composition=collect_composition(seeds)
+    export_csv("data_main_composition",composition)
+    render_composition(composition)
+
+
+def make_diagnosis(seeds: list[int]) -> None:
+    name="data_fig3_diagnosis"
+    composition=collect_composition(seeds)
+    readouts,overall_readouts=[],[]
+    subpopulation_file="analysis/internal/readout_validation.json"
+    subpopulation_data=read_json(subpopulation_file)
+    for model in MODELS:
+        filename=unique_record(composition,model=model)["source"]
         overall_file=source(model,"native_readout/complete.json");diagnostic=read_json(overall_file)["diagnostics"]
         population=unique_record(subpopulation_data,directory=source(model,"native_readout"));subgroup=population["native_composition_failure_readout"]
         for features in ("full","attention","metadata"):
             row=subgroup[features]
-            if row["n"]!=composition[-1]["composition_failures"]:raise ValueError(f"Composition-failure subpopulation mismatch: {model}/{features}")
+            if row["n"]!=unique_record(composition,model=model)["composition_failures"]:raise ValueError(f"Composition-failure subpopulation mismatch: {model}/{features}")
             readouts.append({"model":model,"feature_set":features,"n":row["n"],"correct":row["correct"],"accuracy_percent":100*row["correct"]/row["n"],"subpopulation":"native_both_constituents_correct_composed_incorrect","source":subpopulation_file,"reader_directory":source(model,"native_readout"),"composition_source":filename})
             row=diagnostic[features]["test"]
             overall_readouts.append({"model":model,"feature_set":features,"n":row["n"],"correct":row["correct"],"accuracy_percent":100*row["correct"]/row["n"],"subpopulation":"all_test_sources","source":overall_file})
@@ -646,11 +692,147 @@ def make_case() -> None:
         put(.026,y+.096,row["policy"]+"  \N{RIGHTWARDS ARROW}  "+row["answer"],fontsize=5.9,fontweight="bold",color=BLUE if not row["correct"] else "#A65D38")
     save_figure(fig,"data_main_case")
 
+
+def render_mechanism_cases(cases):
+    """Display recorded answers and literal evidence excerpts, never activation maps."""
+    corvinus,angela=cases["corvinus"],cases["angela"]
+    fig=plt.figure(figsize=(WIDE,2.50))
+    left=fig.add_axes([.018,.025,.472,.95])
+    right=fig.add_axes([.522,.025,.46,.95])
+    for ax in (left,right):
+        ax.set(xlim=(0,1),ylim=(0,1));ax.axis("off")
+    fig.add_artist(Line2D([.504,.504],[.045,.965],transform=fig.transFigure,
+                          color="#C7CCD1",linewidth=.6))
+
+    def put(ax,x,y,string,width=None,**kwargs):
+        if width is not None:
+            string=textwrap.fill(string,width=width,break_long_words=False,
+                                 break_on_hyphens=False)
+        settings=dict(ha="left",va="top",fontsize=6.2,linespacing=1.05,color=INK)
+        settings.update(kwargs)
+        return ax.text(x,y,string,**settings)
+
+    # Case A uses the canonical test context. The answers are identical in the
+    # three archived model records, so one shared column avoids repetition.
+    put(left,.01,.995,"(a) Correct hops, failed composition",fontsize=7.1,fontweight="bold")
+    put(left,.01,.932,"All three models · canonical test context",fontsize=6.0,color="#555D66")
+    put(left,.01,.858,"Q: "+corvinus["question"],width=73,fontsize=6.35,fontweight="medium")
+    put(left,.01,.765,"Supplied evidence (excerpts)",fontsize=6.15,fontweight="bold")
+    first,second=corvinus["evidence"]
+    # Preserve literal source spans and mark every omitted span with ellipses.
+    first_clause=first["text"].split(") ",1)[1]
+    first_clause=first_clause[:first_clause.index(first["object"])+len(first["object"])]
+    second_clause=second["text"].split(",",1)[0]
+    put(left,.025,.710,first["title"],fontweight="bold",color=BLUE)
+    put(left,.025,.666,"“... "+first_clause+" ...”",width=77)
+    put(left,.025,.589,second["title"],fontweight="bold",color=BLUE)
+    put(left,.025,.545,"“"+second_clause+" ...”",width=77)
+
+    put(left,.01,.445,"Recorded answers",fontsize=6.15,fontweight="bold")
+    one=corvinus["model_results"][0]
+    outcomes=[("Native · first hop",one["native_answers"]["direct_first"]),
+              ("Native · second hop",one["native_answers"]["direct_target"]),
+              ("Native · composed",one["native_answers"]["composed"]),
+              ("CoReTrace · composed",one["coretrace_composed"])]
+    for y,(label,record) in zip((.354,.263,.172,.081),outcomes):
+        fill="#F2F4F6" if label.startswith("Native") else "#E8F2EC"
+        if not record["correct"]:fill="#FBEEE9"
+        left.add_patch(Rectangle((.005,y-.048),.99,.083,facecolor=fill,
+                                 edgecolor="none",zorder=0))
+        put(left,.025,y+.019,label,fontsize=6.25)
+        put(left,.52,y+.019,record["answer"],fontsize=6.5,fontweight="bold",
+            color="#307653" if record["correct"] else "#A74738")
+
+    # Case B keeps the native-model four-arm diagnostic distinct from the
+    # complete repaired system's response to a reciprocal fact exchange.
+    put(right,.01,.995,"(b) Access-dependent local reading",fontsize=7.1,fontweight="bold")
+    put(right,.01,.932,"Llama-3.1-8B · shared-context diagnostic",fontsize=6.0,color="#555D66")
+    put(right,.01,.858,"Q: "+angela["question"],width=72,fontsize=6.3,fontweight="medium")
+    put(right,.01,.755,"Supplied evidence (excerpts)",fontsize=6.15,fontweight="bold")
+    first,second=angela["evidence"]
+    film_clause=first["text"].split(" and starring",1)[0]
+    parent_prefix=second["text"].split(",",1)[0]
+    parent_suffix="and his third wife"+second["text"].split("and his third wife",1)[1].split(",",1)[0]
+    put(right,.025,.708,"“"+film_clause+" ...”",width=74)
+    put(right,.025,.648,"“"+parent_prefix+" ... "+parent_suffix+" ...”",width=74)
+    put(right,.01,.523,"Attention intervention in the native model",fontsize=6.15,fontweight="bold")
+    arms={row["method"]:row for row in angela["diagnostic"]["arms"]}
+    slots=(("native","Native",.005,.365),("conditional_only","Pattern only",.51,.365),
+           ("mass_only","Mass only",.005,.250),("both","Both",.51,.250))
+    for key,label,x,y in slots:
+        record=arms[key]
+        right.add_patch(Rectangle((x,y),.48,.105,
+                                  facecolor="#E8F2EC" if record["correct"] else "#F2F4F6",
+                                  edgecolor="#C9CED3",linewidth=.45))
+        put(right,x+.018,y+.090,label,fontsize=6.0,color="#555D66")
+        put(right,x+.018,y+.048,record["answer"],fontsize=6.35,fontweight="bold",
+            color="#307653" if record["correct"] else INK)
+
+    exchange=angela["fact_exchange"]
+    put(right,.01,.214,"CoReTrace on a reciprocal fact exchange",fontsize=6.15,fontweight="bold")
+    put(right,.025,.160,"Mother names: "+exchange["original_gold"]+"  ↔  "+exchange["edited_gold"],fontsize=6.1)
+    put(right,.025,.108,"Answers:",fontsize=6.2)
+    put(right,.225,.108,exchange["original"]["answer"]+"  →  "+exchange["edited"]["answer"],
+        fontsize=6.5,fontweight="bold",color="#307653")
+    selected=exchange["original"]["selected_paragraph"]
+    selected_fact=next(row for row in exchange["exchanged_facts"] if row["paragraph_index"]==selected)
+    put(right,.025,.047,"Same selected paragraph: "+selected_fact["title"],fontsize=6.0,color="#555D66")
+    save_figure(fig,"data_main_mechanism_cases")
+
+
+def make_mechanism_cases() -> None:
+    filename="analysis/internal/mechanism_case_records_20261125_v2.json"
+    data=read_json(filename);cases=data["cases"]
+    corvinus,angela=cases["corvinus"],cases["angela"]
+    results=corvinus["model_results"]
+    if {row["model"] for row in results}!=set(MODELS):
+        raise ValueError("The cross-model case must retain all three recorded models")
+    shared=[]
+    traces=[]
+    for row in results:
+        answers=row["native_answers"]
+        if not (answers["direct_first"]["correct"] and answers["direct_target"]["correct"]
+                and not answers["composed"]["correct"] and row["coretrace_composed"]["correct"]):
+            raise ValueError("The canonical case no longer has the displayed outcome pattern")
+        shared.append(tuple(answers[key]["answer"] for key in ("direct_first","direct_target","composed"))
+                      +(row["coretrace_composed"]["answer"],))
+        for key in ("direct_first","direct_target","composed"):
+            traces.append(("corvinus",row["model"],"native",key,"original",answers[key]))
+        traces.append(("corvinus",row["model"],"coretrace","composed","original",row["coretrace_composed"]))
+    if len(set(shared))!=1:
+        raise ValueError("A shared answer column requires identical answers across all three models")
+    if shared[0][0]!=shared[0][2]:
+        raise ValueError("The displayed composition failure must repeat the recorded first-hop answer")
+    diagnostic=angela["diagnostic"];exchange=angela["fact_exchange"]
+    if not all(diagnostic["checks"].values()) or not all(exchange["checks"].values()):
+        raise ValueError("Mechanistic case context-alignment checks must all pass")
+    if not exchange["original"]["correct"] or not exchange["edited"]["correct"]:
+        raise ValueError("The repaired answers must follow both recorded fact versions")
+    if exchange["original"]["selected_paragraph"]!=exchange["edited"]["selected_paragraph"]:
+        raise ValueError("The displayed fact exchange must retain the selected paragraph")
+    for row in diagnostic["arms"]:
+        if row["source_id"]!=angela["source_id"] or row["correct"]!=(row["method"]=="both"):
+            raise ValueError("Four-arm source identity or displayed answer outcomes disagree")
+        traces.append(("angela",diagnostic["model"],"attention_intervention",row["method"],"original",row))
+    for view in ("original","edited"):
+        traces.append(("angela",exchange["model"],"coretrace_fact_exchange","composed",view,exchange[view]))
+    export_csv("data_main_mechanism_cases_trace",[
+        {"case":case,"model":model,"population":cases[case]["population"],
+         "source_id":record["source_id"],"receiver_id":record["id"],
+         "procedure":procedure,"condition":condition,"view":view,
+         "answer":record["answer"],"correct":record["correct"],
+         "selected_paragraph":record.get("selected_paragraph",record.get("selection",{}).get("chosen")),
+         "prediction_source":";".join(record["source_path"]) if isinstance(record["source_path"],list) else record["source_path"],
+         "case_record_source":filename}
+        for case,model,procedure,condition,view,record in traces])
+    render_mechanism_cases(cases)
+
+
 def main() -> None:
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--only",nargs="*",choices=["diagnosis","causal","content","localization","necessity","ablation","capabilities","ambiguity","case"])
+    parser.add_argument("--only",nargs="*",choices=["composition","diagnosis","causal","content","localization","necessity","ablation","capabilities","ambiguity","case","mechanism_cases"])
     args=parser.parse_args();config=read_json("configs/experiments.json");seeds=config["seeds"]
-    tasks={"diagnosis":lambda:make_diagnosis(seeds),"causal":make_causal,"content":lambda:make_content(seeds),"localization":make_localization,"necessity":make_necessity,"ablation":lambda:make_ablation(seeds),"capabilities":lambda:make_capabilities(seeds),"ambiguity":make_ambiguity,"case":make_case}
+    tasks={"composition":lambda:make_composition(seeds),"diagnosis":lambda:make_diagnosis(seeds),"causal":make_causal,"content":lambda:make_content(seeds),"localization":make_localization,"necessity":make_necessity,"ablation":lambda:make_ablation(seeds),"capabilities":lambda:make_capabilities(seeds),"ambiguity":make_ambiguity,"case":make_case,"mechanism_cases":make_mechanism_cases}
     requested=list(args.only or tasks)
     # Combined head-profile/knockout panel requires both original collectors.
     if any(name in requested for name in ("localization","necessity")):

@@ -17,14 +17,14 @@
 \definecolor{tablebase}{HTML}{EEEEEE}
 \definecolor{gain}{HTML}{1F77B4}
 \definecolor{loss}{HTML}{D62728}
-\icmltitlerunning{How Evidence Access Shapes Local Reading}
+\icmltitlerunning{Locating, Routing, and Reading Evidence}
 \begin{document}
 \raggedbottom
 \lefthyphenmin=2
 \righthyphenmin=3
 \hyphenation{Llama Qwen CoReTrace}
 \twocolumn[
-\icmltitle{\texorpdfstring{When Correct Hops Fail to Compose:\\How Evidence Access Shapes Local Reading}{When Correct Hops Fail to Compose: How Evidence Access Shapes Local Reading}}
+\icmltitle{\texorpdfstring{When Correct Hops Fail to Compose:\\Locating, Routing, and Reading Evidence}{When Correct Hops Fail to Compose: Locating, Routing, and Reading Evidence}}
 \begin{icmlauthorlist}
 \icmlauthor{Anonymous Authors}{anonymous}
 \end{icmlauthorlist}
@@ -34,7 +34,7 @@
 ]
 \printAffiliationsAndNotice{}
 \begin{abstract}
-Language models can answer each hop of a factual chain from the same evidence yet fail to compose the answers. We investigate this gap by tracing how a composed question accesses and reads its supporting paragraphs. Paired constituent and composed queries localize a small set of evidence-access heads whose removal sharply reduces answering accuracy. Across three models, composition fails on roughly half of the sources with correct constituent answers, even though the bridge-paragraph address remains recoverable from attention features in most of these failures. We explain this discrepancy by separating paragraph-level attention mass from the conditional attention pattern within the paragraph. Crossed interventions reveal a functional interaction: calibrating access increases the benefit of direct-query reading patterns, with interaction estimates of 5--16 percentage points. This finding connects evidence location to the computation that uses its content. Guided by the localized heads and recoverable addresses, we introduce \method, which combines selected-head adaptation with attention-guided evidence selection. With fewer than 1\% trainable model parameters, it improves composed accuracy by 33.3--39.9 percentage points. Reciprocal fact exchanges further show that its answers track changed local values. Together, these findings identify access-dependent local reading as a mechanism of contextual composition and a practical target for improvement.
+Language models can answer each hop of a factual chain from the same evidence yet fail to compose the answers. We study this gap through \emph{Locate--Route--Read}, three coupled operations for contextual composition: identifying the bridge evidence, allocating attention to it, and reading the requested relation value. Paired constituent and composed queries localize a small set of heads whose removal disrupts answering. Across three models, composition fails on roughly half of the sources with correct constituent answers, while bridge addresses remain recoverable in most failures. We separate routing from reading by factorizing paragraph attention into access mass and its conditional token distribution. Calibrating access to the bridge improves composition, and crossed interventions reveal that access changes the usefulness of direct-query reading patterns, with interaction estimates of 5--16 percentage points. Guided by this mechanism, \method\ combines selected-head adaptation with attention-guided evidence selection. It improves composed accuracy by 33.3--39.9 percentage points with fewer than 1\% trainable model parameters. Case studies connect the three operations to concrete answer changes, and reciprocal fact exchanges show that repaired predictions follow changed local values. These findings identify the interaction of routing and reading as a functional mechanism of contextual composition and a practical target for improvement.
 \end{abstract}
 
 \begin{figure}[!t]
@@ -48,7 +48,8 @@ Language models can answer each hop of a factual chain from the same evidence ye
 \input{sections/method}
 \input{sections/experiments}
 \FloatBarrier
-\balance
+\nobalance
+\newpage
 \input{sections/conclusion}
 \FloatBarrier
 \clearpage
