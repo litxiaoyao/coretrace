@@ -24,7 +24,7 @@ The fixed IDs in `coretrace/data/builders/selection.json` were compared directly
 | Quadruplet source set | Exactly the discovery source set |
 | Original training panel | All 868 original IDs are within the 2,000-source training split |
 
-The recorded `analysis/internal/current_audit/dataset_audit.json` further reports that all formal training sources originate in official train and all test sources originate in official dev; discovery contains 77 official-train and 23 official-dev sources. The test panel has 1,000 distinct roots, bridges, and within-test entity groups. Forty-three test sources belong to global root/bridge groups also represented in training. These are entity-group connections, not duplicate source IDs. The latter statistics were read from the existing audit, rather than newly recomputed from the full official archive.
+The recorded `analysis/internal/dataset_audit.json` further reports that all formal training sources originate in official train and all test sources originate in official dev; discovery contains 77 official-train and 23 official-dev sources. The test panel has 1,000 distinct roots, bridges, and within-test entity groups. Forty-three test sources belong to global root/bridge groups also represented in training. These are entity-group connections, not duplicate source IDs. The latter statistics were read from the existing audit, rather than newly recomputed from the full official archive.
 
 ## Evidence map
 

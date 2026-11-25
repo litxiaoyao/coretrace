@@ -2,7 +2,7 @@
 
 Audit date: 2026-11-24. Source snapshot: `cf00035eb9b71bebf3ae88f76caf30ee9b58065c`.
 
-This audit reads the released experiment code, configurations, training metadata, complete compressed prediction records, and readout feature archives. It changes no experiment inputs, predictions, summaries, or runtime code. The audit was executed against the complete clone while the paper revision uses the sparse working checkout at the same commit. Fresh machine-readable checks are under `analysis/internal/current_audit/`.
+This audit reads the released experiment code, configurations, training metadata, complete compressed prediction records, and readout feature archives. It changes no experiment inputs, predictions, summaries, or runtime code. The audit was executed against the complete clone while the paper revision uses the sparse working checkout at the same commit. The machine-readable checks are retained under `analysis/internal/` and `analysis/internal/current_audit/`.
 
 ## Decision
 
@@ -29,7 +29,7 @@ The content experiment tests the fourth step directly. It does not identify medi
 | Reciprocal content summaries | Nine model/run directories; 800 prediction rows each | All before/after, following, persistence, joint, and prefill counts reproduced |
 | Selected-head training traces | Nine traces; 2,000 examples each | Within each model, source, loss, and gradient-norm sequences are identical across run IDs |
 
-Fresh outputs: `result.json`, `additional_checks.json`, `prediction_validation.json`, `prediction_metrics.json`, `readout_validation.json`, `table_validation.json`, `dataset_audit.json`, `test_graph.json`, and `fixed_population_and_graph_analysis.json` in `current_audit/`.
+Recorded outputs: `current_audit/result.json`, `current_audit/additional_checks.json`, `prediction_validation.json`, `prediction_metrics.json`, `readout_validation.json`, `table_validation.json`, `dataset_audit.json`, `test_graph.json`, and `fixed_population_and_graph_analysis.json` under `analysis/internal/`. Byte-identical duplicate snapshots have been consolidated without changing the records.
 
 ## Core claims and exact numerical support
 
