@@ -1,119 +1,94 @@
 \section{Experiments}
 \label{sec:experiments}
+We organize the experiments around the path from evidence access to a composed answer: localizing the relevant heads, recovering the addresses they carry, and measuring how access changes the effect of local reading. We then apply these findings through \method\ and examine how its answers respond to changes in the evidence.
+
 \subsection{Experimental Setup}
 \label{sec:setup}
-\textbf{Models and data.} We evaluate Qwen3-4B, Qwen3-8B \citep{yang2025qwen3}, and Llama-3.1-8B-Instruct \citep{grattafiori2024llama3} with native chat templates, BF16 computation, and greedy decoding; Qwen thinking mode is disabled. \dataset\ comprises 100 discovery, 2,000 training, and 1,000 test sources from 2WikiMultiHopQA, each with three queries and ten original paragraphs. Formal source IDs are disjoint; the shared-context diagnostic reuses discovery sources. Data construction, entity overlap, and preceding-development provenance appear in Appendix~\ref{app:data}.
+\textbf{Models and data.} We evaluate Qwen3-4B, Qwen3-8B \citep{yang2025qwen3}, and Llama-3.1-8B-Instruct \citep{grattafiori2024llama3} with native chat templates, BF16 computation, and greedy decoding; Qwen thinking mode is disabled. \dataset\ contains 100 discovery, 2,000 training, and 1,000 test sources with disjoint source IDs. Every source retains ten original paragraphs and three queries. Discovery selects the heads and access targets; training fits the head updates and address readers. The shared-context intervention uses 25 discovery quadruplets. Dataset construction and split assignments appear in Appendix~\ref{app:data}.
 
-\textbf{Training and evaluation.} Core QA uses normalized alias exact match with EOS completion within 32 tokens \citep{alab2020twikievaluation}. Only composed training queries update weights. Head adaptation and full fine-tuning use the same 2,000 examples, one epoch, AdamW \citep{loshchilov2019adamw}, learning rate $2\times10^{-5}$, and eight-example accumulation. We report mean and sample SD across three recorded runs; selected-head optimization is deterministic, with small evaluation differences from BF16 and batch geometry. Source- and quadruplet-bootstrap intervals describe sampling uncertainty. See Appendix~\ref{app:protocol} for prompts and individual runs.
+\textbf{Training and metrics.} Only composed training queries update model weights. Head adaptation and full fine-tuning use the same 2,000 examples, one epoch, AdamW \citep{loshchilov2019adamw}, learning rate $2\times10^{-5}$, and eight-example accumulation. Core QA uses normalized alias exact match with EOS completion within 32 tokens \citep{alab2020twikievaluation}. We report conditional composition failure, composed accuracy, and all-three accuracy as defined in \cref{sec:triplets}. Adapted results are means and sample SDs over three recorded runs. Paired source-bootstrap intervals summarize test-source variation; the factorial intervention uses paired quadruplet-bootstrap intervals. Appendix~\ref{app:protocol} gives the full prompts, scoring rules, and run details.
 
-\subsection{Evidence-Access Heads and Recoverable Addresses}
+\subsection{Evidence-Access Heads Mediate Composition}
 \label{sec:phenomenon}
-\textbf{Composition failure under shared evidence.} The native models correctly answer both constituents on $457/462/501$ test sources, yet fail to compose on $234/236/243$ of them, yielding conditional failure rates of \scores{51.2}{51.1}{48.5}\%. A permissive check crediting responses containing an accepted alias still gives \scores{48.1}{49.1}{47.3}\% (Appendix~\ref{app:scoring_protocol}).
+\textbf{Correct hops, failed composition.} The native models correctly answer both constituents on $457/462/501$ test sources, but fail to compose on $234/236/243$ of them. The resulting conditional failure rates are \scores{51.2}{51.1}{48.5}\%. The same context can therefore support both direct answers while failing to support their composition. This gap also persists under permissive alias matching (Appendix~\ref{app:scoring_protocol}), motivating an analysis of how the composed query changes evidence access.
 
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=\columnwidth]{figures/data_main_localization.pdf}
-  \caption{\textbf{Evidence-access head localization.} Direct-minus-composed bridge attention for Qwen3-4B and Llama-3.1-8B (0.02-wide bins, shared scale). Boxes mark the 20 and 40 frozen heads. Full three-model maps: \cref{fig:layer_profiles}.}
+  \caption{\textbf{Composition changes bridge access in a localized set of heads.} Direct-minus-composed bridge attention for Qwen3-4B and Llama-3.1-8B (0.02-wide bins, shared scale). Boxes mark the selected 20 and 40 heads. Complete maps appear in \cref{fig:layer_profiles}.}
   \label{fig:localization}
 \end{figure}
 
-\textbf{Locating heads with query-dependent access.} \Cref{fig:localization} shows the direct--composed attention contrast over the head/layer space. The ranking identifies sparse sets of heads whose bridge access is sensitive to query formulation. Across both model families, the high-scoring heads concentrate in a restricted band of layers. Appendix~\ref{app:interventions} provides the full head-set intersection analysis, which characterizes the relation between the difference-ranked and high-attention sets. The layer-wise mean contrast peaks in the middle layers for all three models (\cref{fig:head_pair}a), near layers 20--24 in Qwen and 13--14 in Llama. At the selected counts of $20/20/40$, knockout reduces composed accuracy to \scores{7.4}{5.5}{6.4}\%, versus \scores{24.4}{27.3}{29.4}\% for layer-matched random heads. Direct-hop accuracy also depends on these heads: Qwen3-4B's second-hop score falls from 52.9\% to 1.1\%. The representative dose curves for composition (\cref{fig:head_pair}b) and complete constituent controls (\cref{fig:necessity}) establish their behavioral contribution.
+\textbf{Query-sensitive access concentrates in middle layers.} The direct--composed contrast reveals a restricted band of high-scoring heads in both model families (\cref{fig:localization}). The layer-wise mean peaks near layers 20--24 in Qwen and 13--14 in Llama (\cref{fig:head_pair}a). These heads distinguish the two formulations of the same second-hop task: their bridge allocation is stronger when the question names the bridge directly. The full head-set analysis in Appendix~\ref{app:interventions} relates this contrast to each query's absolute attention allocation.
 
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=\columnwidth]{figures/data_main_head_pair.pdf}
-  \caption{\textbf{Layer profiles and knockout validation.} (a) Mean direct-minus-composed bridge attention across heads per layer (4B/8B: Qwen3; L8B: Llama-3.1-8B). (b) Ranked versus layer-matched random head knockout for Llama on 1,000 test sources. Lines connect measured values. All query types and models: \cref{fig:necessity}.}
+  \caption{\textbf{Localized heads contribute causally to answering.} (a) Layer-wise mean direct-minus-composed bridge attention. (b) Composed accuracy after ranked or layer-matched random head knockout in Llama on 1,000 test sources. Lines connect measured doses. 4B/8B: Qwen3; L8B: Llama-3.1-8B. All models and query types appear in \cref{fig:necessity}.}
   \label{fig:head_pair}
 \end{figure}
+
+\textbf{Targeted knockout disrupts composition.} Removing the selected $20/20/40$ heads lowers composed accuracy to \scores{7.4}{5.5}{6.4}\%, compared with \scores{24.4}{27.3}{29.4}\% after layer-matched random knockout. The dose curves in \cref{fig:head_pair}b show the same separation as more heads are removed. These interventions establish that the localized heads contribute to the answer computation. Their constituent-query effects (\cref{fig:necessity}) further connect this role to evidence access across query formulations.
+
+\subsection{Bridge Addresses Remain Recoverable During Failure}
+\label{sec:address_results}
+Do the localized heads still carry the location of the next fact when composition fails? We evaluate the training-fitted readout on the fixed native failure subsets in \cref{sec:phenomenon}. It recovers the bridge paragraph in $169/234$, $176/236$, and $209/243$ cases, or \scores{72.2}{74.6}{86.0}\% (\cref{fig:diagnosis}). Thus, many incorrect composed answers coexist with recoverable bridge-address information.
 
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=\columnwidth]{figures/data_fig3_diagnosis.pdf}
-  \caption{\textbf{Bridge addresses in failed compositions.} Training-fitted readers on the 234/236/243 native failures with correct constituent answers.}
+  \caption{\textbf{Bridge addresses remain recoverable when composition fails.} Accuracy of training-fitted paragraph readers on the 234/236/243 native failures with correct constituent answers. Attention features retain address information beyond paragraph-length and title-mention metadata.}
   \label{fig:diagnosis}
 \end{figure}
 
-\textbf{Reading the bridge during failures.} Within the native failure subsets, the full readout recovers the bridge in $169/234$, $176/236$, and $209/243$ cases (\scores{72.2}{74.6}{86.0}\%). Attention-only readouts reach \scores{64.5}{70.3}{84.4}\%, compared with metadata-only \scores{39.7}{42.4}{42.8}\% (\cref{fig:diagnosis}). Thus, the address can remain recoverable even when the answer fails. This motivates a functional analysis of the access assigned to that paragraph and the relative weighting of its local tokens.
+Attention-only readers reach \scores{64.5}{70.3}{84.4}\%, compared with \scores{39.7}{42.4}{42.8}\% using metadata alone. The relevant location information is therefore present in the selected heads' attention features. This finding motivates the next step of the analysis: how does the access allocated to that location interact with the weighting of its local content?
 
-\subsection{Diagnosing Access-Dependent Reading}
+\subsection{Access Shapes the Effect of Local Reading}
 \label{sec:causal_results}
-\begin{figure}[!ht]
+\textbf{Access to the bridge improves composition.} Calibrating the selected heads' mass on the bridge improves composed accuracy by \scores{4.9}{5.5}{16.0} percentage points on the 1,000 test questions. Applying the same targets to the root or a length-matched other paragraph produces different effects (\cref{fig:access_controls}). The benefit is tied to the destination of access. We next examine how access interacts with the reading pattern inside that destination.
+
+\begin{figure*}[!t]
   \centering
-  \includegraphics[width=\columnwidth]{figures/data_main_causal_pair.pdf}
-  \caption{\textbf{Access and local reading.} (a) Address-specific calibration: paired 95\% source-bootstrap intervals on 1,000 test questions. (b) Effect of direct-query pattern transfer at native versus calibrated mass, with paired 95\% quadruplet-bootstrap intervals (25 discovery quadruplets); slopes equal the interactions. 4B/8B: Qwen3; L8B: Llama-3.1-8B.}
+  \includegraphics[width=\textwidth]{figures/data_main_causal_pair.pdf}
+  \caption{\textbf{Access changes the utility of local reading.} Upper: composed accuracy (\%) when crossing native/calibrated bridge mass with receiver/direct-query reading patterns. Lower: the effect of transferring the direct-query pattern at each mass; the change between these effects is the interaction. Error bars and bracketed interaction intervals are paired 95\% quadruplet-bootstrap intervals over 100 receivers in 25 discovery quadruplets.}
   \label{fig:causal}
-\end{figure}
+\end{figure*}
 
-\textbf{The destination of access matters.} On all 1,000 test compositions, calibrating mass on the annotated bridge improves accuracy by \scores{4.9}{5.5}{16.0} percentage points. Applying the same head-specific targets to the root or length-matched other paragraph decreases accuracy (\cref{fig:causal}a). These address controls preserve the selected heads and calibration targets while changing the location receiving access. They establish the importance of allocating access to the second-hop evidence.
+\textbf{The same pattern has different effects at different access levels.} \Cref{fig:causal} presents all four intervention arms under shared evidence. For Llama, the native, mass-only, pattern-only, and combined conditions reach 51\%, 64\%, 47\%, and 76\% accuracy. Transferring the direct-query pattern changes accuracy by $-4$ points under native access and by $+12$ points after calibration. The transferred pattern is identical in the two comparisons; its usefulness changes with the mass assigned to the paragraph.
 
-\textbf{Interaction with local reading.} On the shared-context diagnostic, Native/Mass/Pattern/Both accuracies are $34/41/28/43\%$, $48/52/50/59\%$, and $51/64/47/76\%$ (\cref{fig:causal} and \cref{tab:factorial}). For Llama, pattern transfer changes accuracy by $-4$ points at native mass and $+12$ points at calibrated mass. Its interaction is $+16$ points with a 95\% interval of $[8,25]$. Qwen3-4B and Qwen3-8B have interactions of $+8$ $[1,14]$ and $+5$ $[0,10]$ points, respectively. For Llama, the additive expectation from the separate interventions is $64+47-51=60\%$, whereas their combination reaches $76\%$. This result connects the attention factorization in \cref{eq:contribution} to a measurable interaction in answering.
+This dependence also appears in Qwen. Pattern transfer changes accuracy by $-6$ and $+2$ points under native access in Qwen3-4B and Qwen3-8B, and by $+2$ and $+7$ points after calibration. Across the three models, calibrating paragraph access consistently increases the estimated benefit of the direct-query pattern.
 
-The complementary contrast shows that mass calibration gains \scores{7}{4}{13} points with the receiver pattern and \scores{15}{9}{29} points with the direct-query pattern. Identity replacement reproduces all 300 native model/source token sequences exactly. Together, the experiments identify a functional dependence between access and local reading in the selected-head computation; the address signal supplies an actionable target for repair.
+\textbf{The joint effect exceeds the additive expectation.} The interaction in \cref{eq:interaction} is \scores{8}{5}{16} percentage points, with 95\% intervals $[1,14]$, $[0,10]$, and $[8,25]$. For Llama, combining the separate effects additively predicts $64+47-51=60\%$, while the joint intervention reaches 76\%. The complementary contrast gives the same result: mass calibration gains 13 points with the receiver pattern and 29 points with the direct-query pattern. \Cref{tab:factorial} reports all paired contrasts.
+
+\textbf{A functional link from access to reading.} The crossed interventions show that access changes the contribution of local token weighting to the answer. This interaction motivates using the localized heads and their address signals together in \method.
 
 \begin{table*}[!t]
   \centering
-  \caption{\textbf{Main contextual reasoning results.} Completed-answer EM (\%) on 1,000 sources. All three requires correct constituent and composed answers. Native evidence selection uses the input graph and native-state reader. All trained configurations use the same 2,000 composed examples. Values are mean $\pm$ sample SD across three recorded runs; Native is measured once.}
+  \caption{\textbf{Mechanism-guided repair improves contextual composition.} Completed-answer EM (\%) on 1,000 test sources. All three requires correct constituent and composed answers. All trained configurations use the same 2,000 composed training examples. Values are mean $\pm$ sample SD over three recorded runs; Native is measured once. Component and evidence-selection results appear in Appendix~\ref{app:application}.}
   \label{tab:main}
   \small\setlength{\tabcolsep}{3.3pt}
   \input{tables/main_results}
 \end{table*}
 
-\subsection{Improving Contextual Composition}
+\subsection{Mechanism-Guided Repair Improves Composition}
 \label{sec:repair_results}
-\method\ raises composed EM from \scores{26.9}{29.2}{36.4}\% to \scores{66.8}{67.2}{69.7}\% (\cref{tab:main}). All-three accuracy increases from \scores{22.3}{22.6}{25.8}\% to \scores{41.3}{45.4}{42.3}\%. On fixed native constituent-correct populations, it repairs \scores{80.8}{80.9}{77.8}\% of composition failures while retaining \scores{94.6}{92.9}{95.1}\% of successes (\cref{tab:fixed_population}). The evaluated full-fine-tuning recipe reaches composed EM of \scores{57.1}{55.2}{35.2}\%.
+By adapting the localized heads and using recoverable addresses to select evidence, \method\ improves composed EM from \scores{26.9}{29.2}{36.4}\% to \scores{66.8}{67.2}{69.7}\%, gains of \scores{39.9}{38.0}{33.3} percentage points (\cref{tab:main}). All-three accuracy increases from \scores{22.3}{22.6}{25.8}\% to \scores{41.3}{45.4}{42.3}\%, showing that the improvement extends to jointly correct reasoning triplets.
 
-\textbf{Effect of evidence selection and adaptation.} Selecting evidence for the native model adds \scores{20.3}{18.9}{17.0} points of composed accuracy. Selected-head adaptation on full contexts reaches \scores{60.1}{61.8}{63.6}\%; fixed restoration gives \scores{60.4}{60.9}{66.3}\%. Filtering and readout ranking complete the repair. The controlled component comparisons in \cref{tab:component_ablation} connect the improvement to changes in the supplied evidence and the computation of the selected heads.
+On the fixed native constituent-correct population, \method\ repairs \scores{80.8}{80.9}{77.8}\% of the original composition failures and retains \scores{94.6}{92.9}{95.1}\% of the original composed successes (\cref{tab:fixed_population}). The same application therefore both corrects failed compositions and maintains most initially successful compositions. Under the reported training recipe, full fine-tuning reaches \scores{57.1}{55.2}{35.2}\% composed EM. The complete component, candidate-selection, and worked-example results are presented in Appendix~\ref{app:application}.
 
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=\columnwidth]{figures/data_main_ambiguity.pdf}
-  \caption{\textbf{Disambiguation by the address reader.} Bridge selection and composed EM for input-order versus full-reader ranking on the same 103 ambiguous questions, using the same adapted checkpoint. 4B/8B: Qwen3; L8B: Llama-3.1-8B.}
-  \label{fig:ambiguity_main}
-\end{figure}
+The selected Q/K/V/O slices contain $23.6/39.8/75.5$M trainable parameters, or \scores{0.59}{0.49}{0.94}\% of the models; address readers add $42/42/82$ weights. Evidence selection reduces the input tokens used for composed-answer generation by 56.3--57.6\%, with an additional reader prefill on 10.3\% of composed inputs. Appendix~\ref{app:efficiency} reports the full workload. Complete HotpotQA, MMLU, and GSM8K evaluations and the projection-restoration analysis appear in Appendix~\ref{app:application}.
 
-\textbf{When the address readout matters.} The graph yields one candidate on 822 questions (817 correct bridges), multiple candidates on 103, and an inapplicable graph on 75. On the ambiguous inputs, replacing input order with the full reader raises bridge accuracy from 35.9\% to \scores{92.2}{93.2}{95.1}\% and composed EM from \scores{36.9}{36.9}{38.2}\% to \scores{70.2}{70.9}{76.7}\% (\cref{fig:ambiguity_main}). Both ranking policies use the same adapted checkpoint and retain the root plus one candidate. All other 897 questions have identical generated tokens. \Cref{fig:case_main} illustrates how the reader resolves an actual ambiguous graph and changes the generated answer. The feature-level reader ablation in \cref{tab:ambiguity} further isolates the attention-derived address signal: attention-only features yield the same aggregate composed EM as the full reader. Hence the address signal is particularly useful where the input graph leaves a choice to resolve.
-
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=\columnwidth]{figures/data_main_case.pdf}
-  \caption{\textbf{Worked example of bridge disambiguation.} Qwen3-4B on a test source with both native constituent answers correct. Both selection policies use the same adapted checkpoint and root paragraph. The full reader selects the annotated bridge and answers correctly. Colors denote the two selection outcomes; paragraph indices are zero-based.}
-  \label{fig:case_main}
-\end{figure}
-
-\subsection{Validation through Local Fact Exchanges}
+\subsection{Repaired Answers Follow Local Fact Changes}
 \label{sec:content_results}
-To validate the repaired system's use of local facts, we reciprocally exchange object spans between two bridge paragraphs expressing the same relation (\cref{fig:causal_framework}c). The question, titles, paragraph order, and full-context word and character multisets remain fixed; the correct answer changes. The 100 valid exchanges reuse the 25 discovery quadruplets. The selector is rerun on edited contexts.
+Successful composition should respond to the values attached to the relevant relations. We examine this behavior by reciprocally exchanging object spans between two bridge paragraphs expressing the same relation (\cref{fig:causal_framework}c). The question, titles, paragraph order, and complete-context word and character multisets stay fixed, while the correct answer changes. This construction changes local fact binding while preserving global word occurrence.
 
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=\columnwidth]{figures/data_fig5_content.pdf}
-  \caption{\textbf{Local fact exchange.} Edited-value following and joint original/edited correctness on 100 reciprocal exchanges. 4B/8B: Qwen3; L8B: Llama-3.1-8B.}
+  \caption{\textbf{Repaired answers follow changed local facts.} Edited-value accuracy and joint original/edited correctness on 100 reciprocal exchanges. 4B/8B: Qwen3; L8B: Llama-3.1-8B.}
   \label{fig:content}
 \end{figure}
 
-\method\ follows the exchanged value in \scores{77}{76}{80}\% of cases, compared with Native \scores{26}{35}{32}\% (\cref{fig:content}). Joint original/edited correctness increases from \scores{21}{29}{29}\% to \scores{75}{72}{77}\%. The latter credits successful evidence use in both versions of the same question. This behavioral assay complements the attention interventions by testing whether the complete repaired procedure responds appropriately to a localized fact change.
+We apply the complete procedure to each edited context, including evidence selection. On the 100 exchanges from the 25 discovery quadruplets, \method\ follows the exchanged value in \scores{77}{76}{80}\% of cases, compared with Native \scores{26}{35}{32}\% (\cref{fig:content}). Joint original/edited correctness rises from \scores{21}{29}{29}\% to \scores{75}{72}{77}\%. This joint measure requires a correct answer both before and after the local fact changes.
 
-\paragraph{Connecting diagnosis and repair.} The crossed intervention shows that the effect of local token weighting depends on access to the relevant paragraph. The readout supplies a complementary way of using the same attention-derived information: it ranks candidate addresses before the adapted model processes the retained evidence. The fixed-checkpoint comparisons isolate the contribution of this selection decision, while the value exchanges evaluate the complete procedure on locally changed facts. These three evaluations connect internal address information, a controlled attention interaction, and the behavior of the repaired system. The crossed attention result concerns the selected heads; the exchange result concerns the complete procedure with evidence selection rerun.
-
-\begin{table*}[!t]
-  \centering
-  \caption{\textbf{General capability retention.} Zero-shot accuracy (\%) on HotpotQA, MMLU, and GSM8K. Native is measured once; adapted rows report means over three recorded runs. Bold indicates the best value within each model/task. Full fine-tuning GSM8K runs lack valid final-answer lines. See \cref{tab:capability_full,tab:secondary_qa} for run dispersion and formatting.}
-  \label{tab:main_retention}
-  \small\setlength{\tabcolsep}{3.0pt}
-  \input{tables/main_retention}
-\end{table*}
-
-\subsection{General Capabilities and Efficiency}
-\label{sec:retention}
-Complete-split zero-shot evaluation covers HotpotQA distractor validation (7,405) \citep{yang2018hotpotqa}, MMLU test (14,042) \citep{hendrycks2021mmlu}, and GSM8K test (1,319) \citep{cobbe2021gsm8k}. \method\ improves Qwen HotpotQA by 3.52/3.90 points; Qwen MMLU changes by $-0.17/-0.22$ points and GSM8K by $-2.35/+0.83$. Llama's changes are $-2.56/-1.44/-5.69$ points on these tasks. Fixed restoration recovers 31.92 points on Llama GSM8K relative to adaptation alone. \Cref{tab:main_retention} compares the complete procedure with native inference, full fine-tuning, and un-restored head adaptation. The matched restoration control in \cref{fig:restoration_main} further shows recovery on the first-hop and joint reasoning tasks with the same adapted checkpoint. Full results and run dispersion appear in \cref{tab:capability_full,fig:ablations}.
-
-
-
-The selected slices contain $23.6/39.8/75.5$M trainable parameters (\scores{0.59}{0.49}{0.94}\%); the readers add $42/42/82$ weights. Filtering reduces composed answer-generation input tokens by 56.3--57.6\%, with an additional full-context reader prefill on 10.3\% of composed inputs (Appendix~\ref{app:efficiency}). The causal analysis covers three 4B--8B models and two-hop textual chains; broader circuit localization and longer chains remain directions for further study.
-
-\begin{figure}[!t]
-  \centering
-  \includegraphics[width=\columnwidth]{figures/data_main_restoration.pdf}
-  \caption{\textbf{Restoring native projections.} Llama-3.1-8B accuracy before and after restoration under full contexts (first hop and all three) and on GSM8K, where evidence selection is inapplicable.}
-  \label{fig:restoration_main}
-\end{figure}
+These results connect the mechanistic analysis to evidence-sensitive behavior. The attention interventions reveal how access shapes the effect of local reading; the fact exchanges show that the resulting application uses changed local values to update its answers. Together, they make evidence access and local reading concrete targets for understanding and improving contextual composition.

@@ -1,0 +1,34 @@
+{
+  "base_commit": "7e498a6a29ff9623183e7bddc7e5c3019035caef",
+  "protected_files": {
+    "paper/figures/figure1.pdf": "8b9d04d9ce353d34afc72db29896468ade511e6ac0e7034b7b72210288e758fe",
+    "paper/figures/figure3.pdf": "8411f2dd27f3f7082fc7eeeccddbb25a415d334c93aaac8ce5efe2f870151adc",
+    "paper/figures/figure1_teaser.png": "c7626cbce7c0c53efce91290e736012ad6f7ef0a0984fe761fb582f20d41c3ac",
+    "paper/figures/figure3.pptx": "23d19cc917120b533eb0ab4c9b88964802d880c6b2886ea89ac544f220ac57d2",
+    "paper/figures/figures1-3.pptx": "e8a1dc3a3057132d0a845c792a49185c2e9ec14b8b2cd2acb04cb7951c26341f",
+    "paper/figures/figure1.png": "923cf46d247573dbd777c7775966585203c12b8ffba04758a3bda57f9beac3eb",
+    "paper/figures/figure2.pdf": "5d6d1b551e15e85a26d8fb8745d3632d232a0eb4c66fe7b77d6a4b9445e166cd",
+    "paper/figures/figure3_method.pdf": "2faa31d9b137c1889ac861a9841cd14bd46f891e9c42aa61775ab1dd3b928349",
+    "paper/figures/figure2_diagnosis.pdf": "f97507be3892ef4138a757ec033473a7ea89b37d7660406e06f2bbaa03479377",
+    "paper/figures/figure3.png": "d1c45420fa9cb81e035eaea2f2c0da506d294cb8320743f8589367d4368a3fa5",
+    "paper/figures/figure3_method.png": "167879a106a855220b7c5c93023dc9cdf0cdd8346960c090fb4afd1410ee8f52",
+    "paper/figures/figure2_diagnosis.png": "b136aa30746682013d04a6a19173cfc32c32e6539abb60a83dc6d252cd4f2bf5",
+    "paper/figures/figure2.pptx": "4cffd84886fe1af841b3fad33397d63ba0d3e09bfc4d5af76c07b9479cb22062",
+    "paper/figures/figure2.png": "c8203f4f49c1c96b509e580c76ee452f68a07590a5a1886ba1fd7bc4e2a0a2a3",
+    "paper/figures/figure1.pptx": "514e25cce6c066ea6df25101918363b861c1118f11148a4f4ffa3d4561619383",
+    "paper/figures/figure1_teaser.pdf": "f36d31322d1207e2e856acb9848483871ac6efa79a6d327b2a50c9cfacdc9955",
+    "paper/figures/figures1-3.pdf": "6b2b4c6c2ee6e722b14e2c353af2029a500018d5ba8faa8573693bd60475ffdf",
+    "paper/draw_figures.py": "bafe621ddec215714f9f51336d1570496a51801e378fbd3d27f33e63440e4c74"
+  },
+  "protected_tex_blocks": {
+    "paper/main.tex": [
+      "\\begin{figure}[!t]\n  \\centering\n  \\includegraphics[width=\\columnwidth]{figures/figure1_teaser.pdf}\n  \\caption{\\textbf{From failed composition to evidence-guided repair.} (a) A Llama-3.1-8B example with correct constituent answers and an incorrect composed answer under the same context. (b) Bridge addresses remain recoverable; paragraph access and local reading interact. (c) \\method\\ combines evidence selection and head adaptation to recover the correct answer.}\n  \\label{fig:teaser}\n\\end{figure}"
+    ],
+    "paper/sections/introduction.tex": [
+      "\\begin{figure*}[!t]\n  \\centering\n  \\includegraphics[width=\\textwidth]{figures/figure2_diagnosis.pdf}\n  \\caption{\\textbf{Overview of the mechanistic analysis.} (a) Direct second-hop and composed questions share evidence; their attention difference ranks heads, which are validated by knockout. (b) The four-arm intervention crosses paragraph mass and within-paragraph attention pattern, using receiver-computed values and original output-projection weights. (c) Reciprocal value exchanges test the complete repaired procedure's sensitivity to local relation values.}\n  \\label{fig:causal_framework}\n\\end{figure*}"
+    ],
+    "paper/sections/method.tex": [
+      "\\begin{figure*}[!t]\n  \\centering\n  \\includegraphics[width=\\textwidth]{figures/figure3_method.pdf}\n  \\caption{\\textbf{Overview of CoReTrace.} Offline, selected Q/K/V/O slices are adapted, fixed prefill rules restore native V/O contributions, and the training-fitted address reader is prepared. At inference, a title graph supplies candidate paragraphs. A unique candidate is selected directly; ambiguous candidates trigger the frozen readout. The root and selected bridge retain their original text and order. Inapplicable graphs retain the full context.}\n  \\label{fig:framework}\n\\end{figure*}"
+    ]
+  }
+}

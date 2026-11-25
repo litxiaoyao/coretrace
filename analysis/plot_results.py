@@ -148,31 +148,101 @@ def render_diagnosis(readouts):
     save_figure(fig,"data_fig3_diagnosis")
 
 def render_causal(factors,contrasts,access):
-    fig,axes=plt.subplots(1,2,figsize=(COL,1.48))
-    fig.subplots_adjust(left=.13,right=.98,bottom=.25,top=.86,wspace=.46)
-    ax=axes[0];clean_axis(ax,"y",box=True); x=np.arange(3); width=.22
+    """Show the crossed conditions and their measured interaction together.
+
+    Cell values and paired contrasts use the same 100 receivers. Intervals are
+    the recorded quadruplet-bootstrap intervals for contrasts, not invented
+    cell-level uncertainty. Address specificity uses a separate test population
+    and is rendered separately below.
+    """
+    fig=plt.figure(figsize=(WIDE,2.45))
+    condition_rows=(("native","conditional_only"),("mass_only","both"))
+    contrast_keys=("conditional_effect_native_mass","conditional_effect_fixed_mass")
+    for i,model in enumerate(MODELS):
+        color=MODEL_COLORS[i]
+        left=.025+i*.327
+        values=np.array([[unique_record(factors,model=model,method=key)["accuracy_percent"]
+                          for key in row] for row in condition_rows])
+        effects=[unique_record(contrasts,model=model,contrast=key) for key in contrast_keys]
+        estimate=np.array([row["estimate_pp"] for row in effects])
+        low=np.array([row["CI95_low_pp"] for row in effects])
+        high=np.array([row["CI95_high_pp"] for row in effects])
+        interaction=unique_record(contrasts,model=model,contrast="interaction")
+        if not np.allclose(values[:,1]-values[:,0],estimate):
+            raise ValueError(f"Crossed cells and pattern contrasts disagree for {model}")
+        if not np.isclose(estimate[1]-estimate[0],interaction["estimate_pp"]):
+            raise ValueError(f"Pattern contrasts and interaction disagree for {model}")
+
+        fig.text(left+.155,.967,f"({chr(97+i)}) {MODEL_NAMES[model]}",
+                 ha="center",va="top",fontsize=7.2,fontweight="bold",color=INK)
+
+        # Equal-area cells expose the actual 2-by-2 design. Color identifies
+        # the combined condition; it does not encode a simulated attention map.
+        matrix=fig.add_axes([left,.555,.31,.325])
+        matrix.set(xlim=(0,1),ylim=(0,1));matrix.axis("off")
+        matrix.text(.66,.98,"Composed accuracy (%)",ha="center",va="top",fontsize=6.1)
+        matrix.text(.01,.72,"Access mass",ha="left",va="center",fontsize=5.9)
+        for j,label in enumerate(("Receiver","Direct-query")):
+            matrix.text(.55+j*.30,.72,label,ha="center",va="center",fontsize=6.0)
+        for row,label in enumerate(("Native","Calibrated")):
+            y=.365-row*.335
+            matrix.text(.01,y+.14,label,ha="left",va="center",fontsize=6.1)
+            for col in range(2):
+                x=.405+col*.30
+                combined=row==1 and col==1
+                face=matplotlib.colors.to_rgba(color,.16) if combined else "#F2F3F5"
+                matrix.add_patch(Rectangle((x,y),.29,.28,facecolor=face,
+                                           edgecolor=color if combined else "#CFD3D7",
+                                           linewidth=.65 if combined else .45))
+                matrix.text(x+.145,y+.14,f"{values[row,col]:.0f}",ha="center",va="center",
+                            fontsize=8.4,fontweight="bold" if combined else "normal",color=INK)
+
+        ax=fig.add_axes([left+.065,.19,.225,.285])
+        clean_axis(ax)
+        ax.axhline(0,color=GRAY,linestyle=":",lw=.8,zorder=2)
+        ax.errorbar([0,1],estimate,yerr=[estimate-low,high-estimate],
+                    fmt=MODEL_MARKERS[i]+"-",color=color,markeredgecolor="white",
+                    markeredgewidth=.45,markersize=4.0,capsize=2.4,capthick=.8,
+                    elinewidth=.9,linewidth=1.25,zorder=4)
+        for x,value in enumerate(estimate):
+            ax.text(x+.12,value+(2.2 if x==0 else 0),f"{value:+.0f}",ha="left",
+                    va="bottom" if x==0 else "center",fontsize=6.5,
+                    fontweight="bold",color=INK,zorder=5,
+                    bbox={"facecolor":"white","edgecolor":"none","pad":.35})
+        ax.set(title="Direct-query pattern effect",xlim=(-.24,1.42),
+               xticks=[0,1],xticklabels=["Native","Calibrated"],
+               ylim=(-12,24),yticks=[-10,0,10,20],xlabel="Access mass")
+        ax.set_title("Direct-query pattern effect",fontsize=6.3,pad=3)
+        ax.tick_params(labelsize=5.8)
+        ax.xaxis.label.set_size(5.8)
+        if i==0:
+            ax.set_ylabel("Effect on accuracy (pp)",fontsize=6.0,labelpad=3)
+        interval=f"[{interaction['CI95_low_pp']:.0f}, {interaction['CI95_high_pp']:.0f}]"
+        fig.text(left+.155,.035,
+                 f"Interaction: {interaction['estimate_pp']:+.0f} pp  {interval}",
+                 ha="center",va="center",fontsize=6.6,fontweight="bold",color=INK)
+    save_figure(fig,"data_main_causal_pair")
+    render_access_controls(access)
+
+
+def render_access_controls(access):
+    """Preserve the separate 1,000-source address intervention in the appendix."""
+    fig,ax=plt.subplots(figsize=(COL,1.85))
+    fig.subplots_adjust(left=.16,right=.985,bottom=.24,top=.97)
+    clean_axis(ax);x=np.arange(len(MODELS));width=.23
     specs=[("oracle_second_paragraph","Bridge",BLUE),("oracle_first_paragraph","Root",GRAY),("lengthmatched_other_paragraph","Other",ORANGE)]
     bounds=[]
     for i,(key,label,color) in enumerate(specs):
         r=[unique_record(access,model=m,method=key) for m in MODELS]
         vals=np.array([p["delta_pp"] for p in r]);lo=np.array([p["CI95_low_pp"] for p in r]);hi=np.array([p["CI95_high_pp"] for p in r]);bounds.extend(lo);bounds.extend(hi)
         pos=x+(i-1)*width;bars(ax,pos,vals,width,color,label=label)
-        ax.errorbar(pos,vals,yerr=[vals-lo,hi-vals],fmt="none",ecolor=INK,elinewidth=.65,capsize=1.4,zorder=4)
+        ax.errorbar(pos,vals,yerr=[vals-lo,hi-vals],fmt="none",ecolor=INK,elinewidth=.75,capsize=2,zorder=4)
     ax.axhline(0,color=INK,lw=.65)
-    ax.set(title="(a) Access calibration",xticks=x,xticklabels=["4B","8B","L8B"],ylim=(np.floor(min(bounds)/5)*5-1,np.ceil(max(bounds)/5)*5+13),ylabel="EM change (pp)",yticks=[-20,-10,0,10,20])
-    inset_legend(ax,"upper left",fontsize=4.5,ncol=1,labelspacing=.12)
-    ax=axes[1];clean_axis(ax,"both",box=True)
-    keys=["conditional_effect_native_mass","conditional_effect_fixed_mass"]
-    bounds=[]
-    for i,m in enumerate(MODELS):
-        r=[unique_record(contrasts,model=m,contrast=k) for k in keys]
-        v=np.array([z["estimate_pp"] for z in r]);lo=np.array([z["CI95_low_pp"] for z in r]);hi=np.array([z["CI95_high_pp"] for z in r]);bounds.extend(lo);bounds.extend(hi)
-        xpos=np.arange(2)+(i-1)*.07
-        ax.errorbar(xpos,v,yerr=[v-lo,hi-v],fmt=MODEL_MARKERS[i]+"-",color=MODEL_COLORS[i],markeredgecolor="white",markeredgewidth=.35,capsize=1.7,elinewidth=.7,label=["4B","8B","L8B"][i],zorder=3+i)
-    ax.axhline(0,color=GRAY,linestyle=":",lw=.7)
-    ax.set(title="(b) Pattern transfer",xlim=(-.18,1.18),xticks=[0,1],xticklabels=["Native","Calibrated"],ylim=(np.floor(min(bounds)/5)*5-1,np.ceil(max(bounds)/5)*5+4),ylabel="Pattern effect (pp)",yticks=[-10,0,10,20])
-    inset_legend(ax,"upper left",fontsize=4.5,ncol=1,labelspacing=.12)
-    save_figure(fig,"data_main_causal_pair")
+    ax.set(xticks=x,xticklabels=[SHORT[m] for m in MODELS],
+           ylim=(np.floor(min(bounds)/5)*5-1,np.ceil(max(bounds)/5)*5+9),
+           ylabel="EM change (pp)",yticks=[-20,-10,0,10,20])
+    inset_legend(ax,"upper center",fontsize=5.5,ncol=3)
+    save_figure(fig,"data_app_access_controls")
 
 
 def heatmap_bins(matrices,step=.02):

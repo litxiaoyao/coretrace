@@ -17,14 +17,14 @@
 \definecolor{tablebase}{HTML}{EEEEEE}
 \definecolor{gain}{HTML}{1F77B4}
 \definecolor{loss}{HTML}{D62728}
-\icmltitlerunning{Diagnosing Evidence Access and Local Reading}
+\icmltitlerunning{How Evidence Access Shapes Local Reading}
 \begin{document}
 \raggedbottom
 \lefthyphenmin=2
 \righthyphenmin=3
 \hyphenation{Llama Qwen CoReTrace}
 \twocolumn[
-\icmltitle{\texorpdfstring{When Correct Hops Fail to Compose:\\Diagnosing Evidence Access and Local Reading}{When Correct Hops Fail to Compose: Diagnosing Evidence Access and Local Reading}}
+\icmltitle{\texorpdfstring{When Correct Hops Fail to Compose:\\How Evidence Access Shapes Local Reading}{When Correct Hops Fail to Compose: How Evidence Access Shapes Local Reading}}
 \begin{icmlauthorlist}
 \icmlauthor{Anonymous Authors}{anonymous}
 \end{icmlauthorlist}
@@ -34,7 +34,7 @@
 ]
 \printAffiliationsAndNotice{}
 \begin{abstract}
-Language models can answer two constituent questions from the same evidence yet fail to compose their answers. Across three models, composition fails on roughly half of the sources with correct constituent answers. A training-fitted readout nevertheless recovers the bridge paragraph in 72.2--86.0\% of these failures. To understand this discrepancy, we factorize attention into paragraph access mass and the conditional reading pattern within the paragraph. Crossed interventions reveal that calibrating access increases the utility of direct-query reading patterns, with interaction estimates of 5--16 percentage points. Guided by this diagnosis, we propose \method, which uses attention-derived address information to select evidence and adapts the selected heads with fixed projection restoration. With fewer than 1\% trainable model parameters, \method\ raises composed accuracy from \scores{26.9}{29.2}{36.4}\% to \scores{66.8}{67.2}{69.7}\% on Qwen3-4B, Qwen3-8B, and Llama-3.1-8B. Ambiguous-candidate comparisons connect the recovered address to better answers, and reciprocal fact exchanges show that repaired predictions follow changed local values in 76--80\% of cases. These results establish a functional interaction between evidence access and local reading and demonstrate its utility for improving contextual composition.
+Language models can answer each hop of a factual chain from the same evidence yet fail to compose the answers. We investigate this gap by tracing how a composed question accesses and reads its supporting paragraphs. Paired constituent and composed queries localize a small set of evidence-access heads whose removal sharply reduces answering accuracy. Across three models, composition fails on roughly half of the sources with correct constituent answers, even though the bridge-paragraph address remains recoverable from attention features in most of these failures. We explain this discrepancy by separating paragraph-level attention mass from the conditional attention pattern within the paragraph. Crossed interventions reveal a functional interaction: calibrating access increases the benefit of direct-query reading patterns, with interaction estimates of 5--16 percentage points. This finding connects evidence location to the computation that uses its content. Guided by the localized heads and recoverable addresses, we introduce \method, which combines selected-head adaptation with attention-guided evidence selection. With fewer than 1\% trainable model parameters, it improves composed accuracy by 33.3--39.9 percentage points. Reciprocal fact exchanges further show that its answers track changed local values. Together, these findings identify access-dependent local reading as a mechanism of contextual composition and a practical target for improvement.
 \end{abstract}
 
 \begin{figure}[!t]

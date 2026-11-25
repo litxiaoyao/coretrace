@@ -1,4 +1,4 @@
-\section{Data Construction and Evaluation Population}
+\section{Dataset Construction}
 \label{app:data}
 
 \subsection{Natural Sources and Paired Questions}
@@ -31,13 +31,13 @@ For seven frequent relations, constituent probes use natural templates: ``Who di
 
 The test panel was selected from an existing source-only pool of 1,001 examples by sorting source identifiers using a fixed SHA-256 ordering and retaining 1,000. Discovery started from 32 naturally crossed quadruplets; whole quadruplets intersecting test sources were removed, and 25 complete quadruplets were retained in a separate fixed hash ordering. Training retained 868 existing source-only examples and added 1,132 eligible official training examples, excluding selected source identifiers. Added candidates were hash-ordered and required all three prompts to fit 4,096 tokens under the original shared Qwen3 tokenizer and template. Selection uses input lengths and source annotations. The resulting source identifiers remain fixed for every model.
 
-Eleven discovery sources use explicit official support indices: ten resolve subject/title surface mismatches, and one resolves a demonym to its answer entity. Training and test sources use the standard matching procedure. The formal splits have disjoint source identifiers; discovery and test may reuse sources from preceding development. Model-specific restoration rules were fixed during that development stage.
+Eleven discovery sources use explicit official support indices: ten resolve subject/title surface mismatches, and one resolves a demonym to its answer entity. Training and test sources use the standard matching procedure. The three released splits have disjoint source identifiers. Discovery fixes the heads and access targets, while training fits the model updates and paragraph readers. The model-specific restoration scopes remain fixed throughout the reported suite (Appendix~\ref{app:training_protocol}).
 
 \subsection{Shared Contexts and Reciprocal Fact Exchanges}
 
 Each discovery quadruplet crosses two bridges with two second-hop relations, producing four original composed questions with four distinct answer entities. We form one ten-paragraph context from complete original supporting paragraphs, padded with original non-support paragraphs from those same sources. This exact context is shared across all four composed questions and their direct probes. A quadruplet contributes four composed queries, four direct second-hop queries, and two distinct direct first-hop queries: 250 prompts and 100 three-query links in total. The construction preserves complete natural paragraphs and aligns donor and receiver evidence-token positions. These shared contexts define a separate diagnostic input from the canonical discovery contexts.
 
-For the content intervention, we exchange the literal object spans in two official bridge facts with the same second-hop relation. The support sentence and its object span must be uniquely identifiable; the original and replacement normalized answer sets are disjoint. Exchanges preserve the question, titles, paragraph order, complete-context character multiset, and complete-context word multiset. All 100 constructed exchanges satisfy these checks and change the input. Preservation is assessed before evidence selection: rerunning a selector can subsequently produce a different retained context. This design holds the complete-context bag of words constant while changing which value is attached to the queried bridge relation. A change in the predicted value therefore measures sensitivity to the local relation binding under fixed global word counts.
+For the content intervention, we exchange the literal object spans in two official bridge facts with the same second-hop relation. The support sentence and object span must be uniquely identifiable, and the original and replacement normalized answer sets must be disjoint. The exchange preserves the question, titles, paragraph order, and complete-context word and character multisets. All 100 constructed exchanges meet these conditions and change the input. The complete procedure then selects evidence from the edited context. By changing which value is attached to the queried relation while preserving global word occurrence, the intervention tests whether answers follow the local fact binding.
 
 \section{Experimental Protocol}
 \label{app:protocol}
@@ -89,13 +89,20 @@ The within-model intersection analysis in \cref{fig:head_overlap_all} uses the f
 
 For head knockout, selected head outputs are set to zero before their output projection at all question-prefill positions. Prefix computation and cached decoding retain their ordinary forward operations. We compare the top 20, 40, and 80 heads to one layer-matched random set at each count, sampled with seeds 62, 82, and 122, respectively. Random sets preserve the number of selected heads in each layer and may overlap the ranked set. The overlap counts at these three doses are 3/7/13 for Qwen3-4B, 0/4/15 for Qwen3-8B, and 3/8/21 for Llama.
 
-\cref{fig:necessity} reports all three query types and all doses on the 1,000-source test panel. At the chosen counts, selected knockout reduces composed accuracy to 7.4/5.5/6.4\%, compared with 24.4/27.3/29.4\% for matched random knockout. The substantial constituent effects show that these heads contribute causally across query types. For paragraph-address controls, the same frozen targets are applied either to the annotated bridge, the root, or the other paragraph with nearest token length (ties are broken by title and then original index). The paired differences in \cref{fig:causal}a use each intervention pipeline's own native baseline.
+\cref{fig:necessity} reports all three query types and all doses on the 1,000-source test panel. At the chosen counts, selected knockout reduces composed accuracy to 7.4/5.5/6.4\%, compared with 24.4/27.3/29.4\% for matched random knockout. The constituent effects show that these heads contribute causally across query formulations. For paragraph-address controls, the same frozen targets are applied to the annotated bridge, the root, or the other paragraph with nearest token length; ties are broken by title and then original index. The paired differences in \cref{fig:access_controls} use each intervention pipeline's native baseline.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{figures/data_app_necessity.pdf}
   \caption{\textbf{Necessity across query types and knockout doses.} Change in completed-answer EM (percentage points) relative to the native model on 1,000 test sources. Rows share a vertical scale across models for the same query type. Ranked and layer-matched random heads are removed at counts 20, 40, and 80. Each random point uses one matched set; lines connect measured doses. The selected head counts are 20/20/40.}
   \label{fig:necessity}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.56\textwidth]{figures/data_app_access_controls.pdf}
+  \caption{\textbf{Access calibration depends on the evidence address.} The same frozen head-specific mass targets are applied to the bridge, root, or a length-matched other paragraph. Bars show paired changes in composed accuracy from the intervention pipeline's native reference on 1,000 test questions; error bars are paired 95\% source-bootstrap intervals.}
+  \label{fig:access_controls}
 \end{figure}
 
 \subsection{Exact Attention Transformations}
@@ -116,13 +123,13 @@ Donor and receiver must have identical context-token prefixes and bridge-key pos
 
 \begin{table}[H]
   \centering
-  \caption{\textbf{Factorial effects on shared-context composition.} Accuracy differences in percentage points with 95\% paired percentile intervals from 2,000 resamples of the 25 quadruplets. All 100 composed receivers remain in every condition. The interaction is defined in \cref{eq:interaction}; Qwen3-8B's interval includes zero at its boundary.}
+  \caption{\textbf{Factorial effects on shared-context composition.} Accuracy differences in percentage points with 95\% paired percentile intervals from 2,000 resamples of the 25 quadruplets. All 100 composed receivers remain in every condition. The interaction in \cref{eq:interaction} measures the change in the direct-query pattern effect after access calibration.}
   \label{tab:factorial}
   \small\setlength{\tabcolsep}{4pt}
   \input{tables/factorial_contrasts}
 \end{table}
 
-\subsection{Readout and Content Diagnostics}
+\subsection{Address Recovery and Local Fact Reading}
 
 \cref{tab:readouts} reports the full, attention-only, and metadata-only readouts both across all test sources and within native constituent-correct composition failures. Native and adapted-state readouts are fitted separately on features from their respective model states. The full readout improves from 80.3/83.9/91.9\% in the native state to 90.3/92.6/95.0\% in the adapted state. On native composition failures, accuracy rises from 72.2/74.6/86.0\% to 82.9/86.0/92.2\%. Attention-only readouts show the same improvement, reaching 89.6/91.2/94.3\% overall. Metadata accuracy stays at 43.5/43.5/44.1\%, so the improvement comes from the adapted attention features.
 
@@ -163,9 +170,23 @@ On the 1,000 composed test questions, there are 75 inapplicable/no-candidate cas
   \input{tables/ambiguous_selection}
 \end{table}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.56\textwidth]{figures/data_main_ambiguity.pdf}
+  \caption{\textbf{Attention-guided selection resolves ambiguous bridges.} Bridge selection and composed EM for input-order and full-reader ranking on the same 103 ambiguous questions, with the same adapted checkpoint. 4B/8B: Qwen3; L8B: Llama-3.1-8B.}
+  \label{fig:ambiguity_main}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.56\textwidth]{figures/data_main_case.pdf}
+  \caption{\textbf{A worked example of bridge disambiguation.} Qwen3-4B on a test source with both native constituent answers correct. Both selection policies use the same adapted checkpoint and root paragraph. The full reader selects the annotated bridge and answers correctly. Colors denote the selection outcomes; paragraph indices are zero-based.}
+  \label{fig:case_main}
+\end{figure}
+
 \subsection{Complete Reasoning Triplets}
 
-\cref{tab:core_complete} compares the native model, full fine-tuning, and \method\ on all three query types and their joint accuracy. \method\ raises composed accuracy by 39.9/38.0/33.3 points and second-hop accuracy by 14.7/15.7/11.6 points over Native. All-three accuracy reaches 41.3/45.4/42.3\%, compared with 22.3/22.6/25.8\% natively. First-hop accuracy is 69.8/73.4/66.0\%, against native 87.2/86.0/85.2\%.
+\cref{tab:core_complete} reports the native model, full fine-tuning, and \method\ on each constituent question, the composed question, and their joint accuracy. \method\ raises composed accuracy by 39.9/38.0/33.3 points and second-hop accuracy by 14.7/15.7/11.6 points. All-three accuracy reaches 41.3/45.4/42.3\%, compared with 22.3/22.6/25.8\% natively. The full triplets retain a common source population across all query types.
 
 \begin{table}[H]
   \centering
@@ -278,6 +299,6 @@ A second example asks who John Corvinus's paternal grandfather was. The supplied
   \input{tables/inference_costs}
 \end{table}
 
-\section{Numerical Reproduction}
+\section{Reproducing the Analysis}
 \label{app:reproducibility}
-The recorded results provide source identifiers, per-example predictions, frozen head selections, reader weights, and experiment summaries. A reaggregation checked 90 experiment directories and 991,680 prediction records, reproduced 12 released readout fits and 144 aggregate entries, and verified the factorial contrasts, clustered intervals, and 300 identity-intervention token sequences. The restored model runtime modules for native loading, deployment, head-slice adaptation, and CPU AdamW are present in the current repository. Numerical reconstruction uses the recorded artifacts; a fresh complete GPU rerun was not performed for this revision.
+The accompanying code covers dataset construction, head localization, factorized attention interventions, selected-head adaptation, evidence selection, and evaluation. Fixed source identifiers, head selections, reader weights, and experiment summaries connect the reported results to these procedures. Tables and numerical figures are generated from the recorded results through shared aggregation code, including the paired factorial contrasts and clustered intervals. The construction and evaluation settings are specified in Appendices~\ref{app:data} and~\ref{app:protocol}.

@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "entry_point": "analysis/plot_results.py --only causal",
+  "protected_files_checked": 25,
+  "protected_files_changed": [],
+  "recorded_causal_csvs_byte_identical": true,
+  "figures": {
+    "data_main_causal_pair": {
+      "pages": 1,
+      "size_inches": [
+        6.75,
+        2.45
+      ],
+      "vector_text": true,
+      "embedded_font_count": 2
+    },
+    "data_app_access_controls": {
+      "pages": 1,
+      "size_inches": [
+        3.25,
+        1.85
+      ],
+      "vector_text": true,
+      "embedded_font_count": 1
+    }
+  },
+  "primary_population": "100 receivers in 25 discovery quadruplets",
+  "address_control_population": "1,000 test compositions",
+  "ci_policy": "Original paired contrast confidence intervals; no per-cell uncertainty synthesized.",
+  "visual_qa": "Checked both PNG exports; corrected native-effect annotation/line collision.",
+  "figure_1_2_3_policy": "All assets, aliases, source metadata, captions.json and paper/draw_figures.py unchanged."
+}
