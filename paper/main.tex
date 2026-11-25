@@ -34,7 +34,7 @@
 ]
 \printAffiliationsAndNotice{}
 \begin{abstract}
-Language models can answer both hops of a factual chain from the same evidence yet fail to compose them. We investigate why accessible facts do not always become usable evidence, distinguishing three functions: locating the bridge, routing attention to it, and reading its requested relation. Across three models, nearly half of sources with correct constituent answers still fail in composition, even though bridge addresses remain recoverable in 72.2--86.0\% of these failures. Paired queries reveal evidence-access heads whose preference shifts from root to bridge when the intermediate entity is explicit. Reallocating their attention to the bridge repairs failures, but access is only part of the story. By independently varying paragraph access mass and conditional token weights, we find that routing changes the utility of local reading. Joint interventions yield interaction estimates of 5--16 percentage points and recover errors that neither intervention resolves alone. Guided by these findings, \method\ adapts localized heads and uses their address signals to select evidence, improving composed accuracy by 33.3--39.9 points with fewer than 1\% trainable parameters. Repaired answers follow exchanged relation values at stable evidence addresses. These results reveal coordinated evidence access and reading as an actionable mechanism of contextual composition.
+Language models can answer both hops of a factual chain from the same evidence yet fail to compose them. We investigate this gap through three functions: locating the bridge, routing attention to it, and reading its requested relation. Across three models, nearly half of sources with correct constituents fail to compose, although bridge addresses remain recoverable in 72.2--86.0\% of these failures. Paired queries localize evidence-access heads whose preference shifts from root to bridge when the intermediate entity is explicit. Factoring paragraph attention into access mass and conditional token weights reveals that routing changes the utility of local reading: joint interventions yield interactions of 5--16 percentage points and recover errors that neither resolves alone. Guided by this mechanism, \method\ adapts the localized heads, restores native prefill projections, and selects evidence using their address signals. With fewer than 1\% trainable parameters, it improves composed accuracy by 33.3--39.9 points. Paired internal measurements reveal increased bridge access and stronger target-relation preference after adaptation and restoration; repaired answers follow exchanged values at stable addresses. These findings connect evidence access, relation-specific reading, and contextual composition.
 \end{abstract}
 \begin{figure}[!t]
 \centering\includegraphics[width=\columnwidth]{figures/figure1_teaser_revision.pdf}
@@ -56,4 +56,6 @@ Generative AI assisted with literature review, manuscript revision, and artifact
 \renewcommand{\theHfigure}{A.\arabic{figure}}
 \renewcommand{\theHtable}{A.\arabic{table}}
 \input{sections/appendix}
+\clearpage
+\input{sections/appendix_mechanism_final}
 \end{document}
