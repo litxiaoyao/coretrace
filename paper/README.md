@@ -1,6 +1,6 @@
 # Paper source and formal figures
 
-**When Correct Hops Fail to Compose: Locating, Routing, and Reading Evidence**
+**When Correct Hops Fail to Compose: How Evidence Routing Shapes Local Reading**
 
 `main.tex` compiles the complete manuscript and appendix. The main text follows **Introduction – Related Work – Method – Experiments – Conclusion**. Its **Locate–Route–Read** account connects recoverable bridge addresses, attention allocation to the relevant paragraph, and relation-conditioned local reading. Component structure and function, matched address-to-routing interventions, and receiver-level joint corrections connect the three operations. CoReTrace applies this mechanism to improve composition and follow local fact changes.
 
@@ -42,35 +42,57 @@ For Overleaf, upload the current contents of `paper/` or a source archive built 
 
 ## Formal figure set
 
-The main text targets eight pages and contains ten figures—three supplied conceptual figures and seven empirical figures—and one table. Figures 1–3 retain their artwork, full TeX environments, and captions exactly. Figures 4–8 use full-width layouts to expose component-level and matched causal evidence. The answer-based Corvinus/Angela case study is retained in the appendix.
+The main text contains fourteen figures and one table. Figures 1–3 explain the evidence-use account and repair workflow. Figures 4–14 connect the recorded data to composition failures, head localization, causal interventions, relation reading, and repair. The appendix contains ten additional figures. Figure and subfigure captions are typeset by LaTeX, so their fonts and numbering follow the manuscript instead of being embedded in a composite plot.
 
 | Figure | File stem | Role |
 | --- | --- | --- |
-| 1 | `figure1_teaser` | Supplied teaser, preserved exactly |
-| 2 | `figure2_diagnosis` | Supplied mechanistic-analysis framework, preserved exactly |
-| 3 | `figure3_method` | Supplied CoReTrace workflow, preserved exactly |
-| 4 | `data_main_composition_address` | Correct constituent answers, composition failures, and bridge-address recovery within those failures |
-| 5 | `data_main_structure_function` | Head-set structure, paired root/bridge preferences, and measured head-level functional examples |
-| 6 | `data_main_head_causality` | Selected and matched-random knockout for composed/direct-target queries across all models |
-| 7 | `data_main_address_routing` | Destination controls, native allocation in address-decodable failures, and routing corrections on the same sources |
-| 8 | `data_main_causal_pair` | Crossed mass/pattern intervention and access-dependent pattern effects |
-| 9 | `data_main_joint_rescue` | Joint-only corrections within the paired four-arm outcomes |
-| 10 | `data_fig5_content` | Local-value following at a stable selected evidence address |
+| 1 | `figure1_teaser_revision` | Recorded composition failure, evidence-use functions, and repair overview |
+| 2 | `figure2_diagnosis_revision` | Paired-query localization and factorized intervention framework |
+| 3 | `figure3_method_revision` | CoReTrace adaptation, restoration, and evidence-selection workflow |
+| 4 | `data_main_composition_address` | Correct constituents, composition failures, and address recovery |
+| 5 | `data_main_structure_function` | Head-set overlap, paired preferences, and measured head examples |
+| 6 | `data_main_localization` | Discovery direct-minus-composed bridge-attention maps and frozen selected heads |
+| 7 | `data_main_head_causality` | Ranked and matched-random knockout on composed and direct queries |
+| 8 | `data_main_address_routing` | Destination controls and routing repairs within address-recoverable failures |
+| 9 | `data_main_relation_tokens_final` | Measured relation-sensitive span weights in the Angela receiver |
+| 10 | `data_main_interaction_revision` | Access-dependent effects of transferring the same local reading pattern |
+| 11 | `data_main_joint_case_revision` | Recorded four-arm case and joint-only corrections across models |
+| 12 | `data_main_content_case_revision` | Original/edited evidence cards and local-value following at a stable address |
+| 13 | `data_main_mechanism_closure_final` | Address recovery, bridge access, and relation preference after repair |
+| 14 | `data_main_address_signal_final` | Address-guided selection on ambiguous inputs |
+| A1 | `data_app_localization` | Complete localization heatmaps and layer profiles |
+| A2 | `data_app_head_overlap` | All-model head-set intersections |
+| A3 | `data_app_necessity` | Knockout controls across all query types |
+| A4 | `data_main_ambiguity` | Bridge selection and answering under candidate-ranking controls |
+| A5 | `data_main_case` | Recorded Calvert bridge-disambiguation example |
+| A6 | `data_app_ablation` | Projection restoration and capability recovery |
+| A7 | `data_app_capabilities` | Complete capability benchmarks |
+| A8 | `data_main_mechanism_cases` | Corvinus and Angela evidence-and-answer cases |
+| A9 | `data_main_restoration_revision` | Constituent and joint answering after projection restoration |
+| A10 | `data_main_repair_chain_revision` | Full address-readout and evidence-selection comparison |
 
-Table 1 (`tables/main_results.tex`) reports the complete-method core benchmark comparison. The appendix contains eight figures: complete head maps, all-model head intersections, all-query knockout controls, candidate-ranking comparisons, the Calvert example, projection-restoration analysis, capability comparisons, and the Corvinus/Angela evidence-and-answer cases. Figure numbers follow the manuscript; older file stems are retained when their placement changes.
+Table 1 (`tables/main_results.tex`) reports the complete-method core benchmark comparison. Figure numbers follow the manuscript; historical file stems remain stable when their placement changes.
+
+### Panel assets and typography
+
+`\figurecontent{stem}` in `main.tex` first loads `figures/<stem>_panels.tex`. These generated layout files assemble independent panel artwork with native `subfigure` environments and captions. A single-panel or legacy asset without a layout file falls back to `figures/<stem>.pdf`. The same entry point is used by the wide figures, column figures, and appendix figures.
+
+LaTeX sets subfigure captions in the manuscript's normal roman font at 9 pt. Panel artwork uses a consistent Times-compatible serif family; legends sit close to the plot and use the same data-to-color conventions throughout the paper. Source panel dimensions are chosen for their final column or page width. Captions are never resized together with artwork; the old height argument to `\widefigshort` is retained only for source compatibility and does not scale panel layouts.
+
+Figure 6 and Figure A1 use the recorded discovery direct-minus-composed bridge-attention scores. Outlines retain the frozen selected heads; Figure 6 additionally marks selected heads that are also in the direct-query top-`k` set. The case cards use recorded evidence, predictions, and measured quantities. Highlighting in a case card indicates the stated relation or answer and must not be interpreted as an unmeasured token-attribution score.
 
 ## Regeneration (repository root)
 
 The repository's `analysis/plot_results.py` is the sole manuscript numerical plotting entry point. It reads the recorded summaries, frozen head rankings, and reader validation records; its main and appendix panels share the same collectors. There are no experimental result arrays in the renderer. The existing `analysis/build_tables.py` generates the numerical tables.
 
-For revision 3, regenerate the combined diagnostic and four new mechanism figures from the released derived arrays:
+Regenerate the complete figure set with the existing entry point, then compile:
 
 ```bash
-python analysis/plot_results.py --only composition_address mechanism_structure mechanism_causality address_routing joint_rescue
+python analysis/plot_results.py
 make -C paper
 ```
 
-This produces `data_main_composition_address`, `data_main_structure_function`, `data_main_head_causality`, `data_main_address_routing`, and `data_main_joint_rescue` as vector PDF and 300-dpi PNG, with new CSVs and an input manifest. Existing result CSVs and Figures 1–3 remain unchanged. The earlier case figure remains reproducible with the `mechanism_cases` task.
+The renderer writes vector PDF and 300-dpi PNG artwork, along with the panel layout files consumed by the manuscript. All numerical plot families use the same style helpers; same-family appendix panels are regenerated with the main figures. The CSV summaries and input manifests retain the recorded source values. Existing derived-array generation remains separate from rendering.
 
 To recompute the new derived arrays from the recorded raw inputs, run:
 
@@ -81,12 +103,6 @@ python analysis/derive_causal_evidence.py
 
 Both analysis scripts default to the frozen source commit `5586f3816903e64334de80e06b74c6d7b1499b18` and verify archived source identities and numerical summaries. They read captures, predictions, and frozen reader weights; they perform no training, model inference, or plotting. The sole numerical plotting entry point remains `analysis/plot_results.py`.
 
-To regenerate the complete numerical figure and table set when needed:
-
-```bash
-python analysis/plot_results.py
-python analysis/build_tables.py
-make -C paper
-```
+To regenerate numerical tables as well, run `python analysis/build_tables.py` from the repository root before compiling. Table sources and the plotting entry point remain separate.
 
 The supplied figure PDFs permit direct manuscript compilation without Python. The current figure placements and captions are defined by the LaTeX manuscript. See `analysis/README.md` for the numerical inputs, reconstruction steps, and retained historical tooling.

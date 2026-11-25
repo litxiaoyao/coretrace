@@ -17,11 +17,37 @@
 \definecolor{gain}{HTML}{1F77B4}
 \definecolor{loss}{HTML}{D62728}
 \icmltitlerunning{How Evidence Routing Shapes Local Reading}
-\newcommand{\widefig}[4]{\begin{minipage}{\textwidth}\centering\includegraphics[width=#1\textwidth]{figures/#2.pdf}\captionof{figure}{#3}#4\end{minipage}}
-\newcommand{\widefigshort}[4]{\begin{minipage}{\textwidth}\centering\includegraphics[width=\textwidth,height=#1,keepaspectratio]{figures/#2.pdf}\captionof{figure}{#3}#4\end{minipage}}
-\newcommand{\colfig}[3]{\begin{minipage}{\columnwidth}\centering\includegraphics[width=\columnwidth]{figures/#1.pdf}\captionof{figure}{#2}#3\end{minipage}\par}
+% Panel artwork is exported separately; LaTeX owns every subfigure caption.
+% Keep type=figure, subfigures, and the parent caption in the same minipage.
+\newcommand{\figurecontent}[1]{%
+  \captionsetup{type=figure}%
+  \IfFileExists{figures/#1_panels.tex}{%
+    \input{figures/#1_panels.tex}%
+  }{%
+    \includegraphics[width=\linewidth]{figures/#1.pdf}%
+  }%
+}
+\newcommand{\widefig}[4]{%
+  \begin{minipage}{#1\textwidth}\centering
+    \figurecontent{#2}\par
+    \caption{#3}#4
+  \end{minipage}%
+}
+% Retain the legacy signature; panel dimensions now come from the layout file.
+% In particular, do not scale the LaTeX subcaptions to satisfy a height limit.
+\newcommand{\widefigshort}[4]{\widefig{1}{#2}{#3}{#4}}
+\newcommand{\colfig}[3]{%
+  \begin{minipage}{\columnwidth}\centering
+    \figurecontent{#1}\par
+    \caption{#2}#3
+  \end{minipage}\par
+}
 \newcommand{\newspread}[1]{\twocolumn[{\centering #1\par\vspace{7pt}}]}
 \captionsetup{hypcap=false}
+\DeclareCaptionFont{panelfont}{\normalfont\fontsize{9}{10.5}\selectfont}
+\captionsetup[subfigure]{font=panelfont,labelfont=normalfont,
+  textfont=normalfont,labelformat=parens,labelsep=space,
+  justification=centering,singlelinecheck=false,skip=3pt,margin=0pt}
 \begin{document}
 \raggedbottom
 \lefthyphenmin=2\righthyphenmin=3
@@ -38,7 +64,7 @@
 Language models can answer both hops of a factual chain from the same context yet fail to compose them. What prevents independently accessible facts from supporting multi-hop reasoning? We investigate three functions of evidence use: locating the bridge, routing attention to it, and reading its requested relation. Across three models, nearly half of sources with correct constituent answers fail to compose, although bridge addresses remain recoverable in 72.2--86.0\% of these failures. We identify evidence-access heads that shift from root to bridge when the intermediate entity is explicit. Crucially, factorized causal interventions reveal that routing shapes the effectiveness of local reading: coordinating paragraph access and within-paragraph weights yields interaction estimates of 5--16 percentage points, correcting errors that neither intervention resolves alone. Guided by this discovery, we introduce \method, which adapts the localized heads and exploits their address signals to focus evidence. With fewer than 1\% trainable parameters, it improves composed accuracy by 33.3--39.9 points. Internal measurements reveal stronger bridge access and relation preference, while repaired answers follow exchanged facts at stable addresses. These findings show why locating evidence is not enough for successful composition.
 \end{abstract}
 \begin{figure}[!t]
-\centering\includegraphics[width=\columnwidth]{figures/figure1_teaser_revision.pdf}
+\centering\figurecontent{figure1_teaser_revision}
 \caption{\textbf{Locating evidence is not enough.} (a) Recorded test case (run 42). (b) Schematic of shared-head functions; address recovery spans three models, and pattern-transfer effects are from the separate Llama-3.1-8B factorial experiment. (c) \method\ improves composed EM across all three models.}\label{fig:teaser}
 \end{figure}
 \input{sections/introduction}

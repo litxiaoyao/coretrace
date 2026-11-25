@@ -6,15 +6,23 @@ This directory contains the experiment analysis, recorded measurements, and figu
 
 ## Regenerate figures and tables
 
-Use Python 3.10 or newer with NumPy and Matplotlib. From a complete Git checkout, run:
+Use Python 3.10 or newer with NumPy, Matplotlib and PyMuPDF, plus pdfLaTeX for the LaTeX figure overviews. From a complete Git checkout, run:
 
 ```bash
-python -m pip install numpy matplotlib
+python -m pip install numpy matplotlib pymupdf
 python analysis/plot_results.py
 python analysis/build_tables.py
 ```
 
-`plot_results.py` is the single manuscript numerical plotting entry point. It currently loads the verified base plotting source from commit `4990754cb73512599adfea9519862868b4260dbf` and applies the final renderers. A checkout must contain that commit (a source ZIP or shallow clone alone is insufficient). To refresh the final overridden figures from existing measurements, use `python analysis/plot_results.py --only story_polish`. Use the full command above to regenerate the complete figure set, including the other main and appendix figures. The three author-selected conceptual PNGs remain the artwork sources; the renderer embeds them as PDFs. No new model execution is required for figure/table reconstruction. The builders write the figures and tables under `paper/` and record their inputs under `figure_data/`.
+`plot_results.py` remains the single manuscript numerical plotting entry point. It loads the verified original collectors from commit `4990754cb73512599adfea9519862868b4260dbf`; a checkout must contain that commit (a source ZIP or shallow clone alone is insufficient). The default command, equivalently `python analysis/plot_results.py --only publication`, redraws the current 14 main-text and 10 appendix figures from the released measurements. It does not recompute experiments or rewrite those input CSVs.
+
+Every multi-panel figure has independent vector PDF and 300-dpi PNG panels plus a `paper/figures/<stem>_panels.tex` file. The manuscript inputs that file, so LaTeX owns the subfigure counters, labels and 9-pt captions. Numerical `<stem>.pdf/.png` files are also refreshed as standalone previews, with their captions typeset by the same LaTeX settings. The three original conceptual PNGs are preserved byte-for-byte; independent panels use exact clipped views with the old title bands replaced by LaTeX captions.
+
+Numerical artwork uses the TrueType **Liberation Serif** family (Times-compatible metrics) and STIX mathematics. The same plotting helpers control main and appendix axes, compact legends, error bars, heatmaps and case cards. Figure 6 and Figure A1 use the recorded direct-minus-composed bridge-attention scores on one symmetric color scale, with the frozen selected-head sets outlined and direct-set overlap marked. Case highlights identify evidence roles and recorded answers, not unmeasured token-attribution scores.
+
+Legacy `--only` tasks remain available when their underlying numerical exports need reconstruction. The publication renderer always runs last, even if `publication` is listed first, so a historical renderer cannot overwrite the current assets. `figure_data/input_manifest_publication.csv` records the exact file hashes used in the current render. No new model execution is required.
+
+On a minimal TeX installation with missing generated format/font-map caches, first run `bash analysis/compile_paper.sh` using the committed figures. The existing build script prepares local caches under `analysis/tex_runtime/`; the plotter reuses them for the standalone previews. A normal complete TeX installation needs no such initialization.
 
 ### Current main-text figure inventory
 
@@ -78,7 +86,7 @@ Core/HotpotQA scores require alias exact match and completion within the 32-toke
 bash analysis/compile_paper.sh
 ```
 
-This writes `analysis/build_final/main.pdf` and retains the exact source snapshot and logs. It uses the original ICML template and keeps generated TeX caches inside `analysis/tex_runtime/` where needed. Inspect the compiled PDF page by page before copying the verified files into the formal source directory:
+This writes `analysis/build_final/main.pdf` and retains the exact source snapshot and logs. When PyMuPDF is installed, the build deduplicates repeated embedded PDF resources without rasterizing pages or changing their content. It uses the original ICML template and keeps generated TeX caches inside `analysis/tex_runtime/` where needed. Inspect the compiled PDF page by page before copying the verified files into the formal source directory:
 
 ```bash
 cp analysis/build_final/main.pdf paper/main.pdf

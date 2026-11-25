@@ -125,6 +125,27 @@ if [[ "$status" != 0 ]]; then
   tail -60 "$build_dir/compile_stdout.txt" >&2
   exit "$status"
 fi
+# Independent conceptual panels can reference identical embedded artwork.
+# Deduplicate PDF objects without rasterizing pages or changing their content.
+# PyMuPDF is already a figure-rendering dependency; a TeX-only build may omit it.
+python3 - "$build_dir/main.pdf" <<'PY'
+from pathlib import Path
+import sys
+try:
+    import fitz
+except ImportError:
+    raise SystemExit(0)
+path = Path(sys.argv[1])
+optimized = path.with_name("main.optimized.pdf")
+with fitz.open(path) as document:
+    original_text = [page.get_text() for page in document]
+    document.save(optimized, garbage=4, deflate=True)
+with fitz.open(optimized) as document:
+    if [page.get_text() for page in document] != original_text:
+        optimized.unlink()
+        raise SystemExit("PDF resource cleanup changed page text; original retained.")
+optimized.replace(path)
+PY
 if command -v pdffonts >/dev/null 2>&1; then
   pdffonts "$build_dir/main.pdf" > "$build_dir/fonts.txt"
 fi

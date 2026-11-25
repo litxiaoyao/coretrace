@@ -71,9 +71,11 @@ The ranking in \cref{eq:ranking} uses discovery-only paired direct-target and co
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\textwidth]{figures/data_app_localization.pdf}
+  \begin{minipage}{.94\textwidth}\centering
+  \figurecontent{data_app_localization}\par
   \caption{\textbf{Complete evidence-access localization.} (a--c) Discovery mean differences in bridge attention between direct and composed queries. Outlines indicate frozen head sets. (d--f) Mean and maximum scores per layer.}
   \label{fig:layer_profiles}
+\end{minipage}
 \end{figure}
 
 The within-model intersection analysis in \cref{fig:head_overlap_all} uses the frozen set of $K$ ranked heads and the top $K$ heads under each of the two original mean-attention scores in \cref{eq:ranking}, breaking ties by layer and then head index. The bars count mutually exclusive intersections of these three sets. The comparisons are descriptive summaries of the same discovery records. Direct and composed rankings are calculated separately within each model. The frozen sets overlap the direct-query sets in 14/14/31 heads and the composed-query sets in 0/1/10 heads, out of 20/20/40, respectively.
@@ -83,9 +85,11 @@ The within-model intersection analysis in \cref{fig:head_overlap_all} uses the f
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.93\textwidth]{figures/data_app_head_overlap.pdf}
+  \begin{minipage}{.93\textwidth}\centering
+  \figurecontent{data_app_head_overlap}\par
   \caption{\textbf{Complete within-model head-set overlap.} Exact intersection sizes for Qwen3-4B, Qwen3-8B, and Llama-3.1-8B aligned to a common membership matrix. Orange dots identify intersections containing ranked heads. Ranked: frozen difference-ranked set; Direct/Composed: highest mean bridge attention for the corresponding query type. Each set contains $K=20/20/40$ heads, respectively.}
   \label{fig:head_overlap_all}
+\end{minipage}
 \end{figure}
 
 \subsection{Head Necessity and Address Controls}
@@ -99,9 +103,11 @@ For head knockout, selected head outputs are set to zero before their output pro
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{figures/data_app_necessity.pdf}
+  \begin{minipage}{1\textwidth}\centering
+  \figurecontent{data_app_necessity}\par
   \caption{\textbf{Necessity across query types and knockout doses.} Change in completed-answer EM (percentage points) relative to the native model on 1,000 test sources. Each panel shares a vertical scale across models for one query type; scales differ across panels. Orange and gray denote ranked and layer-matched random heads, respectively; marker shapes and line styles identify models. Ranked and layer-matched random heads are removed at counts 20, 40, and 80. Each random point uses one matched set; lines connect measured doses. The selected head counts are 20/20/40.}
   \label{fig:necessity}
+\end{minipage}
 \end{figure}
 
 
@@ -174,16 +180,20 @@ On the 1,000 composed test questions, there are 75 inapplicable/no-candidate cas
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.56\textwidth]{figures/data_main_ambiguity.pdf}
+  \begin{minipage}{.70\textwidth}\centering
+  \figurecontent{data_main_ambiguity}\par
   \caption{\textbf{Attention-guided selection resolves ambiguous bridges.} Bridge selection and composed EM for input-order and full-reader ranking on the same 103 ambiguous questions, with the same adapted checkpoint. 4B/8B: Qwen3; L8B: Llama-3.1-8B.}
   \label{fig:ambiguity_main}
+\end{minipage}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.56\textwidth]{figures/data_main_case.pdf}
+  \begin{minipage}{.68\textwidth}\centering
+  \figurecontent{data_main_case}\par
   \caption{\textbf{A worked example of bridge disambiguation.} Qwen3-4B on a test source with both native constituent answers correct. Both selection policies use the same adapted checkpoint and root paragraph. The full reader selects the annotated bridge and answers correctly. Colors denote the selection outcomes; paragraph indices are zero-based.}
   \label{fig:case_main}
+\end{minipage}
 \end{figure}
 
 \subsection{Complete Reasoning Triplets}
@@ -217,9 +227,11 @@ On the 1,000 composed test questions, there are 75 inapplicable/no-candidate cas
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{figures/data_app_ablation.pdf}
+  \begin{minipage}{1\textwidth}\centering
+  \figurecontent{data_app_ablation}\par
   \caption{\textbf{Fixed projection restoration recovers capabilities after head adaptation.} First-hop and all-three accuracy use the same original contexts on 1,000 test triplets, with evidence selection disabled in both conditions. GSM8K uses all 1,319 test questions and has no evidence selector. The two conditions share the trained head slices and differ only in the fixed native-projection restoration rule. Error bars show recorded-run sample SD.}
   \label{fig:ablations}
+\end{minipage}
 \end{figure}
 
 \subsection{Conditional Composition and Recovery}
@@ -253,9 +265,11 @@ Full-model fine-tuning uses the same 2,000 composed examples and the recipe in A
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{figures/data_app_capabilities.pdf}
+  \begin{minipage}{1\textwidth}\centering
+  \figurecontent{data_app_capabilities}\par
   \caption{\textbf{General capabilities across complete benchmark splits.} Panels show HotpotQA, MMLU, and GSM8K; each model group compares Native, full fine-tuning, and \method. Bars report absolute accuracy with recorded-run SD. The complete repair improves both Qwen models on HotpotQA over Native. Full fine-tuning's zero GSM8K accuracy accompanies zero valid final-answer lines.}
   \label{fig:capability_detail}
+\end{minipage}
 \end{figure}
 
 \subsection{Answer Quality and Output-Format Adaptation}
@@ -289,9 +303,11 @@ The teaser uses the John Corvinus test case. All three models correctly identify
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=\textwidth]{figures/data_main_mechanism_cases.pdf}
+  \begin{minipage}{1\textwidth}\centering
+  \figurecontent{data_main_mechanism_cases}\par
   \caption{\textbf{Two cases connect evidence location, routing, and relation reading.} (a) All three models answer both constituents correctly but repeat the bridge entity on a test composition; \method\ reaches the endpoint. (b) On a shared-context Llama diagnostic, joint mass and pattern intervention yields the requested mother. The complete \method\ procedure also follows the reciprocal change in her name. Text and answers come from recorded contexts and predictions.}
   \label{fig:mechanism_cases}
+\end{minipage}
 \end{figure}
 
 \Cref{fig:mechanism_cases} makes the three operations concrete. In the John Corvinus test case, all three native models correctly identify Matthias Corvinus as the father and John Hunyadi as Matthias's father, yet return Matthias for the composed question. \method\ selects the bridge paragraph and answers John Hunyadi. The example exposes the distinction between identifying the intermediate entity and reading the next relation.
