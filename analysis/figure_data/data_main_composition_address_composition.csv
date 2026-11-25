@@ -1,0 +1,4 @@
+model,total_test_sources,both_constituents_correct,composition_failures,composition_successes,conditional_failure_percent,source,derived_input
+qwen3_4b,1000,457,234,223,51.203501094091905,outputs/qwen3_4b/seed42/evaluation/core/summary.json,analysis/figure_data/data_main_composition.csv
+qwen3_8b,1000,462,236,226,51.082251082251084,outputs/qwen3_8b/seed42/evaluation/core/summary.json,analysis/figure_data/data_main_composition.csv
+llama3_8b,1000,501,243,258,48.50299401197605,outputs/llama3_8b/seed42/evaluation/core/summary.json,analysis/figure_data/data_main_composition.csv

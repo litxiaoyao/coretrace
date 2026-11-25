@@ -1,0 +1,7 @@
+model,group,count,both_repairs,native_failures,share_of_native_failures_percent,share_of_both_repairs_percent,source
+qwen3_4b,both_required,4,11,66,6.0606060606060606,36.36363636363637,analysis/internal/v3_causal_evidence.json
+qwen3_4b,at_least_one_single_succeeds,7,11,66,10.606060606060606,63.63636363636363,analysis/internal/v3_causal_evidence.json
+qwen3_8b,both_required,5,13,52,9.615384615384615,38.46153846153846,analysis/internal/v3_causal_evidence.json
+qwen3_8b,at_least_one_single_succeeds,8,13,52,15.384615384615385,61.53846153846154,analysis/internal/v3_causal_evidence.json
+llama3_8b,both_required,13,29,49,26.53061224489796,44.827586206896555,analysis/internal/v3_causal_evidence.json
+llama3_8b,at_least_one_single_succeeds,16,29,49,32.6530612244898,55.172413793103445,analysis/internal/v3_causal_evidence.json

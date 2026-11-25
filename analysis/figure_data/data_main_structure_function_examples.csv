@@ -1,0 +1,5 @@
+model,source_id,condition,answer,correct,selected_head_count,displayed_layer,displayed_head,intervention_scope,root_index,bridge_index,source
+qwen3_4b,6a0c11720bdb11eba7f7acde48001122,native,Carl Sagan,False,20,23,10,native,6,2,analysis/internal/v3_structure_evidence.json
+qwen3_4b,6a0c11720bdb11eba7f7acde48001122,calibrated,Cornell University,True,20,23,10,selected_head_set,6,2,analysis/internal/v3_structure_evidence.json
+llama3_8b,d3c5124a0bda11eba7f7acde48001122,native,Colorado,False,40,13,18,native,2,8,analysis/internal/v3_structure_evidence.json
+llama3_8b,d3c5124a0bda11eba7f7acde48001122,calibrated,Los Angeles.,True,40,13,18,selected_head_set,2,8,analysis/internal/v3_structure_evidence.json

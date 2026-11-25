@@ -828,11 +828,567 @@ def make_mechanism_cases() -> None:
     render_mechanism_cases(cases)
 
 
+V3_STYLE = {"font.size":6.2, "axes.labelsize":6.4, "axes.titlesize":6.6,
+            "xtick.labelsize":6.0, "ytick.labelsize":6.0,
+            "legend.fontsize":6.1}
+
+
+def make_mechanism_causality() -> None:
+    """Reuse recorded knockout outcomes without rewriting earlier exports."""
+    filename="analysis/figure_data/data_app_necessity.csv"
+    INPUT_PATHS.add(filename)
+    with (ROOT/filename).open(newline="",encoding="utf-8") as handle:
+        existing=list(csv.DictReader(handle))
+    rows=[]
+    for row in existing:
+        if row["query"] not in {"composed","direct_target"}:
+            continue
+        record={**row,"derived_input":filename}
+        for key in ("knocked_out","n","correct"):
+            record[key]=int(row[key])
+        record["accuracy_percent"]=float(row["accuracy_percent"])
+        if row.get("random_overlap_heads"):
+            record["random_overlap_heads"]=int(row["random_overlap_heads"])
+        if not np.isclose(record["accuracy_percent"],100*record["correct"]/record["n"]):
+            raise ValueError(f"Inconsistent knockout numerator: {record}")
+        rows.append(record)
+    for model in MODELS:
+        for query in ("composed","direct_target"):
+            unique_record(rows,model=model,query=query,selection="native")
+            for selection in ("selected","random"):
+                for size in (20,40,80):
+                    unique_record(rows,model=model,query=query,selection=selection,knocked_out=size)
+    export_csv("data_main_head_causality",rows)
+    render_mechanism_causality(rows)
+
+
+def render_mechanism_causality(rows) -> None:
+    """Show the measured necessity curves for paired endpoint questions."""
+    with plt.rc_context(V3_STYLE):
+        fig,axes=plt.subplots(2,3,figsize=(WIDE,2.85),sharex=True,sharey="row")
+        fig.subplots_adjust(left=.075,right=.985,bottom=.155,top=.825,
+                            wspace=.20,hspace=.28)
+        for col,model in enumerate(MODELS):
+            for row_index,query in enumerate(("composed","direct_target")):
+                ax=axes[row_index,col]
+                clean_axis(ax)
+                base=unique_record(rows,model=model,query=query,selection="native")
+                baseline=base["accuracy_percent"]
+                ax.axhline(baseline,color=INK,linestyle=(0,(3,2)),linewidth=.7,
+                           label="Native baseline",zorder=1)
+                for selection,label,color,marker in (
+                        ("selected","Ranked heads",MODEL_COLORS[col],"o"),
+                        ("random","Layer-matched random",GRAY,"s")):
+                    selected=sorted([r for r in rows if r["model"]==model and
+                                     r["query"]==query and r["selection"]==selection],
+                                    key=lambda r:r["knocked_out"])
+                    x=[0]+[r["knocked_out"] for r in selected]
+                    y=[baseline]+[r["accuracy_percent"] for r in selected]
+                    ax.plot(x,y,color=color,marker=marker,markersize=3.4,
+                            markeredgecolor="white",markeredgewidth=.35,
+                            linewidth=1.2,label=label,zorder=4 if selection=="selected" else 3)
+                ax.set(xticks=[0,20,40,80],xlim=(-3,83))
+                if row_index==0:
+                    ax.set_title(MODEL_NAMES[model],fontsize=6.7,pad=5)
+                    ax.set(ylim=(0,41),yticks=[0,20,40])
+                else:
+                    ax.set(ylim=(0,65),yticks=[0,20,40,60],xlabel="Heads removed")
+                if col==0:
+                    ax.set_ylabel("Composed EM (%)" if row_index==0 else "Direct-target EM (%)",
+                                  fontsize=6.3,labelpad=4)
+                ax.tick_params(labelsize=6.0)
+                ax.text(.00,1.015,f"({chr(97+row_index*3+col)})",transform=ax.transAxes,
+                        ha="left",va="bottom",fontsize=6.2,color=INK)
+        handles,labels=axes[0,0].get_legend_handles_labels()
+        order=[1,2,0]
+        fig.legend([handles[i] for i in order],[labels[i] for i in order],
+                   loc="upper center",bbox_to_anchor=(.54,.985),ncol=3,frameon=False,
+                   fontsize=6.2,handlelength=2.1,columnspacing=1.7,handletextpad=.55)
+        save_figure(fig,"data_main_head_causality")
+
+
+def make_joint_rescue() -> None:
+    """Partition recorded Both repairs by the two single-intervention outcomes."""
+    filename="analysis/internal/v3_causal_evidence.json"
+    data=read_json(filename)
+    rows=[]
+    plotted=[]
+    for model in MODELS:
+        record=data["factorial"][model]
+        summary=record["summary"]
+        cells=record["native_failure_both_success_2x2"]
+        if len(cells)!=4 or len({(r["mass_correct"],r["pattern_correct"]) for r in cells})!=4:
+            raise ValueError(f"Joint-rescue partition is not a complete 2-by-2 table: {model}")
+        total=sum(r["n"] for r in cells)
+        if total!=summary["both_rescues_native_failure"]:
+            raise ValueError(f"Joint-rescue cells do not sum to Both repairs: {model}")
+        joint=unique_record(cells,mass_correct=False,pattern_correct=False)["n"]
+        if joint!=summary["joint_only_rescue"]:
+            raise ValueError(f"Joint-only repair count disagrees with receiver summary: {model}")
+        receiver_ids=[]
+        for cell in cells:
+            if cell["n"]!=len(cell["source_ids"]) or cell["n"]!=len(cell["receiver_ids"]):
+                raise ValueError(f"Joint-rescue count and source IDs disagree: {model}")
+            receiver_ids.extend(cell["receiver_ids"])
+            rows.append({"model":model,"mass_correct":cell["mass_correct"],
+                         "pattern_correct":cell["pattern_correct"],"count":cell["n"],
+                         "both_repairs":total,"native_failures":summary["native_failures"],
+                         "receiver_population":summary["n"],"quadruplets":summary["quadruplets"],
+                         "source_ids":";".join(cell["source_ids"]),
+                         "receiver_ids":";".join(cell["receiver_ids"]),"source":filename})
+        if len(set(receiver_ids))!=total:
+            raise ValueError(f"A receiver appears in more than one joint-rescue cell: {model}")
+        for group,count in (("both_required",joint),("at_least_one_single_succeeds",total-joint)):
+            plotted.append({"model":model,"group":group,"count":count,
+                            "both_repairs":total,"native_failures":summary["native_failures"],
+                            "share_of_native_failures_percent":100*count/summary["native_failures"],
+                            "share_of_both_repairs_percent":100*count/total,"source":filename})
+    export_csv("data_main_joint_rescue",rows)
+    export_csv("data_main_joint_rescue_plotted",plotted)
+    render_joint_rescue(plotted)
+
+
+def render_joint_rescue(rows) -> None:
+    with plt.rc_context(V3_STYLE):
+        fig,ax=plt.subplots(figsize=(COL,1.90))
+        fig.subplots_adjust(left=.30,right=.94,bottom=.25,top=.72)
+        clean_axis(ax,"x")
+        ys=np.arange(len(MODELS))[::-1]
+        largest=max(row["both_repairs"] for row in rows)
+        for i,(y,model) in enumerate(zip(ys,MODELS)):
+            joint=unique_record(rows,model=model,group="both_required")
+            other=unique_record(rows,model=model,group="at_least_one_single_succeeds")
+            ax.barh(y,joint["count"],height=.57,color=MODEL_COLORS[i],
+                    edgecolor="white",linewidth=.7,zorder=3,
+                    label="Both required" if i==0 else None)
+            ax.barh(y,other["count"],left=joint["count"],height=.57,
+                    color=LIGHT_GRAY,edgecolor="white",linewidth=.7,zorder=3,
+                    label="A single arm also succeeds" if i==0 else None)
+            for count,left,color in ((joint["count"],0,"white"),
+                                     (other["count"],joint["count"],INK)):
+                if count:
+                    ax.text(left+count/2,y,str(count),ha="center",va="center",
+                            color=color,fontsize=6.5,fontweight="bold")
+            ax.text(joint["both_repairs"]+.55,y,str(joint["both_repairs"]),
+                    ha="left",va="center",fontsize=6.2,color=INK)
+        ax.set(yticks=ys,yticklabels=[f"{MODEL_NAMES[m]}\n$n={unique_record(rows,model=m,group='both_required')['native_failures']}$ failures"
+                                     for m in MODELS],
+               ylim=(-.6,len(MODELS)-.4),xlim=(0,largest+3.2),
+               xticks=list(range(0,int(largest)+2,10)),
+               xlabel="Native failures corrected by Both (count)")
+        ax.spines[["top","right","left"]].set_visible(False)
+        ax.tick_params(axis="y",length=0,pad=4,labelsize=6.0)
+        ax.tick_params(axis="x",labelsize=6.0)
+        ax.xaxis.label.set_size(6.0)
+        handles,labels=ax.get_legend_handles_labels()
+        fig.legend(handles,labels,loc="upper center",bbox_to_anchor=(.57,.985),
+                   ncol=1,frameon=False,fontsize=6.0,handlelength=1.3,
+                   handletextpad=.45,labelspacing=.45)
+        save_figure(fig,"data_main_joint_rescue")
+
+
+def make_address_routing() -> None:
+    """Connect a native address signal, measured allocation, and recorded repair."""
+    filename="analysis/internal/v3_causal_evidence.json"
+    data=read_json(filename)
+    if data.get("status")!="COMPLETE":
+        raise ValueError("Address-routing requires the completed, source-joined evidence export")
+    previous="analysis/figure_data/data_fig4_causal_access_controls.csv"
+    INPUT_PATHS.add(previous)
+    with (ROOT/previous).open(newline="",encoding="utf-8") as handle:
+        access=list(csv.DictReader(handle))
+    for row in access:
+        for field in ("n","native_correct","intervened_correct","clusters"):
+            row[field]=int(row[field])
+        for field in ("delta_pp","CI95_low_pp","CI95_high_pp"):
+            row[field]=float(row[field])
+        row["derived_input"]=previous
+        all_sources=unique_record(data["address_access"][row["model"]]["subgroups"],name="all")
+        if (row["n"]!=all_sources["n"] or
+                row["native_correct"]!=all_sources["conditions"]["native"]["correct"] or
+                row["intervened_correct"]!=all_sources["conditions"][row["method"]]["correct"]):
+            raise ValueError(f"Original destination control and source-joined records disagree: {row}")
+    conditional=[]
+    masses=[]
+    subgroup="full_decoded_known_constituents_native_failure"
+    methods=("oracle_second_paragraph","oracle_first_paragraph","lengthmatched_other_paragraph")
+    for model in MODELS:
+        group=unique_record(data["address_access"][model]["subgroups"],name=subgroup)
+        if group["native_correct"]!=0 or group["n"]!=len(set(group["source_ids"])):
+            raise ValueError(f"Invalid fixed native-failure subgroup: {model}")
+        for method in methods:
+            outcome=group["conditions"][method]
+            low,high=outcome["source_bootstrap_CI95_percent"]
+            if (outcome["correct"]!=outcome["rescued_from_native"] or
+                    not np.isclose(outcome["accuracy_percent"],100*outcome["correct"]/group["n"])):
+                raise ValueError(f"Conditional repair numerator disagrees: {model}/{method}")
+            conditional.append({"model":model,"method":method,"subgroup":subgroup,
+                                "n":group["n"],"corrected":outcome["correct"],
+                                "repair_percent":outcome["accuracy_percent"],
+                                "CI95_low_percent":low,"CI95_high_percent":high,
+                                "bootstrap_reps":group["source_bootstrap"]["reps"],
+                                "bootstrap_seed":group["source_bootstrap"]["seed"],
+                                "bootstrap_unit":group["source_bootstrap"]["unit"],
+                                "source_ids":";".join(group["source_ids"]),"source":filename})
+        means=group["native_paragraph_mass_means"]["all_question_mean"]
+        for role in ("root","bridge"):
+            masses.append({"model":model,"subgroup":subgroup,"n":group["n"],
+                           "role":role,"question_rows":"all_question_mean",
+                           "attention_mass_percent":100*means[role],
+                           "root_exceeds_bridge_count":group["native_root_exceeds_bridge_count"],
+                           "source":filename})
+    export_csv("data_main_address_routing_all_sources",access)
+    export_csv("data_main_address_routing_conditional",conditional)
+    export_csv("data_main_address_routing_mass",masses)
+    render_address_routing(access,masses,conditional)
+
+
+def render_address_routing(access,masses,conditional) -> None:
+    with plt.rc_context(V3_STYLE):
+        fig,axes=plt.subplots(1,3,figsize=(WIDE,2.40))
+        fig.subplots_adjust(left=.065,right=.985,bottom=.265,top=.775,wspace=.38)
+        x=np.arange(len(MODELS));width=.23
+        specs=(("oracle_second_paragraph","Bridge",BLUE),
+               ("oracle_first_paragraph","Root",ORANGE),
+               ("lengthmatched_other_paragraph","Other",GRAY))
+        for ax in axes:
+            clean_axis(ax)
+            ax.tick_params(labelsize=6.0)
+            ax.set_xlim(-.55,2.55)
+        for j,(method,label,color) in enumerate(specs):
+            pos=x+(j-1)*width
+            source_rows=[unique_record(access,model=m,method=method) for m in MODELS]
+            values=np.array([r["delta_pp"] for r in source_rows])
+            low=np.array([r["CI95_low_pp"] for r in source_rows])
+            high=np.array([r["CI95_high_pp"] for r in source_rows])
+            axes[0].bar(pos,values,width,color=color,edgecolor=INK,linewidth=.4,
+                        zorder=3,label=label)
+            axes[0].errorbar(pos,values,yerr=[values-low,high-values],fmt="none",
+                            ecolor=INK,elinewidth=.7,capsize=1.7,capthick=.7,zorder=4)
+            repair_rows=[unique_record(conditional,model=m,method=method) for m in MODELS]
+            repair=np.array([r["repair_percent"] for r in repair_rows])
+            lower=np.array([r["CI95_low_percent"] for r in repair_rows])
+            upper=np.array([r["CI95_high_percent"] for r in repair_rows])
+            axes[2].bar(pos,repair,width,color=color,edgecolor=INK,linewidth=.4,zorder=3)
+            axes[2].errorbar(pos,repair,yerr=[repair-lower,upper-repair],fmt="none",
+                            ecolor=INK,elinewidth=.7,capsize=1.7,capthick=.7,zorder=4)
+            for xpos,row,limit in zip(pos,repair_rows,upper):
+                axes[2].text(xpos,limit+1.0,str(row["corrected"]),ha="center",va="bottom",
+                             fontsize=6.0,color=INK)
+        for j,(role,color) in enumerate((("root",ORANGE),("bridge",BLUE))):
+            values=[unique_record(masses,model=m,role=role)["attention_mass_percent"] for m in MODELS]
+            axes[1].bar(x+(j-.5)*.30,values,.30,color=color,edgecolor=INK,
+                        linewidth=.4,zorder=3)
+        axes[0].axhline(0,color=INK,linewidth=.65)
+        axes[0].set(ylim=(-27,25),yticks=[-20,0,20],ylabel="EM change (pp)",
+                    xticks=x,xticklabels=[SHORT[m] for m in MODELS])
+        axes[1].set(ylim=(0,38),yticks=[0,10,20,30],ylabel="Question-row mass (%)")
+        axes[2].set(ylim=(0,61),yticks=[0,20,40,60],ylabel="Composition failures repaired (%)")
+        labels=[f"{SHORT[m]}\n$n={unique_record(masses,model=m,role='root')['n']}$" for m in MODELS]
+        for ax in axes[1:]:
+            ax.set(xticks=x,xticklabels=labels)
+        titles=("(a) Destination controls","(b) Native allocation","(c) Routing repair")
+        subtitles=("1,000 test sources","Decoded native failures","Same failures; labels = count")
+        for ax,title,subtitle in zip(axes,titles,subtitles):
+            ax.set_title(title,fontsize=6.8,pad=17,fontweight="bold")
+            ax.text(.5,1.055,subtitle,transform=ax.transAxes,ha="center",va="bottom",
+                    fontsize=6.0,color="#555D66")
+            ax.yaxis.label.set_size(6.2)
+        handles,legend_labels=axes[0].get_legend_handles_labels()
+        fig.legend(handles,legend_labels,loc="upper center",bbox_to_anchor=(.54,1.0),
+                   ncol=3,frameon=False,fontsize=6.2,handlelength=1.3,
+                   columnspacing=1.8,handletextpad=.5)
+        save_figure(fig,"data_main_address_routing")
+
+
+def make_mechanism_structure() -> None:
+    """Expose head membership and the recorded paragraph allocation it indexes."""
+    filename="analysis/internal/v3_structure_evidence.json"
+    data=read_json(filename)
+    overlaps=[];profiles=[];source_profiles=[]
+    for model in MODELS:
+        record=data["models"][model]
+        for cell in record["exact_intersections"]:
+            overlaps.append({"model":model,"k":record["k"],**cell,"source":filename})
+        for group in ("selected","random_layer_matched"):
+            group_record=record["aggregate_profiles"][group]
+            metric=group_record["metrics"]["all_question_mean"]
+            n=len(metric["source_ids"])
+            if n!=record["n_sources"]:
+                raise ValueError(f"Structure source count disagrees: {model}/{group}")
+            for query in ("composed","direct_target"):
+                means=metric["means_by_query"][query]
+                measurements=metric["per_source"][query]
+                for role in ("root","bridge","distractor_mean","distractor_sum"):
+                    if len(measurements[role])!=n or not np.isclose(np.mean(measurements[role]),means[role]):
+                        raise ValueError(f"Structure mean disagrees with sources: {model}/{group}/{query}/{role}")
+                profiles.append({"model":model,"head_set":group,"query":query,
+                                 "n_sources":n,"n_heads":group_record["n_heads"],
+                                 "question_rows":"all_question_mean",
+                                 "root_mass_percent":100*means["root"],
+                                 "bridge_mass_percent":100*means["bridge"],
+                                 "distractor_mean_percent":100*means["distractor_mean"],
+                                 "distractor_sum_percent":100*means["distractor_sum"],
+                                 "bridge_minus_root_pp":100*(means["bridge"]-means["root"]),
+                                 "source":filename})
+                for index,source_id in enumerate(metric["source_ids"]):
+                    source_profiles.append({"model":model,"head_set":group,"query":query,
+                                            "source_id":source_id,"n_heads":group_record["n_heads"],
+                                            "question_rows":"all_question_mean",
+                                            "root_mass_percent":100*measurements["root"][index],
+                                            "bridge_mass_percent":100*measurements["bridge"][index],
+                                            "distractor_mean_percent":100*measurements["distractor_mean"][index],
+                                            "distractor_sum_percent":100*measurements["distractor_sum"][index],
+                                            "source":filename})
+    # These are audited discovery examples. IDs select records; all text,
+    # attention values, head IDs, and intervention outcomes come from the export.
+    example_ids=(("qwen3_4b","6a0c11720bdb11eba7f7acde48001122"),
+                 ("llama3_8b","d3c5124a0bda11eba7f7acde48001122"))
+    examples=[];head_rows=[];example_rows=[]
+    for model,source_id in example_ids:
+        record=data["models"][model]
+        example=unique_record(record["representative_candidates"],source_id=source_id)
+        primary=record["primary_head"]
+        head=unique_record(example["heads"],layer=primary["layer"],head=primary["head"])
+        calibration=example["canonical_mass_calibration"]
+        if (not head["selected"] or calibration["selected_head_count"]!=record["k"] or
+                calibration["native"]["correct"] or not calibration["calibrated"]["correct"]):
+            raise ValueError(f"Displayed head/set intervention is inconsistent: {model}/{source_id}")
+        for query in ("composed","direct_target"):
+            question=example["questions"][query]
+            if question["source_id"]!=source_id:
+                raise ValueError(f"Head portrait has a different query source: {model}/{source_id}")
+            masses=head["paragraph_mass"][query]["all_question_mean"]
+            if len(masses)!=len(example["paragraph_titles"]) or not all(0<=value<=1 for value in masses):
+                raise ValueError(f"Invalid paragraph mass vector: {model}/{source_id}/{query}")
+            for index,(title,value) in enumerate(zip(example["paragraph_titles"],masses)):
+                role="root" if index==example["root_index"] else "bridge" if index==example["bridge_index"] else "distractor"
+                head_rows.append({"model":model,"source_id":source_id,"query":query,
+                                  "question":question["question"],"layer":head["layer"],"head":head["head"],
+                                  "paragraph_index":index,"paragraph_title":title,"role":role,
+                                  "question_rows":"all_question_mean","attention_mass_percent":100*value,
+                                  "source":filename})
+        for arm in ("native","calibrated"):
+            result=calibration[arm]
+            example_rows.append({"model":model,"source_id":source_id,"condition":arm,
+                                 "answer":result["answer"],"correct":result["correct"],
+                                 "selected_head_count":calibration["selected_head_count"],
+                                 "displayed_layer":head["layer"],"displayed_head":head["head"],
+                                 "intervention_scope":"selected_head_set" if arm=="calibrated" else "native",
+                                 "root_index":example["root_index"],"bridge_index":example["bridge_index"],
+                                 "source":filename})
+        examples.append({"model":model,"record":example,"head":head})
+    export_csv("data_main_structure_function_overlap",overlaps)
+    export_csv("data_main_structure_function_profiles",profiles)
+    export_csv("data_main_structure_function_source_profiles",source_profiles)
+    export_csv("data_main_structure_function_heads",head_rows)
+    export_csv("data_main_structure_function_examples",example_rows)
+    render_mechanism_structure(data,overlaps,profiles,examples)
+
+
+def render_mechanism_structure(data,overlaps,profiles,examples) -> None:
+    with plt.rc_context(V3_STYLE):
+        fig=plt.figure(figsize=(WIDE,3.00))
+        fig.text(.025,.985,"(a) Head-set structure",ha="left",va="top",fontsize=7.0,fontweight="bold")
+        model=MODELS[0]
+        k=data["models"][model]["k"]
+        fig.text(.025,.915,f"{MODEL_NAMES[model]} · $k={k}$",ha="left",va="top",fontsize=6.2)
+        intersections=sorted([r for r in overlaps if r["model"]==model and r["count"]>0],
+                             key=lambda r:(-r["count"],-r["selected"],-r["direct"],-r["composed"]))
+        counts=[r["count"] for r in intersections]
+        x=np.arange(len(counts))
+        top=fig.add_axes([.151,.715,.185,.165])
+        clean_axis(top)
+        top.bar(x,counts,width=.68,color=INK,zorder=3)
+        for xpos,count in zip(x,counts):
+            top.text(xpos,count+.35,str(count),ha="center",va="bottom",fontsize=6.0)
+        top.set(xlim=(-.55,len(counts)-.45),ylim=(0,max(counts)+5),yticks=[0,10,20],ylabel="Heads")
+        top.tick_params(axis="x",bottom=False,labelbottom=False)
+        top.tick_params(axis="y",labelsize=6.0)
+        top.yaxis.label.set_size(6.0)
+        membership=fig.add_axes([.151,.555,.185,.115])
+        membership.set(xlim=top.get_xlim(),ylim=(2.5,-.5),xticks=[],yticks=[0,1,2],
+                       yticklabels=["Selected","Direct top-k","Composed top-k"])
+        for j,row in enumerate(intersections):
+            active=[]
+            for y,key in enumerate(("selected","direct","composed")):
+                membership.plot(j,y,"o",color=INK if row[key] else "#D6D9DD",markersize=3.9)
+                if row[key]:active.append(y)
+            if len(active)>1:
+                membership.plot([j,j],[min(active),max(active)],color=INK,linewidth=.8,zorder=0)
+        membership.tick_params(length=0,pad=3,labelsize=6.0)
+        for spine in membership.spines.values():spine.set_visible(False)
+
+        fig.text(.410,.985,"(b) Root-to-bridge preference",ha="left",va="top",fontsize=7.0,fontweight="bold")
+        preference=fig.add_axes([.492,.605,.470,.270])
+        clean_axis(preference,"x")
+        all_values=[]
+        for i,model in enumerate(MODELS):
+            y=len(MODELS)-1-i
+            for group,offset,color,style in (("selected",.12,MODEL_COLORS[i],"-"),
+                                           ("random_layer_matched",-.12,GRAY,"--")):
+                points=[unique_record(profiles,model=model,head_set=group,query=q)["bridge_minus_root_pp"]
+                        for q in ("composed","direct_target")]
+                all_values.extend(points)
+                preference.plot(points,[y+offset]*2,linestyle=style,color=color,linewidth=1.1,zorder=3)
+                preference.plot(points[0],y+offset,marker="o",markersize=3.8,
+                                markerfacecolor="white",markeredgecolor=color,markeredgewidth=1,zorder=4)
+                preference.plot(points[1],y+offset,marker="o",markersize=3.8,
+                                markerfacecolor=color,markeredgecolor=color,markeredgewidth=.7,zorder=4)
+        preference.axvline(0,color=GRAY,linewidth=.6,zorder=1)
+        limit_low=5*np.floor((min(all_values)-3)/5)
+        limit_high=5*np.ceil((max(all_values)+3)/5)
+        preference.set(yticks=[2,1,0],yticklabels=[MODEL_NAMES[m] for m in MODELS],
+                       ylim=(-.5,2.5),xlim=(limit_low,limit_high),xlabel="Bridge − root mass (pp)")
+        preference.set_xticks(np.arange(np.ceil(limit_low/10)*10,limit_high+1,10))
+        preference.tick_params(axis="y",length=0,pad=4,labelsize=6.0)
+        preference.tick_params(axis="x",labelsize=6.0)
+        preference.xaxis.label.set_size(6.1)
+        preference.spines["left"].set_visible(False)
+        handles=[Line2D([],[],marker="o",linestyle="none",color=INK,markerfacecolor="white",markersize=3.7),
+                 Line2D([],[],marker="o",linestyle="none",color=INK,markersize=3.7),
+                 Line2D([],[],color=INK,linewidth=1.1),
+                 Line2D([],[],color=GRAY,linestyle="--",linewidth=1.1)]
+        fig.legend(handles,["Composed","Direct","Selected","Matched random"],
+                   loc="upper center",bbox_to_anchor=(.710,.945),ncol=4,frameon=False,
+                   fontsize=6.0,handlelength=1.3,handletextpad=.35,columnspacing=.8)
+
+        matrices=[]
+        for example in examples:
+            matrices.append(100*np.array([example["head"]["paragraph_mass"][q]["all_question_mean"]
+                                          for q in ("composed","direct_target")]))
+        maximum=10*np.ceil(max(float(matrix.max()) for matrix in matrices)/10)
+        norm=matplotlib.colors.Normalize(vmin=0,vmax=maximum)
+        for index,(example,matrix,left) in enumerate(zip(examples,matrices,(.035,.545))):
+            model=example["model"];record=example["record"];head=example["head"]
+            fig.text(left,.443,
+                     f"({chr(99+index)}) {MODEL_NAMES[model]} · L{head['layer']}H{head['head']} · mass (%)",
+                     ha="left",va="top",fontsize=6.7,fontweight="bold")
+            questions=[]
+            for prefix,query in (("q12","composed"),("q2","direct_target")):
+                questions.append(textwrap.fill(prefix+": "+record["questions"][query]["question"],
+                                                width=75,subsequent_indent="    ",
+                                                break_long_words=False,break_on_hyphens=False))
+            fig.text(left,.397,"\n".join(questions),ha="left",va="top",fontsize=6.0,
+                     linespacing=1.08,color=INK)
+            ax=fig.add_axes([left+.045,.180,.400,.100])
+            ax.imshow(matrix,cmap="Blues",norm=norm,aspect="auto",interpolation="nearest")
+            for row in range(matrix.shape[0]):
+                for col in range(matrix.shape[1]):
+                    value=matrix[row,col]
+                    ax.text(col,row,f"{value:.1f}",ha="center",va="center",fontsize=6.0,
+                            color="white" if value>maximum*.55 else INK)
+            for key,color in (("root_index",ORANGE),("bridge_index",BLUE)):
+                ax.add_patch(Rectangle((record[key]-.5,-.5),1,2,fill=False,
+                                       edgecolor=color,linewidth=1.35))
+            ax.set(xticks=np.arange(matrix.shape[1]),xticklabels=[f"P{i}" for i in range(matrix.shape[1])],
+                   yticks=[0,1],yticklabels=["q12","q2"])
+            ax.tick_params(axis="both",length=0,pad=2,labelsize=6.0)
+            for spine in ax.spines.values():spine.set_visible(False)
+            role_text=(f"Root P{record['root_index']}: {record['root']}; "
+                       f"bridge P{record['bridge_index']}: {record['bridge']}")
+            fig.text(left,.096,role_text,ha="left",va="top",fontsize=6.0,color=INK)
+            calibration=record["canonical_mass_calibration"]
+            fig.text(left,.038,
+                     f"{calibration['selected_head_count']}-head mass calibration: "
+                     f"{calibration['native']['answer']} → {calibration['calibrated']['answer']}",
+                     ha="left",va="bottom",fontsize=6.0,color=INK)
+        save_figure(fig,"data_main_structure_function")
+
+
+def make_composition_address() -> None:
+    """Join the two existing diagnostic views without changing their populations."""
+    files=("analysis/figure_data/data_main_composition.csv",
+           "analysis/figure_data/data_fig3_diagnosis_address_readout.csv")
+    loaded=[]
+    for filename in files:
+        INPUT_PATHS.add(filename)
+        with (ROOT/filename).open(newline="",encoding="utf-8") as handle:
+            loaded.append([{**row,"derived_input":filename} for row in csv.DictReader(handle)])
+    composition,readouts=loaded
+    for row in composition:
+        for field in ("total_test_sources","both_constituents_correct","composition_failures","composition_successes"):
+            row[field]=int(row[field])
+        row["conditional_failure_percent"]=float(row["conditional_failure_percent"])
+        if row["composition_successes"]+row["composition_failures"]!=row["both_constituents_correct"]:
+            raise ValueError(f"Composition outcomes do not partition the conditional population: {row}")
+    for row in readouts:
+        row["n"]=int(row["n"]);row["correct"]=int(row["correct"])
+        row["accuracy_percent"]=float(row["accuracy_percent"])
+        population=unique_record(composition,model=row["model"])
+        if (row["n"]!=population["composition_failures"] or
+                not np.isclose(row["accuracy_percent"],100*row["correct"]/row["n"])):
+            raise ValueError(f"Address readout does not use the displayed composition failures: {row}")
+    export_csv("data_main_composition_address_composition",composition)
+    export_csv("data_main_composition_address_readout",readouts)
+    render_composition_address(composition,readouts)
+
+
+def render_composition_address(composition,readouts) -> None:
+    with plt.rc_context(V3_STYLE):
+        fig=plt.figure(figsize=(WIDE,1.90))
+        fig.text(.020,.985,"(a) Correct hops, failed composition",ha="left",va="top",
+                 fontsize=7.0,fontweight="bold")
+        fig.text(.520,.985,"(b) Bridge addresses in those failures",ha="left",va="top",
+                 fontsize=7.0,fontweight="bold")
+        left=fig.add_axes([.145,.270,.320,.430])
+        clean_axis(left,"x")
+        y=np.arange(len(MODELS))[::-1]
+        rows=[unique_record(composition,model=m) for m in MODELS]
+        success=np.array([100*r["composition_successes"]/r["both_constituents_correct"] for r in rows])
+        failure=np.array([r["conditional_failure_percent"] for r in rows])
+        left.barh(y,success,height=.60,color=BLUE,edgecolor="white",linewidth=.7,
+                  label="Composed correct",zorder=3)
+        left.barh(y,failure,left=success,height=.60,color=ORANGE,edgecolor="white",
+                  linewidth=.7,label="Composed incorrect",zorder=3)
+        for yi,row,ok,bad in zip(y,rows,success,failure):
+            left.text(ok/2,yi,f"{row['composition_successes']} ({ok:.1f}%)",
+                      ha="center",va="center",fontsize=6.0,color="white",fontweight="bold")
+            left.text(ok+bad/2,yi,f"{row['composition_failures']} ({bad:.1f}%)",
+                      ha="center",va="center",fontsize=6.0,color=INK,fontweight="bold")
+        left.set(yticks=y,yticklabels=[f"{MODEL_NAMES[m]}\n$n={r['both_constituents_correct']}$"
+                                      for m,r in zip(MODELS,rows)],
+                 xlim=(0,100),ylim=(-.55,len(MODELS)-.45),xticks=[0,50,100],
+                 xlabel="Share of constituent-correct sources (%)")
+        left.spines[["top","right","left"]].set_visible(False)
+        left.tick_params(axis="y",length=0,pad=4,labelsize=6.0)
+        left.tick_params(axis="x",labelsize=6.0)
+        left.xaxis.label.set_size(6.0)
+        handles,labels=left.get_legend_handles_labels()
+        fig.legend(handles,labels,loc="upper center",bbox_to_anchor=(.290,.855),
+                   ncol=2,frameon=False,fontsize=6.0,handlelength=1.3,
+                   handletextpad=.40,columnspacing=.9)
+
+        right=fig.add_axes([.590,.270,.385,.430])
+        clean_axis(right)
+        x=np.arange(len(MODELS));width=.23
+        for j,(feature,label,color) in enumerate((("metadata","Metadata",LIGHT_GRAY),
+                                                ("attention","Attention",BLUE),
+                                                ("full","Full",ORANGE))):
+            values=[unique_record(readouts,model=m,feature_set=feature)["accuracy_percent"] for m in MODELS]
+            positions=x+(j-1)*width
+            right.bar(positions,values,width,color=color,edgecolor=INK,linewidth=.4,
+                      zorder=3,label=label)
+            if feature=="full":
+                for position,value in zip(positions,values):
+                    right.text(position,value+2.0,f"{value:.1f}",ha="center",va="bottom",fontsize=6.0)
+        right.set(xticks=x,xticklabels=[f"{SHORT[m]}\n$n={unique_record(readouts,model=m,feature_set='full')['n']}$"
+                                       for m in MODELS],
+                  ylim=(0,112),yticks=[0,50,100],ylabel="Bridge-address accuracy (%)")
+        right.tick_params(labelsize=6.0)
+        right.yaxis.label.set_size(6.1)
+        handles,labels=right.get_legend_handles_labels()
+        fig.legend(handles,labels,loc="upper center",bbox_to_anchor=(.780,.855),
+                   ncol=3,frameon=False,fontsize=6.0,handlelength=1.3,
+                   handletextpad=.4,columnspacing=.9)
+        save_figure(fig,"data_main_composition_address")
+
+
 def main() -> None:
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--only",nargs="*",choices=["composition","diagnosis","causal","content","localization","necessity","ablation","capabilities","ambiguity","case","mechanism_cases"])
+    parser.add_argument("--only",nargs="*",choices=["composition","diagnosis","causal","content","localization","necessity","ablation","capabilities","ambiguity","case","mechanism_cases","mechanism_causality","joint_rescue","address_routing","mechanism_structure","composition_address"])
     args=parser.parse_args();config=read_json("configs/experiments.json");seeds=config["seeds"]
-    tasks={"composition":lambda:make_composition(seeds),"diagnosis":lambda:make_diagnosis(seeds),"causal":make_causal,"content":lambda:make_content(seeds),"localization":make_localization,"necessity":make_necessity,"ablation":lambda:make_ablation(seeds),"capabilities":lambda:make_capabilities(seeds),"ambiguity":make_ambiguity,"case":make_case,"mechanism_cases":make_mechanism_cases}
+    tasks={"composition":lambda:make_composition(seeds),"diagnosis":lambda:make_diagnosis(seeds),"causal":make_causal,"content":lambda:make_content(seeds),"localization":make_localization,"necessity":make_necessity,"ablation":lambda:make_ablation(seeds),"capabilities":lambda:make_capabilities(seeds),"ambiguity":make_ambiguity,"case":make_case,"mechanism_cases":make_mechanism_cases,"mechanism_causality":make_mechanism_causality,"joint_rescue":make_joint_rescue,"address_routing":make_address_routing,"mechanism_structure":make_mechanism_structure,"composition_address":make_composition_address}
     requested=list(args.only or tasks)
     # Combined head-profile/knockout panel requires both original collectors.
     if any(name in requested for name in ("localization","necessity")):

@@ -34,7 +34,7 @@
 ]
 \printAffiliationsAndNotice{}
 \begin{abstract}
-Language models can answer each hop of a factual chain from the same evidence yet fail to compose the answers. We study this gap through \emph{Locate--Route--Read}, three coupled operations for contextual composition: identifying the bridge evidence, allocating attention to it, and reading the requested relation value. Paired constituent and composed queries localize a small set of heads whose removal disrupts answering. Across three models, composition fails on roughly half of the sources with correct constituent answers, while bridge addresses remain recoverable in most failures. We separate routing from reading by factorizing paragraph attention into access mass and its conditional token distribution. Calibrating access to the bridge improves composition, and crossed interventions reveal that access changes the usefulness of direct-query reading patterns, with interaction estimates of 5--16 percentage points. Guided by this mechanism, \method\ combines selected-head adaptation with attention-guided evidence selection. It improves composed accuracy by 33.3--39.9 percentage points with fewer than 1\% trainable model parameters. Case studies connect the three operations to concrete answer changes, and reciprocal fact exchanges show that repaired predictions follow changed local values. These findings identify the interaction of routing and reading as a functional mechanism of contextual composition and a practical target for improvement.
+Language models can answer each hop of a factual chain from the same evidence yet fail to compose the answers. We study this gap through \emph{Locate--Route--Read}: locating the bridge evidence, routing attention to it, and reading the requested relation value. Across three models, composition fails on roughly half of the sources with correct constituent answers. Paired-query profiles identify evidence-access heads that shift their preference between root and bridge paragraphs; removing these heads disrupts answering. Bridge addresses nevertheless remain recoverable in most composition failures. Matching address readouts to routing interventions connects this available information to corrections on the same sources. We then factor paragraph attention into access mass and its conditional token distribution. Crossed interventions show that routing changes the utility of local reading patterns, with interaction estimates of 5--16 percentage points and receiver-level corrections unique to the joint intervention. Guided by this mechanism, \method\ combines selected-head adaptation with attention-guided evidence selection. It improves composed accuracy by 33.3--39.9 percentage points with fewer than 1\% trainable model parameters, and reciprocal fact exchanges show that repaired predictions follow changed local values. These findings connect component function, evidence access, and relation reading into a mechanistic account of contextual composition.
 \end{abstract}
 
 \begin{figure}[!t]
@@ -49,7 +49,6 @@ Language models can answer each hop of a factual chain from the same evidence ye
 \input{sections/experiments}
 \FloatBarrier
 \nobalance
-\newpage
 \input{sections/conclusion}
 \FloatBarrier
 \clearpage

@@ -2,7 +2,7 @@
 
 **When Correct Hops Fail to Compose: Locating, Routing, and Reading Evidence**
 
-`main.tex` compiles the complete manuscript and appendix. The main text follows **Introduction – Related Work – Method – Experiments – Conclusion**. Its **Locate–Route–Read** account connects recoverable bridge addresses, attention allocation to the relevant paragraph, and relation-conditioned local reading. Causal localization, access controls, crossed attention interventions, and recorded cases support this account and its application through CoReTrace.
+`main.tex` compiles the complete manuscript and appendix. The main text follows **Introduction – Related Work – Method – Experiments – Conclusion**. Its **Locate–Route–Read** account connects recoverable bridge addresses, attention allocation to the relevant paragraph, and relation-conditioned local reading. Component structure and function, matched address-to-routing interventions, and receiver-level joint corrections connect the three operations. CoReTrace applies this mechanism to improve composition and follow local fact changes.
 
 The appendix contains the complete experimental protocols, head maps, necessity controls, reader and selector diagnostics, component interventions, constituent results, capability evaluations, and uncertainty details. Appendix figures and tables have their own `A` numbering. Numerical results and captions share the source summaries described in the accompanying analysis documentation.
 
@@ -42,36 +42,44 @@ For Overleaf, upload the current contents of `paper/` or a source archive built 
 
 ## Formal figure set
 
-The main text targets eight pages and contains eleven figures—three supplied conceptual figures and eight empirical figures—and one table. Figures 1–3 retain the supplied artwork, figure environments, and captions exactly. Figure 9 presents the crossed 2-by-2 attention intervention at full width; Figure 11 presents two recorded mechanism cases at full width. The remaining empirical figures use single-column layouts.
+The main text targets eight pages and contains ten figures—three supplied conceptual figures and seven empirical figures—and one table. Figures 1–3 retain their artwork, full TeX environments, and captions exactly. Figures 4–8 use full-width layouts to expose component-level and matched causal evidence. The answer-based Corvinus/Angela case study is retained in the appendix.
 
 | Figure | File stem | Role |
 | --- | --- | --- |
-| 1 | `figure1_teaser` | Portrait teaser |
-| 2 | `figure2_diagnosis` | Mechanistic analysis |
-| 3 | `figure3_method` | Deployment workflow |
-| 4 | `data_main_composition` | Composition success and failure within the native constituent-correct population |
-| 5 | `data_main_localization` | Qwen and Llama head heatmaps with a shared vertical colorbar |
-| 6 | `data_main_head_pair` | Layer-wise gap and matched knockout curves |
-| 7 | `data_fig3_diagnosis` | Address readout on composition failures |
-| 8 | `data_app_access_controls` | Bridge, root, and other-paragraph access calibration; restored to the main text |
-| 9 | `data_main_causal_pair` | Four intervention arms and access-dependent pattern effects |
-| 10 | `data_fig5_content` | Edited-value and joint correctness |
-| 11 | `data_main_mechanism_cases` | Corvinus composition and Angela routing/reading cases |
+| 1 | `figure1_teaser` | Supplied teaser, preserved exactly |
+| 2 | `figure2_diagnosis` | Supplied mechanistic-analysis framework, preserved exactly |
+| 3 | `figure3_method` | Supplied CoReTrace workflow, preserved exactly |
+| 4 | `data_main_composition_address` | Correct constituent answers, composition failures, and bridge-address recovery within those failures |
+| 5 | `data_main_structure_function` | Head-set structure, paired root/bridge preferences, and measured head-level functional examples |
+| 6 | `data_main_head_causality` | Selected and matched-random knockout for composed/direct-target queries across all models |
+| 7 | `data_main_address_routing` | Destination controls, native allocation in address-decodable failures, and routing corrections on the same sources |
+| 8 | `data_main_causal_pair` | Crossed mass/pattern intervention and access-dependent pattern effects |
+| 9 | `data_main_joint_rescue` | Joint-only corrections within the paired four-arm outcomes |
+| 10 | `data_fig5_content` | Local-value following at a stable selected evidence address |
 
-Table 1 (`tables/main_results.tex`) reports the core benchmark comparison. The appendix contains seven figures: complete head maps, within-model head-overlap plots, knockout controls, candidate-ranking comparisons (`data_main_ambiguity`), the earlier Calvert worked example (`data_main_case`), projection-restoration analysis (`data_app_ablation`), and capability comparisons (`data_app_capabilities`). File stems remain stable when their placement changes, including `data_app_access_controls` in the main text. Full component and capability tables retain the recorded results, including the tied composed EM of full and attention-only candidate ranking.
+Table 1 (`tables/main_results.tex`) reports the complete-method core benchmark comparison. The appendix contains eight figures: complete head maps, all-model head intersections, all-query knockout controls, candidate-ranking comparisons, the Calvert example, projection-restoration analysis, capability comparisons, and the Corvinus/Angela evidence-and-answer cases. Figure numbers follow the manuscript; older file stems are retained when their placement changes.
 
 ## Regeneration (repository root)
 
 The repository's `analysis/plot_results.py` is the sole manuscript numerical plotting entry point. It reads the recorded summaries, frozen head rankings, and reader validation records; its main and appendix panels share the same collectors. There are no experimental result arrays in the renderer. The existing `analysis/build_tables.py` generates the numerical tables.
 
-For revision 2, regenerate the composition-gap, causal, and mechanism-case figures:
+For revision 3, regenerate the combined diagnostic and four new mechanism figures from the released derived arrays:
 
 ```bash
-python analysis/plot_results.py --only composition causal mechanism_cases
+python analysis/plot_results.py --only composition_address mechanism_structure mechanism_causality address_routing joint_rescue
 make -C paper
 ```
 
-This writes `data_main_composition`, `data_main_causal_pair`, `data_app_access_controls`, and `data_main_mechanism_cases`, along with PNG previews, supporting CSVs, and a partial input manifest. The mechanism-case task reads `analysis/internal/mechanism_case_records_20261125_v2.json`, which records the Corvinus and Angela contexts and predictions from completed experiments. It leaves Figures 1–3 unchanged and runs no model inference.
+This produces `data_main_composition_address`, `data_main_structure_function`, `data_main_head_causality`, `data_main_address_routing`, and `data_main_joint_rescue` as vector PDF and 300-dpi PNG, with new CSVs and an input manifest. Existing result CSVs and Figures 1–3 remain unchanged. The earlier case figure remains reproducible with the `mechanism_cases` task.
+
+To recompute the new derived arrays from the recorded raw inputs, run:
+
+```bash
+python analysis/derive_structure_evidence.py
+python analysis/derive_causal_evidence.py
+```
+
+Both analysis scripts default to the frozen source commit `5586f3816903e64334de80e06b74c6d7b1499b18` and verify archived source identities and numerical summaries. They read captures, predictions, and frozen reader weights; they perform no training, model inference, or plotting. The sole numerical plotting entry point remains `analysis/plot_results.py`.
 
 To regenerate the complete numerical figure and table set when needed:
 

@@ -1,0 +1,13 @@
+model,head_set,query,n_sources,n_heads,question_rows,root_mass_percent,bridge_mass_percent,distractor_mean_percent,distractor_sum_percent,bridge_minus_root_pp,source
+qwen3_4b,selected,composed,100,20,all_question_mean,29.412588626798243,10.720769284772723,3.7043300572560605,29.634640458048484,-18.691819342025518,analysis/internal/v3_structure_evidence.json
+qwen3_4b,selected,direct_target,100,20,all_question_mean,7.82457086838258,33.518741586524996,2.420841061414363,19.366728491314905,25.694170718142416,analysis/internal/v3_structure_evidence.json
+qwen3_4b,random_layer_matched,composed,100,20,all_question_mean,13.022959895015083,7.712528256671794,2.715869891278362,21.726959130226895,-5.310431638343288,analysis/internal/v3_structure_evidence.json
+qwen3_4b,random_layer_matched,direct_target,100,20,all_question_mean,5.229811257479376,16.2902242103155,2.2324537069988306,17.859629655990645,11.060412952836126,analysis/internal/v3_structure_evidence.json
+qwen3_8b,selected,composed,100,20,all_question_mean,30.402326082158833,12.13876784451204,3.806691806427626,30.453534451421007,-18.263558237646794,analysis/internal/v3_structure_evidence.json
+qwen3_8b,selected,direct_target,100,20,all_question_mean,9.329402396723163,34.131975652277454,2.569013702419264,20.552109619354113,24.80257325555429,analysis/internal/v3_structure_evidence.json
+qwen3_8b,random_layer_matched,composed,100,20,all_question_mean,7.99197728398649,5.512379862274973,2.105700829642842,16.845606637142737,-2.4795974217115164,analysis/internal/v3_structure_evidence.json
+qwen3_8b,random_layer_matched,direct_target,100,20,all_question_mean,4.311005077454319,9.761033692123602,1.930672011580702,15.445376092645615,5.450028614669283,analysis/internal/v3_structure_evidence.json
+llama3_8b,selected,composed,100,40,all_question_mean,24.35062265498563,10.909301026905453,3.6063003822257085,28.850403057805668,-13.441321628080177,analysis/internal/v3_structure_evidence.json
+llama3_8b,selected,direct_target,100,40,all_question_mean,6.850709858204937,30.04540628143586,2.594610590315775,20.7568847225262,23.194696423230923,analysis/internal/v3_structure_evidence.json
+llama3_8b,random_layer_matched,composed,100,40,all_question_mean,10.780899588514691,5.62826467762934,2.0456096658055056,16.364877326444045,-5.152634910885351,analysis/internal/v3_structure_evidence.json
+llama3_8b,random_layer_matched,direct_target,100,40,all_question_mean,3.6024816064675185,12.97027559537346,1.6364566435143784,13.091653148115027,9.367793988905941,analysis/internal/v3_structure_evidence.json

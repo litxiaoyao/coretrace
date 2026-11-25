@@ -48,7 +48,7 @@ For the content intervention, we exchange the literal object spans in two offici
 
 \subsection{Head Ranking and Count Selection}
 
-The ranking in \cref{eq:ranking} uses discovery-only paired direct-target and composed queries under their original contexts. \cref{fig:localization} illustrates the score maps for two representative models. \Cref{fig:layer_profiles} provides the complete maps together with the layer-wise score profiles. The ranking measures the access contribution of each head under the paired queries. For each candidate count, the calibration intervention sets bridge mass using discovery-derived, head-specific targets; \cref{tab:head_selection} reports the composed accuracies used to choose 20, 20, and 40 heads. A tie favors the smaller set. The shared-context factorial experiment uses these frozen choices.
+The ranking in \cref{eq:ranking} uses discovery-only paired direct-target and composed queries under their original contexts. \cref{fig:structure_function} connects the selected heads to their paragraph-attention profiles. \Cref{fig:layer_profiles} provides the complete score maps together with the layer-wise score profiles. The ranking measures the access contribution of each head under the paired queries. For each candidate count, the calibration intervention sets bridge mass using discovery-derived, head-specific targets; \cref{tab:head_selection} reports the composed accuracies used to choose 20, 20, and 40 heads. A tie favors the smaller set. The shared-context factorial experiment uses these frozen choices.
 
 
 
@@ -78,6 +78,9 @@ The ranking in \cref{eq:ranking} uses discovery-only paired direct-target and co
 
 The within-model intersection analysis in \cref{fig:head_overlap_all} uses the frozen set of $K$ ranked heads and the top $K$ heads under each of the two original mean-attention scores in \cref{eq:ranking}, breaking ties by layer and then head index. The bars count mutually exclusive intersections of these three sets. The comparisons are descriptive summaries of the same discovery records. Direct and composed rankings are calculated separately within each model. The frozen sets overlap the direct-query sets in 14/14/31 heads and the composed-query sets in 0/1/10 heads, out of 20/20/40, respectively.
 
+\paragraph{Paired functional profiles.} For each of the 100 canonical discovery sources, we retain the root and bridge paragraph indices and all ten paragraph masses for both $q_2$ and $q_{12}$. Group profiles first average the selected heads within each source, then average sources. They report attention as a fraction of the complete attention row, without renormalizing the root and bridge to sum to one. The selected-count random comparison reuses the exact layer-matched set from the knockout experiment. All 20/20/40 selected heads have larger mean root mass under $q_{12}$ than under $q_2$. Source-level root/bridge preference reverses on 98/94/89 of 100 paired contexts. The representative functional profiles in \cref{fig:structure_function} show actual zero-based layer/head IDs and paragraph positions. Their accompanying mass-calibration answers intervene on the entire selected head set; the displayed attention profile belongs to the named head.
+
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.93\textwidth]{figures/data_app_head_overlap.pdf}
@@ -90,6 +93,9 @@ The within-model intersection analysis in \cref{fig:head_overlap_all} uses the f
 For head knockout, selected head outputs are set to zero before their output projection at all question-prefill positions. Prefix computation and cached decoding retain their ordinary forward operations. We compare the top 20, 40, and 80 heads to one layer-matched random set at each count, sampled with seeds 62, 82, and 122, respectively. Random sets preserve the number of selected heads in each layer and may overlap the ranked set. The overlap counts at these three doses are 3/7/13 for Qwen3-4B, 0/4/15 for Qwen3-8B, and 3/8/21 for Llama.
 
 \cref{fig:necessity} reports all three query types and all doses on the 1,000-source test panel. At the chosen counts, selected knockout reduces composed accuracy to 7.4/5.5/6.4\%, compared with 24.4/27.3/29.4\% for matched random knockout. The constituent effects show that these heads contribute causally across query formulations. For paragraph-address controls, the same frozen targets are applied to the annotated bridge, the root, or the other paragraph with nearest token length; ties are broken by title and then original index. The paired differences in \cref{fig:access_controls} use each intervention pipeline's native baseline.
+
+\paragraph{Matching recoverable addresses to routing outcomes.} We join native-state paragraph-reader predictions and routing outcomes by source ID on the 1,000 canonical test contexts. The conditional group requires correct native constituent answers, an incorrect composed answer under the routing experiment's own native baseline, and a correct frozen full-reader bridge prediction. This yields 169/174/209 sources, held fixed across bridge/root/other interventions. The correction counts are $31/27/97$, $12/10/12$, and $7/2/7$, respectively. Qwen3-8B's routing baseline already answers two of the 176 address-decodable failures from the principal evaluation, giving 174 in this matched group. Rates divide by the fixed group size; intervals resample its source IDs 10,000 times. In these same groups, native mean root/bridge masses are $30.30/8.24$, $32.46/8.80$, and $26.35/7.65$ percent. The root exceeds the bridge on $167/169$, $174/174$, and $204/209$ sources. These measurements average the raw question-row paragraph masses across the frozen heads and then across sources. This comparison follows available address information through the intervention on access.
+
 
 \begin{figure}[H]
   \centering
@@ -122,6 +128,8 @@ Donor and receiver must have identical context-token prefixes and bridge-key pos
   \small\setlength{\tabcolsep}{4pt}
   \input{tables/factorial_contrasts}
 \end{table}
+
+\paragraph{Receiver-level joint corrections.} On the 100 shared-context receivers, Native is wrong on 66/52/49 cases. Both corrects 11/13/29 of these. Among those corrections, the four $(\mathrm{Mass},\mathrm{Pattern})$ correctness cells $(0,0),(0,1),(1,0),(1,1)$ contain $(4,0,7,0)$ for Qwen3-4B, $(5,3,4,1)$ for Qwen3-8B, and $(13,2,14,0)$ for Llama. The $(0,0)$ cell gives the joint-only corrections in \cref{fig:joint_rescue}; all cells retain their native and Both outcomes. These paired receiver counts complement the complete four-arm accuracies and quadruplet-bootstrap contrasts in \cref{tab:factorial}.
 
 \subsection{Address Recovery and Local Fact Reading}
 
@@ -275,10 +283,20 @@ Full-model fine-tuning uses the same 2,000 composed examples and the recipe in A
 \end{table}
 
 \subsection{Worked Evidence Chains}
+\label{app:cases}
 
 The teaser uses a Llama example whose evidence states that Walter II of Avesnes is the son of James of Avesnes and that James was killed at the Battle of Arsuf. Native constituent answers identify James and Arsuf, whereas the native composed answer is ``Avesnes.'' The final procedure answers ``Arsuf.''
 
-A second example asks who John Corvinus's paternal grandfather was. The supplied chain is John Corvinus $\rightarrow$ Matthias Corvinus $\rightarrow$ John Hunyadi. All three native models answer the two constituent questions correctly but answer the composed question ``Matthias Corvinus.'' All three final models instead answer ``John Hunyadi.'' The input-derived graph has two outgoing candidates, so this example exercises attention-based disambiguation.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/data_main_mechanism_cases.pdf}
+  \caption{\textbf{Two cases connect evidence location, routing, and relation reading.} (a) All three models answer both constituents correctly but repeat the bridge entity on a test composition; \method\ reaches the endpoint. (b) On a shared-context Llama diagnostic, joint mass and pattern intervention yields the requested mother. The complete \method\ procedure also follows the reciprocal change in her name. Text and answers come from recorded contexts and predictions.}
+  \label{fig:mechanism_cases}
+\end{figure}
+
+\Cref{fig:mechanism_cases} makes the three operations concrete. In the John Corvinus test case, all three native models correctly identify Matthias Corvinus as the father and John Hunyadi as Matthias's father, yet return Matthias for the composed question. \method\ selects the bridge paragraph and answers John Hunyadi. The example exposes the distinction between identifying the intermediate entity and reading the next relation.
+
+The Angela case shows why routing and reading must work together. Asked for the director's mother, Llama returns Arthur Miller under Native, Mass, and Pattern, but Inge Morath under Both. On the same shared context, \method\ answers Inge Morath and then Gisela Elsner after their reciprocal exchange, while retaining the selected bridge paragraph. The address stays fixed; the answer changes with the relation's local value.
 
 \section{Token Use and Observed Execution Cost}
 \label{app:efficiency}
