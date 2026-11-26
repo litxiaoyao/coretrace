@@ -12,7 +12,6 @@ We construct \dataset\ from 2WikiMultiHopQA \citep{ho2020constructing}, pairing 
 
 This motivates \method\ (\cref{fig:framework}): adapt shared heads, restore native prefill contributions, and use Locate to focus evidence. The adapted/restored model shows stronger bridge access and relation preference on unchanged contexts. With fewer than 1\% trainable parameters, \method\ improves composed EM by 33.3--39.9 points and follows exchanged facts at stable addresses.
 
-\newpage
 Our contributions are threefold:
 \begin{itemize}[leftmargin=*,itemsep=2pt,topsep=3pt,parsep=0pt]
 \item \textbf{Mechanistic diagnosis.} Evidence-access heads retain recoverable bridge addresses in failed composition.

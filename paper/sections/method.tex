@@ -1,7 +1,10 @@
-\newspread{\widefig{.95}{figure3_method_revision}{\textbf{CoReTrace maps diagnosis to repair.} (a) Adapt selected-head Q/O and associated-group K/V slices, then restore native V and/or O at fixed prefill scopes to obtain $\mathcal{M}^*$. Train its address reader on training sources. (b) Locate guides evidence choice; the same $\mathcal{M}^*$ supports routing and reading. If the title graph is inapplicable, retain the full context. Schematic.}{\label{fig:framework}}}
+
 \section{Methodology}\label{sec:method}
 \subsection{Paired Contextual Reasoning}\label{sec:triplets}
-For a chain $e_0\xrightarrow{r_1}b\xrightarrow{r_2}a$, a source contains a composed query $q_{12}$ and two constituent queries: $q_1$ requests the bridge $b$, while $q_2$ names $b$ and requests $a$. All share the original paragraphs, distractors and positions. The \emph{root} paragraph describes $e_0$; the \emph{bridge} paragraph supports $(b,r_2,a)$. Thus $q_2$ and $q_{12}$ request the same endpoint but differ in whether the intermediate entity is explicit. 
+For a chain $e_0\xrightarrow{r_1}b\xrightarrow{r_2}a$, a source contains a composed query $q_{12}$ and two constituent queries: $q_1$ requests the bridge $b$, while $q_2$ names $b$ and requests $a$. All share the original paragraphs, distractors and positions.
+
+\newspread{\widefig{.95}{figure3_method_revision}{\textbf{CoReTrace maps diagnosis to repair.} (a) Adapt selected-head Q/O and associated-group K/V slices, then restore native V and/or O at fixed prefill scopes to obtain $\mathcal{M}^*$. Train its address reader on training sources. (b) Locate guides evidence choice; the same $\mathcal{M}^*$ supports routing and reading. If the title graph is inapplicable, retain the full context. Schematic.}{\label{fig:framework}}}
+ The \emph{root} paragraph describes $e_0$; the \emph{bridge} paragraph supports $(b,r_2,a)$. Thus $q_2$ and $q_{12}$ request the same endpoint but differ in whether the intermediate entity is explicit.
 
 Let $c_i(q)\in\{0,1\}$ denote correctness for source $i$. The native constituent-correct set is $\mathcal U=\{i:c_i(q_1)c_i(q_2)=1\}$. Following \citet{press2023compositionality}, we define its composition failure rate:
 \begin{equation}\mathrm{CFR}=1-\frac{1}{|\mathcal U|}\sum_{i\in\mathcal U}c_i(q_{12}).\label{eq:cfr}\end{equation}
@@ -18,10 +21,13 @@ For a selected head in $\mathcal{H}$ and bridge paragraph $B$, let $m=\sum_{k\in
 where $v_k$ is the receiver-computed value vector \citep{vaswani2017attention}. The two controls are complementary: $m$ scales the contribution, while $\rho$ determines the value mixture. Each can vary independently.
 
 
-\newspread{\widefig{1}{data_main_composition_address}{\textbf{Correct hops, failed composition, recoverable addresses.} (a) Composed outcomes within the native constituent-correct population. (b) Bridge-address readouts on the resulting composition failures. Selected-head attention carries address information beyond metadata.}{\label{fig:composition_gap}\label{fig:diagnosis}}}
+
 \textbf{Routing intervention.} Set $m$ to the frozen head-specific mean last-token bridge mass $\tau$ from direct discovery queries, retaining $\rho$. Rescale outside attention to preserve the row total. Calibrate the annotated bridge, root or length-matched paragraph to test destination effects.
 
-\label{sec:reading}\textbf{Reading intervention.} Transfer the normalized pattern $\rho^{\rm dir}$ from the direct query requesting the same relation and endpoint. Crossing the two operations yields Native $(m,\rho)$, Mass $(\tau,\rho)$, Pattern $(m,\rho^{\rm dir})$, and Both $(\tau,\rho^{\rm dir})$. All retain receiver-computed values and original output projections; downstream activations and caches follow the intervened pass. The final donor question row supplies the pattern to selected receiver rows.
+\label{sec:reading}\textbf{Reading intervention.} Transfer the normalized pattern $\rho^{\rm dir}$ from the direct query requesting the same relation and endpoint.
+
+\newspread{\widefig{1}{data_main_composition_address}{\textbf{Correct hops, failed composition, recoverable addresses.} (a) Composed outcomes within the native constituent-correct population. (b) Bridge-address readouts on the resulting composition failures. Selected-head attention carries address information beyond metadata.}{\label{fig:composition_gap}\label{fig:diagnosis}}}
+ Crossing the two operations yields Native $(m,\rho)$, Mass $(\tau,\rho)$, Pattern $(m,\rho^{\rm dir})$, and Both $(\tau,\rho^{\rm dir})$. All retain receiver-computed values and original output projections; downstream activations and caches follow the intervened pass. The final donor question row supplies the pattern to selected receiver rows.
 
 \textbf{Measuring interaction.} Twenty-five discovery quadruplets cross two bridges with two second-hop relations under a common ten-paragraph context, yielding 100 receivers aligned with their direct-query donor tokens. We measure
 \begin{equation}I=\mathrm{Acc}_{\mathrm{both}}-\mathrm{Acc}_{\mathrm{mass}}-\mathrm{Acc}_{\mathrm{pattern}}+\mathrm{Acc}_{\mathrm{native}}.\label{eq:interaction}\end{equation}
@@ -31,5 +37,4 @@ The interaction measures how access changes the effect of pattern transfer. Inte
 
 \textbf{Route and Read: shared head adaptation.} We train full-rank Q/O slices of $\mathcal{H}$ and K/V slices of their associated groups with answer-only cross-entropy; all other parameters remain frozen. Fixed projection restoration reinstates native V and/or O contributions at designated prompt-prefill positions, while cached decoding uses adapted weights. Scopes are fixed before evaluation (Appendix B); denote the resulting model by $\mathcal{M}^*$.
 
-\newpage
 \textbf{Locate: attention-guided evidence selection.} We fit $s_j$ using $\mathcal{M}^*$ features and training bridge labels. A unique maximal title match in the question identifies the root; paragraph titles in the root body define candidate bridges. A unique candidate is selected directly; otherwise, a full-context prefill under $\mathcal{M}^*$ ranks candidates using $s_j$. The root and chosen bridge retain original wording and order. If the graph is inapplicable, retain full context. Neither test bridge annotations nor direct-query donors are used.

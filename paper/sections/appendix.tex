@@ -9,7 +9,7 @@ For seven frequent relations, constituent probes use natural templates: ``Who di
 
 \cref{tab:data} describes the population. The training sources all originate in the official training split; test sources all originate in the official development split. Discovery includes 77 official training and 23 official development sources. Source identifiers are disjoint across our three splits. Forty-three test sources share a transitive root/bridge entity group with training sources. Within the test panel, all 1,000 sources have distinct roots, distinct bridges, and distinct transitive groups. Training is more concentrated in director relations (1,154/2,000 first edges) than test (280/1,000); father relations occur in 199 training and 333 test first edges.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{Source and query populations.} Every canonical source retains ten original paragraphs. A root/bridge group connects sources transitively through shared root or bridge entities. The shared-context diagnostic reuses discovery sources with a common context within each quadruplet.}
   \label{tab:data}
@@ -52,7 +52,7 @@ The ranking in \cref{eq:ranking} uses discovery-only paired direct-target and co
 
 
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{Discovery-only head-count selection.} Composed accuracy (\%) on 100 canonical discovery sources under annotated bridge-mass calibration. Bold marks the selected count; ties favor fewer heads. These native scores differ from the shared-context diagnostic because the supplied contexts differ.}
   \label{tab:head_selection}
@@ -69,7 +69,7 @@ The ranking in \cref{eq:ranking} uses discovery-only paired direct-target and co
 \end{table}
 
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \begin{minipage}{.94\textwidth}\centering
   \figurecontent{data_app_localization}\par
@@ -83,7 +83,7 @@ The within-model intersection analysis in \cref{fig:head_overlap_all} uses the f
 \paragraph{Paired functional profiles.} For each of the 100 canonical discovery sources, we retain the root and bridge paragraph indices and all ten paragraph masses for both $q_2$ and $q_{12}$. Group profiles first average the selected heads within each source, then average sources. They report attention as a fraction of the complete attention row, without renormalizing the root and bridge to sum to one. The selected-count random comparison reuses the exact layer-matched set from the knockout experiment. All 20/20/40 selected heads have larger mean root mass under $q_{12}$ than under $q_2$. Source-level root/bridge preference reverses on 98/94/89 of 100 paired contexts. The representative functional profiles in \cref{fig:structure_function} show actual zero-based layer/head IDs and paragraph positions. Their accompanying mass-calibration answers intervene on the entire selected head set; the displayed attention profile belongs to the named head.
 
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \begin{minipage}{.93\textwidth}\centering
   \figurecontent{data_app_head_overlap}\par
@@ -101,7 +101,7 @@ For head knockout, selected head outputs are set to zero before their output pro
 \paragraph{Matching recoverable addresses to routing outcomes.} We join native-state paragraph-reader predictions and routing outcomes by source ID on the 1,000 canonical test contexts. The conditional group requires correct native constituent answers, an incorrect composed answer under the routing experiment's own native baseline, and a correct frozen full-reader bridge prediction. This yields 169/174/209 sources, held fixed across bridge/root/other interventions. The correction counts are $31/27/97$, $12/10/12$, and $7/2/7$, respectively. Qwen3-8B's routing baseline already answers two of the 176 address-decodable failures from the principal evaluation, giving 174 in this matched group. Rates divide by the fixed group size; intervals resample its source IDs 10,000 times. In these same groups, native mean root/bridge masses are $30.30/8.24$, $32.46/8.80$, and $26.35/7.65$ percent. The root exceeds the bridge on $167/169$, $174/174$, and $204/209$ sources. These measurements average the raw question-row paragraph masses across the frozen heads and then across sources. This comparison follows available address information through the intervention on access.
 
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \begin{minipage}{1\textwidth}\centering
   \figurecontent{data_app_necessity}\par
@@ -127,7 +127,7 @@ Donor and receiver must have identical context-token prefixes and bridge-key pos
 
 \cref{tab:factorial} gives all paired factorial contrasts. The pattern effect changes from $-6/+2/-4$ points at native mass to $+2/+7/+12$ points at calibrated mass. The interaction estimates are $+8$, $+5$, and $+16$ points, with 95\% intervals $[1,14]$, $[0,10]$, and $[8,25]$. Mass calibration increases accuracy by 15/9/29 points with the direct-query pattern, compared with 7/4/13 points under the receiver pattern. Thus, the crossed interventions show that access allocation and local reading reinforce one another.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{Factorial effects on shared-context composition.} Accuracy differences in percentage points with 95\% paired percentile intervals from 2,000 resamples of the 25 quadruplets. All 100 composed receivers remain in every condition. The interaction in \cref{eq:interaction} measures the change in the direct-query pattern effect after access calibration.}
   \label{tab:factorial}
@@ -141,7 +141,7 @@ Donor and receiver must have identical context-token prefixes and bridge-key pos
 
 \cref{tab:readouts} reports the full, attention-only, and metadata-only readouts both across all test sources and within native constituent-correct composition failures. Native and adapted-state readouts are fitted separately on features from their respective model states. The full readout improves from 80.3/83.9/91.9\% in the native state to 90.3/92.6/95.0\% in the adapted state. On native composition failures, accuracy rises from 72.2/74.6/86.0\% to 82.9/86.0/92.2\%. Attention-only readouts show the same improvement, reaching 89.6/91.2/94.3\% overall. Metadata accuracy stays at 43.5/43.5/44.1\%, so the improvement comes from the adapted attention features.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{Paragraph-address readout diagnostics.} Accuracy (\%) of training-fitted readouts. ``Failure subset'' is fixed by the native model: both constituents are correct and the composition is wrong. Native-state rows distinguish attention information from paragraph-length/title cues; adapted-state rows use the deployed model's own features. A common intercept would cancel in the paragraph softmax, so each readout has no bias parameter.}
   \label{tab:readouts}
@@ -151,7 +151,7 @@ Donor and receiver must have identical context-token prefixes and bridge-key pos
 
 \cref{tab:content} provides all content-exchange outcomes. Edited-value following and obsolete-answer persistence are measured against disjoint alias sets; joint accuracy additionally requires that the same source be answered correctly before the exchange. The joint measure captures correct answers in both versions of the same example. All displayed content metrics agree across the three recorded runs. Annotated bridge-mass calibration increases following by 9/2/20 points over Native. The complete repair increases following by 51/41/48 points and joint accuracy by 54/43/48 points. Relative to adaptation with restoration, it reduces obsolete-answer persistence from 17/23/16\% to 9/7/4\%, linking evidence selection to more consistent updates.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{Complete reciprocal content-exchange outcomes.} Accuracy (\%) on 100 composed queries from 25 shared-context quadruplets. Original accuracy uses the original answer, following uses the exchanged value, persistence uses the now-obsolete answer, and joint accuracy requires correctness before and after exchange. Values are mean $\pm$ sample SD across recorded runs; all SDs here are zero. Every example undergoes a valid reciprocal exchange.}
   \label{tab:content}
@@ -170,7 +170,7 @@ On the 1,000 composed test questions, there are 75 inapplicable/no-candidate cas
 
 \cref{tab:ambiguity} isolates the 103 ambiguous cases. The input-order control chooses the first outgoing candidate; the readout conditions change only this choice under the same adapted model. Full-reader bridge selection succeeds on 95/96/98 cases, compared with 37 for input-order selection. Attention-only selection succeeds on 94/97/97, and metadata-only on 57/57/59. Full and attention-only readouts yield the same composed EM on the full panel, with some differences in bridge choices and individual answers. Their shared aggregate gain shows that the attention features suffice for effective disambiguation. Relative to adaptation with restoration on these ambiguous questions, the full repair adds 10.4/5.8/3.6 points of composed accuracy.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{Where the attention readout changes evidence selection.} Results on the 103 composed questions whose input-derived graph has multiple candidates. Every ranking condition uses the same adapted model and retains the root plus one candidate paragraph. Bridge accuracy is evaluated against annotations only after selection. Values are percentages, mean $\pm$ sample SD. The full readout and input-order control produce identical generated token sequences on all other 897 questions in every recorded run.}
   \label{tab:ambiguity}
@@ -178,7 +178,7 @@ On the 1,000 composed test questions, there are 75 inapplicable/no-candidate cas
   \input{tables/ambiguous_selection}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \begin{minipage}{.70\textwidth}\centering
   \figurecontent{data_main_ambiguity}\par
@@ -187,7 +187,7 @@ On the 1,000 composed test questions, there are 75 inapplicable/no-candidate cas
 \end{minipage}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \begin{minipage}{.68\textwidth}\centering
   \figurecontent{data_main_case}\par
@@ -200,7 +200,7 @@ On the 1,000 composed test questions, there are 75 inapplicable/no-candidate cas
 
 \cref{tab:core_complete} reports the native model, full fine-tuning, and \method\ on each constituent question, the composed question, and their joint accuracy. \method\ raises composed accuracy by 39.9/38.0/33.3 points and second-hop accuracy by 14.7/15.7/11.6 points. All-three accuracy reaches 41.3/45.4/42.3\%, compared with 22.3/22.6/25.8\% natively. The full triplets retain a common source population across all query types.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{Complete contextual reasoning results.} Completed-answer EM (\%) on all 1,000 sources per query type. ``All three'' requires a source's composed, first-hop, and second-hop answers to be correct. Values are mean $\pm$ sample SD over three recorded runs; Native is measured once.}
   \label{tab:core_complete}
@@ -217,7 +217,7 @@ On the 1,000 composed test questions, there are 75 inapplicable/no-candidate cas
 
 \paragraph{Projection restoration.} Under the original full contexts, restoring native projection contributions raises first-hop accuracy by 5.0/2.4/27.3 points and all-three accuracy by 2.4/0.8/17.5 points over head adaptation alone (\cref{fig:ablations}). Its all-three scores are 41.8/42.4/42.5\%; the complete selector changes these to 41.3/45.4/42.3\%. On Llama GSM8K, where evidence selection is inapplicable, restoration raises numerical accuracy from 48.45\% to 80.36\% and valid final-answer formatting from 58.61\% to 96.36\%. Llama MMLU also rises from 64.45\% to 65.12\%. On HotpotQA, the complete procedure improves on head adaptation by 7.19 points in EM and raises F1 from 56.87\% to 64.31\%. Qwen3-4B's generated-letter MMLU accuracy is 42.24\% with head adaptation and 33.91\% with restoration, both above the native 7.92\%; the primary MMLU metric uses option probabilities.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{Component interventions in CoReTrace.} Completed composed-answer EM (\%) on the same 1,000 sources, mean $\pm$ sample SD. Checkmarks indicate enabled operations; adapted configurations share one trained checkpoint. Candidate ranking uses paragraph order or the indicated training-fitted features; ``Full'' combines attention and metadata. The method-family heading applies to every head-adapted row; Full denotes the deployed reader configuration. Bold indicates the highest EM, including ties. Constituent and joint effects are explained above and in \cref{fig:ablations}.}
   \label{tab:component_ablation}
@@ -225,7 +225,7 @@ On the 1,000 composed test questions, there are 75 inapplicable/no-candidate cas
   \input{tables/component_ablation}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \begin{minipage}{1\textwidth}\centering
   \figurecontent{data_app_ablation}\par
@@ -240,7 +240,7 @@ On the 1,000 composed test questions, there are 75 inapplicable/no-candidate cas
 
 Panel (b) holds the native population fixed. Its 457/462/501 sources contain 234/236/243 failures and 223/226/258 successes. \method\ repairs 189/191/189 failures (80.8/80.9/77.8\%) and retains 94.6/92.9/95.1\% of native successes. Fixed-population accuracy rises from 48.8/48.9/51.5\% to 87.5/86.8/86.7\%. Under the input-order ranking control, failure recovery is lower by 6.4/6.4/4.9 points and success retention by 4.0/3.5/6.6 points. Thus, attention-based disambiguation improves recovery while preserving more original successes.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{Conditional composition and recovery of native errors.} (a) Each model state's own constituent-correct set, with run-mean population and failure counts; conditional failure rates are computed per run before averaging. (b) Fixed native constituent-correct populations. Recovery counts corrected native failures; retention counts native successes that remain correct; fixed-population accuracy covers both groups. Percentages are mean $\pm$ sample SD; Native is measured once.}
   \label{tab:conditional_composition}
@@ -255,7 +255,7 @@ Panel (b) holds the native population fixed. Its 457/462/501 sources contain 234
 
 Full-model fine-tuning uses the same 2,000 composed examples and the recipe in Appendix~\ref{app:protocol}. \method\ exceeds it on composed accuracy by 9.67/12.03/34.50 points and on MMLU by 21.15/15.87/41.04 points. All nine full fine-tuning GSM8K runs produce 1,319 format failures and zero scored answers, with mostly very short responses lacking the required final-answer delimiter. \cref{tab:secondary_qa,tab:mmlu_generation} report completion and formatting alongside answer metrics.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{Complete capability evaluation with dispersion.} Accuracy (\%), mean $\pm$ sample SD over recorded runs; Native is measured once. HotpotQA uses its complete 7,405-example distractor validation split, MMLU its 14,042-example test split, and GSM8K its 1,319-example test split. Metrics and prompt conditions are defined in Appendix~\ref{app:protocol}.}
   \label{tab:capability_full}
@@ -263,7 +263,7 @@ Full-model fine-tuning uses the same 2,000 composed examples and the recipe in A
   \input{tables/capability_full}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \begin{minipage}{1\textwidth}\centering
   \figurecontent{data_app_capabilities}\par
@@ -278,7 +278,7 @@ Full-model fine-tuning uses the same 2,000 composed examples and the recipe in A
 
 \paragraph{Mathematical answer formatting.} Llama produces a valid GSM8K final-answer line on 96.36\% of test questions. Qwen3-8B improves valid answer formatting from native 95.98\% to 96.82\% and completion from 98.79\% to 99.39\%. The complete format and EOS metrics appear alongside the QA text metrics in \cref{tab:secondary_qa}.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{Secondary answer-quality and completion metrics.} HotpotQA uses its 7,405-example validation split; GSM8K uses its 1,319-example test split. HotpotQA text EM and F1 use accepted normalized aliases, and completion records EOS within the generation budget. GSM8K valid format requires a parsable final \texttt{\#\#\#\# NUMBER} line. Values are percentages averaged across three recorded runs; Native is measured once.}
   \label{tab:secondary_qa}
@@ -288,7 +288,7 @@ Full-model fine-tuning uses the same 2,000 composed examples and the recipe in A
 
 \paragraph{Multiple-choice generation.} \Cref{tab:mmlu_generation} reports generated-letter accuracy and formatting on MMLU in addition to the primary option-probability metric. Generated-letter accuracy increases from 7.92/67.06/54.54\% natively to 33.91/69.78/65.11\% under \method. The corresponding valid-format rates rise from 12.58/95.61/84.14\% to 51.27/99.44/99.99\%. These changes show improved adherence to the requested answer format. Subject-macro generated-letter accuracy rises from 9.04/69.55/55.20\% to 37.30/72.49/65.66\%; the complete table also reports macro option-probability accuracy.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{MMLU generation and subject-macro diagnostics.} Results on all 14,042 test questions. Generated-letter accuracy evaluates the emitted A/B/C/D answer; valid format requires an accepted option-only response followed by EOS. Macro metrics average over subjects. Option-macro accuracy uses the same first-token option probabilities as the primary micro metric in \cref{tab:capability_full}. All values are percentages, averaged across recorded runs; Native is measured once.}
   \label{tab:mmlu_generation}
@@ -301,7 +301,7 @@ Full-model fine-tuning uses the same 2,000 composed examples and the recipe in A
 
 The teaser uses the John Corvinus test case. All three models correctly identify Matthias Corvinus and John Hunyadi in the two constituent queries, but return Matthias Corvinus on the composed question. The complete procedure selects the bridge paragraph and answers John Hunyadi. The case illustrates composition repair, while the Angela case below isolates the joint-intervention behavior.
 
-\begin{figure}[!ht]
+\begin{figure}[!htbp]
   \centering
   \begin{minipage}{1\textwidth}\centering
   \figurecontent{data_main_mechanism_cases}\par
@@ -319,7 +319,7 @@ The Angela case shows why routing and reading must work together. Asked for the 
 
 \cref{tab:inference_cost} covers all 3,000 triplet queries. Input-token totals exclude separate readout prefills: 190 across all query types, including 103 composed, 85 first-hop, and two second-hop queries. In run 42, composed answer-generation input tokens are 42.5\%, 42.4\%, and 43.7\% of Native. This saves 56.3--57.6\% of input tokens for answer generation. The additional readout workload is concentrated on ambiguous candidates: 10.3\% of composed inputs and 6.3\% of all triplet queries.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{\textbf{Observed inference workload on all 3,000 triplet queries.} Input tokens are final-generation prompt tokens only; output tokens count generated tokens. Readout prefills are listed separately from final-generation input tokens. Entries summarize recorded runs with the displayed batch sizes under shared-device scheduling.}
   \label{tab:inference_cost}

@@ -433,7 +433,7 @@ _PUB_STYLE = {
     "mathtext.fontset": "stix",
     "font.size": 8.0, "axes.labelsize": 8.0, "axes.titlesize": 8.0,
     "xtick.labelsize": 7.2, "ytick.labelsize": 7.2,
-    "legend.fontsize": 7.6, "axes.linewidth": .55,
+    "legend.fontsize": 7.5, "axes.linewidth": .6,
     "lines.linewidth": 1.15, "lines.markersize": 3.5,
     "legend.frameon": False, "legend.borderaxespad": .15,
     "legend.borderpad": .1, "legend.handlelength": 1.3,
@@ -495,7 +495,7 @@ def _pub_layout(stem, rows, legend=None, width=None):
                    r"\par\vspace{1pt}"]
     for index, row in enumerate(rows):
         if index:
-            pieces.append(r"\par\vspace{3pt}")
+            pieces.append(r"\par\vspace{2pt}")
         for j, (panel, caption, fraction) in enumerate(row):
             if j:
                 pieces.append(r"\hfill%")
@@ -532,7 +532,19 @@ def _pub_legend(stem, handles, labels, width, *, ncol=None, height=.22, fontsize
 
 
 def _pub_key(color, label=None):
-    return Rectangle((0, 0), 1, 1, fc=color, ec=INK, lw=.5, label=label)
+    return Rectangle((0, 0), 1, 1, fc=color, ec="white", lw=.35, label=label)
+
+
+def _pub_inset_legend(ax, handles=None, labels=None, **kwargs):
+    """Put a compact key inside reserved plot space, above the recorded data."""
+    options = dict(loc="upper left", fontsize=7.2, frameon=True,
+                   fancybox=False, framealpha=.97, facecolor="white",
+                   edgecolor="none", borderpad=.25, borderaxespad=.15,
+                   handlelength=1.1, handletextpad=.4, columnspacing=.7)
+    options.update(kwargs)
+    legend = ax.legend(handles, labels, **options)
+    legend.set_zorder(10)
+    return legend
 
 
 def _pub_stack(ax, y, first, total, colors, height=.62):
@@ -548,7 +560,7 @@ def _pub_composition():
     stem = "data_main_composition_address"
     composition = _pub_rows("data_main_composition_address_composition.csv")
     readouts = _pub_rows("data_main_composition_address_readout.csv")
-    fig, ax = _pub_axes(3.31, 1.60, left=.87, bottom=.36, top=.30)
+    fig, ax = _pub_axes(3.31, 1.48, left=.87, bottom=.34, top=.035)
     ax.grid(False); ax.grid(axis="x", color=GRID, lw=.45, ls="--")
     ordered = [_pub_one(composition, model=m) for m in MODELS]
     for y, row in zip([2, 1, 0], ordered):
@@ -561,16 +573,17 @@ def _pub_composition():
                 fontsize=7.1, color="white", fontweight="bold", zorder=5)
         ax.text((100+p)/2, y, f"{bad} ({100-p:.1f}%)", ha="center", va="center",
                 fontsize=7.1, zorder=5)
-    ax.set(xlim=(0, 100), ylim=(-.55, 2.55), xticks=[0, 50, 100], yticks=[2, 1, 0],
+    ax.set(xlim=(0, 100), ylim=(-.50, 3.10), xticks=[0, 50, 100], yticks=[2, 1, 0],
            yticklabels=[f"{MODEL_NAMES[m]}\n$n={r['both_constituents_correct']}$"
                         for m, r in zip(MODELS, ordered)])
     ax.tick_params(axis="y", length=0, pad=4, labelsize=7.2)
     ax.spines["left"].set_visible(False)
     ax.set_xlabel("Share of constituent-correct sources (%)", labelpad=3, fontsize=7.8)
-    ax.legend([_pub_key(BLUE), _pub_key(ORANGE)], ["Composed correct", "Composed incorrect"],
-              loc="lower center", bbox_to_anchor=(.47, 1.025), ncol=2, fontsize=7.4)
+    _pub_inset_legend(ax, [_pub_key(BLUE), _pub_key(ORANGE)],
+                      ["Composed correct", "Composed incorrect"],
+                      loc="upper center", ncol=2, fontsize=7.2)
     _pub_save(fig, stem+"_a")
-    fig, ax = _pub_axes(3.31, 1.60, left=.48, bottom=.43, top=.30)
+    fig, ax = _pub_axes(3.31, 1.48, left=.48, bottom=.42, top=.035)
     xx = np.arange(3)
     for j, (feature, color) in enumerate(zip(("metadata", "attention", "full"),
                                             (LIGHT_GRAY, BLUE, ORANGE))):
@@ -582,13 +595,14 @@ def _pub_composition():
         if feature == "full":
             for x, v in zip(xpos, values):
                 ax.text(x, v+2.0, f"{v:.1f}", ha="center", va="bottom", fontsize=7.5)
-    ax.set(ylim=(0, 110), yticks=[0, 50, 100], xticks=xx,
+    ax.set(ylim=(0, 122), yticks=[0, 50, 100], xticks=xx,
            xticklabels=[f"{s}\n$n={r['composition_failures']}$"
                         for s, r in zip(_PUB_MODEL_TICKS, ordered)])
     ax.tick_params(axis="x", labelsize=7.2, pad=2)
-    ax.set_ylabel("Bridge-address accuracy (%)", labelpad=3)
-    ax.legend([_pub_key(c) for c in (LIGHT_GRAY, BLUE, ORANGE)], ["Metadata", "Attention", "Full"],
-              loc="lower center", bbox_to_anchor=(.5, 1.025), ncol=3, fontsize=7.4)
+    ax.set_ylabel("Bridge-address\naccuracy (%)", labelpad=3)
+    _pub_inset_legend(ax, [_pub_key(c) for c in (LIGHT_GRAY, BLUE, ORANGE)],
+                      ["Metadata", "Attention", "Full"],
+                      loc="upper center", ncol=3, fontsize=7.3)
     _pub_save(fig, stem+"_b")
     _pub_layout(stem, [[(stem+"_a", "Correct hops, failed composition", .49),
                         (stem+"_b", "Bridge addresses in those failures", .49)]], width=6.75)
@@ -630,7 +644,7 @@ def _pub_structure():
     stem = "data_main_structure_function"
     _pub_upset(MODELS[0], stem+"_a", height=1.55)
     profiles = _pub_rows("data_main_structure_function_profiles.csv")
-    fig, ax = _pub_axes(3.31, 1.55, left=.81, bottom=.34, top=.36)
+    fig, ax = _pub_axes(3.31, 1.55, left=.81, bottom=.32, top=.035)
     for yi, m in zip([2,1,0], MODELS):
         for shift, key, color in ((.14,"selected",BLUE),(-.14,"random_layer_matched",GRAY)):
             p = [float(_pub_one(profiles, model=m, head_set=key, query=q)["bridge_minus_root_pp"])
@@ -638,7 +652,7 @@ def _pub_structure():
             ax.plot(p, [yi+shift]*2, color=color, lw=1.25)
             ax.scatter([p[0]],[yi+shift], s=19, fc="white", ec=color, lw=.9, zorder=3)
             ax.scatter([p[1]],[yi+shift], s=19, fc=color, ec=color, lw=.9, zorder=3)
-    ax.set(xlim=(-25,31), ylim=(-.45,2.45), xticks=[-20,0,20],
+    ax.set(xlim=(-25,31), ylim=(-.45,3.55), xticks=[-20,0,20],
            yticks=[2,1,0], yticklabels=_PUB_MODEL_SHORT)
     ax.grid(False); ax.grid(axis="x", color=GRID, ls="--", lw=.45)
     ax.axvline(0, color="#7D858D", lw=.6)
@@ -647,8 +661,8 @@ def _pub_structure():
     handles = [Line2D([],[],color=BLUE,lw=1.5), Line2D([],[],color=GRAY,lw=1.5),
                Line2D([],[],color=INK,marker="o",mfc="white",ls="none",ms=3.5),
                Line2D([],[],color=INK,marker="o",ls="none",ms=3.5)]
-    ax.legend(handles, ["Selected","Matched random","Composed","Direct"],
-              ncol=2, loc="lower center", bbox_to_anchor=(.46,1.015), fontsize=7.2)
+    _pub_inset_legend(ax, handles, ["Selected","Matched random","Composed","Direct"],
+                      ncol=2, loc="upper center", fontsize=7.2)
     _pub_save(fig, stem+"_b")
     headrows = _pub_rows("data_main_structure_function_heads.csv")
     examples = _pub_rows("data_main_structure_function_examples.csv")
@@ -660,42 +674,55 @@ def _pub_structure():
         matrix = np.array([[float(r["attention_mass_percent"]) for r in source_rows[q]]
                            for q in ("composed","direct_target")])
         assert matrix.shape == (2,10)
-        fig = plt.figure(figsize=(3.31,1.77))
-        ax = fig.add_axes([.54/3.31,.63/1.77,2.64/3.31,.35/1.77])
+        # Fixed question, measurement, role, and outcome rows keep the two
+        # literal examples aligned. The heatmap remains the full 2 x 10 array.
+        width, height = 3.31, 1.77
+        fig, card = _pub_case_canvas(width, height)
+        card.add_patch(Rectangle((1, 0), width*72-2, 37,
+                                 fc="#F4F5F6", ec="none"))
+        for q, label, top in (("composed", r"$q_{12}$", 3),
+                              ("direct_target", r"$q_2$", 20)):
+            _pub_case_text(card, 4, top, label, size=7.5, color="#555E66")
+            bottom = _pub_case_rich(card, 23, top,
+                [(source_rows[q][0]["question"], None)], width*72-28,
+                size=7.4, leading=8.4)
+            assert bottom <= top+17, "Question needs more than two measured lines."
+        card.plot([1,width*72-1], [38.5,38.5], color="#D5DADE", lw=.45)
+        ax = fig.add_axes([.54/width,(height-88/72)/height,2.64/width,(32/72)/height])
         image = ax.imshow(matrix, vmin=0, vmax=70, cmap="Blues", aspect="auto", interpolation="nearest")
         ax.set(xticks=range(10), xticklabels=[f"P{i}" for i in range(10)],
                yticks=[0,1], yticklabels=["Composed","Direct"])
-        ax.tick_params(length=0,pad=2,labelsize=7.0); ax.spines[:].set_visible(False)
+        ax.tick_params(length=0,pad=2,labelsize=7.2); ax.spines[:].set_visible(False)
+        ax.set_yticks([.5],minor=True)
+        ax.grid(which="minor",axis="y",color="white",lw=.65)
+        ax.tick_params(which="minor",length=0)
         for idx, r in enumerate(source_rows["composed"]):
             if r["role"] in ("root","bridge"):
                 color = ORANGE if r["role"] == "root" else BLUE
-                ax.add_patch(Rectangle((idx-.5,-.5),1,2,fill=False,ec=color,lw=1.1))
+                ax.add_patch(Rectangle((idx-.49,-.49),.98,1.98,fill=False,ec=color,lw=1.0))
                 for row in range(2):
                     ax.text(idx,row,f"{matrix[row,idx]:.1f}",ha="center",va="center",
-                            fontsize=6.7,color="white" if matrix[row,idx] > 38 else INK)
-        top = 1.72
-        for q, label in (("composed",r"$q_{12}$"),("direct_target",r"$q_2$")):
-            question = source_rows[q][0]["question"]
-            lines = textwrap.wrap(question, width=66)
-            fig.text(.025,top/1.77,label+": "+ "\n".join(lines),ha="left",va="top",
-                     fontsize=7.2,linespacing=1.05)
-            top -= .135*len(lines)+.045
-        cax = fig.add_axes([.65/3.31,1.15/1.77,2.48/3.31,.065/1.77])
+                            fontsize=7.2,color="white" if matrix[row,idx] > 38 else INK,
+                            fontweight="bold")
+        _pub_case_text(card, 39, 42, "Attention mass (%)", size=7.2, color="#555E66")
+        cax = fig.add_axes([170/(72*width),(height-44/72)/height,57/(72*width),3/(72*height)])
         colorbar = fig.colorbar(image,cax=cax,orientation="horizontal",ticks=[0,35,70])
         colorbar.outline.set_visible(False)
-        colorbar.ax.tick_params(length=1.2,pad=1,labelsize=6.8)
-        fig.text(.025,1.18/1.77,"Mass (%)",va="center",fontsize=7.2)
+        colorbar.ax.tick_params(length=1,pad=1,labelsize=6.4)
         root = next(r for r in source_rows["composed"] if r["role"]=="root")
         bridge = next(r for r in source_rows["composed"] if r["role"]=="bridge")
-        fig.text(.025,.41/1.77,f"Root P{root['paragraph_index']}: {root['paragraph_title']}",
-                 va="center",fontsize=7.3,color="#A85C30")
-        fig.text(.025,.26/1.77,f"Bridge P{bridge['paragraph_index']}: {bridge['paragraph_title']}",
-                 va="center",fontsize=7.3,color="#315F93")
+        for x, entry, role, fill, color in (
+                (3, root, "Root", "#FCF0E7", "#A85C30"),
+                (121, bridge, "Bridge", "#EDF2F9", "#315F93")):
+            card.add_patch(Rectangle((x,100),114,12,fc=fill,ec="none"))
+            _pub_case_text(card,x+3,102,
+                f"{role} P{entry['paragraph_index']}: {entry['paragraph_title']}",
+                size=7.0,color=color)
         native = _pub_one(examples,model=model,condition="native")
         calibrated = _pub_one(examples,model=model,condition="calibrated")
-        fig.text(.025,.065/1.77,
-                 f"{calibrated['selected_head_count']}-head set: {native['answer']} → {calibrated['answer']}",
-                 fontsize=7.4,va="center")
+        _pub_case_rich(card,4,117,
+            [(f"{calibrated['selected_head_count']}-head set: {native['answer']} → ",None),
+             (calibrated['answer'],"#E8F2EC")],width*72-8,size=7.7,leading=9)
         _pub_save(fig,stem+"_"+letter)
     _pub_layout(stem, [
         [(stem+"_a","Head-set intersections (Qwen3-4B)",.49),
@@ -717,8 +744,8 @@ def _pub_localization():
     limit = .34
     norm = TwoSlopeNorm(vmin=-limit, vcenter=0, vmax=limit)
     for stem, total_width, panel_width, panel_height in (
-            ("data_main_localization", 3.25, 1.0595, 1.27),
-            ("data_app_localization", 6.345, 2.0685, 1.94)):
+            ("data_main_localization", 3.25, 1.0595, 1.055),
+            ("data_app_localization", 6.345, 2.0685, 1.90)):
         for j, model in enumerate(MODELS):
             rr = [r for r in rows if r["model"] == model]
             nl = max(int(r["layer"]) for r in rr)+1
@@ -737,14 +764,13 @@ def _pub_localization():
             overlap = {(int(r["layer"]), int(r["head"])) for r in membership
                        if r["model"] == model and r["ranked"] == "1" and r["direct"] == "1"}
             assert len(overlap) == (14,14,31)[j] and overlap.issubset(set(selected))
-            left = .28 if total_width < 4 else .36
-            bottom = .27 if total_width < 4 else .32
-            fig, ax = _pub_axes(panel_width, panel_height, left=left, right=.035,
+            left = .28 if total_width < 4 else .35
+            bottom = .235 if total_width < 4 else .29
+            fig, ax = _pub_axes(panel_width, panel_height, left=left, right=.045,
                                bottom=bottom, top=.025)
             ax.grid(False)
             ax.imshow(matrix, cmap="RdBu_r", norm=norm, origin="upper",
-                      aspect="equal", interpolation="nearest")
-            ax.set_anchor("N")
+                      aspect="auto", interpolation="nearest")
             for layer, head in selected:
                 ax.add_patch(Rectangle((head-.48,layer-.48),.96,.96,
                                        fill=False,ec="#363A40",lw=.35 if total_width < 4 else .55))
@@ -761,25 +787,28 @@ def _pub_localization():
             ax.spines[:].set_visible(False)
             _pub_save(fig,stem+f"_{chr(97+j)}")
         key = stem+"_legend"
-        fig = plt.figure(figsize=(total_width,.56))
-        cax = fig.add_axes([.15,.36,.70,.15])
+        # Keep the full matrix unobscured. A single shallow header holds both
+        # the marker key and the common scale, rather than three stacked rows.
+        fig = plt.figure(figsize=(total_width,.29))
+        cax = fig.add_axes([.51,.57,.45,.18])
         mappable = matplotlib.cm.ScalarMappable(norm=norm,cmap="RdBu_r")
         cb = fig.colorbar(mappable,cax=cax,orientation="horizontal",ticks=[-.3,-.15,0,.15,.3])
-        cb.outline.set_visible(False); cb.ax.xaxis.set_ticks_position("top")
-        cb.ax.tick_params(labelsize=7.0,length=1.5,pad=1)
-        fig.text(.5,.94,"Bridge-attention score (direct − composed)",
-                 ha="center",va="top",fontsize=7.6)
+        cb.outline.set_visible(False)
+        cb.ax.tick_params(labelsize=6.8 if total_width < 4 else 7.2,length=1.2,pad=1)
+        fig.text(.012,.94,"Bridge score (direct − composed)",
+                 ha="left",va="top",fontsize=7.0 if total_width < 4 else 7.7)
         fig.legend([Rectangle((0,0),1,1,fill=False,ec="#363A40",lw=.6),
                     Line2D([],[],color="#17191C",marker="o",ls="none",ms=2.8)],
-                   ["Selected",r"Selected $\cap$ direct top-$k$"],loc="lower center",
-                   bbox_to_anchor=(.5,-.02),ncol=2,fontsize=7.2,
-                   handlelength=.9,handletextpad=.4,columnspacing=1.1)
+                   ["Selected","Direct overlap"],loc="lower left",
+                   bbox_to_anchor=(.005,-.07),ncol=2,
+                   fontsize=6.8 if total_width < 4 else 7.4,
+                   handlelength=.8,handletextpad=.35,columnspacing=.8)
         _pub_save(fig,key)
         layout = [[(stem+f"_{chr(97+j)}",MODEL_NAMES[m],.326) for j,m in enumerate(MODELS)]]
         if stem == "data_app_localization":
             for j,model in enumerate(MODELS):
                 pp = sorted([r for r in profiles if r["model"]==model],key=lambda r:int(r["layer"]))
-                fig,ax = _pub_axes(panel_width,1.30,left=.38,right=.05,bottom=.32,top=.05)
+                fig,ax = _pub_axes(panel_width,1.20,left=.38,right=.05,bottom=.30,top=.035)
                 for field,color,label in (("mean_score",BLUE,"Mean"),("maximum_score",ORANGE,"Maximum")):
                     ax.plot([int(r["layer"]) for r in pp],[float(r[field]) for r in pp],
                             color=color,lw=1.15,label=label)
@@ -863,7 +892,7 @@ def _pub_routing():
     methods = ["oracle_second_paragraph","oracle_first_paragraph","lengthmatched_other_paragraph"]
     colors = [BLUE,ORANGE,GRAY]
     for j in range(3):
-        fig,ax = _pub_axes(2.2005,1.48,left=.43,bottom=.40,top=.07)
+        fig,ax = _pub_axes(2.2005,1.44,left=.43,bottom=.40,top=.035)
         xx = np.arange(3)
         if j in (0,2):
             rows = allrows if j==0 else condrows
@@ -880,7 +909,7 @@ def _pub_routing():
                     for x,v,r,h in zip(pos,vals,rr,high):
                         ax.text(x,h+1.3,r["corrected"],ha="center",va="bottom",fontsize=7.1)
             if j==0:
-                ax.set(ylim=(-27,24),yticks=[-20,0,20],ylabel="EM change (pp)")
+                ax.set(ylim=(-27,31),yticks=[-20,0,20],ylabel="EM change (pp)")
                 ax.axhline(0,color=INK,lw=.6)
             else:
                 ax.set(ylim=(0,67),yticks=[0,20,40,60],ylabel="Repaired (%)")
@@ -896,11 +925,14 @@ def _pub_routing():
                       [f"{s}\n$n={n}$" for s,n in zip(_PUB_MODEL_TICKS,denominators)])
         ax.tick_params(axis="x",labelsize=7.0,pad=2)
         ax.yaxis.labelpad=2
+        if j==0:
+            _pub_inset_legend(ax,[_pub_key(c) for c in colors],
+                              ["Bridge","Root","Other"],
+                              loc="upper center",ncol=3,fontsize=7.1)
         _pub_save(fig,stem+f"_{chr(97+j)}")
-    key = _pub_legend(stem+"_legend",[_pub_key(c) for c in colors],["Bridge","Root","Other"],6.75)
     _pub_layout(stem,[[(stem+"_a","Destination controls",.326),
                        (stem+"_b","Native allocation",.326),
-                       (stem+"_c","Routing repair",.326)]],legend=key,width=6.75)
+                       (stem+"_c","Routing repair",.326)]],width=6.75)
 
 
 def _pub_relation_tokens():
@@ -914,22 +946,33 @@ def _pub_relation_tokens():
     values = 100*np.array([[sum(records[s]["conditional_mean"][i] for i in ids)
                            for ids in spans] for s in states])
     assert np.isfinite(values).all() and (values>=0).all()
-    fig=plt.figure(figsize=(3.25,1.53))
-    ax=fig.add_axes([1.06/3.25,.40/1.53,2.12/3.25,.86/1.53])
-    cmap=LinearSegmentedColormap.from_list("coretrace_read",["#FAFBFC","#BED3E6","#32699B"])
+    # Table-like column headers put names, roles, and measurements in one
+    # reading order. Every cell uses the same linear 0--30 percent scale.
+    width, height = 3.25, 1.25
+    fig=plt.figure(figsize=(width,height))
+    ax=fig.add_axes([1.10/width,.035/height,2.10/width,.90/height])
+    cmap=LinearSegmentedColormap.from_list("coretrace_read",["#F7F9FB","#B6CEE0","#285C83"])
     maximum=max(30,values.max())
     ax.imshow(values,cmap=cmap,vmin=0,vmax=maximum,aspect="auto",interpolation="nearest")
     for i in range(4):
         for j in range(3):
-            ax.text(j,i,f"{values[i,j]:.1f}",ha="center",va="center",fontsize=8.5,
-                    color="white" if values[i,j]>.60*maximum else INK)
+            ax.text(j,i,f"{values[i,j]:.1f}",ha="center",va="center",fontsize=8.4,
+                    color="white" if values[i,j]>.60*maximum else INK,
+                    fontweight="bold" if j==2 and i in (1,3) else "normal")
     ax.set_xticks(range(3),["American\n(nationality)","Arthur Miller\n(father)","Inge Morath\n(mother)"])
     ax.set_yticks(range(4),["Native composed","Direct mother","Direct nationality","Adapted + restored"])
-    ax.tick_params(length=0,pad=3,labelsize=7.4);ax.spines[:].set_visible(False)
+    ax.xaxis.tick_top()
+    ax.tick_params(length=0,pad=4,labelsize=7.4);ax.spines[:].set_visible(False)
+    ax.get_xticklabels()[2].set_color("#376D55")
+    ax.get_xticklabels()[2].set_fontweight("bold")
+    ax.get_yticklabels()[3].set_color("#376D55")
+    ax.get_yticklabels()[3].set_fontweight("bold")
     ax.set_xticks(np.arange(-.5,3,1),minor=True);ax.set_yticks(np.arange(-.5,4,1),minor=True)
     ax.grid(which="minor",color="white",lw=1.2);ax.tick_params(which="minor",length=0)
-    ax.add_patch(Rectangle((1.51,-.49),.98,3.98,fill=False,ec=GREEN,lw=.9))
-    fig.text(.65,.965,"Conditional span weight (%)",ha="center",va="top",fontsize=8)
+    ax.add_patch(Rectangle((1.51,-.49),.98,3.98,fill=False,ec=GREEN,lw=.75))
+    ax.axhline(2.5,color=GREEN,lw=.7)
+    fig.text(.02,.97,"Conditional span\nweight (%)",ha="left",va="top",fontsize=7.7,
+             color="#555E66",linespacing=1.1)
     _pub_save(fig,"data_main_relation_tokens_final")
 
 
@@ -956,38 +999,51 @@ def _pub_interaction():
         ax.set(xlim=(-.17,1.17),ylim=(10,96),yticks=[20,40,60,80])
         ax.set_xticks([0,1],[r"Native $\rho$",r"Direct $\rho^{\rm dir}$"])
         if i==0:ax.set_ylabel("Composed EM (%)",labelpad=2)
+        if i==0:
+            _pub_inset_legend(ax,
+                [Line2D([],[],color=GRAY,marker="o",ms=3.5),
+                 Line2D([],[],color=ORANGE,marker="o",ms=3.5)],
+                [r"Native access $m$",r"Calibrated access $\tau$"],
+                loc="upper left",fontsize=7.1)
         _pub_save(fig,stem+f"_{chr(97+i)}")
         captions.append(f"{MODEL_NAMES[m]}: $I={est:+.0f}$ pp $[{lo:.0f}, {hi:.0f}]$")
-    key = _pub_legend(stem+"_legend",
-        [Line2D([],[],color=GRAY,marker="o",ms=3.5),Line2D([],[],color=ORANGE,marker="o",ms=3.5)],
-        [r"Native access $m$",r"Calibrated access $\tau$"],6.75)
     _pub_layout(stem,[[(stem+f"_{chr(97+i)}",captions[i],.326) for i in range(3)]],
-                legend=key,width=6.75)
+                width=6.75)
 
 
-def _pub_dumbbell(stem, starts, ends, *, width, height=1.35, color=BLUE,
+def _pub_dumbbell(stem, starts, ends, *, width, height=1.28, color=BLUE, start_color=GRAY,
                   xlabel="Accuracy (%)", limits=(0,105), ticks=(0,50,100),
-                  model_labels=True, values=True, deltas=False):
+                  model_labels=True, values=True, deltas=False, legend_labels=None,
+                  value_format=".1f"):
     fig,ax = _pub_axes(width,height,left=.83 if model_labels else .18,
-                       right=.14,bottom=.34,top=.18)
+                       right=.14,bottom=.31,top=.035)
     for yi,v0,v1 in zip([2,1,0],starts,ends):
-        ax.plot([v0,v1],[yi,yi],color=color,lw=1.5,zorder=2)
-        ax.scatter([v0],[yi],s=20,color=GRAY,zorder=3)
-        ax.scatter([v1],[yi],s=24,color=color,zorder=3)
+        ax.axhspan(yi-.31,yi+.31,facecolor="#F4F6F5",edgecolor="none",zorder=0)
+        ax.plot([v0,v1],[yi,yi],color="#BCCBC5",lw=1.7,zorder=2)
+        ax.scatter([v0],[yi],s=23,fc="white",ec=start_color,lw=1.05,zorder=3)
+        ax.scatter([v1],[yi],s=28,fc=color,ec="white",lw=.45,zorder=3)
         if values:
-            ax.annotate(f"{v0:.1f}",(v0,yi),xytext=(-3,5),textcoords="offset points",
-                        ha="right",fontsize=7.2,color="#555B63")
-            ax.annotate(f"{v1:.1f}",(v1,yi),xytext=(3,5),textcoords="offset points",
-                        ha="left",fontsize=7.2,color=color)
+            ax.annotate(format(v0,value_format),(v0,yi),xytext=(-4,0),textcoords="offset points",
+                        ha="right",va="center",fontsize=7.5,color="#555B63")
+            ax.annotate(format(v1,value_format),(v1,yi),xytext=(4,0),textcoords="offset points",
+                        ha="left",va="center",fontsize=7.5,color=color,fontweight="bold")
         if deltas:
-            ax.annotate(f"{v1-v0:+.1f}",((v0+v1)/2,yi),xytext=(0,5),textcoords="offset points",
-                        ha="center",fontsize=7.5,color=color)
-    ax.set(xlim=limits,ylim=(-.42,2.53),xticks=ticks,yticks=[2,1,0])
+            delta = f"{v1-v0:+.0f} pp" if value_format == "g" else f"{v1-v0:+.1f}"
+            ax.annotate(delta,((v0+v1)/2,yi),xytext=(0,0 if values else 4),
+                        textcoords="offset points",ha="center",
+                        va="center" if values else "bottom",fontsize=7.3,color=color,
+                        bbox=dict(facecolor="#F4F6F5",edgecolor="none",pad=.8) if values else None)
+    ax.set(xlim=limits,ylim=(-.45,3.05 if legend_labels else 2.55),xticks=ticks,yticks=[2,1,0])
     ax.set_yticklabels(_PUB_MODEL_SHORT if model_labels else ["","",""])
     ax.tick_params(axis="y",length=0,pad=4,labelsize=7.4)
     ax.spines[["top","right","left"]].set_visible(False)
-    ax.grid(False);ax.grid(axis="x",color=GRID,lw=.45,ls="--");ax.set_axisbelow(True)
+    ax.grid(False);ax.grid(axis="x",color="#E0E5E3",lw=.4);ax.set_axisbelow(True)
     ax.set_xlabel(xlabel,labelpad=3,fontsize=7.7)
+    if legend_labels:
+        _pub_inset_legend(ax,
+            [Line2D([],[],color=start_color,marker="o",mfc="white",ls="none",ms=4),
+             Line2D([],[],color=color,marker="o",ls="none",ms=4.4)],
+            legend_labels,loc="upper center",ncol=2,fontsize=7.5)
     _pub_save(fig,stem)
 
 
@@ -1017,9 +1073,9 @@ def _pub_closure_and_selection():
                       limits=((52,105),(0,20),(-3,36))[j],
                       ticks=([60,80,100],[0,10,20],[0,15,30])[j],model_labels=(j==0))
     key=_pub_legend(stem+"_legend",
-                    [Line2D([],[],color=GRAY,marker="o",ls="none",ms=4),
+                    [Line2D([],[],color=GRAY,marker="o",mfc="white",ls="none",ms=4),
                      Line2D([],[],color=INK,marker="o",ls="none",ms=4)],
-                    ["Native",r"Adapted + restored $\mathcal{M}^{*}$ (colored)"],6.4125)
+                    ["Native",r"Adapted + restored $\mathcal{M}^{*}$ (colored)"],6.4125,height=.18)
     _pub_layout(stem,[[(stem+"_a","Locate: address",.393576),
                        (stem+"_b",r"Route: bridge $m$",.292212),
                        (stem+"_c",r"Read: conditional $\rho$",.292212)]],legend=key,width=6.4125)
@@ -1032,9 +1088,9 @@ def _pub_closure_and_selection():
                       width=1.9175 if j==0 else 1.2675,height=1.22,limits=(25,101),ticks=[30,60,90],
                       model_labels=(j==0),values=False)
     key=_pub_legend(stem+"_legend",
-                    [Line2D([],[],color=GRAY,marker="o",ls="none",ms=4),
+                    [Line2D([],[],color=GRAY,marker="o",mfc="white",ls="none",ms=4),
                      Line2D([],[],color=BLUE,marker="o",ls="none",ms=4)],
-                    ["Input order","Address reader"],3.25)
+                    ["Input order","Address reader"],3.25,height=.18)
     _pub_layout(stem,[[(stem+"_a","Bridge choice",.59),(stem+"_b","Composed EM",.39)]],
                 legend=key,width=3.25)
     # The appendix repeats the identical ambiguous-input population at a larger
@@ -1042,20 +1098,21 @@ def _pub_closure_and_selection():
     stem="data_main_ambiguity"
     for j,(ka,kb) in enumerate((("ambiguous_input_order_address","ambiguous_full_reader_address"),
                                 ("ambiguous_input_order_em","ambiguous_full_reader_em"))):
-        fig,ax=_pub_axes(2.31525,1.55,left=.43,bottom=.36,top=.06)
-        for k,(key,color) in enumerate(((ka,GRAY),(kb,BLUE))):
+        fig,ax=_pub_axes(2.31525,1.43,left=.43,bottom=.36,top=.035)
+        for k,(key,color) in enumerate(((ka,ORANGE),(kb,GREEN))):
             vv=[float(_pub_one(addresses,model=m)[key]) for m in MODELS]
             pos=np.arange(3)+(k-.5)*.32
             ax.bar(pos,vv,.29,color=color,ec=INK,lw=.5,zorder=3)
             for x,v in zip(pos,vv):
                 ax.text(x,v+1.5,f"{v:.1f}",ha="center",va="bottom",fontsize=7.0)
-        ax.set(ylim=(0,110),yticks=[0,50,100],xticks=range(3),xticklabels=_PUB_MODEL_TICKS,
+        ax.set(ylim=(0,123),yticks=[0,50,100],xticks=range(3),xticklabels=_PUB_MODEL_TICKS,
                ylabel="Accuracy (%)")
+        _pub_inset_legend(ax,[_pub_key(ORANGE),_pub_key(GREEN)],
+                          ["Input order","Full reader"],
+                          loc="upper center",ncol=2,fontsize=7.2)
         _pub_save(fig,stem+f"_{chr(97+j)}")
-    key=_pub_legend(stem+"_legend",[_pub_key(GRAY),_pub_key(BLUE)],
-                    ["Input order","Full reader"],4.725)
     _pub_layout(stem,[[(stem+"_a","Bridge address",.49),(stem+"_b","Composed EM",.49)]],
-                legend=key,width=4.725)
+                width=4.725)
 
 
 def _pub_appendix_bars():
@@ -1070,7 +1127,7 @@ def _pub_appendix_bars():
          ["HotpotQA","MMLU","GSM8K"],[["native","fullft","final"]]*3,
          [GRAY,ORANGE,GREEN],["Native","Full fine-tuning","CoReTrace"])):
         for j,(field,methods) in enumerate(zip(fields,method_sets)):
-            fig,ax=_pub_axes(2.2005,1.58,left=.41,right=.04,bottom=.38,top=.07)
+            fig,ax=_pub_axes(2.2005,1.49,left=.41,right=.04,bottom=.35,top=.045)
             barw=.24 if len(methods)==3 else .32
             for k,(method,color) in enumerate(zip(methods,colors)):
                 rr=[_pub_one(data,model=m,**{field_name:field,"method":method}) for m in MODELS]
@@ -1087,21 +1144,30 @@ def _pub_appendix_bars():
             ax.set(ylim=(0,103),yticks=[0,25,50,75,100],xticks=range(3),
                    xticklabels=_PUB_MODEL_TICKS)
             if j==0:ax.set_ylabel("Accuracy (%)",labelpad=3)
+            # The shared key sits above the lower bars in one panel.  Its
+            # position is chosen from the measured ranges: All-three <43%
+            # for A6 and HotpotQA <54% for A7, including the displayed SDs.
+            legend_panel = 1 if stem=="data_app_ablation" else 0
+            if j==legend_panel:
+                ax.legend([_pub_key(c) for c in colors],legend_labels,
+                          loc="upper left",bbox_to_anchor=(.015,.985),
+                          ncol=1,fontsize=7.2,frameon=False,
+                          handlelength=1.0,handletextpad=.4,
+                          borderaxespad=0,labelspacing=.32)
             _pub_save(fig,stem+f"_{chr(97+j)}")
-        key=_pub_legend(stem+"_legend",[_pub_key(c) for c in colors],legend_labels,6.75)
         _pub_layout(stem,[[(stem+f"_{chr(97+j)}",label,.326) for j,label in enumerate(labels)]],
-                    legend=key,width=6.75)
+                    width=6.75)
     stem="data_main_restoration_revision"
     for j,q in enumerate(("direct_first","all3")):
         start=[float(_pub_one(ablation,model=m,query=q,method="head_tuning")["mean_percent"]) for m in MODELS]
         end=[float(_pub_one(ablation,model=m,query=q,method="scoped_body")["mean_percent"]) for m in MODELS]
-        _pub_dumbbell(stem+f"_{chr(97+j)}",start,end,width=1.9845,height=1.45,
-                      color=GREEN,limits=(20,80),ticks=[20,40,60,80],
+        _pub_dumbbell(stem+f"_{chr(97+j)}",start,end,width=1.9845,height=1.28,
+                      color=GREEN,start_color=ORANGE,limits=(20,80),ticks=[20,40,60,80],
                       model_labels=(j==0),values=False,deltas=True)
     key=_pub_legend(stem+"_legend",
-                    [Line2D([],[],color=GRAY,marker="o",ls="none",ms=4),
+                    [Line2D([],[],color=ORANGE,marker="o",mfc="white",mec=ORANGE,ls="none",ms=4),
                      Line2D([],[],color=GREEN,marker="o",ls="none",ms=4)],
-                    ["Head tuning","+ native-projection restoration"],4.05)
+                    ["Head tuning","+ native-projection restoration"],4.05,height=.18,fontsize=7.3)
     _pub_layout(stem,[[(stem+"_a","First hop",.49),(stem+"_b","All three",.49)]],
                 legend=key,width=4.05)
     data=_pub_rows("data_revision_mechanism_repair.csv")
@@ -1114,8 +1180,11 @@ def _pub_appendix_bars():
         ("ambiguous_input_order_em","ambiguous_full_reader_em","Composed answers",
          ("Input order","Full reader"))]
     for j,(ka,kb,label,legend_labels) in enumerate(definitions):
-        fig,ax=_pub_axes(2.0685,1.69,left=.40,right=.04,bottom=.38,top=.35)
-        for k,(key,color) in enumerate(((ka,GRAY),(kb,BLUE))):
+        fig,ax=_pub_axes(2.0685,1.49,left=.40,right=.04,bottom=.35,top=.20)
+        # Native stays neutral, as in A7 and the main paired-comparison panels;
+        # input-order/head-tuning controls share A6's orange comparison color.
+        before_color = GRAY if j==0 else ORANGE
+        for k,(key,color) in enumerate(((ka,before_color),(kb,GREEN))):
             vals=[float(_pub_one(data,model=m)[key]) for m in MODELS]
             pos=np.arange(3)+(k-.5)*.32
             ax.bar(pos,vals,.29,color=color,ec=INK,lw=.5,zorder=3)
@@ -1123,8 +1192,12 @@ def _pub_appendix_bars():
                 ax.text(x,v+1.2,f"{v:.1f}",ha="center",va="bottom",fontsize=6.9)
         ax.set(ylim=(0,110),yticks=[0,50,100],xticks=range(3),xticklabels=_PUB_MODEL_TICKS)
         if j==0:ax.set_ylabel("Accuracy (%)",labelpad=2)
-        ax.legend([_pub_key(GRAY),_pub_key(BLUE)],legend_labels,
-                  loc="lower center",bbox_to_anchor=(.5,1.015),ncol=1 if j==0 else 2,fontsize=7.3)
+        # These bars reach 95%; retain a thin key above the axes rather than
+        # hiding bar bodies or endpoint labels inside the plot.
+        ax.legend([_pub_key(before_color),_pub_key(GREEN)],legend_labels,
+                  loc="upper center",bbox_to_anchor=(.5,.995),
+                  bbox_transform=fig.transFigure,ncol=2,fontsize=7.2,
+                  handlelength=.95,handletextpad=.4,columnspacing=.65)
         _pub_save(fig,stem+f"_{chr(97+j)}")
     _pub_layout(stem,[[(stem+f"_{chr(97+j)}",definition[2],.326)
                       for j,definition in enumerate(definitions)]],width=6.345)
@@ -1493,8 +1566,7 @@ def make_publication_cases():
     total = np.array([int(values[m]['both_repairs']) for m in MODELS])
     errors = np.array([int(values[m]['native_errors']) for m in MODELS])
     assert np.all(0 <= joint) and np.all(joint <= total) and np.all(total <= errors)
-    fig, ax = plt.subplots(figsize=(3.25, 1.08))
-    fig.subplots_adjust(left=.285, right=.975, bottom=.28, top=.77)
+    fig, ax = _pub_axes(3.25, 1.08, left=.89, right=.07, bottom=.29, top=.025)
     y = np.arange(3)[::-1]
     ax.barh(y, joint, height=.58, color='#C7865F', label='Joint only', zorder=3)
     ax.barh(y, total - joint, left=joint, height=.58, color='#CCD1D6',
@@ -1503,16 +1575,15 @@ def make_publication_cases():
         ax.text(count / 2, yi, str(count), ha='center', va='center', size=8, weight='bold')
         ax.text(overall + .65, yi, str(overall), ha='left', va='center', size=7.6)
     ax.set(yticks=y, yticklabels=[MODEL_NAMES[m] for m in MODELS], xlim=(0, 33),
-           xticks=[0, 10, 20, 30], ylim=(-.45, 2.45), xlabel='Native errors corrected by Both (count)')
+           xticks=[0, 10, 20, 30], ylim=(-.45, 3.25), xlabel='Native errors corrected by Both (count)')
     ax.tick_params(axis='y', length=0, pad=3, labelsize=7.5)
     ax.tick_params(axis='x', length=2, pad=2, labelsize=7.2)
     ax.xaxis.label.set_size(7.5)
     ax.spines[['top', 'right', 'left']].set_visible(False)
     ax.grid(axis='x', color='#E0E3E6', lw=.45, linestyle='--', zorder=0)
     ax.set_axisbelow(True)
-    fig.legend(*ax.get_legend_handles_labels(), loc='upper center', bbox_to_anchor=(.51, 1.015),
-               ncol=2, frameon=False, fontsize=7.2, handlelength=1, columnspacing=.7,
-               handletextpad=.35, borderpad=.2)
+    _pub_inset_legend(ax,*ax.get_legend_handles_labels(),loc='upper center',
+                      ncol=2,fontsize=7.1,handlelength=.8,columnspacing=.6)
     _pub_save(fig, 'data_main_joint_case_revision_b')
     _pub_layout('data_main_joint_case_revision', [
         [('data_main_joint_case_revision_a', 'A joint-only repair in Llama-3.1-8B', 1.0)],
@@ -1527,26 +1598,11 @@ def make_publication_cases():
     native = [float(values[m]['native_joint_accuracy']) for m in MODELS]
     final = [float(values[m]['final_joint_accuracy']) for m in MODELS]
     assert all(0 <= value <= 100 for value in native + final)
-    fig, ax = plt.subplots(figsize=(3.25, 1.08))
-    fig.subplots_adjust(left=.285, right=.975, bottom=.28, top=.77)
-    for i, (yi, a, b) in enumerate(zip(y, native, final)):
-        ax.plot([a, b], [yi, yi], color='#B6C3CC', lw=1.5, zorder=2)
-        ax.scatter(a, yi, s=20, color='#8A929B', label='Native' if i == 0 else None, zorder=3)
-        ax.scatter(b, yi, s=23, color='#4F8C73', label='CoReTrace' if i == 0 else None, zorder=3)
-        ax.text(a - 3, yi, f'{a:g}', ha='right', va='center', size=7.5)
-        ax.text(b + 3, yi, f'{b:g}', ha='left', va='center', size=7.5, weight='bold')
-    ax.set(yticks=y, yticklabels=[MODEL_NAMES[m] for m in MODELS], xlim=(0, 100),
-           xticks=[0, 50, 100], ylim=(-.45, 2.45), xlabel='Joint original / edited accuracy (%)')
-    ax.tick_params(axis='y', length=0, pad=3, labelsize=7.5)
-    ax.tick_params(axis='x', length=2, pad=2, labelsize=7.2)
-    ax.xaxis.label.set_size(7.5)
-    ax.spines[['top', 'right', 'left']].set_visible(False)
-    ax.grid(axis='x', color='#E0E3E6', lw=.45, linestyle='--', zorder=0)
-    ax.set_axisbelow(True)
-    fig.legend(*ax.get_legend_handles_labels(), loc='upper center', bbox_to_anchor=(.56, 1.015),
-               ncol=2, frameon=False, fontsize=7.5, handletextpad=.35, columnspacing=1,
-               borderpad=.2)
-    _pub_save(fig, 'data_main_content_case_revision_b')
+    _pub_dumbbell('data_main_content_case_revision_b',native,final,
+                  width=3.25,height=1.18,color=GREEN,
+                  xlabel='Joint original / edited accuracy (%)',
+                  limits=(0,100),ticks=[0,25,50,75,100],
+                  deltas=True,value_format='g',legend_labels=['Native','CoReTrace'])
     _pub_layout('data_main_content_case_revision', [
         [('data_main_content_case_revision_a', 'Same question, same selected address', 1.0)],
         [('data_main_content_case_revision_b', 'Joint original / edited correctness', 1.0)]])

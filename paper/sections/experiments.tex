@@ -5,53 +5,67 @@
 \textbf{Training and evaluation.} Head adaptation and full fine-tuning use the same 2,000 composed examples, one epoch and AdamW settings \citep{loshchilov2019adamw}. QA uses normalized alias exact match (EM) with EOS within 32 tokens \citep{alab2020twikievaluation}. Trained results summarize three runs; intervals resample sources or quadruplets. Triplets follow the model order above.
 \subsection{Correct Hops, Failed Composition}\label{sec:phenomenon}
 Native models correctly answer both constituent questions on 457/462/501 test sources, yet their composition failure rates are 51.2/51.1/48.5\% (\cref{fig:composition_gap}a). We trace how intermediate evidence is located and used.
-\newspread{\widefig{1}{data_main_structure_function}{\textbf{The same evidence-access heads switch targets with the query.} (a) Head-set intersections for Qwen3-4B. (b) Bridge-minus-root mass over 100 paired discovery sources. (c,d) Actual attention profiles of two selected heads: root (orange) and bridge (blue). The recorded answer changes follow calibration of the entire selected set.}{\label{fig:structure_function}\label{fig:localization}}}
+
 \subsection{Locate: Bridge Signals in Evidence-Access Heads}\label{sec:address_results}
 \textbf{Location information survives failure.} The readout recovers 169/234, 176/236 and 209/243 bridge addresses (72.2/74.6/86.0\%; \cref{fig:diagnosis}b). Attention alone reaches 64.5/70.3/84.4\%, versus 39.7/42.4/42.8\% from metadata. Thus $s_j$ decodes the bridge from $\mathcal{H}$ features.
 
-\textbf{Shared heads, different destinations.} The paired-query ranking overlaps the top direct-query bridge-attention heads in 14/14/31 of 20/20/40 heads, versus 0/1/10 under composed queries (\cref{fig:structure_function}a). Their mean root mass falls from 24.4--30.4\% under $q_{12}$ to 6.9--9.3\% under $q_2$, while bridge mass increases from 10.7--12.1\% to 30.0--34.1\%. Root-to-bridge preference reverses on 98/94/89 of 100 paired sources, with weaker shifts for matched random heads. Selected heads occupy middle depths (\cref{fig:selected_head_map}; Appendix C).
+\textbf{Shared heads, different destinations.} The paired-query ranking overlaps the top direct-query bridge-attention heads in 14/14/31 of 20/20/40 heads, versus 0/1/10 under composed queries (\cref{fig:structure_function}a).
 
-\textbf{Tracing head function to the answer.} Qwen3-4B L23H10 switches from 56.5\% root and 15.8\% bridge mass to 6.1\% and 54.0\% when the employer query names Carl Sagan. Calibrating the 20-head set changes Carl Sagan to Cornell University (\cref{fig:structure_function}c). Llama L13H18 shifts from 43.1\% root and 1.3\% bridge mass to 4.3\% and 64.4\% under the direct query; calibration of 40 heads changes Colorado to Los Angeles (\cref{fig:structure_function}d).
+\newspread{\widefig{1}{data_main_structure_function}{\textbf{The same evidence-access heads switch targets with the query.} (a) Head-set intersections for Qwen3-4B. (b) Bridge-minus-root mass over 100 paired discovery sources. (c,d) Actual attention profiles of two selected heads: root (orange) and bridge (blue). The recorded answer changes follow calibration of the entire selected set.}{\label{fig:structure_function}\label{fig:localization}}}
+ Their mean root mass falls from 24.4--30.4\% under $q_{12}$ to 6.9--9.3\% under $q_2$, while bridge mass increases from 10.7--12.1\% to 30.0--34.1\%. Root-to-bridge preference reverses on 98/94/89 of 100 paired sources, with weaker shifts for matched random heads. Selected heads occupy middle depths (\cref{fig:selected_head_map}; Appendix C).
 
 \colfig{data_main_localization}{\textbf{Sparse evidence-access heads across depth.} Colors show discovery mean bridge-attention differences (direct minus composed). Outlines mark selected heads; dots mark selected heads also in the direct-query top-$k$ set.}{\label{fig:selected_head_map}}
+\textbf{Tracing head function to the answer.} Qwen3-4B L23H10 switches from 56.5\% root and 15.8\% bridge mass to 6.1\% and 54.0\% when the employer query names Carl Sagan. Calibrating the 20-head set changes Carl Sagan to Cornell University (\cref{fig:structure_function}c). Llama L13H18 shifts from 43.1\% root and 1.3\% bridge mass to 4.3\% and 64.4\% under the direct query; calibration of 40 heads changes Colorado to Los Angeles (\cref{fig:structure_function}d).
 
-\textbf{Causal role of the localized heads.} Removing the selected 20/20/40 heads reduces composed EM to 7.4/5.5/6.4\%, versus 24.4/27.3/29.4\% for layer-matched random knockout. Direct second-hop EM falls to 1.1/1.0/6.5\%, versus 51.5/53.5/58.9\% (\cref{fig:head_causality}). 
-% Complete the localization results beside the Route introduction, then show
-% the routing comparison at its native full-page width on the same spread.
+
+
+\textbf{Causal role of the localized heads.} Removing the selected 20/20/40 heads reduces composed EM to 7.4/5.5/6.4\%, versus 24.4/27.3/29.4\% for layer-matched random knockout. Direct second-hop EM falls to 1.1/1.0/6.5\%, versus 51.5/53.5/58.9\% (\cref{fig:head_causality}).
+% Keep the causal controls together, with the Read example beside the
+% necessity panel and the routing comparison at its native full-page width.
+\subsection{Route: Put a Recoverable Address to Use}\label{sec:routing_results}
+\textbf{Access to the bridge is causal.} Calibrating bridge mass improves composed EM by 4.9/5.5/16.0 points across 1,000 test sources. The same frozen targets directed to the root or a length-matched paragraph yield substantially weaker results (\cref{fig:access_controls}a). This Route intervention changes $m$ while preserving $\rho$.
+\textbf{Recoverable addresses need effective routing.} In the routing evaluation, 169/174/209 constituent-correct failures have a correctly decoded bridge. Yet the selected heads favor the root (26.4--32.5\% mean mass) over the bridge (7.7--8.8\%). Increasing bridge access repairs 31/27/97 of these errors, compared with 12/10/12 for the root and 7/2/7 for other paragraphs (\cref{fig:access_controls}b,c). The same-source results connect address availability with its causal use.
+
 \newspread{%
 \begin{minipage}[t]{\columnwidth}\vspace{0pt}
 \colfig{data_main_head_causality}{\textbf{Evidence-access heads causally support answering.} Ranked vs. layer-matched random knockout on 1,000 test sources.}{\label{fig:head_causality}\label{fig:head_pair}}
 \end{minipage}\hfill
 \begin{minipage}[t]{\columnwidth}\vspace{0pt}
-\subsection{Route: Put a Recoverable Address to Use}\label{sec:routing_results}
-\textbf{Access to the bridge is causal.} Calibrating bridge mass improves composed EM by 4.9/5.5/16.0 points across 1,000 test sources. The same frozen targets directed to the root or a length-matched paragraph yield substantially weaker results (\cref{fig:access_controls}a). This Route intervention changes $m$ while preserving $\rho$.
-\end{minipage}\par\vspace{5pt}
-\widefigshort{1.86in}{data_main_address_routing}{\textbf{From recoverable location to effective access.} (a) Composed EM changes after calibrating the bridge, root or length-matched paragraph. (b) Native mass allocation in address-recoverable failures. (c) Corrected answers on the same failures. (a) uses all 1,000 test sources; (b,c) use decoded native failures. Labels in (c) give counts; error bars: source-bootstrap 95\% intervals.}{\label{fig:access_controls}}
-}
-\textbf{Recoverable addresses need effective routing.} In the routing evaluation, 169/174/209 constituent-correct failures have a correctly decoded bridge. Yet the selected heads favor the root (26.4--32.5\% mean mass) over the bridge (7.7--8.8\%). Increasing bridge access repairs 31/27/97 of these errors, compared with 12/10/12 for the root and 7/2/7 for other paragraphs (\cref{fig:access_controls}b,c). The same-source results connect address availability with its causal use.
 \subsection{Read: Access-Dependent Relation Reading}\label{sec:causal_results}
 \textbf{Reading depends on the requested relation.} In the Rebecca Miller paragraph, direct mother and nationality queries attend to different fact spans. The mother span receives 21.2\% conditional weight under the mother query, versus 1.9\% under the nationality query (\cref{fig:relation_tokens}). Both queries explicitly name the same entity. The contrast isolates the relation-sensitive Read variable $\rho$.
 
+\end{minipage}\par\vspace{5pt}
+\widefigshort{1.86in}{data_main_address_routing}{\textbf{From recoverable location to effective access.} (a) Composed EM changes after calibrating the bridge, root or length-matched paragraph. (b) Native mass allocation in address-recoverable failures. (c) Corrected answers on the same failures. (a) uses all 1,000 test sources; (b,c) use decoded native failures. Labels in (c) give counts; error bars: source-bootstrap 95\% intervals.}{\label{fig:access_controls}}
+}
 \textbf{Relation-conditioned preferences.} Across 98 valid diagnostic receivers, changing the direct question from the other relation to the target relation increases the conditional target-minus-other span margin by 9.1/9.2/26.0 points (Appendix G). This relation-selective signal makes local reading a meaningful intervention target.
 
-\newpage
 \colfig{data_main_relation_tokens_final}{\textbf{Reading different relations at the same address.} Measured conditional span weights for the Angela diagnostic receiver in Llama (40 selected heads; final question row). Arthur Miller is the competing answer in this case.}{\label{fig:relation_tokens}}
 \textbf{Access changes the effect of the same pattern.} Equation~\ref{eq:contribution} implies that access mass scales the contribution of local value mixing. In Llama, transferring the direct-query pattern at native access changes EM by $-4$ points, but at calibrated access it yields $+12$ points. The additive expectation for Both is $64+47-51=60\%$, whereas the observed accuracy is 76\% (\cref{fig:causal}).
-\newspread{\widefigshort{1.60in}{data_main_interaction_revision}{\textbf{Routing shapes the effectiveness of local reading.} The same transfer $\rho\to\rho^{\rm dir}$ is crossed with native $m$ or calibrated $\tau$. Endpoints report composed EM on 100 receivers; subcaptions give interaction $I$ (pp) and 95\% quadruplet-bootstrap intervals.}{\label{fig:causal}}}
+
 \textbf{Interaction across models.} The interaction estimates are 8/5/16 points with 95\% intervals $[1,14]$, $[0,10]$ and $[8,25]$. Thus, evidence routing changes the effectiveness of relation-specific reading.
 
 
-\colfig{data_main_joint_case_revision}{\textbf{Routing and reading jointly resolve individual errors.} (a) Four-arm predictions for the same Llama diagnostic receiver. (b) Native errors corrected by Both, partitioned by whether either single intervention also succeeds.}{\label{fig:joint_rescue}}
 \textbf{Joint interventions recover errors missed by either operation.} For the director's mother in \emph{Angela}, Llama answers Arthur Miller under Native, Mass and Pattern, but Inge Morath under Both (\cref{fig:joint_rescue}a). Of the 11/13/29 Both corrections, 4/5/13 (36--45\%) require both operations, grounding the aggregate interaction in individual answers.
-\newpage
 \subsection{Mechanism-Guided, Evidence-Sensitive Repair}\label{sec:repair_results}
-\colfig{data_main_content_case_revision}{\textbf{Repaired predictions follow the value at a stable address.} (a) CoReTrace on the same Angela receiver before and after reciprocal fact exchange (run 42). (b) Joint original/edited correctness on 100 exchanges.}{\label{fig:content}}
 \textbf{From coordinated interventions to changed facts.}\label{sec:content_results} We exchange same-relation values while preserving the question, titles, paragraph order and full-context word/character bags. On Angela, \method\ selects P5 and follows Inge Morath $\to$ Gisela Elsner. On 100 pairs, edited-value EM rises from 26/35/32\% to 77/76/80\%, and joint original/edited EM from 21/29/29\% to 75/72/77\%. Every pair retains its selected address.
 
-\newspread{\begin{minipage}{\textwidth}\centering\captionof{table}{\textbf{Mechanism-guided repair improves contextual composition.} Completed-answer EM (\%) on 1,000 test sources, mean $\pm$ SD across three recorded runs. All three requires correctness of both constituents and their composition.}\label{tab:main}\small\setlength{\tabcolsep}{3.1pt}\input{tables/main_results}\end{minipage}\par\vspace{2pt}\widefig{.95}{data_main_mechanism_closure_final}{\textbf{Repair strengthens Locate, Route and Read.} (a) Attention-only address recovery with separately fitted readers and (b) bridge mass on fixed native failures ($n=234/236/243$); (c) conditional target-minus-other relation span preference on 98 discovery receivers per model. Full-context measurements, seed 42; bootstrap intervals and direct-relation contrasts in Appendix G.}{\label{fig:mechanism_closure}}}
+\textbf{Locate: from recoverable addresses to evidence selection.} Attention-only bridge recovery rises from 64.5/70.3/84.4\% to 80.3/82.2/90.9\% on fixed failures (\cref{fig:mechanism_closure}a).
+
+\newspread{\widefigshort{1.60in}{data_main_interaction_revision}{\textbf{Routing shapes the effectiveness of local reading.} The same transfer $\rho\to\rho^{\rm dir}$ is crossed with native $m$ or calibrated $\tau$. Endpoints report composed EM on 100 receivers; subcaptions give interaction $I$ (pp) and 95\% quadruplet-bootstrap intervals.}{\label{fig:causal}}\par\vspace{5pt}
+\begin{minipage}[t]{\columnwidth}\vspace{0pt}
+\colfig{data_main_joint_case_revision}{\textbf{Routing and reading jointly resolve individual errors.} (a) Four-arm predictions for the same Llama diagnostic receiver. (b) Native errors corrected by Both, partitioned by whether either single intervention also succeeds.}{\label{fig:joint_rescue}}
+\end{minipage}\hfill
+\begin{minipage}[t]{\columnwidth}\vspace{0pt}
+\colfig{data_main_content_case_revision}{\textbf{Repaired predictions follow the value at a stable address.} (a) CoReTrace on the same Angela receiver before and after reciprocal fact exchange (run 42). (b) Joint original/edited correctness on 100 exchanges.}{\label{fig:content}}
+\end{minipage}\par\vspace{5pt}
+\widefig{.95}{data_main_mechanism_closure_final}{\textbf{Repair strengthens Locate, Route and Read.} (a) Attention-only address recovery with separately fitted readers and (b) bridge mass on fixed native failures ($n=234/236/243$); (c) conditional target-minus-other relation span preference on 98 discovery receivers per model. Full-context measurements, seed 42; bootstrap intervals and direct-relation contrasts in Appendix G.}{\label{fig:mechanism_closure}}}
+
+
+
 \textbf{Closing the Locate--Route--Read loop.} On unchanged full contexts, $\mathcal{M}^*$ improves attention-only address recovery (\cref{fig:mechanism_closure}a) and raises bridge mass by 5.4/3.7/6.5 points on fixed failures (b). On 98 valid diagnostic receivers, conditional target-minus-other span preference rises by 3.5/4.2/13.1 points (c), and absolute preference by 2.6/3.6/10.3 points. Length-normalized preferences also improve (Appendix G). In \emph{Angela}, the mother span rises from 3.6\% to 29.4\% (\cref{fig:relation_tokens}). Thus both factors of \cref{eq:contribution} strengthen in the same model.
+\newspread{\begin{minipage}{\textwidth}\centering\captionof{table}{\textbf{Mechanism-guided repair improves contextual composition.} Completed-answer EM (\%) on 1,000 test sources, mean $\pm$ SD across three recorded runs. All three requires correctness of both constituents and their composition.}\label{tab:main}\small\setlength{\tabcolsep}{3.1pt}\input{tables/main_results}\end{minipage}\par\vspace{2pt}}
 \colfig{data_main_address_signal_final}{\textbf{Locate: address-guided evidence selection.} On the same 103 ambiguous inputs, the fitted reader improves bridge choice and composed EM over input order.}{\label{fig:repair_closure}}
-\newpage
-\textbf{Locate: from recoverable addresses to evidence selection.} Attention-only bridge recovery rises from 64.5/70.3/84.4\% to 80.3/82.2/90.9\% on fixed failures (\cref{fig:mechanism_closure}a). On 103 ambiguous inputs, learned ranking raises bridge accuracy from 35.9\% to 92.2/93.2/95.1\% and composed EM from 36.9/36.9/38.2\% to 70.2/70.9/76.7\%. Attention-only ranking matches full-reader EM (\cref{fig:repair_closure}).
+ On 103 ambiguous inputs, learned ranking raises bridge accuracy from 35.9\% to 92.2/93.2/95.1\% and composed EM from 36.9/36.9/38.2\% to 70.2/70.9/76.7\%. Attention-only ranking matches full-reader EM (\cref{fig:repair_closure}).
+
 
 \textbf{From mechanism to overall improvement.} Adaptation lifts direct second-hop EM by 14.2/15.7/9.9 points; restoration recovers 5.0/2.4/27.3 first-hop points over adaptation alone (Appendix G). With under 1\% trainable parameters, \method\ improves composed EM by 39.9/38.0/33.3 points and all-three EM by 19.0/22.8/16.5 (\cref{tab:main}). It repairs 80.8/80.9/77.8\% of fixed native failures and retains 94.6/92.9/95.1\% of successes. Restoration recovers Llama GSM8K from 48.45\% to 80.36\%; complete capability results appear in Appendices D--G.

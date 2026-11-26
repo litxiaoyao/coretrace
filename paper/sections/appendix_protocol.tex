@@ -11,7 +11,7 @@ For MMLU, we select the highest-probability native token among A/B/C/D at the pr
 
 \paragraph{Text accuracy and answer completion.} \method\ increases composed text F1 from 39.48/41.87/49.83\% to 73.41/74.35/76.85\%, gains of 33.93/32.48/27.02 points. Every \method\ composed response completes within the 32-token budget. \Cref{tab:scoring} reports exact match, partial-match F1, and completion for Native, full fine-tuning, and \method.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{Scoring on 1,000 composed test questions (percent; adapted methods averaged over runs). Text EM removes the EOS condition; F1 uses the same aliases.}
   \label{tab:scoring}
@@ -27,7 +27,7 @@ Model adaptation uses the 2,000 composed training questions. The teacher-forced 
 
 \Cref{tab:parameters} reports the selected parameter counts. Projection restoration reinstates native V/O contributions at the prefill positions and layers specified in \cref{tab:scopes}, while retaining the other learned contributions. These model-specific settings were fixed before the reported evaluation suite. All component interventions share the same trained checkpoint.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{Selected-head and full-reader sizes. Trainable weights count Q/K/V/O slice deltas; model fractions exclude the separately fitted reader.}
   \label{tab:parameters}
@@ -36,7 +36,7 @@ Model adaptation uses the 2,000 composed training questions. The teacher-forced 
   \input{tables/parameters}
 \end{table}
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{Fixed native-projection restoration rules, with zero-based layer indices. Restoration affects selected-head contributions at the specified prefill positions.}
   \label{tab:scopes}
@@ -65,7 +65,7 @@ Standardization and fitting use the 2,000 composed training examples. Features a
 
 Full fine-tuning updates all model parameters in training mode, using the same objective, source count, gradient accumulation, learning rate, and optimizer hyperparameters. It uses BF16 weights, CPU-offloaded FP32 optimizer state, and seed-dependent source permutations. This recipe is shared across all three models, and both training methods perform 250 updates. Under the recorded shared-resource schedule, head adaptation averages 552/1,566/747 seconds, compared with 4,007/34,916/41,512 seconds for full fine-tuning (\cref{tab:training_cost}). Answer-format and completion rates are reported in \cref{tab:secondary_qa}.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{Training workload and measured duration across three recorded runs. Both methods use one pass over 2,000 composed sources.}
   \label{tab:training_cost}
@@ -83,7 +83,7 @@ For native and selected-head contextual QA evaluations, Qwen3-4B and Llama use b
 
 Confidence intervals in \cref{tab:paired_effects} use paired percentile bootstraps with 2,000 replicates and random seed 42. For repair comparisons, we average each source's correctness over the three runs and then resample source groups defined by transitively shared normalized root/bridge titles. Each of the 1,000 test groups contains one source. The resulting intervals quantify source-sampling variation on the fixed panel. Factorial contrasts instead resample the 25 shared-context quadruplets, preserving all four receivers and their paired intervention arms within each group.
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{Paired composed-accuracy changes in percentage points, with 95\% bootstrap intervals. Repair comparisons use source-wise run averages; bridge calibration uses its own experiment's native reference.}
   \label{tab:paired_effects}
@@ -92,7 +92,7 @@ Confidence intervals in \cref{tab:paired_effects} use paired percentile bootstra
   \input{tables/paired_effects}
 \end{table}
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{Composed accuracy (percent) on the same 1,000 test sources for each recorded run. Interpretation of run dispersion follows Appendix~\ref{app:uncertainty}.}
   \label{tab:per_run}

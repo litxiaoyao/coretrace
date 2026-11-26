@@ -42,14 +42,16 @@
     \caption{#2}#3
   \end{minipage}\par
 }
-\newcommand{\newspread}[1]{\twocolumn[{\centering #1\par\vspace{7pt}}]}
+% Balance the prose between wide evidence blocks; each block keeps its captions.
+% Finish balancing before the next two-column header changes the available height.
+\newcommand{\newspread}[1]{\clearpage\nobalance\twocolumn[{\centering #1\par\vspace{7pt}}]\balance}
 \captionsetup{hypcap=false}
 \DeclareCaptionFont{panelfont}{\normalfont\fontsize{9}{10.5}\selectfont}
 \captionsetup[subfigure]{font=panelfont,labelfont=normalfont,
   textfont=normalfont,labelformat=parens,labelsep=space,
   justification=centering,singlelinecheck=false,skip=3pt,margin=0pt}
 \begin{document}
-\raggedbottom
+\flushbottom
 \lefthyphenmin=2\righthyphenmin=3
 \hyphenation{Llama Qwen CoReTrace}
 \twocolumn[
@@ -72,18 +74,25 @@ Language models can answer both hops of a factual chain from the same context ye
 \input{sections/method}
 \input{sections/experiments}
 \input{sections/conclusion}
-\clearpage
 \section*{Impact Statement}
 This work investigates how language models use supplied evidence and develops targeted interventions for contextual question answering. The findings can inform systems that connect facts across documents. Evaluations use public datasets and include reasoning and general capabilities. Downstream applications should assess evidence quality, answer accuracy, and task-specific reliability under their deployment conditions.
 \section*{AI Disclosure Statement}
 Generative AI assisted with literature review, manuscript revision, and artifact verification. Verification used recorded experiments, primary publications, and compiled PDF renders.
 \balance\bibliography{references}\bibliographystyle{icml2027}
 \clearpage
-\nobalance\appendix\onecolumn\raggedbottom
+\nobalance\appendix\onecolumn\flushbottom
+% Compact, flexible float gaps keep appendix evidence with its discussion.
+\setlength{\textfloatsep}{12pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 1pt}
+\setlength{\floatsep}{10pt plus 2pt minus 1pt}
+% Reserve float-only pages for nearly full collections; otherwise keep prose nearby.
+\renewcommand{\floatpagefraction}{.85}
+\renewcommand{\textfraction}{.08}
+\renewcommand{\topfraction}{.95}
+\renewcommand{\bottomfraction}{.9}
 \setcounter{figure}{0}\setcounter{table}{0}\renewcommand{\thefigure}{A\arabic{figure}}\renewcommand{\thetable}{A\arabic{table}}
 \renewcommand{\theHfigure}{A.\arabic{figure}}
 \renewcommand{\theHtable}{A.\arabic{table}}
 \input{sections/appendix}
-\clearpage
 \input{sections/appendix_mechanism_final}
 \end{document}
