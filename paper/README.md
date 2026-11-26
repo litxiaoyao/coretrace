@@ -42,13 +42,13 @@ For Overleaf, upload the current contents of `paper/` or a source archive built 
 
 ## Formal figure set
 
-The main text contains fourteen figures and one table. Figures 1–3 explain the evidence-use account and repair workflow. Figures 4–14 connect the recorded data to composition failures, head localization, causal interventions, relation reading, and repair. The appendix contains ten additional figures. Figures 1–3 retain their original intact conceptual artwork, including embedded panel titles. Numerical multi-panel figures use LaTeX subfigure captions so their fonts and numbering follow the manuscript.
+The main text contains fourteen figures and one table. Figures 1–3 use vector PDFs for the teaser, mechanism analysis, and repair workflow. Their editable PowerPoint sources use the same file stems. Figures 4–14 connect the recorded data to composition failures, head localization, causal interventions, relation reading, and repair. The appendix contains ten additional figures. Numerical multi-panel figures use LaTeX subfigure captions so their fonts and numbering follow the manuscript.
 
 | Figure | File stem | Role |
 | --- | --- | --- |
-| 1 | `figure1_teaser_revision` | Recorded composition failure, evidence-use functions, and repair overview |
-| 2 | `figure2_diagnosis_revision` | Paired-query localization and factorized intervention framework |
-| 3 | `figure3_method_revision` | CoReTrace adaptation, restoration, and evidence-selection workflow |
+| 1 | `figure1_teaser_vector` | Recorded composition failure, evidence-use functions, and repair overview |
+| 2 | `figure2_diagnosis_vector` | Paired-query localization and factorized intervention framework |
+| 3 | `figure3_method_vector` | CoReTrace adaptation, restoration, and evidence-selection workflow |
 | 4 | `data_main_composition_address` | Correct constituents, composition failures, and address recovery |
 | 5 | `data_main_structure_function` | Head-set overlap, paired preferences, and measured head examples |
 | 6 | `data_main_localization` | Discovery direct-minus-composed bridge-attention maps and frozen selected heads |
