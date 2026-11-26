@@ -9,179 +9,121 @@
 {Alab-NII}.
 \newblock {2WikiMultiHopQA} evaluation script, version 1.1.
 \newblock Software, 2020.
-\newblock URL
-  \url{https://github.com/Alab-NII/2wikimultihop/blob/main/2wikimultihop_evaluate_v1.1.py}.
+\newblock URL \url{https://github.com/Alab-NII/2wikimultihop/blob/main/2wikimultihop_evaluate_v1.1.py}.
 
-\bibitem[Biran et~al.(2024)Biran, Gottesman, Yang, Geva, and
-  Globerson]{biran2024hopping}
+\bibitem[Biran et~al.(2024)Biran, Gottesman, Yang, Geva, and Globerson]{biran2024hopping}
 Biran, E., Gottesman, D., Yang, S., Geva, M., and Globerson, A.
-\newblock Hopping too late: Exploring the limitations of large language models
-  on multi-hop queries.
-\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
-  Natural Language Processing}, pp.\  14113--14130, Miami, Florida, USA,
-  November 2024. Association for Computational Linguistics.
+\newblock Hopping too late: Exploring the limitations of large language models on multi-hop queries.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing}, pp.\  14113--14130, Miami, Florida, USA, November 2024. Association for Computational Linguistics.
 
-\bibitem[Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser,
-  Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman]{cobbe2021gsm8k}
-Cobbe, K., Kosaraju, V., Bavarian, M., Chen, M., Jun, H., Kaiser, L., Plappert,
-  M., Tworek, J., Hilton, J., Nakano, R., Hesse, C., and Schulman, J.
+\bibitem[Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman]{cobbe2021gsm8k}
+Cobbe, K., Kosaraju, V., Bavarian, M., Chen, M., Jun, H., Kaiser, L., Plappert, M., Tworek, J., Hilton, J., Nakano, R., Hesse, C., and Schulman, J.
 \newblock Training verifiers to solve math word problems.
 \newblock arXiv preprint arXiv:2110.14168, 2021.
 
-\bibitem[Grattafiori et~al.(2024)Grattafiori, Dubey, Jauhri, Pandey, Kadian,
-  et~al.]{grattafiori2024llama3}
+\bibitem[Grattafiori et~al.(2024)Grattafiori, Dubey, Jauhri, Pandey, Kadian, et~al.]{grattafiori2024llama3}
 Grattafiori, A., Dubey, A., Jauhri, A., Pandey, A., Kadian, A., et~al.
 \newblock The {Llama 3} herd of models.
 \newblock arXiv preprint arXiv:2407.21783, 2024.
 
-\bibitem[Guo et~al.(2025)Guo, Zhu, Zhang, Jiao, Mei, Jordan, and
-  Russell]{guo2025twohop}
+\bibitem[Guo et~al.(2025)Guo, Zhu, Zhang, Jiao, Mei, Jordan, and Russell]{guo2025twohop}
 Guo, T., Zhu, H., Zhang, R., Jiao, J., Mei, S., Jordan, M.~I., and Russell, S.
 \newblock How do {LLMs} perform two-hop reasoning in context?
 \newblock arXiv preprint arXiv:2502.13913, 2025.
 
-\bibitem[Hendrycks et~al.(2021)Hendrycks, Burns, Basart, Zou, Mazeika, Song,
-  and Steinhardt]{hendrycks2021mmlu}
-Hendrycks, D., Burns, C., Basart, S., Zou, A., Mazeika, M., Song, D., and
-  Steinhardt, J.
+\bibitem[Hendrycks et~al.(2021)Hendrycks, Burns, Basart, Zou, Mazeika, Song, and Steinhardt]{hendrycks2021mmlu}
+Hendrycks, D., Burns, C., Basart, S., Zou, A., Mazeika, M., Song, D., and Steinhardt, J.
 \newblock Measuring massive multitask language understanding.
-\newblock In \emph{The Ninth International Conference on Learning
-  Representations}, 2021.
+\newblock In \emph{The Ninth International Conference on Learning Representations}, 2021.
 
 \bibitem[Ho et~al.(2020)Ho, Nguyen, Sugawara, and Aizawa]{ho2020constructing}
 Ho, X., Nguyen, A.-K.~D., Sugawara, S., and Aizawa, A.
-\newblock Constructing a multi-hop {QA} dataset for comprehensive evaluation of
-  reasoning steps.
-\newblock In \emph{Proceedings of the 28th International Conference on
-  Computational Linguistics}, pp.\  6609--6625, 2020.
+\newblock Constructing a multi-hop {QA} dataset for comprehensive evaluation of reasoning steps.
+\newblock In \emph{Proceedings of the 28th International Conference on Computational Linguistics}, pp.\  6609--6625, 2020.
 
 \bibitem[Kim et~al.(2026)Kim, Choe, Kim, and Cho]{kim2026bridge}
 Kim, S., Choe, M., Kim, H., and Cho, H.
-\newblock Bridge routing heads: Where multilingual multi-hop reasoning lives in
-  {LLMs}.
-\newblock In \emph{Proceedings of the 2026 Conference on Empirical Methods in
-  Natural Language Processing}, pp.\  59179--59195, Budapest, Hungary, October
-  2026. Association for Computational Linguistics.
+\newblock Bridge routing heads: Where multilingual multi-hop reasoning lives in {LLMs}.
+\newblock In \emph{Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing}, pp.\  59179--59195, Budapest, Hungary, October 2026. Association for Computational Linguistics.
 
 \bibitem[Kingma \& Ba(2015)Kingma and Ba]{kingma2015adam}
 Kingma, D.~P. and Ba, J.
 \newblock {Adam}: A method for stochastic optimization.
-\newblock In \emph{The Third International Conference on Learning
-  Representations}, 2015.
+\newblock In \emph{The Third International Conference on Learning Representations}, 2015.
 
-\bibitem[Liu et~al.(2026)Liu, Liu, Zhang, Zhang, Zhang, and
-  Liu]{liu2026layerorder}
+\bibitem[Liu et~al.(2026)Liu, Liu, Zhang, Zhang, Zhang, and Liu]{liu2026layerorder}
 Liu, X., Liu, Y., Zhang, J., Zhang, Y., Zhang, K., and Liu, Q.
-\newblock Layer-order inversion: Rethinking latent multi-hop reasoning in large
-  language models.
-\newblock In \emph{Proceedings of the 2026 Conference on Empirical Methods in
-  Natural Language Processing}, pp.\  41041--41058, Budapest, Hungary, October
-  2026. Association for Computational Linguistics.
+\newblock Layer-order inversion: Rethinking latent multi-hop reasoning in large language models.
+\newblock In \emph{Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing}, pp.\  41041--41058, Budapest, Hungary, October 2026. Association for Computational Linguistics.
 
 \bibitem[Loshchilov \& Hutter(2019)Loshchilov and Hutter]{loshchilov2019adamw}
 Loshchilov, I. and Hutter, F.
 \newblock Decoupled weight decay regularization.
-\newblock In \emph{The Seventh International Conference on Learning
-  Representations}, 2019.
+\newblock In \emph{The Seventh International Conference on Learning Representations}, 2019.
 
 \bibitem[Meng et~al.(2022)Meng, Bau, Andonian, and Belinkov]{meng2022locating}
 Meng, K., Bau, D., Andonian, A., and Belinkov, Y.
 \newblock Locating and editing factual associations in {GPT}.
-\newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~35, 2022.
+\newblock In \emph{Advances in Neural Information Processing Systems}, volume~35, 2022.
 
-\bibitem[Press et~al.(2023)Press, Zhang, Min, Schmidt, Smith, and
-  Lewis]{press2023compositionality}
+\bibitem[Press et~al.(2023)Press, Zhang, Min, Schmidt, Smith, and Lewis]{press2023compositionality}
 Press, O., Zhang, M., Min, S., Schmidt, L., Smith, N.~A., and Lewis, M.
 \newblock Measuring and narrowing the compositionality gap in language models.
-\newblock In \emph{Findings of the Association for Computational Linguistics:
-  EMNLP 2023}, pp.\  5687--5711, 2023.
+\newblock In \emph{Findings of the Association for Computational Linguistics: EMNLP 2023}, pp.\  5687--5711, 2023.
 
 \bibitem[Qin et~al.(2026)Qin, Sun, Xie, and Tian]{qin2026persona}
 Qin, G., Sun, C., Xie, Z., and Tian, X.
-\newblock Tracing the persona circuit: How large language models encode and
-  express character traits.
-\newblock In \emph{Proceedings of the 43rd International Conference on Machine
-  Learning}, volume 306 of \emph{Proceedings of Machine Learning Research},
-  pp.\  101666--101687. PMLR, 2026.
+\newblock Tracing the persona circuit: How large language models encode and express character traits.
+\newblock In \emph{Proceedings of the 43rd International Conference on Machine Learning}, volume 306 of \emph{Proceedings of Machine Learning Research}, pp.\  101666--101687. PMLR, 2026.
 
-\bibitem[Sun et~al.(2025)Sun, Huang, Zhang, Lu, Li, Tian, Shen, and
-  Ye]{sun2025mappings}
+\bibitem[Sun et~al.(2025)Sun, Huang, Zhang, Lu, Li, Tian, Shen, and Ye]{sun2025mappings}
 Sun, C., Huang, Z., Zhang, Y., Lu, L., Li, H., Tian, X., Shen, X., and Ye, J.
-\newblock Interpret and improve in-context learning via the lens of input-label
-  mappings.
-\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association
-  for Computational Linguistics (Volume 1: Long Papers)}, pp.\  3873--3895,
-  Vienna, Austria, 2025. Association for Computational Linguistics.
+\newblock Interpret and improve in-context learning via the lens of input-label mappings.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, pp.\  3873--3895, Vienna, Austria, 2025. Association for Computational Linguistics.
 
-\bibitem[Sun et~al.(2026)Sun, Huang, Zhang, Tian, Shen, and
-  Ye]{sun2026bridging}
+\bibitem[Sun et~al.(2026)Sun, Huang, Zhang, Tian, Shen, and Ye]{sun2026bridging}
 Sun, C., Huang, Z., Zhang, Y., Tian, X., Shen, X., and Ye, J.
-\newblock Bridging the language gap: Uncovering and aligning shared circuits
-  for multi-hop reasoning in multilingual {LLMs}.
-\newblock In \emph{Proceedings of the AAAI Conference on Artificial
-  Intelligence}, volume~40, pp.\  33091--33099, 2026.
+\newblock Bridging the language gap: Uncovering and aligning shared circuits for multi-hop reasoning in multilingual {LLMs}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial Intelligence}, volume~40, pp.\  33091--33099, 2026.
 
-\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez,
-  Kaiser, and Polosukhin]{vaswani2017attention}
-Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.~N.,
-  Kaiser, {\L}., and Polosukhin, I.
+\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, and Polosukhin]{vaswani2017attention}
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.~N., Kaiser, {\L}., and Polosukhin, I.
 \newblock Attention is all you need.
-\newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~30, 2017.
+\newblock In \emph{Advances in Neural Information Processing Systems}, volume~30, 2017.
 
 \bibitem[Wu et~al.(2025)Wu, Wang, Xiao, Peng, and Fu]{wu2025retrieval}
 Wu, W., Wang, Y., Xiao, G., Peng, H., and Fu, Y.
 \newblock Retrieval head mechanistically explains long-context factuality.
-\newblock In \emph{The Thirteenth International Conference on Learning
-  Representations}, 2025.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
 
 \bibitem[Yang et~al.(2025)Yang, Li, Yang, Zhang, Hui, et~al.]{yang2025qwen3}
 Yang, A., Li, A., Yang, B., Zhang, B., Hui, B., et~al.
 \newblock {Qwen3} technical report.
 \newblock arXiv preprint arXiv:2505.09388, 2025.
 
-\bibitem[Yang et~al.(2018)Yang, Qi, Zhang, Bengio, Cohen, Salakhutdinov, and
-  Manning]{yang2018hotpotqa}
-Yang, Z., Qi, P., Zhang, S., Bengio, Y., Cohen, W., Salakhutdinov, R., and
-  Manning, C.~D.
-\newblock {HotpotQA}: A dataset for diverse, explainable multi-hop question
-  answering.
-\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in
-  Natural Language Processing}, pp.\  2369--2380, Brussels, Belgium, 2018.
-  Association for Computational Linguistics.
+\bibitem[Yang et~al.(2018)Yang, Qi, Zhang, Bengio, Cohen, Salakhutdinov, and Manning]{yang2018hotpotqa}
+Yang, Z., Qi, P., Zhang, S., Bengio, Y., Cohen, W., Salakhutdinov, R., and Manning, C.~D.
+\newblock {HotpotQA}: A dataset for diverse, explainable multi-hop question answering.
+\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing}, pp.\  2369--2380, Brussels, Belgium, 2018. Association for Computational Linguistics.
 
 \bibitem[Yu et~al.(2025)Yu, Belinkov, and Ananiadou]{yu2025back}
 Yu, Z., Belinkov, Y., and Ananiadou, S.
-\newblock Back attention: Understanding and enhancing multi-hop reasoning in
-  large language models.
-\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
-  Natural Language Processing}, pp.\  11257--11272, Suzhou, China, November
-  2025. Association for Computational Linguistics.
+\newblock Back attention: Understanding and enhancing multi-hop reasoning in large language models.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing}, pp.\  11257--11272, Suzhou, China, November 2025. Association for Computational Linguistics.
 
-\bibitem[Zhang et~al.(2026{\natexlab{a}})Zhang, Sun, Xie, and
-  Tian]{zhang2026emotional}
+\bibitem[Zhang et~al.(2026{\natexlab{a}})Zhang, Sun, Xie, and Tian]{zhang2026emotional}
 Zhang, C., Sun, C., Xie, Z., and Tian, X.
-\newblock Interpreting and enhancing emotional circuits in large
-  vision-language models via cross-modal information flow.
-\newblock In \emph{Proceedings of the 43rd International Conference on Machine
-  Learning}, volume 306 of \emph{Proceedings of Machine Learning Research},
-  pp.\  158457--158476. PMLR, 2026{\natexlab{a}}.
+\newblock Interpreting and enhancing emotional circuits in large vision-language models via cross-modal information flow.
+\newblock In \emph{Proceedings of the 43rd International Conference on Machine Learning}, volume 306 of \emph{Proceedings of Machine Learning Research}, pp.\  158457--158476. PMLR, 2026{\natexlab{a}}.
 
 \bibitem[Zhang \& Nanda(2024)Zhang and Nanda]{zhang2024patching}
 Zhang, F. and Nanda, N.
-\newblock Towards best practices of activation patching in language models:
-  Metrics and methods.
-\newblock In \emph{The Twelfth International Conference on Learning
-  Representations}, 2024.
+\newblock Towards best practices of activation patching in language models: Metrics and methods.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024.
 
-\bibitem[Zhang et~al.(2026{\natexlab{b}})Zhang, Meng, and
-  Collier]{zhang2026failure}
+\bibitem[Zhang et~al.(2026{\natexlab{b}})Zhang, Meng, and Collier]{zhang2026failure}
 Zhang, M., Meng, Z., and Collier, N.
-\newblock Failure modes in multi-hop {QA}: The weakest link effect and the
-  recognition bottleneck.
-\newblock In \emph{Proceedings of the 64th Annual Meeting of the Association
-  for Computational Linguistics (Volume 1: Long Papers)}, pp.\  41823--41846.
-  Association for Computational Linguistics, 2026{\natexlab{b}}.
+\newblock Failure modes in multi-hop {QA}: The weakest link effect and the recognition bottleneck.
+\newblock In \emph{Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, pp.\  41823--41846. Association for Computational Linguistics, 2026{\natexlab{b}}.
 
 \end{thebibliography}
