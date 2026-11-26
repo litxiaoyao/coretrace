@@ -1533,7 +1533,6 @@ def _pub_corvinus_card(case, record, *, width=3.31):
         _pub_case_text(ax, 11, y + 2, label, size=7.6)
         _pub_case_text(ax, 107, y + 2, answer, size=8, weight='bold',
                        color='#286447' if correct else '#965142')
-    _pub_case_text(ax, 7, 158, 'All three models · recorded test source · run 42', size=7.2)
     return fig
 
 
