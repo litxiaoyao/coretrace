@@ -17,7 +17,7 @@
 \definecolor{gain}{HTML}{1F77B4}
 \definecolor{loss}{HTML}{D62728}
 \icmltitlerunning{How Evidence Routing Shapes Local Reading}
-% Panel artwork is exported separately; LaTeX owns every subfigure caption.
+% Numerical panel artwork is exported separately; Figures 1--3 use intact artwork.
 % Keep type=figure, subfigures, and the parent caption in the same minipage.
 \newcommand{\figurecontent}[1]{%
   \captionsetup{type=figure}%
@@ -66,7 +66,7 @@
 Language models can answer both hops of a factual chain from the same context yet fail to compose them. What prevents independently accessible facts from supporting multi-hop reasoning? We investigate three functions of evidence use: locating the bridge, routing attention to it, and reading its requested relation. Across three models, nearly half of sources with correct constituent answers fail to compose, although bridge addresses remain recoverable in 72.2--86.0\% of these failures. We identify evidence-access heads that shift from root to bridge when the intermediate entity is explicit. Crucially, factorized causal interventions reveal that routing shapes the effectiveness of local reading: coordinating paragraph access and within-paragraph weights yields interaction estimates of 5--16 percentage points, correcting errors that neither intervention resolves alone. Guided by this discovery, we introduce \method, which adapts the localized heads and exploits their address signals to focus evidence. With fewer than 1\% trainable parameters, it improves composed accuracy by 33.3--39.9 points. Internal measurements reveal stronger bridge access and relation preference, while repaired answers follow exchanged facts at stable addresses. These findings show why locating evidence is not enough for successful composition.
 \end{abstract}
 \begin{figure}[!t]
-\centering\figurecontent{figure1_teaser_revision}
+\centering\includegraphics[width=\columnwidth]{figures/figure1_teaser_revision.pdf}
 \caption{\textbf{Locating evidence is not enough.} (a) Recorded test case (run 42). (b) Schematic of shared-head functions; address recovery spans three models, and pattern-transfer effects are from the separate Llama-3.1-8B factorial experiment. (c) \method\ improves composed EM across all three models.}\label{fig:teaser}
 \end{figure}
 \input{sections/introduction}

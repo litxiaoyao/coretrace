@@ -42,7 +42,7 @@ For Overleaf, upload the current contents of `paper/` or a source archive built 
 
 ## Formal figure set
 
-The main text contains fourteen figures and one table. Figures 1–3 explain the evidence-use account and repair workflow. Figures 4–14 connect the recorded data to composition failures, head localization, causal interventions, relation reading, and repair. The appendix contains ten additional figures. Figure and subfigure captions are typeset by LaTeX, so their fonts and numbering follow the manuscript instead of being embedded in a composite plot.
+The main text contains fourteen figures and one table. Figures 1–3 explain the evidence-use account and repair workflow. Figures 4–14 connect the recorded data to composition failures, head localization, causal interventions, relation reading, and repair. The appendix contains ten additional figures. Figures 1–3 retain their original intact conceptual artwork, including embedded panel titles. Numerical multi-panel figures use LaTeX subfigure captions so their fonts and numbering follow the manuscript.
 
 | Figure | File stem | Role |
 | --- | --- | --- |
@@ -75,7 +75,7 @@ Table 1 (`tables/main_results.tex`) reports the complete-method core benchmark c
 
 ### Panel assets and typography
 
-`\figurecontent{stem}` in `main.tex` first loads `figures/<stem>_panels.tex`. These generated layout files assemble independent panel artwork with native `subfigure` environments and captions. A single-panel or legacy asset without a layout file falls back to `figures/<stem>.pdf`. The same entry point is used by the wide figures, column figures, and appendix figures.
+`\figurecontent{stem}` in `main.tex` first loads `figures/<stem>_panels.tex`. These generated layout files assemble independent panel artwork with native `subfigure` environments and captions. A single-panel or intact conceptual asset without a layout file falls back to `figures/<stem>.pdf`. Figures 1–3 retain their original whole-figure PDFs; Figure 1 includes its PDF directly, while Figures 2–3 use the whole-figure fallback. The same entry point is used by the wide figures, column figures, and appendix figures.
 
 LaTeX sets subfigure captions in the manuscript's normal roman font at 9 pt. Panel artwork uses a consistent Times-compatible serif family; legends sit close to the plot and use the same data-to-color conventions throughout the paper. Source panel dimensions are chosen for their final column or page width. Captions are never resized together with artwork; the old height argument to `\widefigshort` is retained only for source compatibility and does not scale panel layouts.
 

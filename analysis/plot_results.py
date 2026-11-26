@@ -1203,61 +1203,12 @@ def _pub_appendix_bars():
                       for j,definition in enumerate(definitions)]],width=6.345)
 
 
-def _pub_conceptual_panels():
-    """Use exact PDF viewports of the supplied artwork, with TeX captions.
-
-    Only the old title bands and gutters are excluded.  The original concept
-    PNG/PDF assets remain unmodified, and all diagrams retain their exact content.
-    """
-    # Coordinates below are fractions of the source image, origin at top left.
-    definitions={
-        "figure1_teaser_revision": (
-            3.25,
-            [[("a",(.006,.083,.998,.282),"Correct hops, failed composition",1.0)],
-             [("b",(.006,.382,.998,.780),"Locating evidence is not enough",1.0)],
-             [("c",(.006,.870,.998,.994),"CoReTrace coordinates evidence use",1.0)]]),
-        "figure2_diagnosis_revision": (
-            6.75,
-            [[("a",(.006,.077,.994,.413),"Paired-query localization",1.0)],
-             [("b",(.006,.516,.481,.980),"Locate, Route and Read",.484),
-              ("c",(.495,.516,.993,.980),"Factorized causal interventions",.507)]]),
-        "figure3_method_revision": (
-            6.75,
-            [[("a",(.008,.072,.994,.351),"Offline preparation",1.0)],
-             [("b",(.008,.449,.994,.982),"Inference",1.0)]]),
-    }
-    import fitz
-    for stem,(width,rows) in definitions.items():
-        source_pdf=FIGURES/f"{stem}.pdf"
-        source_png=FIGURES/f"{stem}.png"
+def _pub_conceptual_sources():
+    """Retain the three author-selected conceptual figures as intact artwork."""
+    for stem in ("figure1_teaser_revision", "figure2_diagnosis_revision",
+                 "figure3_method_revision"):
+        source_png = FIGURES / f"{stem}.png"
         INPUT_PATHS.add(source_png.relative_to(ROOT).as_posix())
-        # Source PNG is the immutable author artwork; reconstructing a temporary
-        # PDF prevents a previous compiled overview from becoming the source.
-        pixels=plt.imread(source_png)
-        h,w=pixels.shape[:2]
-        source=fitz.open()
-        page=source.new_page(width=w,height=h)
-        page.insert_image(page.rect,filename=str(source_png))
-        newrows=[]
-        for row in rows:
-            newrow=[]
-            for letter,(x0,y0,x1,y1),caption,fraction in row:
-                target=stem+"_"+letter
-                clip=fitz.Rect(x0*w,y0*h,x1*w,y1*h)
-                target_width=width*fraction*72
-                target_height=target_width*clip.height/clip.width
-                panel=fitz.open()
-                out=panel.new_page(width=target_width,height=target_height)
-                out.show_pdf_page(out.rect,source,0,clip=clip)
-                panel.save(FIGURES/f"{target}.pdf",garbage=3,deflate=True,no_new_id=True)
-                pix=out.get_pixmap(matrix=fitz.Matrix(300/72,300/72),alpha=False)
-                pix.save(FIGURES/f"{target}.png")
-                panel.close()
-                _PUB_FILES.append(target)
-                newrow.append((target,caption,fraction))
-            newrows.append(newrow)
-        source.close()
-        _pub_layout(stem,newrows,width=width)
 
 
 def _pub_compile_overviews():
@@ -1322,7 +1273,7 @@ labelformat=parens,labelsep=space,justification=centering,singlelinecheck=false,
 
 
 def make_publication_figures():
-    """Regenerate every current figure from recorded data and independent panels."""
+    """Regenerate numerical figures from recorded data; retain intact conceptual artwork."""
     _PUB_LAYOUTS.clear()
     _PUB_FILES.clear()
     with plt.rc_context(_PUB_STYLE):
@@ -1336,7 +1287,7 @@ def make_publication_figures():
         _pub_closure_and_selection()
         _pub_appendix_bars()
         make_publication_cases()
-        _pub_conceptual_panels()
+        _pub_conceptual_sources()
     _pub_compile_overviews()
     export_csv("input_manifest_publication",[
         {"path":p,"bytes":(ROOT/p).stat().st_size,
