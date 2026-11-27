@@ -1,0 +1,7 @@
+\section{Additional Evidence-Access Head Case}\label{app:head_case}
+The Llama-3.1-8B head L13H18 provides a second measured example of the query-sensitive shift in \cref{fig:structure_function}. Under the composed question about the performer of \emph{Blame Canada}, it allocates 43.1\% of its attention mass to the root and 1.3\% to the bridge; when the direct question names Mary Kay Bergman, the masses become 4.3\% and 64.4\%, respectively. Calibrating all 40 selected heads changes the answer from Colorado to Los Angeles.
+\begin{figure}[h]
+\centering
+\includegraphics[width=3.31in]{figures/data_main_structure_function_d.pdf}
+\caption{\textbf{Query-sensitive routing in Llama-3.1-8B.} Measured attention for L13H18 on the paired queries. The answer change uses the entire selected head set, not just the displayed head.}\label{fig:llama_head_example}
+\end{figure}

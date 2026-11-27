@@ -18,7 +18,6 @@
 \definecolor{loss}{HTML}{D62728}
 \icmltitlerunning{How Evidence Routing Shapes Local Reading}
 % Numerical panel artwork is exported separately; Figures 1--3 use intact artwork.
-% Keep type=figure, subfigures, and the parent caption in the same minipage.
 \newcommand{\figurecontent}[1]{%
   \captionsetup{type=figure}%
   \IfFileExists{figures/#1_panels.tex}{%
@@ -33,8 +32,6 @@
     \caption{#3}#4
   \end{minipage}%
 }
-% Retain the legacy signature; panel dimensions now come from the layout file.
-% In particular, do not scale the LaTeX subcaptions to satisfy a height limit.
 \newcommand{\widefigshort}[4]{\widefig{1}{#2}{#3}{#4}}
 \newcommand{\colfig}[3]{%
   \begin{minipage}{\columnwidth}\centering
@@ -42,8 +39,6 @@
     \caption{#2}#3
   \end{minipage}\par
 }
-% Balance the prose between wide evidence blocks; each block keeps its captions.
-% Finish balancing before the next two-column header changes the available height.
 \newcommand{\newspread}[1]{\clearpage\nobalance\twocolumn[{\centering #1\par\vspace{7pt}}]\balance}
 \captionsetup{hypcap=false}
 \DeclareCaptionFont{panelfont}{\normalfont\fontsize{9}{10.5}\selectfont}
@@ -63,11 +58,11 @@
 ]
 \printAffiliationsAndNotice{}
 \begin{abstract}
-Language models can answer both hops of a factual chain from the same context yet fail to compose them. What prevents independently accessible facts from supporting multi-hop reasoning? We investigate three functions of evidence use: locating the bridge, routing attention to it, and reading its requested relation. Across three models, nearly half of sources with correct constituent answers fail to compose, although bridge addresses remain recoverable in 72.2--86.0\% of these failures. We identify evidence-access heads that shift from root to bridge when the intermediate entity is explicit. Crucially, factorized causal interventions reveal that routing shapes the effectiveness of local reading: coordinating paragraph access and within-paragraph weights yields interaction estimates of 5--16 percentage points, correcting errors that neither intervention resolves alone. Guided by this discovery, we introduce \method, which adapts the localized heads and exploits their address signals to focus evidence. With fewer than 1\% trainable parameters, it improves composed accuracy by 33.3--39.9 points. Internal measurements reveal stronger bridge access and relation preference, while repaired answers follow exchanged facts at stable addresses. These findings show why locating evidence is not enough for successful composition.
+Language models can answer both hops of a factual chain from the same context yet fail to compose them. Is the intermediate evidence inaccessible, or is it ineffectively used? Across three models, nearly half of sources with correct constituent answers fail to compose, although bridge addresses remain recoverable in 72.2--86.0\% of these failures. We identify shared evidence-access heads and factorize their attention into paragraph-level access mass and conditional within-paragraph reading patterns. Crossed causal interventions reveal that the same relation-specific reading pattern can be ineffective or detrimental at native access yet beneficial when bridge access is strengthened. Joint interventions yield positive interaction estimates of 5--16 percentage points and resolve errors missed by either intervention alone. Guided by this discovery, we introduce \method, which adapts the localized heads and exploits their address signals to focus evidence. With fewer than 1\% trainable model parameters, \method\ improves composed exact-match accuracy by 33.3--39.9 points. Bridge access and relation preference strengthen on unchanged contexts, and repaired answers follow exchanged facts at stable addresses. These findings reveal why locating evidence is not enough: its contribution to composition depends on how access and local reading are coordinated.
 \end{abstract}
 \begin{figure}[!t]
 \centering\includegraphics[width=\columnwidth]{figures/figure1_teaser_vector.pdf}
-\caption{\textbf{Locating evidence is not enough.} In the recorded case (run 42), two correct hops fail to compose. The pattern-transfer example comes from the Llama-3.1-8B factorial experiment. Bridge recovery, interaction, and \method\ gain ranges span all three models.}\label{fig:teaser}
+\caption{\textbf{Locating evidence is not enough.} The recorded test case (run 42) fails to compose two correct hops. In a separate Llama-3.1-8B experiment on 100 composed receivers, the same reading-pattern transfer changes EM by $-4$ pp at native access and $+12$ pp at calibrated access. The recovery, interaction, and \method\ gain ranges span all three models.}\label{fig:teaser}
 \end{figure}
 \input{sections/introduction}
 \input{sections/related_work}
@@ -78,14 +73,13 @@ Language models can answer both hops of a factual chain from the same context ye
 This work investigates how language models use supplied evidence and develops targeted interventions for contextual question answering. The findings can inform systems that connect facts across documents. Evaluations use public datasets and include reasoning and general capabilities. Downstream applications should assess evidence quality, answer accuracy, and task-specific reliability under their deployment conditions.
 \section*{AI Disclosure Statement}
 Generative AI assisted with literature review, manuscript revision, and artifact verification. Verification used recorded experiments, primary publications, and compiled PDF renders.
-\balance\bibliography{references}\bibliographystyle{icml2027}
+\clearpage\nobalance
+\bibliography{references}\bibliographystyle{icml2027}
 \clearpage
 \nobalance\appendix\onecolumn\flushbottom
-% Compact, flexible float gaps keep appendix evidence with its discussion.
 \setlength{\textfloatsep}{12pt plus 2pt minus 2pt}
 \setlength{\intextsep}{8pt plus 2pt minus 1pt}
 \setlength{\floatsep}{10pt plus 2pt minus 1pt}
-% Reserve float-only pages for nearly full collections; otherwise keep prose nearby.
 \renewcommand{\floatpagefraction}{.85}
 \renewcommand{\textfraction}{.08}
 \renewcommand{\topfraction}{.95}
@@ -95,4 +89,5 @@ Generative AI assisted with literature review, manuscript revision, and artifact
 \renewcommand{\theHtable}{A.\arabic{table}}
 \input{sections/appendix}
 \input{sections/appendix_mechanism_final}
+\input{sections/appendix_head_case}
 \end{document}
